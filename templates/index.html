@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container">
+        <h1><i class="fas fa-newspaper"></i> WiseNews</h1>
+        <p class="lead">Your Intelligent News Platform</p>
+        <p>Discover the latest news, articles, and insights from around the world with our advanced aggregation system.</p>
+        
+        <div class="row justify-content-center mt-4">
+            <div class="stats-badge">
+                <h4>{{ total_articles }}</h4>
+                <small>Total Articles</small>
+            </div>
+            <div class="stats-badge">
+                <h4>{{ total_categories }}</h4>
+                <small>Categories</small>
+            </div>
+            <div class="stats-badge">
+                <h4>Live</h4>
+                <small>Real-time Updates</small>
+            </div>
+        </div>
+        
+        <div class="mt-4">
+            <a href="{{ url_for('articles') }}" class="btn btn-primary btn-lg me-3">
+                <i class="fas fa-newspaper"></i> Browse Articles
+            </a>
+            <a href="{{ url_for('about') }}" class="btn btn-outline-light btn-lg">
+                <i class="fas fa-info-circle"></i> Learn More
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="main-content">
+        <!-- Search Section -->
+        <div class="row mb-5">
+            <div class="col-md-8 mx-auto">
+                <h2 class="text-center mb-4">Search News & Articles</h2>
+                <form action="{{ url_for('search') }}" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-bar" name="q" placeholder="Enter keywords, topics, or phrases..." style="border-radius: 25px 0 0 25px;">
+                        <button class="btn btn-primary" type="submit" style="border-radius: 0 25px 25px 0;">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Featured Articles -->
+        <h2 class="mb-4"><i class="fas fa-star text-warning"></i> Featured Articles</h2>
+        <div class="row">
+            {% for article in featured_articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge category-badge bg-primary">{{ article.category }}</span>
+                            <small class="text-muted">{{ article.published_date.strftime('%b %d, %Y') }}</small>
+                        </div>
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.content[:150] }}{% if article.content|length > 150 %}...{% endif %}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-user"></i> {{ article.author }}
+                            </small>
+                            <a href="{{ url_for('article_detail', id=article.id) }}" class="btn btn-outline-primary btn-sm">
+                                Read More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Categories Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="mb-4"><i class="fas fa-tags"></i> Browse by Category</h2>
+                <div class="row">
+                    {% for category, count in categories %}
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <a href="{{ url_for('category_articles', category=category) }}" class="text-decoration-none">
+                            <div class="card text-center category-card h-100">
+                                <div class="card-body">
+                                    <div class="category-icon mb-3">
+                                        {% if category == 'Technology' %}
+                                            <i class="fas fa-laptop-code fa-3x text-primary"></i>
+                                        {% elif category == 'Features' %}
+                                            <i class="fas fa-star fa-3x text-warning"></i>
+                                        {% elif category == 'Guide' %}
+                                            <i class="fas fa-book fa-3x text-success"></i>
+                                        {% elif category == 'Updates' %}
+                                            <i class="fas fa-sync fa-3x text-info"></i>
+                                        {% else %}
+                                            <i class="fas fa-newspaper fa-3x text-secondary"></i>
+                                        {% endif %}
+                                    </div>
+                                    <h5 class="card-title">{{ category }}</h5>
+                                    <p class="card-text text-muted">{{ count }} articles</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Activity -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="mb-4"><i class="fas fa-clock"></i> Recent Activity</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-newspaper"></i> Latest Articles</h5>
+                            </div>
+                            <div class="card-body">
+                                {% for article in recent_articles %}
+                                <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom">
+                                    <div>
+                                        <h6 class="mb-1">{{ article.title[:50] }}{% if article.title|length > 50 %}...{% endif %}</h6>
+                                        <small class="text-muted">{{ article.published_date.strftime('%b %d, %Y') }}</small>
+                                    </div>
+                                    <span class="badge bg-primary">{{ article.category }}</span>
+                                </div>
+                                {% endfor %}
+                                <a href="{{ url_for('articles') }}" class="btn btn-outline-primary btn-sm mt-2">View All</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5><i class="fas fa-chart-line"></i> Platform Statistics</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row text-center">
+                                    <div class="col-4">
+                                        <h3 class="text-primary">{{ total_articles }}</h3>
+                                        <small>Total Articles</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h3 class="text-success">{{ total_categories }}</h3>
+                                        <small>Categories</small>
+                                    </div>
+                                    <div class="col-4">
+                                        <h3 class="text-warning">{{ recent_articles|length }}</h3>
+                                        <small>Recent</small>
+                                    </div>
+                                </div>
+                                <hr>
+                                <p class="mb-0 text-center">
+                                    <small class="text-muted">
+                                        <i class="fas fa-sync-alt"></i> Last updated: {{ current_time.strftime('%B %d, %Y at %I:%M %p') }}
+                                    </small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.category-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    border-radius: 10px;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.category-icon {
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.1);
+}
+</style>
+{% endblock %}
