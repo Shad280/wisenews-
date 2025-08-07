@@ -123,14 +123,46 @@ def init_db():
 def index():
     """Homepage with featured articles"""
     conn = get_db_connection()
+    
+    # Get featured articles
     articles = conn.execute('''
         SELECT * FROM articles 
         ORDER BY date_added DESC 
         LIMIT 6
     ''').fetchall()
+    
+    # Get statistics for homepage
+    total_articles = conn.execute('SELECT COUNT(*) FROM articles').fetchone()[0]
+    
+    # Get categories with counts
+    categories_data = conn.execute('''
+        SELECT category, COUNT(*) as count 
+        FROM articles 
+        GROUP BY category 
+        ORDER BY count DESC
+    ''').fetchall()
+    
+    # Get recent articles
+    recent_articles = conn.execute('''
+        SELECT * FROM articles 
+        ORDER BY date_added DESC 
+        LIMIT 5
+    ''').fetchall()
+    
     conn.close()
     
-    return render_template('index.html', articles=articles)
+    # Prepare data for template
+    categories = [(cat['category'], cat['count']) for cat in categories_data]
+    total_categories = len(categories)
+    current_time = datetime.now()
+    
+    return render_template('index.html', 
+                         featured_articles=articles,
+                         total_articles=total_articles,
+                         total_categories=total_categories,
+                         categories=categories,
+                         recent_articles=recent_articles,
+                         current_time=current_time)
 
 @app.route('/articles')
 def articles():
@@ -165,30 +197,70 @@ def view_article(article_id):
     article = conn.execute('''
         SELECT * FROM articles WHERE id = ?
     ''', (article_id,)).fetchone()
-    conn.close()
     
     if article is None:
+        conn.close()
         flash('Article not found.', 'error')
         return redirect(url_for('articles'))
     
-    return render_template('article.html', article=article)
+    # Get related articles from same category
+    related_articles = conn.execute('''
+        SELECT * FROM articles 
+        WHERE category = ? AND id != ?
+        ORDER BY date_added DESC 
+        LIMIT 3
+    ''', (article['category'], article_id)).fetchall()
+    
+    conn.close()
+    
+    return render_template('article_detail.html', 
+                         article=article, 
+                         related_articles=related_articles)
 
 @app.route('/search')
 def search():
     """Search articles"""
     query = request.args.get('q', '')
-    if not query:
-        return redirect(url_for('articles'))
+    category = request.args.get('category')
     
     conn = get_db_connection()
-    articles = conn.execute('''
-        SELECT * FROM articles 
-        WHERE title LIKE ? OR content LIKE ? OR keywords LIKE ?
-        ORDER BY date_added DESC
-    ''', (f'%{query}%', f'%{query}%', f'%{query}%')).fetchall()
+    
+    if query:
+        # Search articles
+        if category:
+            articles = conn.execute('''
+                SELECT * FROM articles 
+                WHERE (title LIKE ? OR content LIKE ? OR keywords LIKE ?) AND category = ?
+                ORDER BY date_added DESC
+            ''', (f'%{query}%', f'%{query}%', f'%{query}%', category)).fetchall()
+        else:
+            articles = conn.execute('''
+                SELECT * FROM articles 
+                WHERE title LIKE ? OR content LIKE ? OR keywords LIKE ?
+                ORDER BY date_added DESC
+            ''', (f'%{query}%', f'%{query}%', f'%{query}%')).fetchall()
+        
+        # Get category counts for filters
+        category_counts = []
+        if articles:
+            categories = conn.execute('''
+                SELECT category, COUNT(*) as count 
+                FROM articles 
+                WHERE title LIKE ? OR content LIKE ? OR keywords LIKE ?
+                GROUP BY category 
+                ORDER BY count DESC
+            ''', (f'%{query}%', f'%{query}%', f'%{query}%')).fetchall()
+            category_counts = [(cat['category'], cat['count']) for cat in categories]
+    else:
+        articles = []
+        category_counts = []
+    
     conn.close()
     
-    return render_template('search_results.html', articles=articles, query=query)
+    return render_template('search.html', 
+                         results=articles, 
+                         query=query,
+                         category_counts=category_counts)
 
 @app.route('/category/<category>')
 def category_articles(category):
@@ -206,7 +278,14 @@ def category_articles(category):
 @app.route('/about')
 def about():
     """About page"""
-    return render_template('about.html')
+    conn = get_db_connection()
+    total_articles = conn.execute('SELECT COUNT(*) FROM articles').fetchone()[0]
+    total_categories = conn.execute('SELECT COUNT(DISTINCT category) FROM articles').fetchone()[0]
+    conn.close()
+    
+    return render_template('about.html', 
+                         total_articles=total_articles,
+                         total_categories=total_categories)
 
 @app.route('/contact')
 def contact():
@@ -373,3 +452,5 @@ if __name__ == '__main__':
 else:
     # For production (Gunicorn)
     init_db()
+
+    
