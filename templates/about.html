@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-content">
+        <!-- About Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="about-header">
+                    <i class="fas fa-info-circle fa-4x text-primary mb-3"></i>
+                    <h1 class="display-4 mb-3">About WiseNews</h1>
+                    <p class="lead text-muted">Your Intelligent News Aggregation Platform</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mission Statement -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card mission-card">
+                    <div class="card-body text-center">
+                        <h2 class="card-title mb-4"><i class="fas fa-bullseye text-primary"></i> Our Mission</h2>
+                        <p class="lead">
+                            WiseNews is dedicated to delivering intelligent, comprehensive, and real-time news aggregation 
+                            that keeps you informed about the topics that matter most to you. We combine cutting-edge 
+                            technology with editorial excellence to bring you the best of digital journalism.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-5"><i class="fas fa-star"></i> What Makes Us Different</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-brain fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Intelligent Aggregation</h5>
+                                <p class="card-text">
+                                    Our advanced algorithms scan thousands of sources to bring you the most relevant 
+                                    and important news stories, filtered by your interests and preferences.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-clock fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Real-Time Updates</h5>
+                                <p class="card-text">
+                                    Stay ahead of the curve with real-time news updates. Our platform continuously 
+                                    monitors news sources to ensure you never miss important developments.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card feature-card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-mobile-alt fa-3x text-warning mb-3"></i>
+                                <h5 class="card-title">Mobile-First Design</h5>
+                                <p class="card-text">
+                                    Access your news anywhere, anytime. Our responsive design ensures a perfect 
+                                    reading experience across all devices, from smartphones to desktops.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="tech-stack">
+                    <h2 class="text-center mb-4"><i class="fas fa-cogs"></i> Built with Modern Technology</h2>
+                    <div class="row text-center">
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="tech-item">
+                                <i class="fab fa-python fa-3x text-primary mb-2"></i>
+                                <h6>Python & Flask</h6>
+                                <small class="text-muted">Backend Framework</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="tech-item">
+                                <i class="fas fa-database fa-3x text-success mb-2"></i>
+                                <h6>SQLite Database</h6>
+                                <small class="text-muted">Data Storage</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="tech-item">
+                                <i class="fab fa-html5 fa-3x text-danger mb-2"></i>
+                                <h6>HTML5 & CSS3</h6>
+                                <small class="text-muted">Frontend Technologies</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <div class="tech-item">
+                                <i class="fab fa-bootstrap fa-3x text-purple mb-2"></i>
+                                <h6>Bootstrap 5</h6>
+                                <small class="text-muted">UI Framework</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4"><i class="fas fa-chart-line"></i> Platform Statistics</h2>
+                        <div class="row text-center">
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="text-primary">{{ total_articles }}</h3>
+                                    <p class="text-muted">Total Articles</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="text-success">{{ total_categories }}</h3>
+                                    <p class="text-muted">Categories</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="text-warning">24/7</h3>
+                                    <p class="text-muted">Live Updates</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <div class="stat-item">
+                                    <h3 class="text-info">100%</h3>
+                                    <p class="text-muted">Free Access</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Section -->
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2 class="text-center mb-4"><i class="fas fa-users"></i> Our Commitment</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card commitment-card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                                <h5 class="card-title">Privacy First</h5>
+                                <p class="card-text">
+                                    We respect your privacy and don't track your reading habits. Your data stays yours.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card commitment-card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-heart fa-3x text-danger mb-3"></i>
+                                <h5 class="card-title">Ad-Free Experience</h5>
+                                <p class="card-text">
+                                    Focus on what matters - the news. No intrusive ads or distracting content.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card commitment-card h-100">
+                            <div class="card-body text-center">
+                                <i class="fas fa-globe fa-3x text-success mb-3"></i>
+                                <h5 class="card-title">Open Source</h5>
+                                <p class="card-text">
+                                    Built with transparency in mind. Our platform is open for community contributions.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Information -->
+        <div class="row mb-5">
+            <div class="col-lg-8 mx-auto">
+                <div class="card api-card">
+                    <div class="card-body">
+                        <h3 class="card-title text-center mb-4">
+                            <i class="fas fa-code"></i> Developer API
+                        </h3>
+                        <p class="text-center text-muted mb-4">
+                            Integrate WiseNews data into your applications with our simple REST API
+                        </p>
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-3">
+                                <div class="api-endpoint">
+                                    <code>/api/articles</code>
+                                    <small class="d-block text-muted">Get all articles</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="api-endpoint">
+                                    <code>/api/categories</code>
+                                    <small class="d-block text-muted">List categories</small>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <div class="api-endpoint">
+                                    <code>/api/status</code>
+                                    <small class="d-block text-muted">API health check</small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <a href="{{ url_for('api_status') }}" class="btn btn-outline-primary">
+                                <i class="fas fa-external-link-alt"></i> View API Documentation
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="row">
+            <div class="col-lg-6 mx-auto text-center">
+                <div class="contact-info">
+                    <h3><i class="fas fa-envelope"></i> Get in Touch</h3>
+                    <p class="text-muted mb-4">
+                        Have questions, suggestions, or want to contribute? We'd love to hear from you.
+                    </p>
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Contact Us
+                        </a>
+                        <a href="{{ url_for('articles') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-newspaper"></i> Browse Articles
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.about-header {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    padding: 60px 30px;
+    border-radius: 20px;
+}
+
+.mission-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+}
+
+.feature-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.feature-card:hover i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.tech-stack {
+    background: rgba(248, 249, 250, 0.8);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+.tech-item {
+    transition: all 0.3s ease;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.tech-item:hover {
+    background: rgba(102, 126, 234, 0.1);
+    transform: translateY(-5px);
+}
+
+.tech-item:hover i {
+    transform: scale(1.2);
+}
+
+.stats-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.stats-card .card-body {
+    padding: 40px;
+}
+
+.stat-item h3 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.commitment-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.commitment-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.commitment-card:hover i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.api-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    background: rgba(248, 249, 250, 0.8);
+}
+
+.api-endpoint {
+    padding: 15px;
+    background: white;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.api-endpoint:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.api-endpoint code {
+    color: #667eea;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.contact-info {
+    padding: 40px;
+    background: rgba(102, 126, 234, 0.05);
+    border-radius: 15px;
+}
+
+.text-purple {
+    color: #764ba2 !important;
+}
+
+/* Animation for cards on scroll */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.feature-card,
+.commitment-card,
+.tech-item {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+
+@media (max-width: 768px) {
+    .about-header {
+        padding: 40px 20px;
+    }
+    
+    .about-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .stats-card .card-body {
+        padding: 20px;
+    }
+    
+    .stat-item h3 {
+        font-size: 2rem;
+    }
+    
+    .tech-stack {
+        padding: 20px;
+    }
+    
+    .contact-info {
+        padding: 20px;
+    }
+    
+    .d-flex.gap-3 {
+        flex-direction: column;
+        gap: 10px !important;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add smooth scrolling for better UX
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    });
+
+    // Observe all cards for scroll animations
+    const cards = document.querySelectorAll('.feature-card, .commitment-card, .api-card');
+    cards.forEach(card => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(30px)';
+        card.style.transition = 'all 0.6s ease-out';
+        observer.observe(card);
+    });
+
+    // Add counter animation for statistics
+    const counters = document.querySelectorAll('.stat-item h3');
+    counters.forEach(counter => {
+        const target = parseInt(counter.textContent) || 0;
+        if (target > 0) {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    counter.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    counter.textContent = Math.ceil(current);
+                }
+            }, 50);
+        }
+    });
+});
+</script>
+{% endblock %}
