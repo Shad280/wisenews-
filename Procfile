@@ -1,1 +1,1 @@
-web: gunicorn app_ultra_simple:app
+web: gunicorn app_railway_full:app
