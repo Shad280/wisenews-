@@ -10,6 +10,7 @@ import sqlite3
 from datetime import datetime, timedelta
 import json
 import hashlib
+import bcrypt
 # Remove threading for Railway compatibility
 # import threading
 import time
@@ -151,18 +152,59 @@ def init_db():
             user_manager = user_auth.UserManager(app.config['DATABASE'])
             user_manager.init_db()
             
-            # Create admin user
+            # Force create admin user with robust error handling
             try:
-                admin_created = user_manager.create_admin_user(
-                    email='admin@wisenews.com',
-                    password='WiseNews2025!'
-                )
-                if admin_created:
-                    print("✅ Admin user created successfully")
+                # First, ensure is_admin column exists
+                conn = sqlite3.connect(app.config['DATABASE'])
+                cursor = conn.cursor()
+                
+                # Check if is_admin column exists, if not add it
+                cursor.execute("PRAGMA table_info(users)")
+                columns = [row[1] for row in cursor.fetchall()]
+                if 'is_admin' not in columns:
+                    cursor.execute('ALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT FALSE')
+                    conn.commit()
+                    print("✅ Added is_admin column to users table")
+                
+                # Delete any existing admin to ensure clean state
+                cursor.execute('DELETE FROM users WHERE email = ?', ('admin@wisenews.com',))
+                deleted_count = cursor.rowcount
+                print(f"✅ Removed {deleted_count} existing admin users")
+                
+                # Create fresh admin user
+                password_hash = bcrypt.hashpw('WiseNews2025!'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+                cursor.execute('''
+                    INSERT INTO users (
+                        email, password_hash, first_name, last_name,
+                        gdpr_consent, marketing_consent, analytics_consent, data_processing_consent,
+                        is_active, is_verified, is_admin
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    'admin@wisenews.com', password_hash, 'Admin', 'User',
+                    True, False, True, True,  # GDPR consents
+                    True, True, True  # Active, verified, admin
+                ))
+                
+                admin_id = cursor.lastrowid
+                conn.commit()
+                conn.close()
+                
+                print(f"✅ Admin user created successfully with ID: {admin_id}")
+                
+                # Verify admin creation
+                conn = sqlite3.connect(app.config['DATABASE'])
+                cursor = conn.cursor()
+                cursor.execute('SELECT id, email, is_admin FROM users WHERE email = ?', ('admin@wisenews.com',))
+                admin_check = cursor.fetchone()
+                conn.close()
+                
+                if admin_check:
+                    print(f"✅ Admin verification: ID={admin_check[0]}, Email={admin_check[1]}, Admin={admin_check[2]}")
                 else:
-                    print("ℹ️  Admin user already exists")
+                    print("❌ Admin verification failed")
+                    
             except Exception as e:
-                print(f"ℹ️  Admin user setup: {e}")
+                print(f"⚠️  Admin user setup error: {e}")
                 
         except Exception as e:
             print(f"⚠️  User auth initialization: {e}")
