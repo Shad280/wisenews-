@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template_string
+from flask import Flask, jsonify, request, render_template_string, session, redirect, url_for, flash, g
 import os
 import sqlite3
 from datetime import datetime, timedelta
@@ -435,29 +435,270 @@ init_db()
 
 @app.route('/')
 def index():
-    """Homepage with latest news"""
+    """Homepage with latest news and user-aware navigation"""
+    # Check if user is logged in
+    user = None
     try:
-        conn = get_db()
-        cursor = conn.cursor()
+        from auth_decorators import get_current_user
+        user = get_current_user()
+    except:
+        pass
+    
+    # Get latest articles for homepage
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        SELECT id, title, summary, author, source, category, image_url, published_date
+        FROM articles 
+        ORDER BY published_date DESC 
+        LIMIT 12
+    ''')
+    
+    recent_articles = cursor.fetchall()
+    
+    # Get categories count
+    cursor.execute('''
+        SELECT category, COUNT(*) as count
+        FROM articles 
+        GROUP BY category 
+        ORDER BY count DESC
+        LIMIT 6
+    ''')
+    
+    categories = cursor.fetchall()
+    
+    # Get total articles count
+    cursor.execute('SELECT COUNT(*) FROM articles')
+    total_articles = cursor.fetchone()[0]
+    
+    conn.close()
+    
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiseNews - Stay Informed with Real-Time News</title>
+    <meta name="description" content="Get the latest news from trusted sources worldwide. Stay informed with WiseNews - your comprehensive news aggregation platform.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="fas fa-newspaper"></i> WiseNews
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/"><i class="fas fa-home"></i> Home</a>
+                    </li>
+                    {% if user %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/articles"><i class="fas fa-newspaper"></i> Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/search"><i class="fas fa-search"></i> Search</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trending"><i class="fas fa-fire"></i> Trending</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/subscription-plans"><i class="fas fa-crown"></i> Plans</a>
+                    </li>
+                </ul>
+                
+                <ul class="navbar-nav">
+                    {% if user %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                                <i class="fas fa-user"></i> {{ user.first_name }}
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                                <li><a class="dropdown-item" href="/profile"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Sign Up</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="bg-light py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-primary">
+                        Stay Informed with <span class="text-dark">WiseNews</span>
+                    </h1>
+                    <p class="lead mb-4">
+                        Get real-time news from trusted sources worldwide. {{ total_articles }} articles from 18+ sources updated hourly.
+                    </p>
+                    <div class="d-flex gap-3">
+                        {% if not user %}
+                            <a href="/register" class="btn btn-primary btn-lg">
+                                <i class="fas fa-rocket"></i> Get Started Free
+                            </a>
+                            <a href="/login" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-sign-in-alt"></i> Sign In
+                            </a>
+                        {% else %}
+                            <a href="/dashboard" class="btn btn-primary btn-lg">
+                                <i class="fas fa-tachometer-alt"></i> Go to Dashboard
+                            </a>
+                            <a href="/articles" class="btn btn-outline-primary btn-lg">
+                                <i class="fas fa-newspaper"></i> Browse Articles
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="text-center">
+                        <i class="fas fa-globe-americas fa-10x text-primary opacity-25"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Latest Articles -->
+    <div class="container my-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="display-6 fw-bold">Latest Articles</h2>
+            {% if user %}
+                <a href="/articles" class="btn btn-outline-primary">
+                    <i class="fas fa-newspaper"></i> View All
+                </a>
+            {% else %}
+                <a href="/login" class="btn btn-outline-primary">
+                    <i class="fas fa-sign-in-alt"></i> Sign In to Read
+                </a>
+            {% endif %}
+        </div>
         
-        # Get latest 20 articles
-        cursor.execute('''
-            SELECT a.*, c.color as category_color
-            FROM articles a 
-            LEFT JOIN categories c ON a.category = c.name
-            ORDER BY a.created_at DESC 
-            LIMIT 20
-        ''')
-        articles = cursor.fetchall()
-        
-        # Get categories for navigation
-        cursor.execute('SELECT * FROM categories ORDER BY name')
-        categories = cursor.fetchall()
-        
-        conn.close()
-        
-        # Return HTML page instead of JSON
-        return render_template_string('''
+        <div class="row g-4">
+            {% for article in recent_articles %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card border-0 shadow-sm h-100">
+                    {% if article[6] %}
+                        <img src="{{ article[6] }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Article image">
+                    {% endif %}
+                    <div class="card-body">
+                        <span class="badge bg-primary mb-2">{{ article[5].title() }}</span>
+                        <h5 class="card-title">{{ article[1] }}</h5>
+                        <p class="card-text text-muted">{{ article[2][:100] }}...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">
+                                <i class="fas fa-user"></i> {{ article[3] }}
+                            </small>
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i> {{ article[7][:10] }}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        {% if user %}
+                            <a href="/article/{{ article[0] }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye"></i> Read More
+                            </a>
+                        {% else %}
+                            <a href="/login?next=/article/{{ article[0] }}" class="btn btn-primary btn-sm">
+                                <i class="fas fa-eye"></i> Sign In to Read
+                            </a>
+                        {% endif %}
+                        <small class="text-muted float-end">{{ article[4] }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="bg-light py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold">Why Choose WiseNews?</h2>
+                <p class="lead text-muted">Everything you need for staying informed</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-sync-alt fa-3x text-primary mb-3"></i>
+                            <h5>Real-Time Updates</h5>
+                            <p class="text-muted">Get the latest news as it happens from 18+ trusted sources worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
+                            <h5>Trusted Sources</h5>
+                            <p class="text-muted">Curated content from BBC, CNN, Reuters, Bloomberg, and other reputable sources.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100">
+                        <div class="card-body text-center">
+                            <i class="fas fa-search fa-3x text-info mb-3"></i>
+                            <h5>Smart Search</h5>
+                            <p class="text-muted">Find exactly what you're looking for with our powerful search capabilities.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-newspaper"></i> WiseNews</h5>
+                    <p class="text-muted">Your trusted source for real-time news aggregation.</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <p class="text-muted">{{ total_articles }} articles available</p>
+                    <p class="text-muted">Updated hourly from 18+ sources</p>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 WiseNews. Made with <i class="fas fa-heart text-danger"></i> for staying informed.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''', user=user, recent_articles=recent_articles, categories=categories, total_articles=total_articles)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -1026,6 +1267,1040 @@ def news_status():
             'status': 'error',
             'message': str(e)
         }), 500
+
+# =============================================================================
+# AUTHENTICATION ROUTES
+# =============================================================================
+
+@app.route('/register')
+def register_form():
+    """User registration form"""
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4><i class="fas fa-user-plus"></i> Join WiseNews</h4>
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        
+                        <form method="POST" action="/register">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">First Name *</label>
+                                    <input type="text" class="form-control" name="first_name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Last Name *</label>
+                                    <input type="text" class="form-control" name="last_name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Password *</label>
+                                <input type="password" class="form-control" name="password" required minlength="6">
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password *</label>
+                                <input type="password" class="form-control" name="confirm_password" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Country</label>
+                                <select class="form-select" name="country">
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="gdpr_consent" required>
+                                    <label class="form-check-label">
+                                        I agree to the <a href="/terms" target="_blank">Terms of Service</a> and <a href="/privacy-policy" target="_blank">Privacy Policy</a> *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="data_processing_consent" required>
+                                    <label class="form-check-label">
+                                        I consent to processing of my personal data for account management *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="marketing_consent">
+                                    <label class="form-check-label">
+                                        I agree to receive marketing communications (optional)
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-user-plus"></i> Create Account
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="text-center mt-3">
+                            <p>Already have an account? <a href="/login">Sign in here</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''')
+
+@app.route('/register', methods=['POST'])
+def register_user():
+    """Process user registration"""
+    try:
+        from user_auth import user_manager
+        from auth_decorators import get_user_ip
+        
+        # Get form data
+        user_data = {
+            'first_name': request.form.get('first_name', '').strip(),
+            'last_name': request.form.get('last_name', '').strip(),
+            'email': request.form.get('email', '').strip(),
+            'password': request.form.get('password', ''),
+            'confirm_password': request.form.get('confirm_password', ''),
+            'country': request.form.get('country', ''),
+            'gdpr_consent': 'gdpr_consent' in request.form,
+            'data_processing_consent': 'data_processing_consent' in request.form,
+            'marketing_consent': 'marketing_consent' in request.form
+        }
+        
+        # Validation
+        if not all([user_data['first_name'], user_data['last_name'], user_data['email'], user_data['password']]):
+            flash('All required fields must be filled.', 'error')
+            return redirect(url_for('register_form'))
+        
+        if user_data['password'] != user_data['confirm_password']:
+            flash('Passwords do not match.', 'error')
+            return redirect(url_for('register_form'))
+        
+        if len(user_data['password']) < 6:
+            flash('Password must be at least 6 characters long.', 'error')
+            return redirect(url_for('register_form'))
+        
+        # Register user
+        ip_address = request.environ.get('REMOTE_ADDR', 'Unknown')
+        success, message, user_id = user_manager.register_user(user_data, ip_address)
+        
+        if success:
+            flash('Registration successful! Please log in.', 'success')
+            return redirect(url_for('login_form'))
+        else:
+            flash(f'Registration failed: {message}', 'error')
+            return redirect(url_for('register_form'))
+            
+    except Exception as e:
+        flash(f'Registration error: {str(e)}', 'error')
+        return redirect(url_for('register_form'))
+
+@app.route('/login')
+def login_form():
+    """User login form"""
+    next_url = request.args.get('next')
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-5">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4><i class="fas fa-sign-in-alt"></i> Welcome Back to WiseNews</h4>
+                    </div>
+                    <div class="card-body">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show">
+                                        {{ message }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                        
+                        <form method="POST" action="/login">
+                            {% if next_url %}
+                                <input type="hidden" name="next" value="{{ next_url }}">
+                            {% endif %}
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password" required>
+                            </div>
+                            
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" name="remember_me">
+                                <label class="form-check-label">Remember me</label>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-sign-in-alt"></i> Sign In
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="text-center mt-3">
+                            <p>Don't have an account? <a href="/register">Sign up here</a></p>
+                            <p><a href="/">← Back to Homepage</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''', next_url=next_url)
+
+@app.route('/login', methods=['POST'])
+def login_user():
+    """Process user login"""
+    try:
+        from user_auth import user_manager
+        
+        email = request.form.get('email', '').strip()
+        password = request.form.get('password')
+        remember_me = request.form.get('remember_me') == 'on'
+        next_url = request.form.get('next')
+        
+        if not email or not password:
+            flash('Email and password are required.', 'error')
+            return redirect(url_for('login_form', next=next_url))
+        
+        # Get user info for logging
+        ip_address = request.environ.get('REMOTE_ADDR', 'Unknown')
+        user_agent = request.environ.get('HTTP_USER_AGENT', 'Unknown')
+        
+        # Authenticate user
+        success, message, user_id = user_manager.authenticate_user(email, password, ip_address)
+        
+        if success:
+            # Create session
+            session_token = user_manager.create_session(user_id, ip_address, user_agent)
+            session['session_token'] = session_token
+            session['user_id'] = user_id
+            
+            # Set session expiry
+            if remember_me:
+                session.permanent = True
+                app.permanent_session_lifetime = timedelta(days=30)
+            else:
+                session.permanent = False
+                app.permanent_session_lifetime = timedelta(hours=2)
+            
+            flash('Login successful! Welcome to WiseNews.', 'success')
+            
+            # Redirect to next URL or dashboard
+            if next_url and next_url.startswith('/'):
+                return redirect(next_url)
+            else:
+                return redirect(url_for('dashboard'))
+        else:
+            flash(f'Login failed: {message}', 'error')
+            return redirect(url_for('login_form', next=next_url))
+            
+    except Exception as e:
+        flash(f'Login error: {str(e)}', 'error')
+        return redirect(url_for('login_form'))
+
+@app.route('/logout')
+def logout():
+    """User logout"""
+    try:
+        from user_auth import user_manager
+        
+        session_token = session.get('session_token')
+        if session_token:
+            user_manager.logout_user(session_token)
+        
+        session.clear()
+        flash('You have been logged out successfully.', 'info')
+        return redirect(url_for('index'))
+    except Exception as e:
+        session.clear()
+        return redirect(url_for('index'))
+
+# =============================================================================
+# USER DASHBOARD AND PROFILE
+# =============================================================================
+
+from auth_decorators import login_required, get_current_user
+
+@app.route('/dashboard')
+@login_required
+def dashboard():
+    """User dashboard with statistics and recent activity"""
+    user = get_current_user()
+    
+    # Get user statistics
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    # Total articles
+    cursor.execute('SELECT COUNT(*) FROM articles')
+    total_articles = cursor.fetchone()[0]
+    
+    # Recent articles
+    cursor.execute('''
+        SELECT COUNT(*) FROM articles 
+        WHERE created_at > datetime('now', '-24 hours')
+    ''')
+    recent_articles = cursor.fetchone()[0]
+    
+    # User's subscription info
+    cursor.execute('''
+        SELECT sp.display_name, sp.max_articles_per_day, sp.max_searches_per_day
+        FROM user_subscriptions us
+        JOIN subscription_plans sp ON us.plan_id = sp.id
+        WHERE us.user_id = ? AND us.status = 'active'
+    ''', (user['id'],))
+    
+    subscription = cursor.fetchone()
+    if subscription:
+        plan_name, max_articles, max_searches = subscription
+    else:
+        plan_name, max_articles, max_searches = 'Free Plan', 10, 5
+    
+    conn.close()
+    
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a class="nav-link" href="/articles"><i class="fas fa-newspaper"></i> Articles</a>
+                <a class="nav-link" href="/subscription-plans"><i class="fas fa-crown"></i> Plans</a>
+                <a class="nav-link" href="/profile"><i class="fas fa-user"></i> Profile</a>
+                <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="row">
+            <div class="col-md-8">
+                <h2><i class="fas fa-tachometer-alt"></i> Welcome back, {{ user.first_name }}!</h2>
+                <p class="text-muted">Your personalized news dashboard</p>
+                
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="card bg-primary text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5>Total Articles</h5>
+                                        <h3>{{ total_articles }}</h3>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-newspaper fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-success text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5>New Today</h5>
+                                        <h3>{{ recent_articles }}</h3>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-plus-circle fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card bg-info text-white">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between">
+                                    <div>
+                                        <h5>Your Plan</h5>
+                                        <h6>{{ plan_name }}</h6>
+                                    </div>
+                                    <div class="align-self-center">
+                                        <i class="fas fa-crown fa-2x"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-line"></i> Quick Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <a href="/articles" class="btn btn-outline-primary w-100">
+                                    <i class="fas fa-newspaper"></i> Browse Articles
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="/search" class="btn btn-outline-success w-100">
+                                    <i class="fas fa-search"></i> Search News
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="/api/fetch-news" class="btn btn-outline-info w-100">
+                                    <i class="fas fa-sync"></i> Refresh News
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <a href="/api/news-status" class="btn btn-outline-warning w-100">
+                                    <i class="fas fa-chart-bar"></i> News Status
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-user"></i> Account Info</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Plan:</strong> {{ plan_name }}</p>
+                        <p><strong>Member Since:</strong> {{ user.created_at[:10] }}</p>
+                        
+                        <div class="d-grid gap-2">
+                            <a href="/profile" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-edit"></i> Edit Profile
+                            </a>
+                            <a href="/subscription-plans" class="btn btn-outline-success btn-sm">
+                                <i class="fas fa-crown"></i> Upgrade Plan
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-pie"></i> Usage Limits</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Daily Articles:</strong> 
+                        {% if max_articles == -1 %}
+                            Unlimited
+                        {% else %}
+                            {{ max_articles }} remaining
+                        {% endif %}
+                        </p>
+                        <p><strong>Daily Searches:</strong>
+                        {% if max_searches == -1 %}
+                            Unlimited  
+                        {% else %}
+                            {{ max_searches }} remaining
+                        {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''', user=user, total_articles=total_articles, recent_articles=recent_articles, 
+         plan_name=plan_name, max_articles=max_articles, max_searches=max_searches)
+
+@app.route('/profile')
+@login_required  
+def profile():
+    """User profile management"""
+    user = get_current_user()
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2><i class="fas fa-user"></i> My Profile</h2>
+        
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Account Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+                        <p><strong>Email:</strong> {{ user.email }}</p>
+                        <p><strong>Member Since:</strong> {{ user.created_at }}</p>
+                        <p><strong>Account Status:</strong> 
+                            <span class="badge bg-success">Active</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Quick Actions</h5>
+                    </div>
+                    <div class="card-body d-grid gap-2">
+                        <a href="/dashboard" class="btn btn-primary">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a href="/subscription-plans" class="btn btn-success">
+                            <i class="fas fa-crown"></i> Subscription
+                        </a>
+                        <a href="/articles" class="btn btn-info">
+                            <i class="fas fa-newspaper"></i> Browse News
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''', user=user)
+
+# =============================================================================
+# SUBSCRIPTION MANAGEMENT
+# =============================================================================
+
+@app.route('/subscription-plans')
+def subscription_plans():
+    """Display available subscription plans"""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        SELECT id, display_name, price_monthly, price_yearly, max_articles_per_day,
+               max_searches_per_day, real_time_notifications, advanced_analytics,
+               export_data, priority_support
+        FROM subscription_plans 
+        WHERE is_active = 1
+        ORDER BY price_monthly
+    ''')
+    
+    plans = []
+    for row in cursor.fetchall():
+        plans.append({
+            'id': row[0],
+            'name': row[1],
+            'price_monthly': row[2],
+            'price_yearly': row[3],
+            'max_articles': row[4],
+            'max_searches': row[5],
+            'real_time': row[6],
+            'analytics': row[7],
+            'export': row[8],
+            'support': row[9]
+        })
+    
+    conn.close()
+    
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscription Plans - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="text-center mb-5">
+            <h1><i class="fas fa-crown"></i> Choose Your Plan</h1>
+            <p class="lead">Get the most out of WiseNews with our flexible subscription options</p>
+        </div>
+        
+        <div class="row">
+            {% for plan in plans %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 {% if plan.name == 'Premium Plan' %}border-warning{% endif %}">
+                    {% if plan.name == 'Premium Plan' %}
+                    <div class="card-header bg-warning text-dark text-center">
+                        <i class="fas fa-star"></i> Most Popular
+                    </div>
+                    {% endif %}
+                    
+                    <div class="card-body text-center">
+                        <h4>{{ plan.name }}</h4>
+                        <h2 class="text-primary">
+                            {% if plan.price_monthly == 0 %}
+                                Free
+                            {% else %}
+                                ${{ "%.2f"|format(plan.price_monthly) }}<small>/month</small>
+                            {% endif %}
+                        </h2>
+                        
+                        <ul class="list-unstyled mt-4">
+                            <li class="mb-2">
+                                <i class="fas fa-newspaper text-success"></i>
+                                {% if plan.max_articles == -1 %}
+                                    Unlimited articles
+                                {% else %}
+                                    {{ plan.max_articles }} articles/day
+                                {% endif %}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-search text-success"></i>
+                                {% if plan.max_searches == -1 %}
+                                    Unlimited searches
+                                {% else %}
+                                    {{ plan.max_searches }} searches/day
+                                {% endif %}
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-{% if plan.real_time %}check text-success{% else %}times text-muted{% endif %}"></i>
+                                Real-time notifications
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-{% if plan.analytics %}check text-success{% else %}times text-muted{% endif %}"></i>
+                                Advanced analytics
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-{% if plan.export %}check text-success{% else %}times text-muted{% endif %}"></i>
+                                Data export
+                            </li>
+                            <li class="mb-2">
+                                <i class="fas fa-{% if plan.support %}check text-success{% else %}times text-muted{% endif %}"></i>
+                                Priority support
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card-footer">
+                        {% if plan.price_monthly == 0 %}
+                            <a href="/register" class="btn btn-outline-primary w-100">Get Started</a>
+                        {% else %}
+                            <a href="/subscribe/{{ plan.id }}" class="btn btn-primary w-100">Choose Plan</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <p class="text-muted">All plans include basic news aggregation and search functionality</p>
+            <p><a href="/contact">Need help choosing? Contact us</a></p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''', plans=plans)
+
+@app.route('/subscribe/<int:plan_id>')
+@login_required
+def subscribe_plan(plan_id):
+    """Subscribe to a plan"""
+    user = get_current_user()
+    
+    # Get plan details
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    cursor.execute('''
+        SELECT display_name, price_monthly
+        FROM subscription_plans 
+        WHERE id = ?
+    ''', (plan_id,))
+    
+    plan = cursor.fetchone()
+    if not plan:
+        flash('Invalid plan selected.', 'error')
+        return redirect(url_for('subscription_plans'))
+    
+    # Update user subscription
+    cursor.execute('''
+        UPDATE user_subscriptions 
+        SET plan_id = ?, status = 'active',
+            subscription_start_date = datetime('now'),
+            subscription_end_date = datetime('now', '+1 year')
+        WHERE user_id = ?
+    ''', (plan_id, user['id']))
+    
+    if cursor.rowcount == 0:
+        # Create new subscription if none exists
+        cursor.execute('''
+            INSERT INTO user_subscriptions (user_id, plan_id, status)
+            VALUES (?, ?, 'active')
+        ''', (user['id'], plan_id))
+    
+    conn.commit()
+    conn.close()
+    
+    flash(f'Successfully subscribed to {plan[0]}! 🎉', 'success')
+    return redirect(url_for('dashboard'))
+
+# =============================================================================
+# ADDITIONAL ROUTES AND FEATURES
+# =============================================================================
+
+@app.route('/contact')
+def contact():
+    """Contact page"""
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="/subscription-plans"><i class="fas fa-crown"></i> Plans</a>
+                <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center mb-5">
+                    <h1><i class="fas fa-envelope"></i> Contact WiseNews</h1>
+                    <p class="lead">We'd love to hear from you</p>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-envelope fa-3x text-primary mb-3"></i>
+                                <h5>Email Support</h5>
+                                <p>Get help with your account</p>
+                                <a href="mailto:support@wisenews.com" class="btn btn-outline-primary">
+                                    Email Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-comments fa-3x text-success mb-3"></i>
+                                <h5>Live Chat</h5>
+                                <p>Chat with our support team</p>
+                                <button class="btn btn-outline-success" onclick="alert('Live chat coming soon!')">
+                                    Start Chat
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 mb-4">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <i class="fas fa-question-circle fa-3x text-info mb-3"></i>
+                                <h5>FAQ</h5>
+                                <p>Find answers to common questions</p>
+                                <a href="/faq" class="btn btn-outline-info">
+                                    View FAQ
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''')
+
+@app.route('/terms')
+def terms():
+    """Terms of service"""
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Terms of Service</h1>
+        <p><strong>Last updated: {{ current_date }}</strong></p>
+        
+        <h3>1. Acceptance of Terms</h3>
+        <p>By accessing and using WiseNews, you accept and agree to be bound by the terms and provision of this agreement.</p>
+        
+        <h3>2. Use License</h3>
+        <p>Permission is granted to temporarily access WiseNews for personal, non-commercial transitory viewing only.</p>
+        
+        <h3>3. Disclaimer</h3>
+        <p>The information on WiseNews is provided on an 'as is' basis. To the fullest extent permitted by law, this Company excludes all representations, warranties, conditions and terms.</p>
+        
+        <p><a href="/">← Back to Home</a></p>
+    </div>
+</body>
+</html>
+    ''', current_date=datetime.now().strftime('%B %d, %Y'))
+
+@app.route('/privacy-policy')
+def privacy_policy():
+    """Privacy policy"""
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Privacy Policy</h1>
+        <p><strong>Last updated: {{ current_date }}</strong></p>
+        
+        <h3>Information We Collect</h3>
+        <p>We collect information you provide directly to us, such as when you create an account, subscribe to our service, or contact us for support.</p>
+        
+        <h3>How We Use Your Information</h3>
+        <p>We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+        
+        <h3>Information Sharing</h3>
+        <p>We do not sell, trade, or otherwise transfer your personal information to third parties except as described in this policy.</p>
+        
+        <h3>GDPR Compliance</h3>
+        <p>If you are located in the European Union, you have certain rights regarding your personal data under the General Data Protection Regulation.</p>
+        
+        <p><a href="/">← Back to Home</a></p>
+    </div>
+</body>
+</html>
+    ''', current_date=datetime.now().strftime('%B %d, %Y'))
+
+@app.route('/trending')
+def trending():
+    """Trending articles"""
+    conn = get_db()
+    cursor = conn.cursor()
+    
+    # Get most viewed articles in last 7 days (simulated trending)
+    cursor.execute('''
+        SELECT id, title, summary, author, source, category, image_url, published_date
+        FROM articles 
+        WHERE published_date > datetime('now', '-7 days')
+        ORDER BY RANDOM()
+        LIMIT 20
+    ''')
+    
+    trending_articles = cursor.fetchall()
+    conn.close()
+    
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trending - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+                <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <h1><i class="fas fa-fire text-danger"></i> Trending News</h1>
+            <p class="lead">What's popular this week</p>
+        </div>
+
+        <div class="row">
+            {% for article in trending_articles %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    {% if article[6] %}
+                        <img src="{{ article[6] }}" class="card-img-top" style="height: 200px; object-fit: cover;">
+                    {% endif %}
+                    <div class="card-body">
+                        <span class="badge bg-danger mb-2">
+                            <i class="fas fa-fire"></i> Trending
+                        </span>
+                        <span class="badge bg-primary mb-2">{{ article[5].title() }}</span>
+                        <h5 class="card-title">{{ article[1] }}</h5>
+                        <p class="card-text">{{ article[2] }}</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="fas fa-user"></i> {{ article[3] }} • 
+                                <i class="fas fa-clock"></i> {{ article[7][:10] }}
+                            </small>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/login?next=/article/{{ article[0] }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> Read More
+                        </a>
+                        <small class="text-muted float-end">{{ article[4] }}</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-4">
+            <p class="text-muted">Sign in to get personalized trending content</p>
+            <a href="/login" class="btn btn-primary">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+    ''', trending_articles=trending_articles)
 
 @app.errorhandler(404)
 def not_found(error):
