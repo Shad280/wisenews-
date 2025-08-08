@@ -1,314 +1,449 @@
-from flask import Flask, render_template, jsonify, request
+#!/usr/bin/env python3
+"""
+WiseNews Railway Optimized Version
+Lightweight version for Railway deployment
+"""
+
+from flask import Flask, jsonify, request, render_template_string, session, redirect, url_for, flash, g
 import os
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
+import json
+import hashlib
+import threading
+import time
+import urllib.request
+import urllib.parse
+from xml.etree import ElementTree as ET
+
+# Import user modules
+import user_auth
+import auth_decorators
 
 app = Flask(__name__)
 
-# Initialize database
+# Configuration
+app.config['SECRET_KEY'] = 'wisenews-secret-key-2025'
+app.config['DATABASE'] = 'wisenews.db'
+
+# Simplified news sources for Railway (fewer sources = less memory)
+NEWS_SOURCES = {
+    'bbc': {
+        'name': 'BBC News',
+        'rss': 'http://feeds.bbci.co.uk/news/rss.xml',
+        'category': 'general'
+    },
+    'cnn': {
+        'name': 'CNN',
+        'rss': 'http://rss.cnn.com/rss/edition.rss',
+        'category': 'general'
+    },
+    'techcrunch': {
+        'name': 'TechCrunch',
+        'rss': 'http://feeds.feedburner.com/TechCrunch/',
+        'category': 'technology'
+    }
+}
+
+def get_db():
+    """Get database connection"""
+    conn = sqlite3.connect(app.config['DATABASE'])
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def init_db():
-    """Initialize the database with basic tables"""
-    conn = sqlite3.connect('news_database.db')
-    cursor = conn.cursor()
-    
-    # Create articles table
-    cursor.execute('''
-        CREATE TABLE IF NOT EXISTS articles (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            title TEXT NOT NULL,
-            content TEXT,
-            source_name TEXT,
-            date_added DATETIME DEFAULT CURRENT_TIMESTAMP,
-            category TEXT DEFAULT 'General'
-        )
-    ''')
-    
-    # Insert sample data
-    cursor.execute('SELECT COUNT(*) FROM articles')
-    if cursor.fetchone()[0] == 0:
-        sample_articles = [
-            ('Welcome to WiseNews!', 'Your news aggregation platform is now live and running successfully.', 'WiseNews', 'Technology'),
-            ('Deployment Success', 'WiseNews has been successfully deployed to Render.com and is accessible worldwide.', 'System', 'Technology'),
-            ('Getting Started', 'Explore the features and capabilities of your new news platform.', 'WiseNews', 'General')
+    """Initialize database"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Create tables
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS articles (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                title TEXT NOT NULL,
+                summary TEXT,
+                url TEXT UNIQUE,
+                author TEXT,
+                source TEXT,
+                category TEXT,
+                image_url TEXT,
+                published_date DATETIME,
+                fetch_date DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        ''')
+        
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS categories (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT UNIQUE NOT NULL,
+                color TEXT DEFAULT '#007bff'
+            )
+        ''')
+        
+        # Insert default categories
+        categories = [
+            ('general', '#007bff'),
+            ('technology', '#28a745'),
+            ('business', '#ffc107'),
+            ('sports', '#17a2b8'),
+            ('health', '#dc3545'),
+            ('science', '#6f42c1'),
+            ('entertainment', '#fd7e14')
         ]
-        cursor.executemany(
-            'INSERT INTO articles (title, content, source_name, category) VALUES (?, ?, ?, ?)',
-            sample_articles
-        )
-    
-    conn.commit()
-    conn.close()
+        
+        cursor.executemany('''
+            INSERT OR IGNORE INTO categories (name, color)
+            VALUES (?, ?)
+        ''', categories)
+        
+        conn.commit()
+        conn.close()
+        print("✅ Database initialized successfully")
+        
+        # Initialize user authentication
+        try:
+            user_manager = user_auth.UserManager(app.config['DATABASE'])
+            user_manager.init_db()
+            
+            # Create admin user
+            try:
+                admin_created = user_manager.register_user(
+                    email='admin@wisenews.com',
+                    password='WiseNews2025!',
+                    consent_analytics=True,
+                    consent_marketing=False,
+                    is_admin=True
+                )
+                if admin_created:
+                    print("✅ Admin user created successfully")
+                else:
+                    print("ℹ️  Admin user already exists")
+            except Exception as e:
+                print(f"ℹ️  Admin user setup: {e}")
+                
+        except Exception as e:
+            print(f"⚠️  User auth initialization: {e}")
+            
+    except Exception as e:
+        print(f"❌ Database initialization failed: {e}")
+
+def fetch_news_simple():
+    """Simplified news fetching for Railway"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        for source_id, source_info in NEWS_SOURCES.items():
+            try:
+                print(f"📡 Fetching from {source_info['name']}...")
+                
+                response = urllib.request.urlopen(source_info['rss'], timeout=10)
+                data = response.read()
+                root = ET.fromstring(data)
+                
+                articles = []
+                items = root.findall('.//item')[:5]  # Only 5 articles per source
+                
+                for item in items:
+                    title = item.find('title')
+                    link = item.find('link')
+                    description = item.find('description')
+                    pub_date = item.find('pubDate')
+                    
+                    if title is not None and link is not None:
+                        articles.append({
+                            'title': title.text or 'No Title',
+                            'url': link.text or '',
+                            'summary': description.text[:500] if description is not None and description.text else 'No summary available',
+                            'source': source_info['name'],
+                            'category': source_info['category'],
+                            'published_date': datetime.now().isoformat()
+                        })
+                
+                # Insert articles
+                for article in articles:
+                    try:
+                        cursor.execute('''
+                            INSERT OR IGNORE INTO articles 
+                            (title, url, summary, source, category, published_date)
+                            VALUES (?, ?, ?, ?, ?, ?)
+                        ''', (
+                            article['title'],
+                            article['url'],
+                            article['summary'],
+                            article['source'],
+                            article['category'],
+                            article['published_date']
+                        ))
+                    except Exception as e:
+                        pass  # Ignore duplicates
+                
+                print(f"✅ Fetched {len(articles)} articles from {source_info['name']}")
+                
+            except Exception as e:
+                print(f"⚠️  Error fetching from {source_info['name']}: {e}")
+        
+        conn.commit()
+        conn.close()
+        print("🎉 News fetch complete!")
+        
+    except Exception as e:
+        print(f"❌ News fetch failed: {e}")
 
 @app.route('/')
 def index():
-    """Homepage with article listings"""
-    return """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>WiseNews - Your News Platform</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body { 
-                font-family: Arial, sans-serif; 
-                margin: 0; 
-                padding: 20px; 
-                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-                min-height: 100vh;
-            }
-            .container { 
-                max-width: 1200px; 
-                margin: 0 auto; 
-                background: white; 
-                padding: 30px; 
-                border-radius: 15px; 
-                box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            }
-            .header {
-                text-align: center;
-                border-bottom: 3px solid #667eea;
-                padding-bottom: 20px;
-                margin-bottom: 30px;
-            }
-            h1 { 
-                color: #2c3e50; 
-                margin: 0;
-                font-size: 2.5em;
-            }
-            .subtitle {
-                color: #7f8c8d;
-                font-size: 1.2em;
-                margin: 10px 0;
-            }
-            .status-badge {
-                background: #27ae60;
-                color: white;
-                padding: 8px 20px;
-                border-radius: 25px;
-                font-weight: bold;
-                display: inline-block;
-                margin: 10px 0;
-            }
-            .nav-menu {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                margin: 20px 0;
-                flex-wrap: wrap;
-            }
-            .nav-item {
-                background: #3498db;
-                color: white;
-                padding: 12px 25px;
-                text-decoration: none;
-                border-radius: 8px;
-                font-weight: bold;
-                transition: background 0.3s;
-            }
-            .nav-item:hover {
-                background: #2980b9;
-            }
-            .feature-grid {
-                display: grid;
-                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-                gap: 20px;
-                margin: 30px 0;
-            }
-            .feature-card {
-                background: #f8f9fa;
-                padding: 25px;
-                border-radius: 10px;
-                border-left: 5px solid #667eea;
-            }
-            .feature-card h3 {
-                color: #2c3e50;
-                margin-top: 0;
-            }
-            .stats-section {
-                background: #ecf0f1;
-                padding: 20px;
-                border-radius: 10px;
-                margin: 20px 0;
-                text-align: center;
-            }
-            .footer {
-                text-align: center;
-                margin-top: 40px;
-                padding-top: 20px;
-                border-top: 2px solid #ecf0f1;
-                color: #7f8c8d;
-            }
-            @media (max-width: 768px) {
-                .nav-menu { flex-direction: column; align-items: center; }
-                .feature-grid { grid-template-columns: 1fr; }
-                h1 { font-size: 2em; }
-            }
-        </style>
-    </head>
-    <body>
+    """Homepage with news articles"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            SELECT title, summary, url, source, category, published_date, image_url
+            FROM articles 
+            ORDER BY published_date DESC 
+            LIMIT 20
+        ''')
+        
+        articles = cursor.fetchall()
+        conn.close()
+        
+        return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiseNews - Smart News Aggregation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <div class="header">
-                <h1>🚀 WiseNews</h1>
-                <p class="subtitle">Your Intelligent News Aggregation Platform</p>
-                <div class="status-badge">✅ LIVE & OPERATIONAL</div>
-            </div>
-            
-            <nav class="nav-menu">
-                <a href="/articles" class="nav-item">📰 Articles</a>
-                <a href="/api/status" class="nav-item">🔧 API Status</a>
-                <a href="/api/articles" class="nav-item">📡 API Feed</a>
-                <a href="#about" class="nav-item">ℹ️ About</a>
-            </nav>
-            
-            <div class="stats-section">
-                <h3>🎯 Deployment Statistics</h3>
-                <p><strong>Platform:</strong> Render.com | <strong>Status:</strong> Active | <strong>Uptime:</strong> 100%</p>
-                <p><strong>URL:</strong> <a href="https://wisenews-app.onrender.com">wisenews-app.onrender.com</a></p>
-            </div>
-            
-            <div class="feature-grid">
-                <div class="feature-card">
-                    <h3>� Global Access</h3>
-                    <p>Your news platform is now accessible from anywhere in the world. Share the URL with others to showcase your work!</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>📊 Real-time Data</h3>
-                    <p>The platform includes a database system for storing and retrieving news articles with full CRUD operations.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>🔌 API Ready</h3>
-                    <p>RESTful API endpoints are available for integration with other applications and services.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <h3>📱 Responsive Design</h3>
-                    <p>Optimized for desktop, tablet, and mobile devices with a modern, professional interface.</p>
-                </div>
-            </div>
-            
-            <div class="footer">
-                <p>🎉 <strong>Congratulations!</strong> Your WiseNews platform is successfully deployed and running.</p>
-                <p>Built with Flask • Deployed on Render.com • Powered by Python</p>
+            <a class="navbar-brand fw-bold" href="/">
+                <i class="fas fa-newspaper me-2"></i>WiseNews
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Register</a>
+                <a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
             </div>
         </div>
-    </body>
-    </html>
-    """
+    </nav>
 
-@app.route('/articles')
-def articles():
-    """Articles listing page"""
-    conn = sqlite3.connect('news_database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT id, title, content, source_name, date_added, category FROM articles ORDER BY date_added DESC')
-    articles = cursor.fetchall()
-    conn.close()
-    
-    html = """
-    <!DOCTYPE html>
-    <html>
-    <head>
-        <title>Articles - WiseNews</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body { font-family: Arial, sans-serif; margin: 20px; background: #f5f6fa; }
-            .container { max-width: 800px; margin: 0 auto; }
-            .header { text-align: center; margin-bottom: 30px; }
-            .article { background: white; padding: 20px; margin: 15px 0; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-            .article h3 { color: #2c3e50; margin: 0 0 10px 0; }
-            .meta { color: #7f8c8d; font-size: 0.9em; margin: 10px 0; }
-            .category { background: #3498db; color: white; padding: 3px 8px; border-radius: 3px; font-size: 0.8em; }
-            .back-link { display: inline-block; margin-bottom: 20px; color: #3498db; text-decoration: none; }
-            .back-link:hover { text-decoration: underline; }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <a href="/" class="back-link">← Back to Home</a>
-            <div class="header">
-                <h1>� News Articles</h1>
-                <p>Latest news and updates</p>
+    <div class="container mt-4">
+        <div class="text-center mb-4">
+            <h1>🎉 <strong>WiseNews is Working on Railway!</strong></h1>
+            <p class="lead">Smart News Aggregation Platform</p>
+            <div class="alert alert-success">
+                <i class="fas fa-check-circle"></i> <strong>Success!</strong> 
+                Railway deployment is working perfectly!
             </div>
-    """
-    
-    for article in articles:
-        html += f"""
-            <div class="article">
-                <h3>{article[1]}</h3>
-                <div class="meta">
-                    <span class="category">{article[5]}</span>
-                    <span>• Source: {article[3]}</span>
-                    <span>• {article[4]}</span>
-                </div>
-                <p>{article[2]}</p>
-            </div>
-        """
-    
-    html += """
         </div>
-    </body>
-    </html>
-    """
+
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.summary[:150] }}...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">{{ article.source }}</small>
+                            <a href="{{ article.url }}" target="_blank" class="btn btn-primary btn-sm">
+                                Read More <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if not articles %}
+        <div class="text-center">
+            <h3>Welcome to WiseNews!</h3>
+            <p>News articles are being fetched. Please refresh in a moment.</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        ''', articles=articles)
+        
+    except Exception as e:
+        return f"<h1>WiseNews</h1><p>App is running! Database error: {e}</p>"
+
+@app.route('/dashboard')
+def dashboard():
+    """Dashboard page"""
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
     
-    return html
+    return render_template_string('''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-success">
+            <h1>🎉 Login Successful!</h1>
+            <p><strong>Welcome to WiseNews Dashboard!</strong></p>
+            <p>Email: {{ session.user_email }}</p>
+            <p>Admin: {{ 'Yes' if session.is_admin else 'No' }}</p>
+        </div>
+        <div class="text-center">
+            <a href="/" class="btn btn-primary">← Back to Home</a>
+            <a href="/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+    ''')
+
+@app.route('/logout')
+def logout():
+    """Logout"""
+    session.clear()
+    return redirect(url_for('index'))
 
 @app.route('/api/status')
 def api_status():
     """API status endpoint"""
     return jsonify({
-        'status': 'operational',
-        'message': 'WiseNews API is running successfully',
-        'platform': 'Render.com',
-        'version': '1.0.0',
+        'status': 'success',
+        'message': 'WiseNews Railway deployment working!',
         'timestamp': datetime.now().isoformat(),
-        'endpoints': {
-            'articles': '/api/articles',
-            'status': '/api/status',
-            'health': '/health'
-        }
+        'version': '3.0.0-railway-optimized'
     })
 
-@app.route('/api/articles')
-def api_articles():
-    """API endpoint for articles"""
-    conn = sqlite3.connect('news_database.db')
-    cursor = conn.cursor()
-    cursor.execute('SELECT id, title, content, source_name, date_added, category FROM articles ORDER BY date_added DESC LIMIT 10')
-    articles = cursor.fetchall()
-    conn.close()
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    """Login page with working authentication"""
+    if request.method == 'POST':
+        try:
+            user_manager = user_auth.UserManager(app.config['DATABASE'])
+            email = request.form.get('email')
+            password = request.form.get('password')
+            
+            user = user_manager.authenticate_user(email, password)
+            if user:
+                session['user_id'] = user['id']
+                session['user_email'] = user['email']
+                session['is_admin'] = user.get('is_admin', False)
+                return redirect(url_for('dashboard'))
+            else:
+                error_message = 'Invalid credentials'
+        except Exception as e:
+            error_message = f'Login error: {e}'
+    else:
+        error_message = None
     
-    articles_data = []
-    for article in articles:
-        articles_data.append({
-            'id': article[0],
-            'title': article[1],
-            'content': article[2],
-            'source': article[3],
-            'date': article[4],
-            'category': article[5]
-        })
-    
-    return jsonify({
-        'success': True,
-        'count': len(articles_data),
-        'articles': articles_data
-    })
+    return render_template_string('''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">WiseNews Login</h2>
+                        
+                        {% if error_message %}
+                            <div class="alert alert-danger">{{ error_message }}</div>
+                        {% endif %}
+                        
+                        <div class="alert alert-info">
+                            <strong>Admin Credentials:</strong><br>
+                            Email: admin@wisenews.com<br>
+                            Password: WiseNews2025!
+                        </div>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Login</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="/">← Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    ''')
 
-@app.route('/health')
-def health_check():
-    """Health check endpoint"""
-    return jsonify({
-        'status': 'healthy',
-        'timestamp': datetime.now().isoformat(),
-        'platform': 'Render.com'
-    })
-
-# Initialize database on startup
-with app.app_context():
-    init_db()
+@app.route('/register')
+def register():
+    """Registration page"""
+    return render_template_string('''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2 class="text-center">Join WiseNews</h2>
+                        <form>
+                            <div class="mb-3">
+                                <input type="email" class="form-control" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3">
+                                <input type="password" class="form-control" placeholder="Password" required>
+                            </div>
+                            <button type="submit" class="btn btn-success w-100">Register</button>
+                        </form>
+                        <div class="text-center mt-3">
+                            <a href="/">← Back to Home</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+    ''')
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    host = os.environ.get('HOST', '0.0.0.0')
+    print(f"🗞️  WiseNews Railway Optimized starting on {host}:{port}")
+    print(f"📊 Database: {app.config['DATABASE']}")
+    print(f"🚀 Version: 3.0.0 - Railway Optimized")
+    
+    # Initialize database
+    print("🔧 Initializing database...")
+    init_db()
+    
+    # Fetch initial news (simplified)
+    print("📰 Fetching initial news...")
+    try:
+        fetch_news_simple()
+    except Exception as e:
+        print(f"⚠️ Initial news fetch failed: {e}")
+    
+    print("✅ WiseNews Railway Optimized ready!")
+    app.run(host=host, port=port, debug=False)
