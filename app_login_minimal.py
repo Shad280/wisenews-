@@ -226,8 +226,9 @@ if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     host = os.environ.get('HOST', '0.0.0.0')
     
-    print("🔍 WiseNews Minimal Login Test Starting...")
+    print("🔍 WiseNews Minimal Login Test Starting... v2")
     print(f"🚀 Running on {host}:{port}")
+    print(f"⚡ Force Fresh Deploy: 2025-08-08 20:30")
     
     # Initialize minimal database
     if init_minimal_db():
