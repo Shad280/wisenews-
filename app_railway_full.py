@@ -565,10 +565,11 @@ def api_status():
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     host = os.environ.get('HOST', '0.0.0.0')
-    print(f"🗞️  WiseNews Railway Full-Feature starting on {host}:{port}")
+    print(f"🗞️  WiseNews Railway Full-Feature v2 starting on {host}:{port}")
     print(f"📊 Database: {app.config['DATABASE']}")
-    print(f"🚀 Version: 3.0.0 - Railway Full-Feature")
+    print(f"🚀 Version: 3.0.0 - Railway Full-Feature v2")
     print(f"🔐 Authentication: ENABLED")
+    print(f"⚡ Force Deploy: {datetime.now().isoformat()}")
     
     # Initialize database
     print("🔧 Initializing database...")
