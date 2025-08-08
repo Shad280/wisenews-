@@ -1,5 +1,39 @@
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Python Cache
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# Database files
+*.db
+*.sqlite3
+news_database.db
+wisenews.db
+
+# IDE
 .env
 .vscode/
+.idea/
+
+# Logs
 *.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+
+# Downloads and cache
+downloads/
+cache/
