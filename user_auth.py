@@ -237,6 +237,13 @@ class UserManager:
                 conn.close()
                 return False  # Admin already exists
             
+            # Check if is_admin column exists, if not add it
+            cursor.execute("PRAGMA table_info(users)")
+            columns = [row[1] for row in cursor.fetchall()]
+            if 'is_admin' not in columns:
+                cursor.execute('ALTER TABLE users ADD COLUMN is_admin BOOLEAN DEFAULT FALSE')
+                conn.commit()
+            
             # Hash password
             password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
             

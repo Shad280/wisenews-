@@ -817,48 +817,6 @@ def api_status():
         }
     })
 
-@app.route('/debug/admin-status')
-def debug_admin_status():
-    """Debug endpoint to check admin user status"""
-    try:
-        conn = sqlite3.connect(app.config['DATABASE'])
-        cursor = conn.cursor()
-        
-        # Check if users table exists
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
-        table_exists = cursor.fetchone()
-        
-        if not table_exists:
-            conn.close()
-            return jsonify({"status": "error", "message": "Users table does not exist"})
-        
-        # Check table structure
-        cursor.execute("PRAGMA table_info(users)")
-        columns = [row[1] for row in cursor.fetchall()]
-        
-        # Check if admin user exists
-        cursor.execute("SELECT id, email, is_admin FROM users WHERE email = ?", ('admin@wisenews.com',))
-        admin_user = cursor.fetchone()
-        
-        # Count total users
-        cursor.execute("SELECT COUNT(*) FROM users")
-        user_count = cursor.fetchone()[0]
-        
-        conn.close()
-        
-        return jsonify({
-            "status": "success",
-            "table_exists": True,
-            "columns": columns,
-            "has_is_admin_column": "is_admin" in columns,
-            "admin_user_exists": admin_user is not None,
-            "admin_user_data": admin_user,
-            "total_users": user_count
-        })
-        
-    except Exception as e:
-        return jsonify({"status": "error", "message": str(e)})
-
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     host = os.environ.get('HOST', '0.0.0.0')
