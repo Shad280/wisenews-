@@ -406,9 +406,9 @@ def api_status():
     """API status"""
     return jsonify({
         'status': 'success',
-        'message': 'WiseNews Bulletproof Authentication Active',
+        'message': 'WiseNews Bulletproof Authentication Active - RAILWAY FORCE DEPLOY',
         'timestamp': datetime.now().isoformat(),
-        'version': 'bulletproof-auth-v1',
+        'version': 'bulletproof-auth-v2-force-deploy',
         'features': ['Direct SQLite Auth', 'Auto Admin Creation', 'Bcrypt Password Hashing', 'Session Management']
     })
 
@@ -418,6 +418,7 @@ if __name__ == '__main__':
     
     print("🛡️  WiseNews Bulletproof Authentication Starting...")
     print(f"🚀 Running on {host}:{port}")
+    print("⚡ FORCE RAILWAY DEPLOY: 2025-08-08 20:15")
     print("🔧 Initializing bulletproof authentication...")
     
     if init_bulletproof_auth():
