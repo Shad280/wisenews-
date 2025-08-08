@@ -11,7 +11,7 @@ import re
 import json
 
 class UserManager:
-    def __init__(self, db_path='news_database.db'):
+    def __init__(self, db_path='wisenews.db'):  # Updated to match main app database
         self.db_path = db_path
         self.init_user_tables()
     

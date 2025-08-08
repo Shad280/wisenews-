@@ -25,7 +25,7 @@ def create_test_admin():
     password_hash = bcrypt.hashpw(admin_password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
     
     try:
-        conn = sqlite3.connect('news_database.db')
+        conn = sqlite3.connect('wisenews.db')  # Updated to match main app database
         cursor = conn.cursor()
         
         # Check if admin already exists
