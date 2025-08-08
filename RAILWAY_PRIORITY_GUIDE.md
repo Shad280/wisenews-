@@ -30,7 +30,7 @@ All development and testing should now focus on the Railway deployment. The loca
 
 ### **🏠 Homepage:**
 ```
-https://your-railway-app.railway.app/
+https://web-production-1f6d.up.railway.app/
 ```
 - Public news preview
 - User registration/login access
@@ -38,14 +38,14 @@ https://your-railway-app.railway.app/
 
 ### **🔐 Admin Access:**
 ```
-https://your-railway-app.railway.app/login
+https://web-production-1f6d.up.railway.app/login
 ```
 - Use admin credentials above
 - Full system access after login
 
 ### **🛡️ Admin Dashboard:**
 ```
-https://your-railway-app.railway.app/admin
+https://web-production-1f6d.up.railway.app/admin
 ```
 - System statistics and monitoring
 - User management capabilities
@@ -54,10 +54,10 @@ https://your-railway-app.railway.app/admin
 
 ### **📊 API Endpoints:**
 ```
-https://your-railway-app.railway.app/api/status
-https://your-railway-app.railway.app/api/deployment-check
-https://your-railway-app.railway.app/api/articles
-https://your-railway-app.railway.app/api/categories
+https://web-production-1f6d.up.railway.app/api/status
+https://web-production-1f6d.up.railway.app/api/deployment-check
+https://web-production-1f6d.up.railway.app/api/articles
+https://web-production-1f6d.up.railway.app/api/categories
 ```
 
 ---
