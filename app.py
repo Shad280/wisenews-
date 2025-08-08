@@ -16,8 +16,9 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'wisenews-secret-key-2025'
 app.config['DATABASE'] = 'wisenews.db'
 
-# News sources configuration
+# News sources configuration - Enhanced with comprehensive real news feeds
 NEWS_SOURCES = {
+    # General News
     'bbc': {
         'name': 'BBC News',
         'rss': 'http://feeds.bbci.co.uk/news/rss.xml',
@@ -33,12 +34,255 @@ NEWS_SOURCES = {
         'rss': 'http://feeds.reuters.com/reuters/topNews',
         'category': 'general'
     },
+    'ap_news': {
+        'name': 'Associated Press',
+        'rss': 'https://feeds.apnews.com/rss/apf-topnews',
+        'category': 'general'
+    },
+    
+    # Technology
     'techcrunch': {
         'name': 'TechCrunch',
         'rss': 'http://feeds.feedburner.com/TechCrunch/',
         'category': 'technology'
+    },
+    'ars_technica': {
+        'name': 'Ars Technica',
+        'rss': 'http://feeds.arstechnica.com/arstechnica/index',
+        'category': 'technology'
+    },
+    'wired': {
+        'name': 'Wired',
+        'rss': 'https://www.wired.com/feed/rss',
+        'category': 'technology'
+    },
+    
+    # Business
+    'bloomberg': {
+        'name': 'Bloomberg',
+        'rss': 'https://feeds.bloomberg.com/markets/news.rss',
+        'category': 'business'
+    },
+    'financial_times': {
+        'name': 'Financial Times',
+        'rss': 'https://www.ft.com/rss/home',
+        'category': 'business'
+    },
+    
+    # Sports
+    'espn': {
+        'name': 'ESPN',
+        'rss': 'https://www.espn.com/espn/rss/news',
+        'category': 'sports'
+    },
+    'bbc_sport': {
+        'name': 'BBC Sport',
+        'rss': 'http://feeds.bbci.co.uk/sport/rss.xml',
+        'category': 'sports'
+    },
+    
+    # Health
+    'webmd': {
+        'name': 'WebMD',
+        'rss': 'https://rssfeeds.webmd.com/rss/rss.aspx?RSSSource=RSS_PUBLIC',
+        'category': 'health'
+    },
+    'health_news': {
+        'name': 'Medical News Today',
+        'rss': 'https://www.medicalnewstoday.com/rss',
+        'category': 'health'
+    },
+    
+    # Science
+    'science_daily': {
+        'name': 'Science Daily',
+        'rss': 'https://www.sciencedaily.com/rss/all.xml',
+        'category': 'science'
+    },
+    'new_scientist': {
+        'name': 'New Scientist',
+        'rss': 'https://www.newscientist.com/feed/home/',
+        'category': 'science'
+    },
+    
+    # Entertainment
+    'entertainment_weekly': {
+        'name': 'Entertainment Weekly',
+        'rss': 'https://ew.com/feed/',
+        'category': 'entertainment'
+    },
+    'variety': {
+        'name': 'Variety',
+        'rss': 'https://variety.com/feed/',
+        'category': 'entertainment'
     }
 }
+
+def fetch_rss_feed(url, source_name, category):
+    """Fetch and parse RSS feed from a news source"""
+    try:
+        print(f"📡 Fetching news from {source_name}...")
+        
+        # Create request with headers to avoid blocking
+        req = urllib.request.Request(url, headers={
+            'User-Agent': 'WiseNews/3.0 (News Aggregator; +https://wisenews.com/bot)'
+        })
+        
+        with urllib.request.urlopen(req, timeout=30) as response:
+            xml_data = response.read()
+        
+        # Parse XML
+        root = ET.fromstring(xml_data)
+        articles = []
+        
+        # Handle different RSS formats
+        items = root.findall('.//item') or root.findall('.//{http://purl.org/rss/1.0/}item')
+        
+        for item in items[:10]:  # Limit to 10 articles per source
+            try:
+                title = item.find('title')
+                title = title.text if title is not None else 'No Title'
+                
+                description = item.find('description') or item.find('summary')
+                description = description.text if description is not None else ''
+                
+                # Clean description of HTML tags
+                import re
+                description = re.sub(r'<[^>]+>', '', description)
+                description = description.strip()[:500]  # Limit length
+                
+                link = item.find('link')
+                link = link.text if link is not None else ''
+                
+                # Get publication date
+                pub_date = item.find('pubDate') or item.find('published')
+                pub_date = pub_date.text if pub_date is not None else datetime.now().isoformat()
+                
+                # Generate article data
+                article_data = {
+                    'title': title[:200],  # Limit title length
+                    'content': description,
+                    'summary': description[:150] + '...' if len(description) > 150 else description,
+                    'url': link,
+                    'author': source_name,
+                    'source': source_name,
+                    'category': category,
+                    'keywords': f"{category}, {source_name.lower()}, news",
+                    'image_url': f"https://via.placeholder.com/400x200/{get_category_color(category)[1:]}/ffffff?text={category.title()}+News",
+                    'published_date': pub_date
+                }
+                
+                articles.append(article_data)
+                
+            except Exception as e:
+                print(f"⚠️ Error parsing article from {source_name}: {e}")
+                continue
+        
+        print(f"✅ Successfully fetched {len(articles)} articles from {source_name}")
+        return articles
+        
+    except Exception as e:
+        print(f"❌ Error fetching RSS from {source_name}: {e}")
+        return []
+
+def get_category_color(category):
+    """Get color for category"""
+    colors = {
+        'general': '#007bff',
+        'technology': '#28a745',
+        'business': '#ffc107',
+        'sports': '#17a2b8',
+        'entertainment': '#e83e8c',
+        'health': '#20c997',
+        'science': '#6610f2'
+    }
+    return colors.get(category, '#6c757d')
+
+def save_articles_to_db(articles):
+    """Save fetched articles to database"""
+    if not articles:
+        return 0
+    
+    conn = get_db()
+    cursor = conn.cursor()
+    saved_count = 0
+    
+    for article in articles:
+        try:
+            # Check if article already exists (by URL or title)
+            cursor.execute('''
+                SELECT id FROM articles WHERE url = ? OR title = ?
+            ''', (article['url'], article['title']))
+            
+            if cursor.fetchone() is None:
+                # Insert new article
+                cursor.execute('''
+                    INSERT INTO articles (
+                        title, content, summary, url, author, source, category,
+                        keywords, image_url, published_date, created_at, updated_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                ''', (
+                    article['title'], article['content'], article['summary'],
+                    article['url'], article['author'], article['source'],
+                    article['category'], article['keywords'], article['image_url'],
+                    article['published_date'], datetime.now().isoformat(),
+                    datetime.now().isoformat()
+                ))
+                saved_count += 1
+        
+        except Exception as e:
+            print(f"⚠️ Error saving article: {e}")
+            continue
+    
+    conn.commit()
+    conn.close()
+    
+    print(f"💾 Saved {saved_count} new articles to database")
+    return saved_count
+
+def fetch_all_news():
+    """Fetch news from all configured sources"""
+    print("🚀 Starting comprehensive news fetch...")
+    total_articles = 0
+    
+    for source_id, source_config in NEWS_SOURCES.items():
+        try:
+            articles = fetch_rss_feed(
+                source_config['rss'],
+                source_config['name'],
+                source_config['category']
+            )
+            
+            saved = save_articles_to_db(articles)
+            total_articles += saved
+            
+            # Small delay between requests to be respectful
+            time.sleep(2)
+            
+        except Exception as e:
+            print(f"❌ Error processing {source_id}: {e}")
+            continue
+    
+    print(f"🎉 News fetch complete! Total new articles: {total_articles}")
+    return total_articles
+
+def start_news_fetcher():
+    """Start background news fetching"""
+    def fetch_news_periodically():
+        while True:
+            try:
+                print("⏰ Scheduled news fetch starting...")
+                fetch_all_news()
+                print("😴 Sleeping for 1 hour until next fetch...")
+                time.sleep(3600)  # Wait 1 hour
+            except Exception as e:
+                print(f"❌ Error in periodic news fetch: {e}")
+                time.sleep(600)  # Wait 10 minutes on error
+    
+    # Start fetching in background thread
+    news_thread = threading.Thread(target=fetch_news_periodically, daemon=True)
+    news_thread.start()
+    print("🔄 Background news fetcher started!")
 
 def get_db():
     """Get database connection"""
@@ -721,6 +965,68 @@ def get_article(article_id):
             'message': f'Error fetching article: {str(e)}'
         }), 500
 
+@app.route('/api/fetch-news')
+def fetch_news_api():
+    """API endpoint to manually trigger news fetching"""
+    try:
+        total_articles = fetch_all_news()
+        return jsonify({
+            'status': 'success',
+            'message': f'News fetch completed successfully',
+            'articles_added': total_articles
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'News fetch failed: {str(e)}'
+        }), 500
+
+@app.route('/api/news-status')
+def news_status():
+    """Get status of news sources and recent articles"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get total articles count
+        cursor.execute('SELECT COUNT(*) as total FROM articles')
+        total_articles = cursor.fetchone()['total']
+        
+        # Get articles by category
+        cursor.execute('''
+            SELECT category, COUNT(*) as count 
+            FROM articles 
+            GROUP BY category 
+            ORDER BY count DESC
+        ''')
+        categories = [dict(row) for row in cursor.fetchall()]
+        
+        # Get recent articles
+        cursor.execute('''
+            SELECT source, COUNT(*) as count, MAX(created_at) as latest
+            FROM articles 
+            WHERE created_at > datetime('now', '-24 hours')
+            GROUP BY source
+            ORDER BY count DESC
+        ''')
+        recent_sources = [dict(row) for row in cursor.fetchall()]
+        
+        conn.close()
+        
+        return jsonify({
+            'status': 'success',
+            'total_articles': total_articles,
+            'categories': categories,
+            'recent_sources': recent_sources,
+            'configured_sources': len(NEWS_SOURCES)
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': str(e)
+        }), 500
+
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({
@@ -753,4 +1059,21 @@ if __name__ == '__main__':
     print(f"🗞️  WiseNews starting on {host}:{port}")
     print(f"📊 Database: {app.config['DATABASE']}")
     print(f"🚀 Version: 3.0.0 - Railway Ready")
+    
+    # Initialize database
+    print("🔧 Initializing database...")
+    init_db()
+    
+    # Start background news fetcher
+    print("📡 Starting news fetcher...")
+    start_news_fetcher()
+    
+    # Fetch initial news
+    print("📰 Fetching initial news...")
+    try:
+        total = fetch_all_news()
+        print(f"✅ Initial fetch complete: {total} articles added")
+    except Exception as e:
+        print(f"⚠️ Initial news fetch failed: {e}")
+    
     app.run(host=host, port=port, debug=False)
