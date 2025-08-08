@@ -1,1 +1,1 @@
-web: gunicorn app_minimal_admin_test:app
+web: gunicorn app_railway_full:app
