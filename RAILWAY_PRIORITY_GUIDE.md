@@ -193,4 +193,4 @@ https://web-production-1f6d.up.railway.app/api/categories
 
 **All future development, testing, and user access should focus on the Railway deployment. The enhanced WiseNews 3.0.0 is production-ready and fully operational on Railway with all advanced features.**
 
-**🔗 Primary Access: https://your-railway-app.railway.app/**
+**🔗 Primary Access: https://web-production-1f6d.up.railway.app/**
