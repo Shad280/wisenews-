@@ -1,9 +1,7 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, request
 import os
 import sqlite3
-import requests
 from datetime import datetime
-import feedparser
 import json
 
 app = Flask(__name__)
@@ -23,6 +21,22 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    
+    # Add some sample articles if table is empty
+    cursor.execute('SELECT COUNT(*) FROM articles')
+    if cursor.fetchone()[0] == 0:
+        sample_articles = [
+            ('Breaking: Tech Innovation Reaches New Heights', 'Technology companies continue to push boundaries with revolutionary new products and services.', 'https://example.com/tech-news-1', 'TechNews', '2025-08-08'),
+            ('Global Markets Show Strong Performance', 'International financial markets demonstrate resilience amid economic uncertainties.', 'https://example.com/market-news-1', 'FinanceDaily', '2025-08-08'),
+            ('Climate Action Summit Yields Promising Results', 'World leaders commit to ambitious new environmental protection measures.', 'https://example.com/climate-news-1', 'GreenWorld', '2025-08-08'),
+            ('Healthcare Breakthrough: New Treatment Options', 'Medical researchers announce significant advances in disease treatment and prevention.', 'https://example.com/health-news-1', 'MedicalToday', '2025-08-08'),
+            ('Education Technology Transforms Learning', 'Innovative educational platforms revolutionize how students access and engage with knowledge.', 'https://example.com/edu-news-1', 'EduTech Weekly', '2025-08-08')
+        ]
+        cursor.executemany('''
+            INSERT INTO articles (title, content, url, source, published_date)
+            VALUES (?, ?, ?, ?, ?)
+        ''', sample_articles)
+    
     conn.commit()
     conn.close()
 
@@ -55,6 +69,7 @@ def index():
         return jsonify({
             'status': 'success',
             'message': 'WiseNews - Latest Articles',
+            'version': '2.0.1',
             'articles_count': len(articles_list),
             'articles': articles_list
         })
@@ -72,7 +87,8 @@ def api_status():
         'version': '2.0.1',
         'message': 'WiseNews API is running',
         'deployment': 'production',
-        'timestamp': datetime.now().isoformat()
+        'timestamp': datetime.now().isoformat(),
+        'features': ['SQLite Database', 'Article Storage', 'Search', 'Sample Data']
     })
 
 @app.route('/api/articles')
@@ -108,63 +124,6 @@ def get_articles():
             'message': f'Error: {str(e)}'
         }), 500
 
-@app.route('/api/fetch-news')
-def fetch_news():
-    """Fetch news from RSS feeds"""
-    try:
-        # Sample RSS feeds for testing
-        rss_feeds = [
-            'https://rss.cnn.com/rss/edition.rss',
-            'https://feeds.bbci.co.uk/news/rss.xml',
-            'https://rss.reuters.com/reuters/topNews'
-        ]
-        
-        articles_added = 0
-        conn = sqlite3.connect('news.db')
-        cursor = conn.cursor()
-        
-        for feed_url in rss_feeds:
-            try:
-                feed = feedparser.parse(feed_url)
-                source = feed.feed.get('title', 'Unknown Source')
-                
-                for entry in feed.entries[:5]:  # Limit to 5 articles per feed
-                    try:
-                        cursor.execute('''
-                            INSERT OR IGNORE INTO articles (title, content, url, source, published_date)
-                            VALUES (?, ?, ?, ?, ?)
-                        ''', (
-                            entry.title,
-                            entry.get('summary', '')[:1000],  # Limit content length
-                            entry.link,
-                            source,
-                            entry.get('published', datetime.now().isoformat())
-                        ))
-                        if cursor.rowcount > 0:
-                            articles_added += 1
-                    except Exception as e:
-                        print(f"Error adding article: {e}")
-                        continue
-                        
-            except Exception as e:
-                print(f"Error parsing feed {feed_url}: {e}")
-                continue
-        
-        conn.commit()
-        conn.close()
-        
-        return jsonify({
-            'status': 'success',
-            'message': f'Successfully fetched {articles_added} new articles',
-            'articles_added': articles_added
-        })
-        
-    except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': f'Error fetching news: {str(e)}'
-        }), 500
-
 @app.route('/api/search')
 def search_articles():
     """Search articles by keyword"""
@@ -172,7 +131,7 @@ def search_articles():
     if not query:
         return jsonify({
             'status': 'error',
-            'message': 'Please provide a search query'
+            'message': 'Please provide a search query using ?q=keyword'
         }), 400
     
     try:
@@ -211,17 +170,56 @@ def search_articles():
             'message': f'Search error: {str(e)}'
         }), 500
 
+@app.route('/api/add-article', methods=['POST'])
+def add_article():
+    """Add a new article"""
+    try:
+        data = request.get_json()
+        if not data or not data.get('title'):
+            return jsonify({
+                'status': 'error',
+                'message': 'Title is required'
+            }), 400
+        
+        conn = sqlite3.connect('news.db')
+        cursor = conn.cursor()
+        cursor.execute('''
+            INSERT INTO articles (title, content, url, source, published_date)
+            VALUES (?, ?, ?, ?, ?)
+        ''', (
+            data.get('title'),
+            data.get('content', ''),
+            data.get('url', ''),
+            data.get('source', 'User Submitted'),
+            data.get('published_date', datetime.now().isoformat())
+        ))
+        conn.commit()
+        article_id = cursor.lastrowid
+        conn.close()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Article added successfully',
+            'article_id': article_id
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error adding article: {str(e)}'
+        }), 500
+
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({
         'status': 'error',
         'message': 'Endpoint not found',
         'available_endpoints': [
-            '/',
-            '/api/status',
-            '/api/articles',
-            '/api/fetch-news',
-            '/api/search?q=keyword'
+            'GET /',
+            'GET /api/status',
+            'GET /api/articles',
+            'GET /api/search?q=keyword',
+            'POST /api/add-article'
         ]
     }), 404
 
