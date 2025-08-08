@@ -3079,11 +3079,11 @@ if __name__ == '__main__':
     print("🔧 Initializing database...")
     init_db()
     
-    # Start background news fetcher
-    print("📡 Starting news fetcher...")
-    start_news_fetcher()
+    # Railway: Disable background news fetcher to reduce memory usage
+    print("📡 Background news fetcher disabled for Railway deployment")
+    # start_news_fetcher()
     
-    # Fetch initial news
+    # Fetch initial news only
     print("📰 Fetching initial news...")
     try:
         total = fetch_all_news()
