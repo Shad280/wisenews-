@@ -69,7 +69,7 @@ def api_status():
     """API health check"""
     return jsonify({
         'status': 'healthy',
-        'version': '2.0.0',
+        'version': '2.0.1',
         'message': 'WiseNews API is running',
         'deployment': 'production',
         'timestamp': datetime.now().isoformat()
