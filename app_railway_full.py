@@ -412,16 +412,30 @@ def login():
             user_manager = user_auth.UserManager(app.config['DATABASE'])
             email = request.form.get('email')
             password = request.form.get('password')
+            ip_address = request.remote_addr or '127.0.0.1'
             
-            user = user_manager.authenticate_user(email, password)
-            if user:
-                session['user_id'] = user['id']
-                session['user_email'] = user['email']
-                session['is_admin'] = user.get('is_admin', False)
-                flash('Login successful!', 'success')
-                return redirect(url_for('dashboard'))
+            success, message, user_id = user_manager.authenticate_user(email, password, ip_address)
+            if success:
+                # Get user details for session
+                conn = sqlite3.connect(app.config['DATABASE'])
+                cursor = conn.cursor()
+                cursor.execute('SELECT email, is_admin FROM users WHERE id = ?', (user_id,))
+                user_data = cursor.fetchone()
+                conn.close()
+                
+                if user_data:
+                    session['user_id'] = user_id
+                    session['user_email'] = user_data[0]
+                    session['is_admin'] = bool(user_data[1])
+                    flash('Login successful!', 'success')
+                    
+                    # Redirect to admin dashboard if admin
+                    if session['is_admin']:
+                        return redirect(url_for('admin_dashboard'))
+                    else:
+                        return redirect(url_for('index'))
             else:
-                flash('Invalid credentials', 'error')
+                flash(message, 'error')
         except Exception as e:
             flash(f'Login error: {e}', 'error')
     
