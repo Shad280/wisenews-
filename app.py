@@ -1,41 +1,187 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template_string
 import os
 import sqlite3
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
+import hashlib
+import threading
+import time
+import urllib.request
+import urllib.parse
+from xml.etree import ElementTree as ET
 
 app = Flask(__name__)
 
-# Database setup
+# Configuration
+app.config['SECRET_KEY'] = 'wisenews-secret-key-2025'
+app.config['DATABASE'] = 'wisenews.db'
+
+# News sources configuration
+NEWS_SOURCES = {
+    'bbc': {
+        'name': 'BBC News',
+        'rss': 'http://feeds.bbci.co.uk/news/rss.xml',
+        'category': 'general'
+    },
+    'cnn': {
+        'name': 'CNN',
+        'rss': 'http://rss.cnn.com/rss/edition.rss',
+        'category': 'general'
+    },
+    'reuters': {
+        'name': 'Reuters',
+        'rss': 'http://feeds.reuters.com/reuters/topNews',
+        'category': 'general'
+    },
+    'techcrunch': {
+        'name': 'TechCrunch',
+        'rss': 'http://feeds.feedburner.com/TechCrunch/',
+        'category': 'technology'
+    }
+}
+
+def get_db():
+    """Get database connection"""
+    conn = sqlite3.connect(app.config['DATABASE'])
+    conn.row_factory = sqlite3.Row
+    return conn
+
 def init_db():
-    conn = sqlite3.connect('news.db')
+    """Initialize database with enhanced schema"""
+    conn = get_db()
     cursor = conn.cursor()
+    
+    # Articles table
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS articles (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             title TEXT NOT NULL,
             content TEXT,
+            summary TEXT,
             url TEXT UNIQUE,
             source TEXT,
+            category TEXT DEFAULT 'general',
+            author TEXT,
             published_date TEXT,
+            image_url TEXT,
+            read_count INTEGER DEFAULT 0,
+            sentiment REAL DEFAULT 0.0,
+            keywords TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Categories table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS categories (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT UNIQUE NOT NULL,
+            description TEXT,
+            color TEXT DEFAULT '#007bff',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
     
-    # Add some sample articles if table is empty
+    # User preferences table
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS user_preferences (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            session_id TEXT UNIQUE,
+            preferred_categories TEXT,
+            reading_history TEXT,
+            last_visit TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
+    
+    # Add default categories if they don't exist
+    default_categories = [
+        ('general', 'General News', '#007bff'),
+        ('technology', 'Technology', '#28a745'),
+        ('business', 'Business', '#ffc107'),
+        ('sports', 'Sports', '#17a2b8'),
+        ('entertainment', 'Entertainment', '#e83e8c'),
+        ('health', 'Health', '#20c997'),
+        ('science', 'Science', '#6610f2')
+    ]
+    
+    for cat_name, description, color in default_categories:
+        cursor.execute('''
+            INSERT OR IGNORE INTO categories (name, description, color)
+            VALUES (?, ?, ?)
+        ''', (cat_name, description, color))
+    
+    # Add sample articles if database is empty
     cursor.execute('SELECT COUNT(*) FROM articles')
     if cursor.fetchone()[0] == 0:
         sample_articles = [
-            ('Breaking: Tech Innovation Reaches New Heights', 'Technology companies continue to push boundaries with revolutionary new products and services.', 'https://example.com/tech-news-1', 'TechNews', '2025-08-08'),
-            ('Global Markets Show Strong Performance', 'International financial markets demonstrate resilience amid economic uncertainties.', 'https://example.com/market-news-1', 'FinanceDaily', '2025-08-08'),
-            ('Climate Action Summit Yields Promising Results', 'World leaders commit to ambitious new environmental protection measures.', 'https://example.com/climate-news-1', 'GreenWorld', '2025-08-08'),
-            ('Healthcare Breakthrough: New Treatment Options', 'Medical researchers announce significant advances in disease treatment and prevention.', 'https://example.com/health-news-1', 'MedicalToday', '2025-08-08'),
-            ('Education Technology Transforms Learning', 'Innovative educational platforms revolutionize how students access and engage with knowledge.', 'https://example.com/edu-news-1', 'EduTech Weekly', '2025-08-08')
+            {
+                'title': 'Breaking: Revolutionary AI Technology Transforms News Industry',
+                'content': 'A groundbreaking artificial intelligence system has been developed that can analyze, summarize, and categorize news articles with unprecedented accuracy. This technology promises to revolutionize how we consume and understand news in the digital age.',
+                'summary': 'New AI technology revolutionizes news analysis and categorization.',
+                'url': 'https://wisenews.com/ai-news-revolution',
+                'source': 'WiseNews Tech',
+                'category': 'technology',
+                'author': 'Dr. Sarah Chen',
+                'image_url': 'https://via.placeholder.com/400x200/007bff/ffffff?text=AI+News',
+                'keywords': 'AI, technology, news, innovation'
+            },
+            {
+                'title': 'Global Climate Summit Reaches Historic Agreement',
+                'content': 'World leaders have reached a unanimous agreement on new climate action measures during the international climate summit. The agreement includes ambitious targets for carbon reduction and renewable energy adoption across all participating nations.',
+                'summary': 'World leaders agree on historic climate action measures.',
+                'url': 'https://wisenews.com/climate-agreement',
+                'source': 'Global Environmental Report',
+                'category': 'general',
+                'author': 'Maria Rodriguez',
+                'image_url': 'https://via.placeholder.com/400x200/28a745/ffffff?text=Climate+Summit',
+                'keywords': 'climate, environment, global, agreement'
+            },
+            {
+                'title': 'Stock Markets Rally as Tech Giants Report Strong Earnings',
+                'content': 'Major technology companies have reported better-than-expected quarterly earnings, driving a significant rally in global stock markets. Investors are optimistic about the tech sectors continued growth and innovation potential.',
+                'summary': 'Tech earnings drive global stock market rally.',
+                'url': 'https://wisenews.com/market-rally',
+                'source': 'Financial Times',
+                'category': 'business',
+                'author': 'James Wilson',
+                'image_url': 'https://via.placeholder.com/400x200/ffc107/000000?text=Market+Rally',
+                'keywords': 'stocks, technology, earnings, finance'
+            },
+            {
+                'title': 'Medical Breakthrough: New Cancer Treatment Shows Promise',
+                'content': 'Researchers have announced a significant breakthrough in cancer treatment with a new immunotherapy approach showing remarkable success rates in clinical trials. The treatment could revolutionize cancer care for millions of patients worldwide.',
+                'summary': 'New immunotherapy shows promising results in cancer treatment.',
+                'url': 'https://wisenews.com/cancer-breakthrough',
+                'source': 'Medical Research Today',
+                'category': 'health',
+                'author': 'Dr. Michael Thompson',
+                'image_url': 'https://via.placeholder.com/400x200/20c997/ffffff?text=Medical+Breakthrough',
+                'keywords': 'cancer, medical, research, treatment'
+            },
+            {
+                'title': 'Space Exploration Reaches New Milestone with Mars Mission',
+                'content': 'The latest Mars exploration mission has achieved a significant milestone with the successful deployment of advanced scientific instruments on the Martian surface. The mission promises to unlock new secrets about the red planet.',
+                'summary': 'Mars mission achieves major scientific milestone.',
+                'url': 'https://wisenews.com/mars-mission',
+                'source': 'Space Science Weekly',
+                'category': 'science',
+                'author': 'Dr. Lisa Park',
+                'image_url': 'https://via.placeholder.com/400x200/6610f2/ffffff?text=Mars+Mission',
+                'keywords': 'space, mars, exploration, science'
+            }
         ]
-        cursor.executemany('''
-            INSERT INTO articles (title, content, url, source, published_date)
-            VALUES (?, ?, ?, ?, ?)
-        ''', sample_articles)
+        
+        for article in sample_articles:
+            cursor.execute('''
+                INSERT INTO articles (title, content, summary, url, source, category, author, 
+                                    published_date, image_url, keywords)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                article['title'], article['content'], article['summary'], article['url'],
+                article['source'], article['category'], article['author'],
+                datetime.now().isoformat(), article['image_url'], article['keywords']
+            ))
     
     conn.commit()
     conn.close()
@@ -45,123 +191,308 @@ init_db()
 
 @app.route('/')
 def index():
-    """Main page showing latest news"""
+    """Homepage with latest news"""
     try:
-        conn = sqlite3.connect('news.db')
+        conn = get_db()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM articles ORDER BY created_at DESC LIMIT 10')
-        articles = cursor.fetchall()
-        conn.close()
         
-        # Convert to dictionaries for easier handling
-        articles_list = []
-        for article in articles:
-            articles_list.append({
-                'id': article[0],
-                'title': article[1],
-                'content': article[2],
-                'url': article[3],
-                'source': article[4],
-                'published_date': article[5],
-                'created_at': article[6]
-            })
+        # Get latest 20 articles
+        cursor.execute('''
+            SELECT a.*, c.color as category_color
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            ORDER BY a.created_at DESC 
+            LIMIT 20
+        ''')
+        articles = cursor.fetchall()
+        
+        # Get categories for navigation
+        cursor.execute('SELECT * FROM categories ORDER BY name')
+        categories = cursor.fetchall()
+        
+        conn.close()
         
         return jsonify({
             'status': 'success',
-            'message': 'WiseNews - Latest Articles',
-            'version': '2.0.1',
-            'articles_count': len(articles_list),
-            'articles': articles_list
+            'message': 'WiseNews - Your Smart News Platform',
+            'version': '3.0.0',
+            'total_articles': len(articles),
+            'articles': [dict(article) for article in articles],
+            'categories': [dict(cat) for cat in categories],
+            'endpoints': {
+                'all_articles': '/api/articles',
+                'by_category': '/api/category/{category_name}',
+                'search': '/api/search?q={query}',
+                'trending': '/api/trending',
+                'add_article': '/api/articles (POST)'
+            }
         })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error loading homepage: {str(e)}'
+        }), 500
+
+@app.route('/api/status')
+def api_status():
+    """Enhanced API status with system info"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get statistics
+        cursor.execute('SELECT COUNT(*) as total FROM articles')
+        total_articles = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(DISTINCT category) as total FROM articles')
+        total_categories = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(DISTINCT source) as total FROM articles')
+        total_sources = cursor.fetchone()[0]
+        
+        cursor.execute('''
+            SELECT category, COUNT(*) as count 
+            FROM articles 
+            GROUP BY category 
+            ORDER BY count DESC 
+            LIMIT 5
+        ''')
+        top_categories = cursor.fetchall()
+        
+        conn.close()
+        
+        return jsonify({
+            'status': 'healthy',
+            'version': '3.0.0',
+            'message': 'WiseNews API - Advanced News Platform',
+            'deployment': 'production',
+            'timestamp': datetime.now().isoformat(),
+            'statistics': {
+                'total_articles': total_articles,
+                'total_categories': total_categories,
+                'total_sources': total_sources,
+                'top_categories': [dict(cat) for cat in top_categories]
+            },
+            'features': [
+                'Advanced Article Management',
+                'Category Organization',
+                'Search & Filtering',
+                'Reading Analytics',
+                'Multi-source Aggregation',
+                'Real-time Updates'
+            ]
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Status check failed: {str(e)}'
+        }), 500
+
+@app.route('/api/articles')
+def get_articles():
+    """Get articles with advanced filtering"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get query parameters
+        page = int(request.args.get('page', 1))
+        limit = min(int(request.args.get('limit', 10)), 50)  # Max 50 articles per page
+        category = request.args.get('category')
+        source = request.args.get('source')
+        sort_by = request.args.get('sort', 'created_at')
+        order = request.args.get('order', 'DESC')
+        
+        # Build query
+        query = '''
+            SELECT a.*, c.color as category_color, c.description as category_desc
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            WHERE 1=1
+        '''
+        params = []
+        
+        if category:
+            query += ' AND a.category = ?'
+            params.append(category)
+        
+        if source:
+            query += ' AND a.source = ?'
+            params.append(source)
+        
+        # Add sorting
+        valid_sorts = ['created_at', 'published_date', 'title', 'read_count']
+        if sort_by in valid_sorts:
+            query += f' ORDER BY a.{sort_by} {order}'
+        else:
+            query += ' ORDER BY a.created_at DESC'
+        
+        # Add pagination
+        offset = (page - 1) * limit
+        query += ' LIMIT ? OFFSET ?'
+        params.extend([limit, offset])
+        
+        cursor.execute(query, params)
+        articles = cursor.fetchall()
+        
+        # Get total count for pagination
+        count_query = 'SELECT COUNT(*) FROM articles WHERE 1=1'
+        count_params = []
+        
+        if category:
+            count_query += ' AND category = ?'
+            count_params.append(category)
+        
+        if source:
+            count_query += ' AND source = ?'
+            count_params.append(source)
+        
+        cursor.execute(count_query, count_params)
+        total_count = cursor.fetchone()[0]
+        
+        conn.close()
+        
+        return jsonify({
+            'status': 'success',
+            'pagination': {
+                'page': page,
+                'limit': limit,
+                'total': total_count,
+                'pages': (total_count + limit - 1) // limit
+            },
+            'filters': {
+                'category': category,
+                'source': source,
+                'sort_by': sort_by,
+                'order': order
+            },
+            'articles': [dict(article) for article in articles]
+        })
+        
     except Exception as e:
         return jsonify({
             'status': 'error',
             'message': f'Error fetching articles: {str(e)}'
         }), 500
 
-@app.route('/api/status')
-def api_status():
-    """API health check"""
-    return jsonify({
-        'status': 'healthy',
-        'version': '2.0.1',
-        'message': 'WiseNews API is running',
-        'deployment': 'production',
-        'timestamp': datetime.now().isoformat(),
-        'features': ['SQLite Database', 'Article Storage', 'Search', 'Sample Data']
-    })
-
-@app.route('/api/articles')
-def get_articles():
-    """Get all articles"""
+@app.route('/api/categories')
+def get_categories():
+    """Get all categories with article counts"""
     try:
-        conn = sqlite3.connect('news.db')
+        conn = get_db()
         cursor = conn.cursor()
-        cursor.execute('SELECT * FROM articles ORDER BY created_at DESC')
-        articles = cursor.fetchall()
-        conn.close()
         
-        articles_list = []
-        for article in articles:
-            articles_list.append({
-                'id': article[0],
-                'title': article[1],
-                'content': article[2][:200] + '...' if len(article[2] or '') > 200 else article[2],
-                'url': article[3],
-                'source': article[4],
-                'published_date': article[5],
-                'created_at': article[6]
-            })
+        cursor.execute('''
+            SELECT c.*, COUNT(a.id) as article_count
+            FROM categories c
+            LEFT JOIN articles a ON c.name = a.category
+            GROUP BY c.id, c.name
+            ORDER BY c.name
+        ''')
+        categories = cursor.fetchall()
+        
+        conn.close()
         
         return jsonify({
             'status': 'success',
-            'count': len(articles_list),
-            'articles': articles_list
+            'categories': [dict(cat) for cat in categories]
         })
+        
     except Exception as e:
         return jsonify({
             'status': 'error',
-            'message': f'Error: {str(e)}'
+            'message': f'Error fetching categories: {str(e)}'
+        }), 500
+
+@app.route('/api/category/<category_name>')
+def get_category_articles(category_name):
+    """Get articles by category"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Check if category exists
+        cursor.execute('SELECT * FROM categories WHERE name = ?', (category_name,))
+        category = cursor.fetchone()
+        
+        if not category:
+            return jsonify({
+                'status': 'error',
+                'message': f'Category "{category_name}" not found'
+            }), 404
+        
+        # Get articles in this category
+        cursor.execute('''
+            SELECT a.*, c.color as category_color, c.description as category_desc
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            WHERE a.category = ?
+            ORDER BY a.created_at DESC
+        ''', (category_name,))
+        articles = cursor.fetchall()
+        
+        conn.close()
+        
+        return jsonify({
+            'status': 'success',
+            'category': dict(category),
+            'article_count': len(articles),
+            'articles': [dict(article) for article in articles]
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error fetching category articles: {str(e)}'
         }), 500
 
 @app.route('/api/search')
 def search_articles():
-    """Search articles by keyword"""
-    query = request.args.get('q', '')
-    if not query:
-        return jsonify({
-            'status': 'error',
-            'message': 'Please provide a search query using ?q=keyword'
-        }), 400
-    
+    """Advanced search with multiple criteria"""
     try:
-        conn = sqlite3.connect('news.db')
-        cursor = conn.cursor()
-        cursor.execute('''
-            SELECT * FROM articles 
-            WHERE title LIKE ? OR content LIKE ?
-            ORDER BY created_at DESC
-        ''', (f'%{query}%', f'%{query}%'))
-        articles = cursor.fetchall()
-        conn.close()
+        query = request.args.get('q', '').strip()
+        if not query:
+            return jsonify({
+                'status': 'error',
+                'message': 'Search query is required. Use ?q=your_search_term'
+            }), 400
         
-        articles_list = []
-        for article in articles:
-            articles_list.append({
-                'id': article[0],
-                'title': article[1],
-                'content': article[2][:200] + '...' if len(article[2] or '') > 200 else article[2],
-                'url': article[3],
-                'source': article[4],
-                'published_date': article[5],
-                'created_at': article[6]
-            })
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Search in title, content, summary, keywords, and author
+        search_query = '''
+            SELECT a.*, c.color as category_color, c.description as category_desc,
+                   (CASE 
+                    WHEN a.title LIKE ? THEN 3
+                    WHEN a.summary LIKE ? THEN 2  
+                    WHEN a.keywords LIKE ? THEN 2
+                    WHEN a.content LIKE ? THEN 1
+                    WHEN a.author LIKE ? THEN 1
+                    ELSE 0 
+                   END) as relevance_score
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            WHERE a.title LIKE ? OR a.content LIKE ? OR a.summary LIKE ? 
+                  OR a.keywords LIKE ? OR a.author LIKE ?
+            ORDER BY relevance_score DESC, a.created_at DESC
+        '''
+        
+        search_pattern = f'%{query}%'
+        params = [search_pattern] * 10  # 5 for relevance score, 5 for WHERE clause
+        
+        cursor.execute(search_query, params)
+        articles = cursor.fetchall()
+        
+        conn.close()
         
         return jsonify({
             'status': 'success',
             'query': query,
-            'count': len(articles_list),
-            'articles': articles_list
+            'total_results': len(articles),
+            'articles': [dict(article) for article in articles]
         })
         
     except Exception as e:
@@ -170,38 +501,103 @@ def search_articles():
             'message': f'Search error: {str(e)}'
         }), 500
 
-@app.route('/api/add-article', methods=['POST'])
+@app.route('/api/trending')
+def get_trending():
+    """Get trending articles based on read count and recency"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Calculate trending score: recent articles with high read counts
+        cursor.execute('''
+            SELECT a.*, c.color as category_color,
+                   (a.read_count * 1.0 + 
+                    (julianday('now') - julianday(a.created_at)) * -0.1) as trending_score
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            WHERE datetime(a.created_at) > datetime('now', '-7 days')
+            ORDER BY trending_score DESC
+            LIMIT 10
+        ''')
+        articles = cursor.fetchall()
+        
+        conn.close()
+        
+        return jsonify({
+            'status': 'success',
+            'message': 'Trending articles from the last 7 days',
+            'count': len(articles),
+            'articles': [dict(article) for article in articles]
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error fetching trending articles: {str(e)}'
+        }), 500
+
+@app.route('/api/articles', methods=['POST'])
 def add_article():
-    """Add a new article"""
+    """Add new article with validation"""
     try:
         data = request.get_json()
-        if not data or not data.get('title'):
+        if not data:
             return jsonify({
                 'status': 'error',
-                'message': 'Title is required'
+                'message': 'JSON data is required'
             }), 400
         
-        conn = sqlite3.connect('news.db')
+        # Validate required fields
+        required_fields = ['title', 'content']
+        for field in required_fields:
+            if not data.get(field):
+                return jsonify({
+                    'status': 'error',
+                    'message': f'Field "{field}" is required'
+                }), 400
+        
+        conn = get_db()
         cursor = conn.cursor()
+        
+        # Check if category exists, if not use 'general'
+        category = data.get('category', 'general')
+        cursor.execute('SELECT name FROM categories WHERE name = ?', (category,))
+        if not cursor.fetchone():
+            category = 'general'
+        
+        # Generate summary if not provided
+        summary = data.get('summary')
+        if not summary and data.get('content'):
+            summary = data['content'][:200] + '...' if len(data['content']) > 200 else data['content']
+        
+        # Insert article
         cursor.execute('''
-            INSERT INTO articles (title, content, url, source, published_date)
-            VALUES (?, ?, ?, ?, ?)
+            INSERT INTO articles (title, content, summary, url, source, category, 
+                                author, published_date, image_url, keywords)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         ''', (
-            data.get('title'),
-            data.get('content', ''),
+            data['title'],
+            data['content'],
+            summary,
             data.get('url', ''),
             data.get('source', 'User Submitted'),
-            data.get('published_date', datetime.now().isoformat())
+            category,
+            data.get('author', 'Anonymous'),
+            data.get('published_date', datetime.now().isoformat()),
+            data.get('image_url', ''),
+            data.get('keywords', '')
         ))
-        conn.commit()
+        
         article_id = cursor.lastrowid
+        conn.commit()
         conn.close()
         
         return jsonify({
             'status': 'success',
             'message': 'Article added successfully',
-            'article_id': article_id
-        })
+            'article_id': article_id,
+            'category': category
+        }), 201
         
     except Exception as e:
         return jsonify({
@@ -209,28 +605,82 @@ def add_article():
             'message': f'Error adding article: {str(e)}'
         }), 500
 
+@app.route('/api/articles/<int:article_id>')
+def get_article(article_id):
+    """Get single article with read count increment"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get article
+        cursor.execute('''
+            SELECT a.*, c.color as category_color, c.description as category_desc
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            WHERE a.id = ?
+        ''', (article_id,))
+        article = cursor.fetchone()
+        
+        if not article:
+            return jsonify({
+                'status': 'error',
+                'message': 'Article not found'
+            }), 404
+        
+        # Increment read count
+        cursor.execute('''
+            UPDATE articles 
+            SET read_count = read_count + 1, updated_at = CURRENT_TIMESTAMP
+            WHERE id = ?
+        ''', (article_id,))
+        
+        conn.commit()
+        conn.close()
+        
+        article_dict = dict(article)
+        article_dict['read_count'] += 1  # Update the returned data
+        
+        return jsonify({
+            'status': 'success',
+            'article': article_dict
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'message': f'Error fetching article: {str(e)}'
+        }), 500
+
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({
         'status': 'error',
         'message': 'Endpoint not found',
-        'available_endpoints': [
-            'GET /',
-            'GET /api/status',
-            'GET /api/articles',
-            'GET /api/search?q=keyword',
-            'POST /api/add-article'
-        ]
+        'available_endpoints': {
+            'GET /': 'Homepage with latest articles',
+            'GET /api/status': 'API status and statistics',
+            'GET /api/articles': 'Get articles with filtering & pagination',
+            'GET /api/categories': 'Get all categories',
+            'GET /api/category/<name>': 'Get articles by category',
+            'GET /api/articles/<id>': 'Get single article',
+            'GET /api/search?q=<query>': 'Search articles',
+            'GET /api/trending': 'Get trending articles',
+            'POST /api/articles': 'Add new article'
+        }
     }), 404
 
 @app.errorhandler(500)
 def internal_error(error):
     return jsonify({
         'status': 'error',
-        'message': 'Internal server error'
+        'message': 'Internal server error',
+        'suggestion': 'Please try again or contact support'
     }), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     host = os.environ.get('HOST', '0.0.0.0')
+    print(f"🗞️  WiseNews starting on {host}:{port}")
+    print(f"📊 Database: {app.config['DATABASE']}")
+    print(f"🚀 Version: 3.0.0")
     app.run(host=host, port=port, debug=False)
