@@ -224,6 +224,42 @@ class UserManager:
         conn.close()
         return False, "No duplicate found", None
     
+    def create_admin_user(self, email, password):
+        """Create admin user with simplified interface"""
+        try:
+            conn = sqlite3.connect(self.db_path)
+            cursor = conn.cursor()
+            
+            # Check if admin already exists
+            cursor.execute('SELECT id FROM users WHERE email = ?', (email.lower(),))
+            if cursor.fetchone():
+                conn.close()
+                return False  # Admin already exists
+            
+            # Hash password
+            password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
+            
+            # Create admin user with minimal required fields
+            cursor.execute('''
+                INSERT INTO users (
+                    email, password_hash, first_name, last_name, 
+                    gdpr_consent, marketing_consent, analytics_consent, data_processing_consent,
+                    is_active, is_verified, is_admin
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', (
+                email.lower(), password_hash, 'Admin', 'User',
+                True, False, True, True,  # GDPR consents
+                True, True, True  # Active, verified, admin
+            ))
+            
+            conn.commit()
+            conn.close()
+            return True
+            
+        except Exception as e:
+            print(f"Admin creation error: {e}")
+            return False
+
     def log_data_processing(self, user_id, action_type, data_type, legal_basis, purpose, ip_address):
         """Log data processing for GDPR compliance"""
         conn = sqlite3.connect(self.db_path)

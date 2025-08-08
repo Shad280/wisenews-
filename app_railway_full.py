@@ -153,12 +153,9 @@ def init_db():
             
             # Create admin user
             try:
-                admin_created = user_manager.register_user(
+                admin_created = user_manager.create_admin_user(
                     email='admin@wisenews.com',
-                    password='WiseNews2025!',
-                    consent_analytics=True,
-                    consent_marketing=False,
-                    is_admin=True
+                    password='WiseNews2025!'
                 )
                 if admin_created:
                     print("✅ Admin user created successfully")
