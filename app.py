@@ -699,25 +699,73 @@ def index():
 </body>
 </html>
     ''', user=user, recent_articles=recent_articles, categories=categories, total_articles=total_articles)
+
+# =============================================================================
+# PROTECTED ROUTES - Require Authentication
+# =============================================================================
+
+from auth_decorators import login_required, get_current_user
+
+@app.route('/articles')
+@login_required
+def articles():
+    """Protected articles listing with usage tracking"""
+    user = get_current_user()
+    
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Check subscription limits
+        from user_auth import user_manager
+        can_access, message = user_manager.check_daily_limits(user['id'], 'articles')
+        
+        if not can_access:
+            flash(f"Daily limit reached: {message}", 'warning')
+            return redirect(url_for('subscription_plans'))
+        
+        # Track usage
+        user_manager.track_usage(user['id'], 'article_view')
+        
+        # Get pagination parameters
+        page = int(request.args.get('page', 1))
+        per_page = 12
+        offset = (page - 1) * per_page
+        
+        # Get articles with pagination
+        cursor.execute('''
+            SELECT a.*, c.color as category_color, c.description as category_desc
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            ORDER BY a.created_at DESC
+            LIMIT ? OFFSET ?
+        ''', (per_page, offset))
+        
+        articles = cursor.fetchall()
+        
+        # Get total count for pagination
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        total_articles = cursor.fetchone()[0]
+        total_pages = (total_articles + per_page - 1) // per_page
+        
+        conn.close()
+        
+        return render_template_string('''
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiseNews - Your Smart News Platform</title>
+    <title>Articles - WiseNews</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .navbar-brand { font-weight: bold; color: #007bff !important; }
-        .article-card { transition: transform 0.2s; }
-        .article-card:hover { transform: translateY(-5px); }
-        .category-badge { font-size: 0.8em; }
-        .hero-section { background: linear-gradient(135deg, #007bff, #28a745); color: white; padding: 60px 0; }
+        .article-card:hover { transform: translateY(-2px); transition: 0.2s; }
+        .user-header { background: linear-gradient(135deg, #007bff, #28a745); }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -725,69 +773,397 @@ def index():
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-                    {% for category in categories %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/category/{{ category.name }}">{{ category.description }}</a>
-                    </li>
-                    {% endfor %}
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/articles">Articles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/search">Search</a></li>
                 </ul>
-                <form class="d-flex" action="/search" method="GET">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Search news...">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user"></i> {{ user.first_name }}
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                            <li><a class="dropdown-item" href="/profile"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="/subscription-plans"><i class="fas fa-crown"></i> Subscription</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <div class="hero-section text-center">
+    <div class="user-header text-white py-4">
         <div class="container">
-            <h1 class="display-4"><i class="fas fa-newspaper"></i> WiseNews</h1>
-            <p class="lead">Your Smart News Platform - Stay Informed, Stay Wise</p>
-            <p>Latest news from around the world, categorized and ready to read</p>
+            <h1><i class="fas fa-newspaper"></i> All Articles</h1>
+            <p class="lead">{{ total_articles }} articles available • Page {{ page }} of {{ total_pages }}</p>
         </div>
     </div>
 
-    <!-- Articles Section -->
-    <div class="container mt-5">
-        <h2 class="mb-4"><i class="fas fa-clock"></i> Latest News</h2>
+    <div class="container mt-4">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
         <div class="row">
             {% for article in articles %}
             <div class="col-md-6 col-lg-4 mb-4">
-                <div class="card article-card h-100">
+                <div class="card article-card h-100 shadow-sm">
+                    {% if article.image_url %}
                     <img src="{{ article.image_url }}" class="card-img-top" alt="{{ article.title }}" style="height: 200px; object-fit: cover;">
+                    {% endif %}
                     <div class="card-body">
-                        <span class="badge category-badge mb-2" style="background-color: {{ article.category_color }}">{{ article.category.title() }}</span>
+                        <span class="badge mb-2" style="background-color: {{ article.category_color or '#6c757d' }}">
+                            {{ article.category.title() }}
+                        </span>
                         <h5 class="card-title">{{ article.title }}</h5>
-                        <p class="card-text">{{ article.summary }}</p>
-                        <p class="card-text"><small class="text-muted">By {{ article.author }} • {{ article.created_at }}</small></p>
+                        <p class="card-text">{{ article.summary[:100] }}...</p>
+                        <p class="card-text">
+                            <small class="text-muted">
+                                <i class="fas fa-user"></i> {{ article.author }} • 
+                                <i class="fas fa-clock"></i> {{ article.created_at[:10] }}
+                            </small>
+                        </p>
                     </div>
-                    <div class="card-footer">
-                        <a href="/article/{{ article.id }}" class="btn btn-primary">Read More</a>
-                        <small class="text-muted float-end"><i class="fas fa-eye"></i> {{ article.read_count }} reads</small>
+                    <div class="card-footer d-flex justify-content-between align-items-center">
+                        <a href="/article/{{ article.id }}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-eye"></i> Read More
+                        </a>
+                        <small class="text-muted">
+                            <i class="fas fa-eye"></i> {{ article.read_count or 0 }} reads
+                        </small>
                     </div>
                 </div>
             </div>
             {% endfor %}
         </div>
-    </div>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-light mt-5 py-4">
-        <div class="container text-center">
-            <p>&copy; 2025 WiseNews. Your Smart News Platform. Version 3.0.0</p>
-            <p><a href="/api/articles" class="text-light">API</a> | <a href="/trending" class="text-light">Trending</a></p>
-        </div>
-    </footer>
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <nav aria-label="Articles pagination">
+            <ul class="pagination justify-content-center">
+                {% if page > 1 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page - 1 }}">Previous</a>
+                    </li>
+                {% endif %}
+                
+                {% for p in range(1, total_pages + 1) %}
+                    {% if p == page %}
+                        <li class="page-item active">
+                            <span class="page-link">{{ p }}</span>
+                        </li>
+                    {% elif p <= 3 or p >= total_pages - 2 or (p >= page - 1 and p <= page + 1) %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                        </li>
+                    {% elif p == 4 or p == total_pages - 3 %}
+                        <li class="page-item disabled">
+                            <span class="page-link">...</span>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+                
+                {% if page < total_pages %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-        ''', articles=articles, categories=categories)
+        ''', user=user, articles=articles, page=page, total_pages=total_pages, total_articles=total_articles)
         
     except Exception as e:
-        return f"<h1>Error loading homepage: {str(e)}</h1>", 500
+        return f"<h1>Error loading articles: {str(e)}</h1>", 500
+
+@app.route('/article/<int:article_id>')
+@login_required
+def view_article(article_id):
+    """View single article with read tracking"""
+    user = get_current_user()
+    
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get article
+        cursor.execute('''
+            SELECT a.*, c.color as category_color, c.description as category_desc
+            FROM articles a 
+            LEFT JOIN categories c ON a.category = c.name
+            WHERE a.id = ?
+        ''', (article_id,))
+        
+        article = cursor.fetchone()
+        if not article:
+            flash('Article not found.', 'error')
+            return redirect(url_for('articles'))
+        
+        # Track usage
+        from user_auth import user_manager
+        user_manager.track_usage(user['id'], 'article_read')
+        
+        # Increment read count
+        cursor.execute('''
+            UPDATE articles 
+            SET read_count = read_count + 1 
+            WHERE id = ?
+        ''', (article_id,))
+        
+        conn.commit()
+        conn.close()
+        
+        return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }} - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link" href="/articles">← Back to Articles</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <article class="card">
+                    {% if article.image_url %}
+                    <img src="{{ article.image_url }}" class="card-img-top" alt="{{ article.title }}">
+                    {% endif %}
+                    
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <span class="badge" style="background-color: {{ article.category_color or '#6c757d' }}">
+                                {{ article.category.title() }}
+                            </span>
+                            <span class="badge bg-info ms-2">{{ article.source }}</span>
+                        </div>
+                        
+                        <h1 class="card-title">{{ article.title }}</h1>
+                        
+                        <div class="text-muted mb-4">
+                            <i class="fas fa-user"></i> By {{ article.author }} • 
+                            <i class="fas fa-clock"></i> {{ article.published_date[:10] }} • 
+                            <i class="fas fa-eye"></i> {{ article.read_count + 1 }} reads
+                        </div>
+                        
+                        {% if article.summary %}
+                        <div class="alert alert-light">
+                            <strong>Summary:</strong> {{ article.summary }}
+                        </div>
+                        {% endif %}
+                        
+                        <div class="article-content">
+                            {{ article.content | safe }}
+                        </div>
+                        
+                        {% if article.keywords %}
+                        <div class="mt-4">
+                            <h6>Keywords:</h6>
+                            {% for keyword in article.keywords.split(',') %}
+                                <span class="badge bg-secondary me-1">{{ keyword.strip() }}</span>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        
+                        {% if article.url %}
+                        <div class="mt-4">
+                            <a href="{{ article.url }}" target="_blank" class="btn btn-outline-primary">
+                                <i class="fas fa-external-link-alt"></i> View Original Source
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        ''', article=article, user=user)
+        
+    except Exception as e:
+        return f"<h1>Error loading article: {str(e)}</h1>", 500
+
+@app.route('/search')
+@login_required
+def search():
+    """Protected search with usage limits"""
+    user = get_current_user()
+    query = request.args.get('q', '').strip()
+    
+    try:
+        if query:
+            # Check subscription limits
+            from user_auth import user_manager
+            can_access, message = user_manager.check_daily_limits(user['id'], 'searches')
+            
+            if not can_access:
+                flash(f"Daily search limit reached: {message}", 'warning')
+                return redirect(url_for('subscription_plans'))
+            
+            # Track usage
+            user_manager.track_usage(user['id'], 'search')
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        articles = []
+        if query:
+            # Search in title, content, summary, and keywords
+            search_pattern = f'%{query}%'
+            cursor.execute('''
+                SELECT a.*, c.color as category_color,
+                       (CASE 
+                        WHEN a.title LIKE ? THEN 3
+                        WHEN a.summary LIKE ? THEN 2  
+                        WHEN a.keywords LIKE ? THEN 2
+                        WHEN a.content LIKE ? THEN 1
+                        ELSE 0 
+                       END) as relevance_score
+                FROM articles a 
+                LEFT JOIN categories c ON a.category = c.name
+                WHERE a.title LIKE ? OR a.content LIKE ? OR a.summary LIKE ? OR a.keywords LIKE ?
+                ORDER BY relevance_score DESC, a.created_at DESC
+                LIMIT 20
+            ''', [search_pattern] * 8)
+            
+            articles = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link" href="/articles">Articles</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <h2><i class="fas fa-search"></i> Search News</h2>
+                
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ 'danger' if category == 'error' else category }} alert-dismissible fade show">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+                
+                <form method="GET" class="mb-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="q" value="{{ query }}" 
+                               placeholder="Search for news articles..." required>
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                </form>
+                
+                {% if query %}
+                    <h4>Search Results for "{{ query }}"</h4>
+                    <p class="text-muted">Found {{ articles|length }} results</p>
+                    
+                    {% if articles %}
+                        {% for article in articles %}
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <div class="row">
+                                    {% if article.image_url %}
+                                    <div class="col-md-3">
+                                        <img src="{{ article.image_url }}" class="img-fluid rounded" 
+                                             style="height: 100px; object-fit: cover; width: 100%;">
+                                    </div>
+                                    <div class="col-md-9">
+                                    {% else %}
+                                    <div class="col-md-12">
+                                    {% endif %}
+                                        <span class="badge mb-2" style="background-color: {{ article.category_color or '#6c757d' }}">
+                                            {{ article.category.title() }}
+                                        </span>
+                                        <h5 class="card-title">{{ article.title }}</h5>
+                                        <p class="card-text">{{ article.summary[:200] }}...</p>
+                                        <p class="card-text">
+                                            <small class="text-muted">
+                                                <i class="fas fa-user"></i> {{ article.author }} • 
+                                                <i class="fas fa-clock"></i> {{ article.created_at[:10] }} • 
+                                                <i class="fas fa-eye"></i> {{ article.read_count or 0 }} reads
+                                            </small>
+                                        </p>
+                                        <a href="/article/{{ article.id }}" class="btn btn-primary btn-sm">
+                                            <i class="fas fa-eye"></i> Read More
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> No articles found for your search query.
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        ''', query=query, articles=articles, user=user)
+        
+    except Exception as e:
+        return f"<h1>Error in search: {str(e)}</h1>", 500
 
 @app.route('/api/status')
 def api_status():
