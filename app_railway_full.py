@@ -830,7 +830,7 @@ def debug_admin_status():
         
         if not table_exists:
             conn.close()
-            return {"status": "error", "message": "Users table does not exist"}
+            return jsonify({"status": "error", "message": "Users table does not exist"})
         
         # Check table structure
         cursor.execute("PRAGMA table_info(users)")
@@ -846,7 +846,7 @@ def debug_admin_status():
         
         conn.close()
         
-        return {
+        return jsonify({
             "status": "success",
             "table_exists": True,
             "columns": columns,
@@ -854,10 +854,10 @@ def debug_admin_status():
             "admin_user_exists": admin_user is not None,
             "admin_user_data": admin_user,
             "total_users": user_count
-        }
+        })
         
     except Exception as e:
-        return {"status": "error", "message": str(e)}
+        return jsonify({"status": "error", "message": str(e)})
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
