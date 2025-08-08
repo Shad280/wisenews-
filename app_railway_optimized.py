@@ -276,6 +276,42 @@ def index():
     except Exception as e:
         return f"<h1>WiseNews</h1><p>App is running! Database error: {e}</p>"
 
+@app.route('/dashboard')
+def dashboard():
+    """Dashboard page"""
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    
+    return render_template_string('''
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="alert alert-success">
+            <h1>🎉 Login Successful!</h1>
+            <p><strong>Welcome to WiseNews Dashboard!</strong></p>
+            <p>Email: {{ session.user_email }}</p>
+            <p>Admin: {{ 'Yes' if session.is_admin else 'No' }}</p>
+        </div>
+        <div class="text-center">
+            <a href="/" class="btn btn-primary">← Back to Home</a>
+            <a href="/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
+    ''')
+
+@app.route('/logout')
+def logout():
+    """Logout"""
+    session.clear()
+    return redirect(url_for('index'))
+
 @app.route('/api/status')
 def api_status():
     """API status endpoint"""
@@ -286,9 +322,28 @@ def api_status():
         'version': '3.0.0-railway-optimized'
     })
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
-    """Login page"""
+    """Login page with working authentication"""
+    if request.method == 'POST':
+        try:
+            user_manager = user_auth.UserManager(app.config['DATABASE'])
+            email = request.form.get('email')
+            password = request.form.get('password')
+            
+            user = user_manager.authenticate_user(email, password)
+            if user:
+                session['user_id'] = user['id']
+                session['user_email'] = user['email']
+                session['is_admin'] = user.get('is_admin', False)
+                return redirect(url_for('dashboard'))
+            else:
+                error_message = 'Invalid credentials'
+        except Exception as e:
+            error_message = f'Login error: {e}'
+    else:
+        error_message = None
+    
     return render_template_string('''
 <!DOCTYPE html>
 <html>
@@ -303,17 +358,22 @@ def login():
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-center">WiseNews Login</h2>
+                        
+                        {% if error_message %}
+                            <div class="alert alert-danger">{{ error_message }}</div>
+                        {% endif %}
+                        
                         <div class="alert alert-info">
                             <strong>Admin Credentials:</strong><br>
                             Email: admin@wisenews.com<br>
                             Password: WiseNews2025!
                         </div>
-                        <form>
+                        <form method="POST">
                             <div class="mb-3">
-                                <input type="email" class="form-control" placeholder="Email">
+                                <input type="email" name="email" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="mb-3">
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Login</button>
                         </form>
