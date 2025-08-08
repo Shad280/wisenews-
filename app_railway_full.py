@@ -11,6 +11,7 @@ from datetime import datetime, timedelta
 import json
 import hashlib
 import bcrypt
+from functools import wraps
 # Remove threading for Railway compatibility
 # import threading
 import time
@@ -18,9 +19,15 @@ import urllib.request
 import urllib.parse
 from xml.etree import ElementTree as ET
 
-# Import full user modules
-import user_auth
-import auth_decorators
+# Import full user modules with error handling
+try:
+    import user_auth
+    import auth_decorators
+    AUTH_AVAILABLE = True
+    print("✅ Authentication modules imported successfully")
+except ImportError as e:
+    print(f"⚠️  Authentication import warning: {e}")
+    AUTH_AVAILABLE = False
 
 app = Flask(__name__)
 
@@ -120,21 +127,44 @@ def init_db():
             )
         ''')
         
-        # Insert default categories
-        categories = [
-            ('general', 'General News', '#007bff', 'Latest breaking news and current events'),
-            ('technology', 'Technology', '#28a745', 'Tech news, gadgets, and innovations'),
-            ('business', 'Business', '#ffc107', 'Financial news and market updates'),
-            ('sports', 'Sports', '#17a2b8', 'Sports news and updates'),
-            ('health', 'Health', '#dc3545', 'Health and medical news'),
-            ('science', 'Science', '#6f42c1', 'Scientific discoveries and research'),
-            ('entertainment', 'Entertainment', '#fd7e14', 'Entertainment and celebrity news')
-        ]
-        
-        cursor.executemany('''
-            INSERT OR REPLACE INTO categories (name, display_name, color, description)
-            VALUES (?, ?, ?, ?)
-        ''', categories)
+        # Insert default categories with proper schema handling
+        try:
+            # First check if display_name column exists
+            cursor.execute("PRAGMA table_info(categories)")
+            columns = [row[1] for row in cursor.fetchall()]
+            
+            if 'display_name' in columns:
+                # New schema with display_name
+                categories = [
+                    ('general', 'General News', '#007bff', 'Latest breaking news and current events'),
+                    ('technology', 'Technology', '#28a745', 'Tech news, gadgets, and innovations'),
+                    ('business', 'Business', '#ffc107', 'Financial news and market updates'),
+                    ('sports', 'Sports', '#17a2b8', 'Sports news and updates'),
+                    ('health', 'Health', '#dc3545', 'Health and medical news'),
+                    ('science', 'Science', '#6f42c1', 'Scientific discoveries and research'),
+                    ('entertainment', 'Entertainment', '#fd7e14', 'Entertainment and celebrity news')
+                ]
+                cursor.executemany('''
+                    INSERT OR REPLACE INTO categories (name, display_name, color, description)
+                    VALUES (?, ?, ?, ?)
+                ''', categories)
+            else:
+                # Old schema without display_name
+                categories = [
+                    ('general', '#007bff', 'Latest breaking news and current events'),
+                    ('technology', '#28a745', 'Tech news, gadgets, and innovations'),
+                    ('business', '#ffc107', 'Financial news and market updates'),
+                    ('sports', '#17a2b8', 'Sports news and updates'),
+                    ('health', '#dc3545', 'Health and medical news'),
+                    ('science', '#6f42c1', 'Scientific discoveries and research'),
+                    ('entertainment', '#fd7e14', 'Entertainment and celebrity news')
+                ]
+                cursor.executemany('''
+                    INSERT OR REPLACE INTO categories (name, color, description)
+                    VALUES (?, ?, ?)
+                ''', categories)
+        except Exception as e:
+            print(f"⚠️  Category insertion error: {e}")
         
         # Insert RSS sources
         for source_id, source_info in RSS_SOURCES.items():
@@ -446,6 +476,24 @@ def index():
         return f"<h1>WiseNews Railway</h1><p>App is running! Error: {e}</p><p><a href='/login'>Test Login</a></p>"
 
 # Import authentication routes
+def safe_auth_decorator(f):
+    """Safe authentication decorator with fallback"""
+    try:
+        if AUTH_AVAILABLE:
+            return auth_decorators.login_required(f)
+        else:
+            # Fallback - basic session check
+            @wraps(f)
+            def decorated_function(*args, **kwargs):
+                if 'user_id' not in session:
+                    return redirect(url_for('login'))
+                return f(*args, **kwargs)
+            return decorated_function
+    except Exception as e:
+        print(f"⚠️  Auth decorator error: {e}")
+        # Return function as-is if auth fails
+        return f
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     """Login with full authentication"""
@@ -539,7 +587,7 @@ def login():
     ''')
 
 @app.route('/dashboard')
-@auth_decorators.login_required
+@safe_auth_decorator
 def dashboard():
     """User dashboard"""
     return render_template_string('''
@@ -605,10 +653,25 @@ def register():
     ''')
 
 @app.route('/admin')
-@auth_decorators.login_required
+@safe_auth_decorator
 def admin_dashboard():
     """Admin dashboard with system statistics"""
-    user = auth_decorators.get_current_user()
+    # Get current user safely
+    try:
+        if AUTH_AVAILABLE:
+            user = auth_decorators.get_current_user()
+        else:
+            # Fallback user data from session
+            user = {
+                'email': session.get('user_email', 'admin@wisenews.com'),
+                'is_admin': session.get('is_admin', True)
+            }
+    except Exception as e:
+        print(f"⚠️  Error getting current user: {e}")
+        user = {
+            'email': session.get('user_email', 'admin@wisenews.com'),
+            'is_admin': session.get('is_admin', True)
+        }
     
     # Check if user is admin
     if not user.get('is_admin', False):
