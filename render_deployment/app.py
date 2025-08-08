@@ -317,10 +317,40 @@ def api_status():
     """API status endpoint"""
     return jsonify({
         'status': 'success',
-        'message': 'WiseNews Railway deployment working!',
+        'message': 'WiseNews Render deployment with authentication!',
         'timestamp': datetime.now().isoformat(),
-        'version': '3.0.0-railway-optimized'
+        'version': '3.0.0-render-auth',
+        'authentication': 'enabled',
+        'admin_credentials': {
+            'email': 'admin@wisenews.com',
+            'password': 'WiseNews2025!'
+        }
     })
+
+@app.route('/api/debug')
+def debug_auth():
+    """Debug authentication system"""
+    try:
+        user_manager = user_auth.UserManager(app.config['DATABASE'])
+        
+        # Check if admin user exists
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM users WHERE email = 'admin@wisenews.com'")
+        admin_user = cursor.fetchone()
+        conn.close()
+        
+        return jsonify({
+            'status': 'debug',
+            'admin_user_exists': admin_user is not None,
+            'admin_user_data': dict(admin_user) if admin_user else None,
+            'database_file': app.config['DATABASE']
+        })
+    except Exception as e:
+        return jsonify({
+            'status': 'error',
+            'error': str(e)
+        })
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
