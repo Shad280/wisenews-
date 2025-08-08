@@ -1,1 +1,1 @@
-web: gunicorn app_bulletproof_auth:app
+web: gunicorn app_simple_login:app
