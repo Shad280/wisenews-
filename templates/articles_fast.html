@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WiseNews - Articles (Fast)</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .article { border: 1px solid #ddd; margin: 10px 0; padding: 15px; }
+        .title { font-size: 18px; font-weight: bold; color: #333; }
+        .preview { color: #666; margin: 10px 0; }
+        .meta { font-size: 12px; color: #999; }
+        .pagination { margin: 20px 0; }
+        .pagination a { margin: 0 5px; padding: 5px 10px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>📰 WiseNews Articles (Fast Version)</h1>
+    
+    <div class="pagination">
+        {% if has_prev %}
+            <a href="{{ url_for('articles_fast', page=page-1) }}">&laquo; Previous</a>
+        {% endif %}
+        
+        Page {{ page }} of {{ (total + per_page - 1) // per_page }}
+        
+        {% if has_next %}
+            <a href="{{ url_for('articles_fast', page=page+1) }}">Next &raquo;</a>
+        {% endif %}
+    </div>
+    
+    {% for article in articles %}
+    <div class="article">
+        <div class="title">{{ article.title }}</div>
+        <div class="preview">{{ article.preview }}</div>
+        <div class="meta">
+            📅 {{ article.date_added }} | 
+            📂 {{ article.category or 'Uncategorized' }} | 
+            📰 {{ article.source_name }}
+        </div>
+    </div>
+    {% endfor %}
+    
+    <div class="pagination">
+        {% if has_prev %}
+            <a href="{{ url_for('articles_fast', page=page-1) }}">&laquo; Previous</a>
+        {% endif %}
+        
+        Page {{ page }} of {{ (total + per_page - 1) // per_page }}
+        
+        {% if has_next %}
+            <a href="{{ url_for('articles_fast', page=page+1) }}">Next &raquo;</a>
+        {% endif %}
+    </div>
+    
+    <p><strong>⚡ Performance:</strong> This page loads {{ articles|length }} articles with previews only.</p>
+    <p><a href="{{ url_for('articles') }}">← Back to full articles page</a></p>
+</body>
+</html>

@@ -1,0 +1,404 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article[1] }} - News Aggregator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                        <span class="badge source-badge bg-{{ 'primary' if article[3] == 'RSS' else 'info' if article[3] == 'Twitter' else 'danger' }} me-2">
+                            {{ article[3] }}
+                        </span>
+                        <span class="badge category-badge bg-secondary">{{ article[8] }}</span>
+                        {% if article[9] %}
+                            <span class="badge bg-success ms-2">Read</span>
+                        {% endif %}
+                    </div>
+                    <div class="btn-group" role="group">
+                        <button class="btn btn-outline-secondary btn-sm stable-btn" 
+                                onclick="bookmarkArticle({{ article[0] }})"
+                                title="Bookmark Article">
+                            <i class="fas fa-bookmark"></i>
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm stable-btn" 
+                                onclick="window.print()"
+                                title="Print Article">
+                            <i class="fas fa-print"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body stable-card-body">
+                <h1 class="card-title" class="stable-page-title">{{ article[1] }}</h1>
+                
+                <!-- Article Images Section -->
+                <div id="article-images" class="article-images mb-4">
+                    <!-- Images will be loaded via JavaScript -->
+                </div>
+                
+                <div class="article-meta mb-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <small class="text-muted">
+                                <i class="fas fa-rss"></i> Source: {{ article[4] or 'Unknown' }}<br>
+                                <i class="fas fa-file"></i> File: {{ article[5] }}<br>
+                                <i class="fas fa-clock"></i> Added: {{ article[6][:19] }}
+                            </small>
+                        </div>
+                        <div class="col-md-6">
+                            {% if article[7] %}
+                            <div>
+                                <strong>Keywords:</strong><br>
+                                {% for keyword in article[7].split(',')[:8] %}
+                                <span class="keyword-tag">{{ keyword.strip() }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="article-content">
+                    {{ article[2]|replace('\n', '<br>')|safe }}
+                </div>
+                
+                <!-- Share Article Section -->
+                <div class="mt-4 pt-3 border-top">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-outline-secondary btn-sm stable-btn" 
+                                onclick="shareArticle()"
+                                title="Share Article">
+                            <i class="fas fa-share"></i> Share this article
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation -->
+        <div class="mt-4">
+            <a href="{{ url_for('articles') }}" class="btn btn-outline-primary stable-btn">
+                <i class="fas fa-arrow-left"></i> Back to Articles
+            </a>
+            <a href="{{ url_for('search') }}" class="btn btn-outline-secondary stable-btn">
+                <i class="fas fa-search"></i> Search More
+            </a>
+        </div>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="col-md-4">
+        <!-- Article Stats -->
+        <div class="card mb-4">
+            <div class="card-header stable-header">
+                <h6><i class="fas fa-chart-bar"></i> Article Statistics</h6>
+            </div>
+            <div class="card-body stable-card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="border-end">
+                            <h5>{{ article[2]|length }}</h5>
+                            <small class="text-muted">Characters</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h5>{{ article[2].split()|length }}</h5>
+                        <small class="text-muted">Words</small>
+                    </div>
+                </div>
+                <hr>
+                <div class="text-center">
+                    <p class="mb-0">
+                        <small class="text-muted">
+                            Estimated reading time: {{ ((article[2].split()|length / 200) | round(1)) or 1 }} min
+                        </small>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Related Articles -->
+        <div class="card mb-4">
+            <div class="card-header stable-header">
+                <h6><i class="fas fa-link"></i> Related Articles</h6>
+            </div>
+            <div class="card-body stable-card-body">
+                <p class="text-muted text-center">
+                    <i class="fas fa-cog"></i><br>
+                    Related articles feature coming soon!
+                </p>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h6><i class="fas fa-bolt"></i> Quick Actions</h6>
+            </div>
+            <div class="card-body stable-card-body">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-outline-primary btn-sm stable-btn" onclick="searchKeywords()">
+                        <i class="fas fa-search"></i> Search Similar Articles
+                    </button>
+                    <button class="btn btn-outline-info btn-sm stable-btn" onclick="viewCategory()">
+                        <i class="fas fa-folder"></i> View {{ article[8] }} Articles
+                    </button>
+                    <button class="btn btn-outline-success btn-sm stable-btn" onclick="copyToClipboard()">
+                        <i class="fas fa-copy"></i> Copy Article Text
+                    </button>
+                    <button class="btn btn-outline-warning btn-sm stable-btn" onclick="processImages()" id="processImagesBtn">
+                        <i class="fas fa-image"></i> Find Relevant Images
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Social Sharing Widget -->
+        <div class="mt-3">
+            {% include 'social_widget.html' %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Load article images on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        loadArticleImages();
+    });
+    
+    function loadArticleImages() {
+        fetch(`/api/article_images/{{ article[0] }}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data.images && data.images.length > 0) {
+                    displayImages(data.images);
+                }
+            })
+            .catch(error => {
+                console.error('Error loading images:', error);
+            });
+    }
+    
+    function displayImages(images) {
+        const imageContainer = document.getElementById('article-images');
+        
+        if (images.length === 0) {
+            return;
+        }
+        
+        let imageHtml = '';
+        
+        // Display primary image first
+        const primaryImage = images.find(img => img.is_primary) || images[0];
+        
+        imageHtml += `
+            <div class="article-primary-image mb-3">
+                <figure class="figure">
+                    <img src="${primaryImage.url}" 
+                         alt="${primaryImage.alt_text}" 
+                         class="figure-img img-fluid rounded shadow-sm"
+                         style="max-height: 400px; width: 100%; object-fit: cover;"
+                         onerror="this.style.display='none'">
+                    <figcaption class="figure-caption text-muted small">
+                        ${primaryImage.caption}
+                        ${primaryImage.source ? `<span class="float-end">Source: ${primaryImage.source}</span>` : ''}
+                    </figcaption>
+                </figure>
+            </div>
+        `;
+        
+        // Display additional images if any
+        const additionalImages = images.filter(img => !img.is_primary);
+        if (additionalImages.length > 0) {
+            imageHtml += `
+                <div class="additional-images">
+                    <h6 class="text-muted mb-2">
+                        <i class="fas fa-images"></i> Related Images
+                    </h6>
+                    <div class="row">
+            `;
+            
+            additionalImages.forEach((img, index) => {
+                imageHtml += `
+                    <div class="col-md-6 mb-2">
+                        <img src="${img.url}" 
+                             alt="${img.alt_text}" 
+                             class="img-thumbnail"
+                             style="width: 100%; height: 120px; object-fit: cover; cursor: pointer;"
+                             onclick="showImageModal('${img.url}', '${img.alt_text}', '${img.caption}')"
+                             onerror="this.parentElement.style.display='none'">
+                    </div>
+                `;
+            });
+            
+            imageHtml += `
+                    </div>
+                </div>
+            `;
+        }
+        
+        imageContainer.innerHTML = imageHtml;
+        
+        // Add image modal for viewing larger versions
+        addImageModal();
+    }
+    
+    function addImageModal() {
+        if (document.getElementById('imageModal')) return; // Already exists
+        
+        const modalHtml = `
+            <div class="modal fade" id="imageModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title stable-title" id="imageModalTitle">Image Viewer</h5>
+                            <button type="button" class="btn-close stable-btn" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <img id="modalImage" src="" alt="" class="img-fluid">
+                            <p id="modalCaption" class="text-muted mt-2"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+    
+    function showImageModal(url, altText, caption) {
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalCaption = document.getElementById('modalCaption');
+        
+        modalImage.src = url;
+        modalImage.alt = altText;
+        modalCaption.textContent = caption;
+        
+        const bsModal = new bootstrap.Modal(modal);
+        bsModal.show();
+    }
+    
+    function processImages() {
+        const btn = document.getElementById('processImagesBtn');
+        const originalContent = btn.innerHTML;
+        
+        // Show loading state
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        btn.disabled = true;
+        
+        fetch('/api/process_images', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                article_id: {{ article[0] }}
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Reload images
+                setTimeout(() => {
+                    loadArticleImages();
+                    showToast('Success', 'Images processed successfully!', 'success');
+                }, 2000);
+            } else {
+                showToast('Error', data.message || 'Failed to process images', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error processing images:', error);
+            showToast('Error', 'Failed to process images', 'error');
+        })
+        .finally(() => {
+            // Reset button
+            setTimeout(() => {
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }, 3000);
+        });
+    }
+    
+    function showToast(title, message, type) {
+        // Create toast if it doesn't exist
+        if (!document.getElementById('toast-container')) {
+            const toastContainer = document.createElement('div');
+            toastContainer.id = 'toast-container';
+            toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+            toastContainer.style.zIndex = '9999';
+            document.body.appendChild(toastContainer);
+        }
+        
+        const toastContainer = document.getElementById('toast-container');
+        const toastId = 'toast-' + Date.now();
+        
+        const toastHtml = `
+            <div id="${toastId}" class="toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0" role="alert">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <strong>${title}</strong> ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto stable-btn" data-bs-dismiss="toast"></button>
+                </div>
+            </div>
+        `;
+        
+        toastContainer.insertAdjacentHTML('beforeend', toastHtml);
+        
+        const toast = document.getElementById(toastId);
+        const bsToast = new bootstrap.Toast(toast);
+        bsToast.show();
+        
+        // Remove toast after it's hidden
+        toast.addEventListener('hidden.bs.toast', () => {
+            toast.remove();
+        });
+    }
+    
+    function shareArticle() {
+        if (navigator.share) {
+            navigator.share({
+                title: '{{ article[1] }}',
+                text: 'Check out this article from News Aggregator',
+                url: window.location.href
+            });
+        } else {
+            // Fallback: copy URL to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                showToast('Copied', 'Article URL copied to clipboard!', 'success');
+            });
+        }
+    }
+    
+    function searchKeywords() {
+        const keywords = '{{ article[7] }}';
+        if (keywords) {
+            const firstKeyword = keywords.split(',')[0].trim();
+            window.location.href = '{{ url_for("search") }}?q=' + encodeURIComponent(firstKeyword);
+        }
+    }
+    
+    function viewCategory() {
+        window.location.href = '{{ url_for("articles") }}?category={{ article[8] }}';
+    }
+    
+    function copyToClipboard() {
+        const articleText = `{{ article[1] }}\n\n{{ article[2]|replace('\n', '\\n')|replace('"', '\\"') }}`;
+        navigator.clipboard.writeText(articleText).then(() => {
+            showToast('Copied', 'Article text copied to clipboard!', 'success');
+        }).catch(err => {
+            console.error('Failed to copy text: ', err);
+            showToast('Error', 'Failed to copy article text', 'error');
+        });
+    }
+</script>
+{% endblock %}

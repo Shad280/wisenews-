@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Settings - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .settings-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .platform-card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            margin-bottom: 20px;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .connected {
+            border-left: 5px solid #28a745;
+        }
+        
+        .disconnected {
+            border-left: 5px solid #dc3545;
+        }
+        
+        .status-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+        
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .twitter-color { color: #1da1f2; }
+        .facebook-color { color: #4267b2; }
+        .linkedin-color { color: #0077b5; }
+        .instagram-color { color: #e4405f; }
+    </style>
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container fade-in">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fas fa-newspaper"></i> WiseNews
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="{{ url_for('dashboard') }}">
+                    <i class="fas fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="settings-card">
+                    <h1 class="mb-0">
+                        <i class="fas fa-cog"></i> Social Media Settings
+                    </h1>
+                    <p class="mb-0 opacity-75">Manage your social media accounts and sharing preferences</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Connected Accounts -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <h3><i class="fas fa-link"></i> Connected Accounts</h3>
+                <p class="text-muted">Connect your social media accounts to automatically share news and updates.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Twitter -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card platform-card {% for account in connected_accounts %}{% if account.platform == 'twitter' %}connected{% endif %}{% endfor %}">
+                    {% set twitter_connected = connected_accounts|selectattr('platform', 'equalto', 'twitter')|list %}
+                    {% if twitter_connected %}
+                        <span class="badge bg-success status-badge">Connected</span>
+                    {% else %}
+                        <span class="badge bg-danger status-badge">Not Connected</span>
+                    {% endif %}
+                    
+                    <div class="card-body text-center">
+                        <i class="fab fa-twitter platform-icon twitter-color"></i>
+                        <h5 class="card-title stable-title">Twitter / X</h5>
+                        
+                        {% if twitter_connected %}
+                            <p class="text-muted">
+                                <strong>Username:</strong> {{ twitter_connected[0].username or 'Connected' }}<br>
+                                <small>Connected on {{ twitter_connected[0].connected_date }}</small>
+                            </p>
+                            <button class="btn btn-danger stable-btn" onclick="disconnectAccount('twitter')">
+                                <i class="fas fa-unlink"></i> Disconnect
+                            </button>
+                            <button class="btn btn-outline-primary ms-2 stable-btn" onclick="testConnection('twitter')">
+                                <i class="fas fa-wifi"></i> Test
+                            </button>
+                        {% else %}
+                            <p class="text-muted">Share news instantly to your Twitter audience</p>
+                            <a href="{{ url_for('social.connect_social_account', platform='twitter') }}" class="btn btn-primary stable-btn">
+                                <i class="fas fa-link"></i> Connect Twitter
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Facebook -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card platform-card {% for account in connected_accounts %}{% if account.platform == 'facebook' %}connected{% endif %}{% endfor %}">
+                    {% set facebook_connected = connected_accounts|selectattr('platform', 'equalto', 'facebook')|list %}
+                    {% if facebook_connected %}
+                        <span class="badge bg-success status-badge">Connected</span>
+                    {% else %}
+                        <span class="badge bg-danger status-badge">Not Connected</span>
+                    {% endif %}
+                    
+                    <div class="card-body text-center">
+                        <i class="fab fa-facebook platform-icon facebook-color"></i>
+                        <h5 class="card-title stable-title">Facebook</h5>
+                        
+                        {% if facebook_connected %}
+                            <p class="text-muted">
+                                <strong>Page:</strong> {{ facebook_connected[0].username or 'Connected' }}<br>
+                                <small>Connected on {{ facebook_connected[0].connected_date }}</small>
+                            </p>
+                            <button class="btn btn-danger stable-btn" onclick="disconnectAccount('facebook')">
+                                <i class="fas fa-unlink"></i> Disconnect
+                            </button>
+                            <button class="btn btn-outline-primary ms-2 stable-btn" onclick="testConnection('facebook')">
+                                <i class="fas fa-wifi"></i> Test
+                            </button>
+                        {% else %}
+                            <p class="text-muted">Share to your Facebook page and reach wider audience</p>
+                            <a href="{{ url_for('social.connect_social_account', platform='facebook') }}" class="btn btn-primary stable-btn">
+                                <i class="fas fa-link"></i> Connect Facebook
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- LinkedIn -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card platform-card {% for account in connected_accounts %}{% if account.platform == 'linkedin' %}connected{% endif %}{% endfor %}">
+                    {% set linkedin_connected = connected_accounts|selectattr('platform', 'equalto', 'linkedin')|list %}
+                    {% if linkedin_connected %}
+                        <span class="badge bg-success status-badge">Connected</span>
+                    {% else %}
+                        <span class="badge bg-danger status-badge">Not Connected</span>
+                    {% endif %}
+                    
+                    <div class="card-body text-center">
+                        <i class="fab fa-linkedin platform-icon linkedin-color"></i>
+                        <h5 class="card-title stable-title">LinkedIn</h5>
+                        
+                        {% if linkedin_connected %}
+                            <p class="text-muted">
+                                <strong>Profile:</strong> {{ linkedin_connected[0].username or 'Connected' }}<br>
+                                <small>Connected on {{ linkedin_connected[0].connected_date }}</small>
+                            </p>
+                            <button class="btn btn-danger stable-btn" onclick="disconnectAccount('linkedin')">
+                                <i class="fas fa-unlink"></i> Disconnect
+                            </button>
+                            <button class="btn btn-outline-primary ms-2 stable-btn" onclick="testConnection('linkedin')">
+                                <i class="fas fa-wifi"></i> Test
+                            </button>
+                        {% else %}
+                            <p class="text-muted">Share professional news and business updates</p>
+                            <a href="{{ url_for('social.connect_social_account', platform='linkedin') }}" class="btn btn-primary stable-btn">
+                                <i class="fas fa-link"></i> Connect LinkedIn
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instagram -->
+            <div class="col-lg-6 col-md-6 mb-4">
+                <div class="card platform-card {% for account in connected_accounts %}{% if account.platform == 'instagram' %}connected{% endif %}{% endfor %}">
+                    {% set instagram_connected = connected_accounts|selectattr('platform', 'equalto', 'instagram')|list %}
+                    {% if instagram_connected %}
+                        <span class="badge bg-success status-badge">Connected</span>
+                    {% else %}
+                        <span class="badge bg-danger status-badge">Not Connected</span>
+                    {% endif %}
+                    
+                    <div class="card-body text-center">
+                        <i class="fab fa-instagram platform-icon instagram-color"></i>
+                        <h5 class="card-title stable-title">Instagram</h5>
+                        
+                        {% if instagram_connected %}
+                            <p class="text-muted">
+                                <strong>Account:</strong> {{ instagram_connected[0].username or 'Connected' }}<br>
+                                <small>Connected on {{ instagram_connected[0].connected_date }}</small>
+                            </p>
+                            <button class="btn btn-danger stable-btn" onclick="disconnectAccount('instagram')">
+                                <i class="fas fa-unlink"></i> Disconnect
+                            </button>
+                            <button class="btn btn-outline-primary ms-2 stable-btn" onclick="testConnection('instagram')">
+                                <i class="fas fa-wifi"></i> Test
+                            </button>
+                        {% else %}
+                            <p class="text-muted">Share visual news stories and infographics</p>
+                            <a href="{{ url_for('social.connect_social_account', platform='instagram') }}" class="btn btn-primary stable-btn">
+                                <i class="fas fa-link"></i> Connect Instagram
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sharing Preferences -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card stable-card">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-share-alt"></i> Automatic Sharing Preferences
+                        </h5>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <form id="sharingPreferences" class="stable-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6>Content Types to Auto-Share:</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="shareBreaking" checked>
+                                        <label class="form-check-label stable-label" for="shareBreaking" class="stable-label">
+                                            Breaking News
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="shareMarket" checked>
+                                        <label class="form-check-label stable-label" for="shareMarket" class="stable-label">
+                                            Market Updates
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="shareEarnings">
+                                        <label class="form-check-label stable-label" for="shareEarnings" class="stable-label">
+                                            Earnings Reports
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="shareRegulatory">
+                                        <label class="form-check-label stable-label" for="shareRegulatory" class="stable-label">
+                                            Regulatory Updates
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6>Default Platforms:</h6>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="defaultTwitter" checked>
+                                        <label class="form-check-label stable-label" for="defaultTwitter" class="stable-label">
+                                            Twitter/X
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="defaultLinkedin" checked>
+                                        <label class="form-check-label stable-label" for="defaultLinkedin" class="stable-label">
+                                            LinkedIn
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="defaultFacebook">
+                                        <label class="form-check-label stable-label" for="defaultFacebook" class="stable-label">
+                                            Facebook
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="defaultInstagram">
+                                        <label class="form-check-label stable-label" for="defaultInstagram" class="stable-label">
+                                            Instagram
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <hr>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="shareDelay" class="form-label stable-label" class="stable-label">Auto-Share Delay (minutes):</label>
+                                    <select class="form-select stable-select" id="shareDelay">
+                                        <option value="0">Immediate</option>
+                                        <option value="5" selected>5 minutes</option>
+                                        <option value="15">15 minutes</option>
+                                        <option value="30">30 minutes</option>
+                                        <option value="60">1 hour</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="hashtagStyle" class="form-label stable-label" class="stable-label">Hashtag Style:</label>
+                                    <select class="form-select stable-select" id="hashtagStyle">
+                                        <option value="minimal">Minimal (3-5 hashtags)</option>
+                                        <option value="moderate" selected>Moderate (5-10 hashtags)</option>
+                                        <option value="extensive">Extensive (10+ hashtags)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <button type="submit" class="btn btn-success stable-btn">
+                                    <i class="fas fa-save"></i> Save Preferences
+                                </button>
+                                <button type="button" class="btn btn-outline-secondary ms-2 stable-btn" onclick="resetPreferences()">
+                                    <i class="fas fa-undo"></i> Reset to Defaults
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card stable-card">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-tools"></i> Quick Actions
+                        </h5>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-2">
+                                <button class="btn btn-primary w-100 stable-btn" onclick="shareTestPost()">
+                                    <i class="fas fa-paper-plane"></i> Send Test Post
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <a href="{{ url_for('social.social_analytics') }}" class="btn btn-info w-100 stable-btn">
+                                    <i class="fas fa-chart-line"></i> View Analytics
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn btn-success w-100 stable-btn" onclick="syncAllAccounts()">
+                                    <i class="fas fa-sync"></i> Sync All Accounts
+                                </button>
+                            </div>
+                            <div class="col-md-3 mb-2">
+                                <button class="btn btn-outline-secondary w-100 stable-btn" onclick="exportSettings()">
+                                    <i class="fas fa-download"></i> Export Settings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- API Keys (Admin Only) -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="card stable-card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-key"></i> API Configuration
+                            <small class="text-muted">(Admin Only)</small>
+                        </h5>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Note:</strong> API keys and tokens are configured server-side for security. 
+                            Contact your administrator to update social media API credentials.
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Required APIs:</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fab fa-twitter text-info"></i> Twitter API v2</li>
+                                    <li><i class="fab fa-facebook text-primary"></i> Facebook Graph API</li>
+                                    <li><i class="fab fa-linkedin text-info"></i> LinkedIn API v2</li>
+                                    <li><i class="fab fa-instagram text-danger"></i> Instagram Basic Display API</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Status:</h6>
+                                <ul class="list-unstyled">
+                                    <li><span class="badge bg-warning">Mock</span> Twitter API</li>
+                                    <li><span class="badge bg-warning">Mock</span> Facebook API</li>
+                                    <li><span class="badge bg-warning">Mock</span> LinkedIn API</li>
+                                    <li><span class="badge bg-warning">Mock</span> Instagram API</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function disconnectAccount(platform) {
+            if (confirm(`Are you sure you want to disconnect your ${platform} account?`)) {
+                fetch(`/social/disconnect/${platform}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert(data.message);
+                        location.reload();
+                    } else {
+                        alert('Error disconnecting account: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error);
+                });
+            }
+        }
+
+        function testConnection(platform) {
+            alert(`Testing ${platform} connection...`);
+            // In production, this would test the API connection
+        }
+
+        function shareTestPost() {
+            const testContent = {
+                title: 'Test Post from WiseNews',
+                content: 'This is a test post to verify your social media connections are working properly.',
+                category: 'technology',
+                url: window.location.origin
+            };
+
+            fetch('/social/api/share', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    content: testContent,
+                    platforms: ['twitter', 'linkedin']
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Test post sent successfully to ' + data.platforms.join(', '));
+                } else {
+                    alert('Failed to send test post: ' + data.message);
+                }
+            })
+            .catch(error => {
+                alert('Error sending test post: ' + error);
+            });
+        }
+
+        function syncAllAccounts() {
+            alert('Syncing all connected accounts...');
+            // In production, this would sync account data and permissions
+        }
+
+        function exportSettings() {
+            const settings = {
+                sharing_preferences: {
+                    auto_share_breaking: document.getElementById('shareBreaking').checked,
+                    auto_share_market: document.getElementById('shareMarket').checked,
+                    auto_share_earnings: document.getElementById('shareEarnings').checked,
+                    auto_share_regulatory: document.getElementById('shareRegulatory').checked,
+                    default_platforms: {
+                        twitter: document.getElementById('defaultTwitter').checked,
+                        linkedin: document.getElementById('defaultLinkedin').checked,
+                        facebook: document.getElementById('defaultFacebook').checked,
+                        instagram: document.getElementById('defaultInstagram').checked
+                    },
+                    share_delay: document.getElementById('shareDelay').value,
+                    hashtag_style: document.getElementById('hashtagStyle').value
+                }
+            };
+
+            const blob = new Blob([JSON.stringify(settings, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'social_media_settings.json';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function resetPreferences() {
+            if (confirm('Reset all preferences to defaults?')) {
+                document.getElementById('shareBreaking').checked = true;
+                document.getElementById('shareMarket').checked = true;
+                document.getElementById('shareEarnings').checked = false;
+                document.getElementById('shareRegulatory').checked = false;
+                document.getElementById('defaultTwitter').checked = true;
+                document.getElementById('defaultLinkedin').checked = true;
+                document.getElementById('defaultFacebook').checked = false;
+                document.getElementById('defaultInstagram').checked = false;
+                document.getElementById('shareDelay').value = '5';
+                document.getElementById('hashtagStyle').value = 'moderate';
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('sharingPreferences').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const preferences = {
+                auto_share_breaking: document.getElementById('shareBreaking').checked,
+                auto_share_market: document.getElementById('shareMarket').checked,
+                auto_share_earnings: document.getElementById('shareEarnings').checked,
+                auto_share_regulatory: document.getElementById('shareRegulatory').checked,
+                default_platforms: {
+                    twitter: document.getElementById('defaultTwitter').checked,
+                    linkedin: document.getElementById('defaultLinkedin').checked,
+                    facebook: document.getElementById('defaultFacebook').checked,
+                    instagram: document.getElementById('defaultInstagram').checked
+                },
+                share_delay: parseInt(document.getElementById('shareDelay').value),
+                hashtag_style: document.getElementById('hashtagStyle').value
+            };
+
+            // Save preferences
+            fetch('/social/api/preferences', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(preferences)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Preferences saved successfully!');
+                } else {
+                    alert('Error saving preferences: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Settings - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card stable-card">
+                <div class="card-header bg-info text-white">
+                    <h4><i class="fas fa-shield-alt"></i> Privacy & Consent Settings</h4>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle"></i> Your Privacy Rights</h5>
+                        <p>Under GDPR and other privacy laws, you have the right to control how your personal data is processed. 
+                           You can withdraw consent at any time, but this may limit some features.</p>
+                    </div>
+
+                    <form method="POST" class="stable-form">
+                        <div class="card mb-3">
+                            <div class="card-header stable-header">
+                                <h5>Required Consents</h5>
+                            </div>
+                            <div class="card-body stable-card-body">
+                                <div class="form-group stable-form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gdpr_consent" 
+                                               {% if consent_settings.gdpr_consent %}checked{% endif %} disabled>
+                                        <label class="form-check-label stable-label" for="gdpr_consent" class="stable-label">
+                                            <strong>GDPR Data Processing Consent</strong>
+                                        </label>
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        Required for account functionality. Cannot be disabled while account is active.
+                                        To withdraw this consent, you must delete your account.
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-3">
+                            <div class="card-header stable-header">
+                                <h5>Optional Consents</h5>
+                            </div>
+                            <div class="card-body stable-card-body">
+                                <div class="form-group stable-form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="data_processing_consent" 
+                                               name="data_processing_consent" 
+                                               {% if consent_settings.data_processing_consent %}checked{% endif %}>
+                                        <label class="form-check-label stable-label" for="data_processing_consent" class="stable-label">
+                                            <strong>Enhanced Data Processing</strong>
+                                        </label>
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        <strong>Purpose:</strong> Analyze your reading preferences to suggest relevant articles and improve your experience.<br>
+                                        <strong>Data used:</strong> Reading history, search queries, article interactions.<br>
+                                        <strong>Legal basis:</strong> Consent (Art. 6(1)(a) GDPR)
+                                    </small>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group stable-form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="analytics_consent" 
+                                               name="analytics_consent" 
+                                               {% if consent_settings.analytics_consent %}checked{% endif %}>
+                                        <label class="form-check-label stable-label" for="analytics_consent" class="stable-label">
+                                            <strong>Analytics Data Collection</strong>
+                                        </label>
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        <strong>Purpose:</strong> Understand how users interact with WiseNews to improve the platform.<br>
+                                        <strong>Data used:</strong> Page views, click patterns, session duration (anonymized).<br>
+                                        <strong>Legal basis:</strong> Consent (Art. 6(1)(a) GDPR)
+                                    </small>
+                                </div>
+
+                                <hr>
+
+                                <div class="form-group stable-form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="marketing_consent" 
+                                               name="marketing_consent" 
+                                               {% if consent_settings.marketing_consent %}checked{% endif %}>
+                                        <label class="form-check-label stable-label" for="marketing_consent" class="stable-label">
+                                            <strong>Marketing Communications</strong>
+                                        </label>
+                                    </div>
+                                    <small class="form-text text-muted">
+                                        <strong>Purpose:</strong> Send you newsletters, feature updates, and promotional content.<br>
+                                        <strong>Data used:</strong> Email address, name, communication preferences.<br>
+                                        <strong>Legal basis:</strong> Consent (Art. 6(1)(a) GDPR)
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary stable-btn">
+                            <i class="fas fa-save"></i> Update Privacy Settings
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <!-- Data Protection Information -->
+            <div class="card stable-card">
+                <div class="card-header stable-header">
+                    <h5><i class="fas fa-info-circle"></i> Data Protection Info</h5>
+                </div>
+                <div class="card-body stable-card-body">
+                    <h6>Your Rights Under GDPR:</h6>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success"></i> <strong>Right to Access</strong> - View your data</li>
+                        <li><i class="fas fa-check text-success"></i> <strong>Right to Rectification</strong> - Correct your data</li>
+                        <li><i class="fas fa-check text-success"></i> <strong>Right to Erasure</strong> - Delete your data</li>
+                        <li><i class="fas fa-check text-success"></i> <strong>Right to Portability</strong> - Export your data</li>
+                        <li><i class="fas fa-check text-success"></i> <strong>Right to Object</strong> - Opt out of processing</li>
+                        <li><i class="fas fa-check text-success"></i> <strong>Right to Restriction</strong> - Limit processing</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Data Categories -->
+            <div class="card stable-card">
+                <div class="card-header stable-header">
+                    <h5><i class="fas fa-database"></i> Data We Collect</h5>
+                </div>
+                <div class="card-body stable-card-body">
+                    <h6>Account Data:</h6>
+                    <ul>
+                        <li>Name and email address</li>
+                        <li>Country and date of birth</li>
+                        <li>Phone number (optional)</li>
+                    </ul>
+                    
+                    <h6>Usage Data (if consented):</h6>
+                    <ul>
+                        <li>Articles read and bookmarked</li>
+                        <li>Search queries</li>
+                        <li>Login history</li>
+                    </ul>
+                    
+                    <h6>Technical Data:</h6>
+                    <ul>
+                        <li>IP address</li>
+                        <li>Browser information</li>
+                        <li>Device type</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Actions -->
+            <div class="card stable-card">
+                <div class="card-header stable-header">
+                    <h5><i class="fas fa-tools"></i> Data Management</h5>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="d-grid gap-2">
+                        <a href="/download-data" class="btn btn-outline-info btn-sm stable-btn">
+                            <i class="fas fa-download"></i> Download My Data
+                        </a>
+                        <a href="/data-processing-log" class="btn btn-outline-secondary btn-sm stable-btn">
+                            <i class="fas fa-list"></i> View Processing Log
+                        </a>
+                        <a href="/privacy-policy" class="btn btn-outline-primary btn-sm stable-btn">
+                            <i class="fas fa-file-alt"></i> Privacy Policy
+                        </a>
+                        <a href="/contact-dpo" class="btn btn-outline-warning btn-sm stable-btn">
+                            <i class="fas fa-envelope"></i> Contact Data Officer
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Retention Policy -->
+            <div class="card stable-card">
+                <div class="card-header stable-header">
+                    <h5><i class="fas fa-clock"></i> Data Retention</h5>
+                </div>
+                <div class="card-body stable-card-body">
+                    <small>
+                        <strong>Account Data:</strong> Retained while account is active<br>
+                        <strong>Usage Data:</strong> 2 years from last activity<br>
+                        <strong>Logs:</strong> 1 year for security purposes<br>
+                        <strong>Marketing Data:</strong> Until consent withdrawn
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Inform user about consent changes
+document.querySelector('form').addEventListener('submit', function(e) {
+    const currentDataProcessing = document.getElementById('data_processing_consent').defaultChecked;
+    const currentAnalytics = document.getElementById('analytics_consent').defaultChecked;
+    const currentMarketing = document.getElementById('marketing_consent').defaultChecked;
+    
+    const newDataProcessing = document.getElementById('data_processing_consent').checked;
+    const newAnalytics = document.getElementById('analytics_consent').checked;
+    const newMarketing = document.getElementById('marketing_consent').checked;
+    
+    let changes = [];
+    
+    if (currentDataProcessing !== newDataProcessing) {
+        changes.push(`Enhanced Data Processing: ${newDataProcessing ? 'Enabled' : 'Disabled'}`);
+    }
+    
+    if (currentAnalytics !== newAnalytics) {
+        changes.push(`Analytics Collection: ${newAnalytics ? 'Enabled' : 'Disabled'}`);
+    }
+    
+    if (currentMarketing !== newMarketing) {
+        changes.push(`Marketing Communications: ${newMarketing ? 'Enabled' : 'Disabled'}`);
+    }
+    
+    if (changes.length > 0) {
+        const confirmed = confirm(`You are about to make the following changes:\n\n${changes.join('\n')}\n\nDo you want to continue?`);
+        if (!confirmed) {
+            e.preventDefault();
+            return false;
+        }
+    }
+});
+</script>
+{% endblock %}

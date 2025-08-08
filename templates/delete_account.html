@@ -1,0 +1,223 @@
+{% extends "base.html" %}
+
+{% block title %}Delete Account - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Delete Your Account</h4>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-danger">
+                        <h5><i class="fas fa-warning"></i> Warning: This Action Cannot Be Undone</h5>
+                        <p>Deleting your account will permanently remove all your data from WiseNews. 
+                           This includes your profile, preferences, reading history, and all associated information.</p>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header stable-header">
+                            <h5>What Will Be Deleted</h5>
+                        </div>
+                        <div class="card-body stable-card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-danger">Permanently Deleted:</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-times text-danger"></i> Account information</li>
+                                        <li><i class="fas fa-times text-danger"></i> Profile data</li>
+                                        <li><i class="fas fa-times text-danger"></i> Reading preferences</li>
+                                        <li><i class="fas fa-times text-danger"></i> Bookmarked articles</li>
+                                        <li><i class="fas fa-times text-danger"></i> Search history</li>
+                                        <li><i class="fas fa-times text-danger"></i> All personal data</li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-info">Retained (Anonymized):</h6>
+                                    <ul class="list-unstyled">
+                                        <li><i class="fas fa-info-circle text-info"></i> Usage statistics (anonymous)</li>
+                                        <li><i class="fas fa-info-circle text-info"></i> System logs (anonymized)</li>
+                                        <li><i class="fas fa-info-circle text-info"></i> Aggregated analytics data</li>
+                                    </ul>
+                                    <small class="text-muted">
+                                        These are kept for security and legal compliance only
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-header stable-header">
+                            <h5>Before You Proceed</h5>
+                        </div>
+                        <div class="card-body stable-card-body">
+                            <div class="alert alert-info">
+                                <h6>Consider These Alternatives:</h6>
+                                <ul>
+                                    <li><strong>Deactivate Account:</strong> Temporarily disable your account while keeping your data</li>
+                                    <li><strong>Update Privacy Settings:</strong> Withdraw specific consents instead of deleting everything</li>
+                                    <li><strong>Download Your Data:</strong> Export your information before deletion</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-block mb-3">
+                                <a href="/privacy-settings" class="btn btn-outline-primary stable-btn">
+                                    <i class="fas fa-cog"></i> Manage Privacy Settings
+                                </a>
+                                <a href="/download-data" class="btn btn-outline-info stable-btn">
+                                    <i class="fas fa-download"></i> Download My Data
+                                </a>
+                                <a href="/dashboard" class="btn btn-outline-secondary stable-btn">
+                                    <i class="fas fa-arrow-left"></i> Go Back to Dashboard
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="POST" id="deleteForm" class="stable-form">
+                        <div class="card border-warning mb-4">
+                            <div class="card-header bg-warning">
+                                <h5>Confirmation Required</h5>
+                            </div>
+                            <div class="card-body stable-card-body">
+                                <div class="form-group mb-3">
+                                    <label for="reason" class="form-label stable-label" class="stable-label">
+                                        <strong>Reason for Deletion (Optional):</strong>
+                                    </label>
+                                    <select class="form-control" id="reason" name="reason">
+                                        <option value="">Select a reason...</option>
+                                        <option value="privacy_concerns">Privacy concerns</option>
+                                        <option value="no_longer_needed">No longer need the service</option>
+                                        <option value="switching_services">Switching to another service</option>
+                                        <option value="technical_issues">Technical issues</option>
+                                        <option value="dissatisfied">Dissatisfied with service</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3" id="otherReasonGroup" style="display: none;">
+                                    <label for="other_reason" class="form-label stable-label" class="stable-label">Please specify:</label>
+                                    <textarea class="form-control stable-textarea" id="other_reason" name="other_reason" rows="3"></textarea>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="confirmation_text" class="form-label stable-label" class="stable-label">
+                                        <strong>Type "DELETE MY ACCOUNT" to confirm:</strong>
+                                    </label>
+                                    <input type="text" class="form-control stable-input" id="confirmation_text" 
+                                           name="confirmation_text" placeholder="Type: DELETE MY ACCOUNT" required>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="understand_permanent" 
+                                               name="understand_permanent" required>
+                                        <label class="form-check-label stable-label" for="understand_permanent" class="stable-label">
+                                            <strong>I understand this action is permanent and cannot be undone</strong>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="acknowledge_gdpr" 
+                                               name="acknowledge_gdpr" required>
+                                        <label class="form-check-label stable-label" for="acknowledge_gdpr" class="stable-label">
+                                            <strong>I acknowledge that this constitutes my formal request for data deletion under GDPR Article 17 (Right to Erasure)</strong>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="data_downloaded" 
+                                               name="data_downloaded">
+                                        <label class="form-check-label stable-label" for="data_downloaded" class="stable-label">
+                                            I have downloaded a copy of my data (recommended)
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group stable-form-group">
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="final_confirmation" 
+                                       name="final_confirmation" required>
+                                <label class="form-check-label stable-label" for="final_confirmation" class="stable-label">
+                                    <strong>I am absolutely certain I want to permanently delete my WiseNews account and all associated data</strong>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-block">
+                            <button type="submit" class="btn btn-danger stable-btn" id="deleteButton" disabled>
+                                <i class="fas fa-trash-alt"></i> Permanently Delete My Account
+                            </button>
+                            <a href="/dashboard" class="btn btn-secondary stable-btn">
+                                <i class="fas fa-times"></i> Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('deleteForm');
+    const deleteButton = document.getElementById('deleteButton');
+    const confirmationText = document.getElementById('confirmation_text');
+    const understandPermanent = document.getElementById('understand_permanent');
+    const acknowledgeGdpr = document.getElementById('acknowledge_gdpr');
+    const finalConfirmation = document.getElementById('final_confirmation');
+    const reasonSelect = document.getElementById('reason');
+    const otherReasonGroup = document.getElementById('otherReasonGroup');
+
+    // Show/hide other reason text area
+    reasonSelect.addEventListener('change', function() {
+        if (this.value === 'other') {
+            otherReasonGroup.style.display = 'block';
+        } else {
+            otherReasonGroup.style.display = 'none';
+        }
+    });
+
+    // Enable delete button only when all requirements are met
+    function checkFormValidity() {
+        const confirmationCorrect = confirmationText.value.trim() === 'DELETE MY ACCOUNT';
+        const allChecked = understandPermanent.checked && acknowledgeGdpr.checked && finalConfirmation.checked;
+        
+        deleteButton.disabled = !(confirmationCorrect && allChecked);
+    }
+
+    confirmationText.addEventListener('input', checkFormValidity);
+    understandPermanent.addEventListener('change', checkFormValidity);
+    acknowledgeGdpr.addEventListener('change', checkFormValidity);
+    finalConfirmation.addEventListener('change', checkFormValidity);
+
+    // Final confirmation before deletion
+    form.addEventListener('submit', function(e) {
+        const finalConfirm = confirm(
+            'FINAL WARNING: This will permanently delete your account and all data.\n\n' +
+            'This action cannot be undone.\n\n' +
+            'Are you absolutely sure you want to proceed?'
+        );
+        
+        if (!finalConfirm) {
+            e.preventDefault();
+            return false;
+        }
+
+        // Show loading state
+        deleteButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting Account...';
+        deleteButton.disabled = true;
+    });
+});
+</script>
+{% endblock %}

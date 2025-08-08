@@ -1,0 +1,287 @@
+<!-- Social Media Sharing Widget -->
+<style>
+.btn-xs {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    line-height: 1.2;
+    border-radius: 0.2rem;
+}
+</style>
+
+<div class="social-sharing-widget">
+    <div class="card border-0 shadow-sm">
+        <div class="card-header bg-light border-bottom-0">
+            <h6 class="mb-0 text-muted small">
+                <i class="fas fa-share-alt"></i> Share This Article
+            </h6>
+        </div>
+        <div class="card-body stable-card-body py-2">
+            <div class="row g-1">
+                <!-- Direct Social Media Sharing -->
+                <div class="col-3">
+                    <button class="btn btn-outline-info w-100 btn-xs social-share-btn stable-btn" 
+                            data-platform="twitter" 
+                            data-article-id="{{ article.id if article else '0' }}"
+                            title="Share on Twitter/X">
+                        <i class="fab fa-twitter"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-primary w-100 btn-xs social-share-btn stable-btn" 
+                            data-platform="linkedin" 
+                            data-article-id="{{ article.id if article else '0' }}"
+                            title="Share on LinkedIn">
+                        <i class="fab fa-linkedin"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-primary w-100 btn-xs social-share-btn stable-btn" 
+                            data-platform="facebook" 
+                            data-article-id="{{ article.id if article else '0' }}"
+                            title="Share on Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </button>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-outline-danger w-100 btn-xs social-share-btn stable-btn" 
+                            data-platform="instagram" 
+                            data-article-id="{{ article.id if article else '0' }}"
+                            title="Share on Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Social Stats (if available) -->
+            {% if social_stats %}
+            <div class="mt-3 small text-muted">
+                <div class="d-flex justify-content-between">
+                    <span><i class="fas fa-heart text-danger"></i> {{ social_stats.likes or 0 }}</span>
+                    <span><i class="fas fa-share text-primary"></i> {{ social_stats.shares or 0 }}</span>
+                    <span><i class="fas fa-comment text-success"></i> {{ social_stats.comments or 0 }}</span>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Social Sharing JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize social sharing buttons
+    document.querySelectorAll('.social-share-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const platform = this.dataset.platform;
+            const articleId = this.dataset.articleId;
+            shareToSocialMedia(platform, articleId, this);
+        });
+    });
+});
+
+function shareToSocialMedia(platform, articleId, buttonElement) {
+    // Show loading state
+    const originalContent = buttonElement.innerHTML;
+    buttonElement.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sharing...';
+    buttonElement.disabled = true;
+    
+    // Get article data for sharing
+    const articleData = {
+        id: articleId,
+        title: document.title || 'WiseNews Article',
+        content: document.querySelector('meta[name="description"]')?.content || '',
+        category: '{{ article.category if article else "news" }}',
+        url: window.location.href,
+        image_url: document.querySelector('meta[property="og:image"]')?.content || ''
+    };
+    
+    // Make API call to share
+    fetch(`/social/share/${articleId}?platforms=${platform}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Show success
+            buttonElement.innerHTML = '<i class="fas fa-check"></i> Shared!';
+            buttonElement.className = buttonElement.className.replace('btn-outline-', 'btn-');
+            
+            // Show success message
+            showSocialMessage('Success!', `Article shared to ${platform.charAt(0).toUpperCase() + platform.slice(1)}`, 'success');
+            
+            // Reset button after delay
+            setTimeout(() => {
+                buttonElement.innerHTML = originalContent;
+                buttonElement.className = buttonElement.className.replace('btn-', 'btn-outline-');
+                buttonElement.disabled = false;
+            }, 3000);
+        } else {
+            throw new Error(data.message || 'Sharing failed');
+        }
+    })
+    .catch(error => {
+        console.error('Sharing error:', error);
+        buttonElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error';
+        showSocialMessage('Error', `Failed to share to ${platform}: ${error.message}`, 'error');
+        
+        // Reset button
+        setTimeout(() => {
+            buttonElement.innerHTML = originalContent;
+            buttonElement.disabled = false;
+        }, 3000);
+    });
+}
+
+function shareToMultiplePlatforms() {
+    const articleId = document.querySelector('.social-share-btn').dataset.articleId;
+    const platforms = ['twitter', 'linkedin'];
+    
+    // Share to multiple platforms
+    fetch('/social/api/share', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            content: {
+                id: articleId,
+                title: document.title || 'WiseNews Article',
+                content: document.querySelector('meta[name="description"]')?.content || '',
+                category: '{{ article.category if article else "news" }}',
+                url: window.location.href,
+                image_url: document.querySelector('meta[property="og:image"]')?.content || ''
+            },
+            platforms: platforms
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showSocialMessage('Success!', `Article shared to ${data.platforms.join(', ')}`, 'success');
+        } else {
+            throw new Error(data.message || 'Bulk sharing failed');
+        }
+    })
+    .catch(error => {
+        console.error('Bulk sharing error:', error);
+        showSocialMessage('Error', `Failed to share: ${error.message}`, 'error');
+    });
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        showSocialMessage('Copied!', 'Link copied to clipboard', 'success');
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+        showSocialMessage('Error', 'Failed to copy link', 'error');
+    });
+}
+
+function shareViaEmail() {
+    const subject = encodeURIComponent(document.title || 'Interesting article from WiseNews');
+    const body = encodeURIComponent(`Check out this article: ${window.location.href}\n\nShared from WiseNews - Your trusted source for market intelligence.`);
+    window.open(`mailto:?subject=${subject}&body=${body}`);
+}
+
+function showSocialMessage(title, message, type) {
+    // Create toast notification
+    const toastContainer = document.getElementById('toast-container') || createToastContainer();
+    
+    const toast = document.createElement('div');
+    toast.className = `toast align-items-center text-white bg-${type === 'success' ? 'success' : 'danger'} border-0`;
+    toast.setAttribute('role', 'alert');
+    toast.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <strong>${title}</strong> ${message}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto stable-btn" data-bs-dismiss="toast"></button>
+        </div>
+    `;
+    
+    toastContainer.appendChild(toast);
+    
+    // Initialize and show toast
+    const bsToast = new bootstrap.Toast(toast);
+    bsToast.show();
+    
+    // Remove toast after it's hidden
+    toast.addEventListener('hidden.bs.toast', () => {
+        toast.remove();
+    });
+}
+
+function createToastContainer() {
+    const container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+    container.style.zIndex = '9999';
+    document.body.appendChild(container);
+    return container;
+}
+
+// Social Media Login Functions (for OAuth)
+function connectSocialAccount(platform) {
+    window.location.href = `/social/connect/${platform}`;
+}
+
+// Auto-share functionality for breaking news
+{% if auto_share_enabled and article and article.category == 'breaking_news' %}
+setTimeout(() => {
+    shareToMultiplePlatforms();
+}, 2000); // Auto-share after 2 seconds for breaking news
+{% endif %}
+</script>
+
+<!-- Social Media Meta Tags for Better Sharing -->
+<meta property="og:title" content="{{ article.title if article else 'WiseNews - Market Intelligence' }}">
+<meta property="og:description" content="{{ article.content[:200] if article and article.content else 'Stay informed with real-time market intelligence and breaking news coverage.' }}...">
+<meta property="og:url" content="{{ request.url }}">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="WiseNews">
+{% if article and article.image_url %}
+<meta property="og:image" content="{{ article.image_url }}">
+{% else %}
+<meta property="og:image" content="{{ url_for('static', filename='images/wisenews-logo.png', _external=True) }}">
+{% endif %}
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@WiseNews">
+<meta name="twitter:title" content="{{ article.title if article else 'WiseNews - Market Intelligence' }}">
+<meta name="twitter:description" content="{{ article.content[:200] if article and article.content else 'Stay informed with real-time market intelligence.' }}...">
+{% if article and article.image_url %}
+<meta name="twitter:image" content="{{ article.image_url }}">
+{% endif %}
+
+<!-- Additional meta for better indexing -->
+<meta name="description" content="{{ article.content[:160] if article and article.content else 'WiseNews provides real-time market intelligence and breaking news coverage.' }}...">
+<meta name="keywords" content="{% if article %}{{ article.category }}, {% endif %}news, market intelligence, breaking news, financial news, business updates">
+<meta name="author" content="WiseNews">
+
+<style>
+.social-sharing-widget {
+    position: sticky;
+    top: 20px;
+}
+
+.social-share-btn:hover {
+    transform: translateY(-1px);
+    transition: transform 0.2s ease;
+}
+
+.social-share-btn:disabled {
+    opacity: 0.6;
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .social-sharing-widget {
+        position: static;
+        margin-bottom: 20px;
+    }
+}
+</style>

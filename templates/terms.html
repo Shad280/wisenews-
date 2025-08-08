@@ -1,0 +1,450 @@
+{% extends "base.html" %}
+
+{% block title %}Terms and Conditions - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card stable-card">
+                <div class="card-header bg-primary text-white">
+                    <h2><i class="fas fa-gavel"></i> Terms and Conditions</h2>
+                    <p class="mb-0">Last updated: August 5, 2025</p>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle"></i> Important Notice</h5>
+                        <p>Please read these Terms and Conditions carefully before using WiseNews. By accessing or using our service, you agree to be bound by these terms.</p>
+                    </div>
+
+                    <!-- Table of Contents -->
+                    <div class="card mb-4">
+                        <div class="card-header stable-header">
+                            <h5>Table of Contents</h5>
+                        </div>
+                        <div class="card-body stable-card-body">
+                            <ol>
+                                <li><a href="#acceptance">Acceptance of Terms</a></li>
+                                <li><a href="#description">Service Description</a></li>
+                                <li><a href="#eligibility">Eligibility</a></li>
+                                <li><a href="#account">User Accounts</a></li>
+                                <li><a href="#privacy">Privacy and Data Protection</a></li>
+                                <li><a href="#content">Content and Intellectual Property</a></li>
+                                <li><a href="#usage">Acceptable Use</a></li>
+                                <li><a href="#api">API Usage</a></li>
+                                <li><a href="#disclaimer">Disclaimers</a></li>
+                                <li><a href="#limitation">Limitation of Liability</a></li>
+                                <li><a href="#termination">Termination</a></li>
+                                <li><a href="#governing">Governing Law</a></li>
+                                <li><a href="#changes">Changes to Terms</a></li>
+                                <li><a href="#contact">Contact Information</a></li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <!-- 1. Acceptance of Terms -->
+                    <section id="acceptance" class="mb-4">
+                        <h3>1. Acceptance of Terms</h3>
+                        <p>By accessing, browsing, or using WiseNews ("the Service"), you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions ("Terms"). If you do not agree to these Terms, you must not use the Service.</p>
+                        <p>These Terms constitute a legally binding agreement between you ("User" or "you") and WiseNews ("we," "us," or "our").</p>
+                    </section>
+
+                    <!-- 2. Service Description -->
+                    <section id="description" class="mb-4">
+                        <h3>2. Service Description</h3>
+                        <p>WiseNews is an intelligent news aggregation platform that:</p>
+                        <ul>
+                            <li>Collects news articles from various RSS feeds and legitimate news sources</li>
+                            <li>Provides personalized news recommendations based on user preferences</li>
+                            <li>Offers categorized news browsing and search functionality</li>
+                            <li>Enables users to bookmark and save articles for later reading</li>
+                            <li>Provides API access for approved third-party integrations</li>
+                        </ul>
+                        <p><strong>Important:</strong> WiseNews aggregates content from third-party sources. We do not create, edit, or endorse the content of news articles.</p>
+                    </section>
+
+                    <!-- 3. Eligibility -->
+                    <section id="eligibility" class="mb-4">
+                        <h3>3. Eligibility</h3>
+                        <p>To use WiseNews, you must:</p>
+                        <ul>
+                            <li>Be at least 16 years of age (or the minimum age required in your jurisdiction)</li>
+                            <li>Have the legal capacity to enter into this agreement</li>
+                            <li>Provide accurate and complete registration information</li>
+                            <li>Comply with all applicable laws and regulations</li>
+                        </ul>
+                        <p>If you are under 18, you confirm that you have parental or guardian consent to use this service.</p>
+                    </section>
+
+                    <!-- 4. User Accounts -->
+                    <section id="account" class="mb-4">
+                        <h3>4. User Accounts</h3>
+                        <h5>4.1 Account Creation</h5>
+                        <p>To access certain features, you must create an account by providing:</p>
+                        <ul>
+                            <li>Valid email address</li>
+                            <li>Secure password</li>
+                            <li>Name and country of residence</li>
+                            <li>Date of birth (for age verification)</li>
+                            <li>Optional: Phone number for enhanced security</li>
+                        </ul>
+
+                        <h5>4.2 Account Security</h5>
+                        <p>You are responsible for:</p>
+                        <ul>
+                            <li>Maintaining the confidentiality of your login credentials</li>
+                            <li>All activities that occur under your account</li>
+                            <li>Notifying us immediately of any unauthorized access</li>
+                            <li>Using a strong, unique password</li>
+                        </ul>
+
+                        <h5>4.3 Account Accuracy</h5>
+                        <p>You agree to provide accurate, current, and complete information and to update such information to maintain its accuracy.</p>
+                    </section>
+
+                    <!-- 5. Privacy and Data Protection -->
+                    <section id="privacy" class="mb-4">
+                        <h3>5. Privacy and Data Protection (GDPR Compliance)</h3>
+                        
+                        <h5>5.1 Data Controller</h5>
+                        <p>WiseNews acts as the data controller for personal data collected through our service.</p>
+
+                        <h5>5.2 Legal Basis for Processing</h5>
+                        <p>We process your personal data based on:</p>
+                        <ul>
+                            <li><strong>Consent (Article 6(1)(a) GDPR):</strong> For optional features like analytics, marketing communications</li>
+                            <li><strong>Contract Performance (Article 6(1)(b) GDPR):</strong> To provide the news aggregation service</li>
+                            <li><strong>Legitimate Interest (Article 6(1)(f) GDPR):</strong> For security, fraud prevention, and service improvement</li>
+                        </ul>
+
+                        <h5>5.3 Data Collection</h5>
+                        <p>We collect and process:</p>
+                        <ul>
+                            <li><strong>Account Data:</strong> Email, name, country, date of birth, phone number (optional)</li>
+                            <li><strong>Usage Data:</strong> Reading preferences, bookmarked articles, search queries (with consent)</li>
+                            <li><strong>Technical Data:</strong> IP address, browser information, device type, cookies</li>
+                            <li><strong>Communication Data:</strong> Support inquiries, feedback, API applications</li>
+                        </ul>
+
+                        <h5>5.4 Your Rights Under GDPR</h5>
+                        <p>You have the right to:</p>
+                        <ul>
+                            <li><strong>Access:</strong> Request a copy of your personal data</li>
+                            <li><strong>Rectification:</strong> Correct inaccurate or incomplete data</li>
+                            <li><strong>Erasure:</strong> Request deletion of your personal data ("Right to be Forgotten")</li>
+                            <li><strong>Portability:</strong> Receive your data in a machine-readable format</li>
+                            <li><strong>Object:</strong> Object to processing based on legitimate interests</li>
+                            <li><strong>Restrict:</strong> Limit how we process your data</li>
+                            <li><strong>Withdraw Consent:</strong> Withdraw consent for optional processing</li>
+                        </ul>
+
+                        <h5>5.5 Data Retention</h5>
+                        <ul>
+                            <li><strong>Account Data:</strong> Retained while your account is active</li>
+                            <li><strong>Usage Data:</strong> Retained for 2 years from last activity</li>
+                            <li><strong>Security Logs:</strong> Retained for 1 year for security purposes</li>
+                            <li><strong>Marketing Data:</strong> Retained until consent is withdrawn</li>
+                        </ul>
+
+                        <h5>5.6 Data Transfers</h5>
+                        <p>Your data may be processed in countries outside the EEA. We ensure adequate protection through appropriate safeguards.</p>
+
+                        <h5>5.7 Contact Data Protection Officer</h5>
+                        <p>For privacy-related inquiries, contact our Data Protection Officer at: <a href="mailto:dpo@wisenews.com">dpo@wisenews.com</a></p>
+                    </section>
+
+                    <!-- 6. Content and Intellectual Property -->
+                    <section id="content" class="mb-4">
+                        <h3>6. Content and Intellectual Property</h3>
+                        
+                        <h5>6.1 Third-Party Content</h5>
+                        <p>News articles and content displayed on WiseNews are owned by their respective publishers and are subject to their copyright and licensing terms. We aggregate this content under fair use principles for informational purposes.</p>
+
+                        <h5>6.2 WiseNews Platform</h5>
+                        <p>The WiseNews platform, including but not limited to:</p>
+                        <ul>
+                            <li>Software code and algorithms</li>
+                            <li>User interface design</li>
+                            <li>Database structure and organization</li>
+                            <li>Logos, trademarks, and branding</li>
+                            <li>Aggregation and recommendation systems</li>
+                        </ul>
+                        <p>Are protected by copyright and other intellectual property laws and are the exclusive property of WiseNews.</p>
+
+                        <h5>6.3 User License</h5>
+                        <p>We grant you a limited, non-exclusive, non-transferable license to use WiseNews for personal, non-commercial purposes in accordance with these Terms.</p>
+
+                        <h5>6.4 Restrictions</h5>
+                        <p>You may not:</p>
+                        <ul>
+                            <li>Copy, modify, distribute, or reverse engineer any part of WiseNews</li>
+                            <li>Use automated tools to scrape or extract content without authorization</li>
+                            <li>Remove or alter copyright notices or proprietary marks</li>
+                            <li>Create derivative works based on WiseNews</li>
+                            <li>Use WiseNews for commercial purposes without explicit permission</li>
+                        </ul>
+
+                        <h5>6.5 DMCA Compliance</h5>
+                        <p>We respect intellectual property rights. If you believe content on WiseNews infringes your copyright, please contact us at <a href="mailto:dmca@wisenews.com">dmca@wisenews.com</a> with:</p>
+                        <ul>
+                            <li>Description of the copyrighted work</li>
+                            <li>Location of the allegedly infringing content</li>
+                            <li>Your contact information</li>
+                            <li>Statement of good faith belief</li>
+                            <li>Statement of accuracy under penalty of perjury</li>
+                            <li>Electronic or physical signature</li>
+                        </ul>
+                    </section>
+
+                    <!-- 7. Acceptable Use -->
+                    <section id="usage" class="mb-4">
+                        <h3>7. Acceptable Use</h3>
+                        
+                        <h5>7.1 Permitted Use</h5>
+                        <p>You may use WiseNews to:</p>
+                        <ul>
+                            <li>Read and bookmark news articles for personal use</li>
+                            <li>Search and browse categorized news content</li>
+                            <li>Manage your reading preferences and privacy settings</li>
+                            <li>Access approved API endpoints with valid credentials</li>
+                        </ul>
+
+                        <h5>7.2 Prohibited Activities</h5>
+                        <p>You agree not to:</p>
+                        <ul>
+                            <li><strong>Automated Access:</strong> Use bots, scrapers, or automated tools without permission</li>
+                            <li><strong>Security Violations:</strong> Attempt to breach security measures or access unauthorized areas</li>
+                            <li><strong>Spam/Abuse:</strong> Send unsolicited communications or abuse the platform</li>
+                            <li><strong>Illegal Activities:</strong> Use the service for any unlawful purpose</li>
+                            <li><strong>Malicious Code:</strong> Introduce viruses, malware, or other harmful code</li>
+                            <li><strong>Impersonation:</strong> Impersonate other users or entities</li>
+                            <li><strong>Data Mining:</strong> Extract data for commercial purposes without authorization</li>
+                            <li><strong>Circumvention:</strong> Bypass rate limits, security measures, or access controls</li>
+                        </ul>
+
+                        <h5>7.3 Rate Limiting</h5>
+                        <p>To ensure fair usage, we implement rate limits:</p>
+                        <ul>
+                            <li><strong>Free Users:</strong> 100 requests per hour</li>
+                            <li><strong>Registered Users:</strong> 1,000 requests per hour</li>
+                            <li><strong>API Users:</strong> As specified in API agreement</li>
+                        </ul>
+                    </section>
+
+                    <!-- 8. API Usage -->
+                    <section id="api" class="mb-4">
+                        <h3>8. API Usage</h3>
+                        
+                        <h5>8.1 API Access</h5>
+                        <p>API access requires:</p>
+                        <ul>
+                            <li>Separate application and approval process</li>
+                            <li>Valid API key with specified rate limits</li>
+                            <li>Compliance with API-specific terms and conditions</li>
+                            <li>Regular review and renewal of API access</li>
+                        </ul>
+
+                        <h5>8.2 API Restrictions</h5>
+                        <p>API users must:</p>
+                        <ul>
+                            <li>Respect rate limits and usage quotas</li>
+                            <li>Implement proper error handling and retry logic</li>
+                            <li>Credit WiseNews as the data source when required</li>
+                            <li>Not redistribute API data without permission</li>
+                            <li>Maintain API key confidentiality</li>
+                        </ul>
+
+                        <h5>8.3 API Termination</h5>
+                        <p>We reserve the right to suspend or terminate API access for violation of terms, excessive usage, or security concerns.</p>
+                    </section>
+
+                    <!-- 9. Disclaimers -->
+                    <section id="disclaimer" class="mb-4">
+                        <h3>9. Disclaimers</h3>
+                        
+                        <h5>9.1 Content Accuracy</h5>
+                        <p>WiseNews aggregates content from third-party sources. We do not:</p>
+                        <ul>
+                            <li>Verify the accuracy, completeness, or reliability of aggregated content</li>
+                            <li>Endorse or guarantee the views expressed in articles</li>
+                            <li>Take responsibility for the content quality or accuracy</li>
+                            <li>Warrant that the service will be error-free or uninterrupted</li>
+                        </ul>
+
+                        <h5>9.2 Service Availability</h5>
+                        <p>The service is provided "AS IS" and "AS AVAILABLE." We do not guarantee:</p>
+                        <ul>
+                            <li>Continuous, uninterrupted access to the service</li>
+                            <li>Compatibility with all devices or browsers</li>
+                            <li>Freedom from bugs, errors, or security vulnerabilities</li>
+                            <li>Preservation of user data in case of technical failures</li>
+                        </ul>
+
+                        <h5>9.3 Third-Party Links</h5>
+                        <p>WiseNews may contain links to third-party websites. We are not responsible for the content, privacy practices, or availability of external sites.</p>
+                    </section>
+
+                    <!-- 10. Limitation of Liability -->
+                    <section id="limitation" class="mb-4">
+                        <h3>10. Limitation of Liability</h3>
+                        
+                        <p>To the maximum extent permitted by law, WiseNews and its affiliates, officers, directors, employees, and agents shall not be liable for:</p>
+                        
+                        <ul>
+                            <li><strong>Indirect Damages:</strong> Consequential, incidental, punitive, or special damages</li>
+                            <li><strong>Data Loss:</strong> Loss of data, profits, revenue, or business opportunities</li>
+                            <li><strong>Service Interruption:</strong> Damages arising from service downtime or unavailability</li>
+                            <li><strong>Third-Party Content:</strong> Damages resulting from third-party content or links</li>
+                            <li><strong>Security Breaches:</strong> Damages from unauthorized access or data breaches (except where required by law)</li>
+                        </ul>
+
+                        <p><strong>Maximum Liability:</strong> Our total liability shall not exceed the amount paid by you for the service in the 12 months preceding the claim, or €100, whichever is greater.</p>
+
+                        <p><strong>Exceptions:</strong> This limitation does not apply to damages caused by our gross negligence, willful misconduct, or where prohibited by applicable law.</p>
+                    </section>
+
+                    <!-- 11. Termination -->
+                    <section id="termination" class="mb-4">
+                        <h3>11. Termination</h3>
+                        
+                        <h5>11.1 Termination by User</h5>
+                        <p>You may terminate your account at any time by:</p>
+                        <ul>
+                            <li>Using the account deletion feature in your profile settings</li>
+                            <li>Contacting customer support</li>
+                            <li>Following the GDPR "Right to be Forgotten" process</li>
+                        </ul>
+
+                        <h5>11.2 Termination by WiseNews</h5>
+                        <p>We may suspend or terminate your access for:</p>
+                        <ul>
+                            <li>Violation of these Terms of Service</li>
+                            <li>Suspected fraudulent or illegal activity</li>
+                            <li>Excessive or abusive use of the service</li>
+                            <li>Non-payment of applicable fees (for premium services)</li>
+                            <li>Extended period of inactivity</li>
+                        </ul>
+
+                        <h5>11.3 Effect of Termination</h5>
+                        <p>Upon termination:</p>
+                        <ul>
+                            <li>Your access to the service will cease immediately</li>
+                            <li>Your data will be deleted according to our retention policy</li>
+                            <li>API access will be revoked</li>
+                            <li>Surviving provisions (liability limitations, intellectual property) remain in effect</li>
+                        </ul>
+                    </section>
+
+                    <!-- 12. Governing Law -->
+                    <section id="governing" class="mb-4">
+                        <h3>12. Governing Law and Dispute Resolution</h3>
+                        
+                        <h5>12.1 Governing Law</h5>
+                        <p>These Terms are governed by and construed in accordance with the laws of the European Union and the jurisdiction where WiseNews is established, without regard to conflict of law principles.</p>
+
+                        <h5>12.2 Dispute Resolution</h5>
+                        <p>For EU residents, disputes may be resolved through:</p>
+                        <ul>
+                            <li><strong>Direct Negotiation:</strong> Contact us first to resolve issues amicably</li>
+                            <li><strong>Mediation:</strong> Through approved EU mediation services</li>
+                            <li><strong>Arbitration:</strong> Binding arbitration as agreed by both parties</li>
+                            <li><strong>Court Proceedings:</strong> In the appropriate EU jurisdiction</li>
+                        </ul>
+
+                        <h5>12.3 Class Action Waiver</h5>
+                        <p>Where permitted by law, you agree to resolve disputes individually and waive participation in class action lawsuits.</p>
+                    </section>
+
+                    <!-- 13. Changes to Terms -->
+                    <section id="changes" class="mb-4">
+                        <h3>13. Changes to Terms</h3>
+                        
+                        <h5>13.1 Modification Rights</h5>
+                        <p>We reserve the right to modify these Terms at any time. Changes may be made to:</p>
+                        <ul>
+                            <li>Comply with legal or regulatory requirements</li>
+                            <li>Reflect changes in our service offerings</li>
+                            <li>Address security or operational concerns</li>
+                            <li>Improve user experience and clarity</li>
+                        </ul>
+
+                        <h5>13.2 Notification Process</h5>
+                        <p>We will notify users of material changes through:</p>
+                        <ul>
+                            <li>Email notification to registered users</li>
+                            <li>Prominent notice on the WiseNews website</li>
+                            <li>In-app notifications for mobile users</li>
+                            <li>At least 30 days advance notice for significant changes</li>
+                        </ul>
+
+                        <h5>13.3 Acceptance of Changes</h5>
+                        <p>Continued use of WiseNews after changes take effect constitutes acceptance of the new Terms. If you do not agree with changes, you must stop using the service and may delete your account.</p>
+                    </section>
+
+                    <!-- 14. Contact Information -->
+                    <section id="contact" class="mb-4">
+                        <h3>14. Contact Information</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5>General Inquiries</h5>
+                                <p>
+                                    <strong>Email:</strong> <a href="mailto:support@wisenews.com">support@wisenews.com</a><br>
+                                    <strong>Response Time:</strong> 24-48 hours
+                                </p>
+
+                                <h5>Data Protection Officer</h5>
+                                <p>
+                                    <strong>Email:</strong> <a href="mailto:dpo@wisenews.com">dpo@wisenews.com</a><br>
+                                    <strong>Purpose:</strong> Privacy and GDPR inquiries
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Legal Notices</h5>
+                                <p>
+                                    <strong>Email:</strong> <a href="mailto:legal@wisenews.com">legal@wisenews.com</a><br>
+                                    <strong>Purpose:</strong> DMCA, trademark, legal issues
+                                </p>
+
+                                <h5>API Support</h5>
+                                <p>
+                                    <strong>Email:</strong> <a href="mailto:api@wisenews.com">api@wisenews.com</a><br>
+                                    <strong>Purpose:</strong> API applications and support
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Acceptance -->
+                    <div class="alert alert-warning mt-4">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Agreement Acknowledgment</h5>
+                        <p><strong>By using WiseNews, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions, including our Privacy Policy and Cookie Policy.</strong></p>
+                        <p>If you have questions about these Terms, please contact us before using the service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card-body section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.card-body section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.card-body h3 {
+    color: #2196F3;
+    margin-bottom: 1rem;
+}
+.card-body h5 {
+    color: #495057;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+</style>
+{% endblock %}

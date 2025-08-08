@@ -1,0 +1,530 @@
+{% extends "base.html" %}
+
+{% block title %}Cookie Policy - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-lg-10 mx-auto">
+            <div class="card stable-card">
+                <div class="card-header bg-warning text-dark">
+                    <h2><i class="fas fa-cookie-bite"></i> Cookie Policy</h2>
+                    <p class="mb-0">Last updated: August 5, 2025</p>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle"></i> What Are Cookies?</h5>
+                        <p>Cookies are small text files that are placed on your device when you visit our website. They help us provide you with a better experience by remembering your preferences and analyzing how you use our service.</p>
+                    </div>
+
+                    <!-- Quick Overview -->
+                    <div class="card mb-4 border-warning">
+                        <div class="card-header bg-light">
+                            <h5><i class="fas fa-lightning-bolt"></i> Quick Overview</h5>
+                        </div>
+                        <div class="card-body stable-card-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <h6 class="text-success"><i class="fas fa-check"></i> Essential Cookies</h6>
+                                    <p class="small">Required for basic functionality like login and security. Cannot be disabled.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <h6 class="text-warning"><i class="fas fa-cog"></i> Optional Cookies</h6>
+                                    <p class="small">Used for analytics and personalization. You can control these in your privacy settings.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Types of Cookies -->
+                    <section class="mb-4">
+                        <h3>1. Types of Cookies We Use</h3>
+                        
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Cookie Type</th>
+                                        <th>Purpose</th>
+                                        <th>Duration</th>
+                                        <th>Can Be Disabled?</th>
+                                        <th>Legal Basis</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="table-danger">
+                                        <td><strong>Strictly Necessary</strong></td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>User authentication</li>
+                                                <li>Security protection</li>
+                                                <li>Session management</li>
+                                                <li>Form submission</li>
+                                            </ul>
+                                        </td>
+                                        <td>Session / 1 year</td>
+                                        <td><span class="badge bg-danger">No</span></td>
+                                        <td>Legitimate Interest</td>
+                                    </tr>
+                                    <tr class="table-info">
+                                        <td><strong>Preferences</strong></td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Remember your settings</li>
+                                                <li>Language preferences</li>
+                                                <li>Theme choices</li>
+                                                <li>Display preferences</li>
+                                            </ul>
+                                        </td>
+                                        <td>1 year</td>
+                                        <td><span class="badge bg-warning">Partially</span></td>
+                                        <td>Legitimate Interest</td>
+                                    </tr>
+                                    <tr class="table-warning">
+                                        <td><strong>Analytics</strong></td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Usage statistics</li>
+                                                <li>Performance monitoring</li>
+                                                <li>Error tracking</li>
+                                                <li>Feature usage analysis</li>
+                                            </ul>
+                                        </td>
+                                        <td>2 years</td>
+                                        <td><span class="badge bg-success">Yes</span></td>
+                                        <td>Consent</td>
+                                    </tr>
+                                    <tr class="table-success">
+                                        <td><strong>Marketing</strong></td>
+                                        <td>
+                                            <ul class="mb-0">
+                                                <li>Content personalization</li>
+                                                <li>Recommendation engine</li>
+                                                <li>A/B testing</li>
+                                                <li>Campaign tracking</li>
+                                            </ul>
+                                        </td>
+                                        <td>1 year</td>
+                                        <td><span class="badge bg-success">Yes</span></td>
+                                        <td>Consent</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Detailed Cookie Information -->
+                    <section class="mb-4">
+                        <h3>2. Detailed Cookie Information</h3>
+                        
+                        <div class="accordion" id="cookieAccordion">
+                            <!-- Essential Cookies -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#essentialCookies">
+                                        <i class="fas fa-shield-alt text-danger me-2"></i> Essential Cookies (Required)
+                                    </button>
+                                </h2>
+                                <div id="essentialCookies" class="accordion-collapse collapse show" data-bs-parent="#cookieAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Cookie Name</th>
+                                                        <th>Purpose</th>
+                                                        <th>Duration</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><code>session_token</code></td>
+                                                        <td>Maintains user login session</td>
+                                                        <td>Session</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>csrf_token</code></td>
+                                                        <td>Prevents cross-site request forgery attacks</td>
+                                                        <td>Session</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>security_token</code></td>
+                                                        <td>Enhanced security measures</td>
+                                                        <td>24 hours</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>consent_banner</code></td>
+                                                        <td>Remembers if cookie banner was dismissed</td>
+                                                        <td>1 year</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="alert alert-warning">
+                                            <small><strong>Note:</strong> These cookies are essential for the website to function properly and cannot be disabled.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Preference Cookies -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#preferenceCookies">
+                                        <i class="fas fa-cog text-info me-2"></i> Preference Cookies
+                                    </button>
+                                </h2>
+                                <div id="preferenceCookies" class="accordion-collapse collapse" data-bs-parent="#cookieAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Cookie Name</th>
+                                                        <th>Purpose</th>
+                                                        <th>Duration</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><code>theme_preference</code></td>
+                                                        <td>Remembers your dark/light theme choice</td>
+                                                        <td>1 year</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>language_pref</code></td>
+                                                        <td>Stores your language preference</td>
+                                                        <td>1 year</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>layout_settings</code></td>
+                                                        <td>Remembers your layout preferences</td>
+                                                        <td>6 months</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>articles_per_page</code></td>
+                                                        <td>Remembers your preferred number of articles per page</td>
+                                                        <td>3 months</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Analytics Cookies -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#analyticsCookies">
+                                        <i class="fas fa-chart-bar text-warning me-2"></i> Analytics Cookies (Optional)
+                                    </button>
+                                </h2>
+                                <div id="analyticsCookies" class="accordion-collapse collapse" data-bs-parent="#cookieAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Cookie Name</th>
+                                                        <th>Purpose</th>
+                                                        <th>Duration</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><code>_ga</code></td>
+                                                        <td>Google Analytics - distinguishes users</td>
+                                                        <td>2 years</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>_ga_*</code></td>
+                                                        <td>Google Analytics - session data</td>
+                                                        <td>2 years</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>usage_analytics</code></td>
+                                                        <td>Internal analytics for feature usage</td>
+                                                        <td>1 year</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>performance_metrics</code></td>
+                                                        <td>Page load times and performance data</td>
+                                                        <td>30 days</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="alert alert-info">
+                                            <small><strong>Note:</strong> These cookies help us understand how users interact with WiseNews to improve our service. You can disable them in your privacy settings.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Marketing Cookies -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#marketingCookies">
+                                        <i class="fas fa-bullhorn text-success me-2"></i> Marketing Cookies (Optional)
+                                    </button>
+                                </h2>
+                                <div id="marketingCookies" class="accordion-collapse collapse" data-bs-parent="#cookieAccordion">
+                                    <div class="accordion-body">
+                                        <div class="table-responsive">
+                                            <table class="table table-sm">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Cookie Name</th>
+                                                        <th>Purpose</th>
+                                                        <th>Duration</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><code>personalization</code></td>
+                                                        <td>Stores preferences for content recommendations</td>
+                                                        <td>1 year</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>reading_history</code></td>
+                                                        <td>Tracks reading patterns for better suggestions</td>
+                                                        <td>6 months</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>ab_test_*</code></td>
+                                                        <td>A/B testing for feature improvements</td>
+                                                        <td>30 days</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><code>campaign_tracking</code></td>
+                                                        <td>Tracks effectiveness of marketing campaigns</td>
+                                                        <td>90 days</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="alert alert-success">
+                                            <small><strong>Note:</strong> These cookies enable personalized content and help us show you relevant news. They require your explicit consent.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Third-Party Cookies -->
+                    <section class="mb-4">
+                        <h3>3. Third-Party Cookies</h3>
+                        
+                        <div class="alert alert-warning">
+                            <h5><i class="fas fa-external-link-alt"></i> External Services</h5>
+                            <p>WiseNews may use third-party services that set their own cookies. We have limited control over these cookies.</p>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Service</th>
+                                        <th>Purpose</th>
+                                        <th>Privacy Policy</th>
+                                        <th>Opt-out</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Google Analytics</strong></td>
+                                        <td>Website analytics and user behavior analysis</td>
+                                        <td><a href="https://policies.google.com/privacy" target="_blank">Google Privacy Policy</a></td>
+                                        <td><a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cloudflare</strong></td>
+                                        <td>Security and performance optimization</td>
+                                        <td><a href="https://www.cloudflare.com/privacy/" target="_blank">Cloudflare Privacy Policy</a></td>
+                                        <td>Essential for security - cannot opt out</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Managing Cookies -->
+                    <section class="mb-4">
+                        <h3>4. How to Manage Cookies</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-primary text-white">
+                                        <h5><i class="fas fa-cog"></i> WiseNews Settings</h5>
+                                    </div>
+                                    <div class="card-body stable-card-body">
+                                        <p>Manage your cookie preferences through your account:</p>
+                                        <ul>
+                                            <li>Go to Privacy Settings</li>
+                                            <li>Toggle cookie categories on/off</li>
+                                            <li>Changes apply immediately</li>
+                                            <li>Essential cookies cannot be disabled</li>
+                                        </ul>
+                                        <a href="/privacy-settings" class="btn btn-primary stable-btn">
+                                            <i class="fas fa-cog"></i> Privacy Settings
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="card h-100">
+                                    <div class="card-header bg-secondary text-white">
+                                        <h5><i class="fas fa-browser"></i> Browser Settings</h5>
+                                    </div>
+                                    <div class="card-body stable-card-body">
+                                        <p>Control cookies through your browser:</p>
+                                        <ul>
+                                            <li>Block all cookies</li>
+                                            <li>Delete existing cookies</li>
+                                            <li>Set cookie preferences</li>
+                                            <li>Private/incognito browsing</li>
+                                        </ul>
+                                        <small class="text-muted">Note: Blocking cookies may affect website functionality.</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Browser Instructions -->
+                    <section class="mb-4">
+                        <h3>5. Browser-Specific Instructions</h3>
+                        
+                        <div class="accordion" id="browserAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#chromeInstructions">
+                                        <i class="fab fa-chrome text-primary me-2"></i> Google Chrome
+                                    </button>
+                                </h2>
+                                <div id="chromeInstructions" class="accordion-collapse collapse" data-bs-parent="#browserAccordion">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li>Click the three dots menu → Settings</li>
+                                            <li>Go to Privacy and security → Cookies and other site data</li>
+                                            <li>Choose your cookie settings</li>
+                                            <li>Add wisenews.com to exceptions if needed</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#firefoxInstructions">
+                                        <i class="fab fa-firefox text-warning me-2"></i> Mozilla Firefox
+                                    </button>
+                                </h2>
+                                <div id="firefoxInstructions" class="accordion-collapse collapse" data-bs-parent="#browserAccordion">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li>Click the menu button → Settings</li>
+                                            <li>Go to Privacy & Security</li>
+                                            <li>Under Cookies and Site Data, click Manage Data</li>
+                                            <li>Search for wisenews.com to manage specific cookies</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#safariInstructions">
+                                        <i class="fab fa-safari text-info me-2"></i> Safari
+                                    </button>
+                                </h2>
+                                <div id="safariInstructions" class="accordion-collapse collapse" data-bs-parent="#browserAccordion">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li>Safari menu → Preferences → Privacy</li>
+                                            <li>Click Manage Website Data</li>
+                                            <li>Search for wisenews.com</li>
+                                            <li>Remove or configure as needed</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Cookie Consent -->
+                    <section class="mb-4">
+                        <h3>6. Your Consent</h3>
+                        
+                        <div class="alert alert-info">
+                            <h5><i class="fas fa-handshake"></i> Consent Management</h5>
+                            <p>We respect your choices regarding cookies:</p>
+                            <ul class="mb-0">
+                                <li><strong>Initial Visit:</strong> Only essential cookies are active until you provide consent</li>
+                                <li><strong>Granular Control:</strong> You can choose which cookie categories to allow</li>
+                                <li><strong>Withdrawal:</strong> You can withdraw consent at any time through your privacy settings</li>
+                                <li><strong>Transparency:</strong> We clearly explain what each cookie does</li>
+                            </ul>
+                        </div>
+                    </section>
+
+                    <!-- Contact Information -->
+                    <section class="mb-4">
+                        <h3>7. Questions About Cookies?</h3>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card border-primary">
+                                    <div class="card-body stable-card-body">
+                                        <h6><i class="fas fa-envelope"></i> General Questions</h6>
+                                        <p>Email: <a href="mailto:support@wisenews.com">support@wisenews.com</a></p>
+                                        <p class="mb-0">We'll respond within 24-48 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card border-success">
+                                    <div class="card-body stable-card-body">
+                                        <h6><i class="fas fa-shield-alt"></i> Privacy Concerns</h6>
+                                        <p>Email: <a href="mailto:dpo@wisenews.com">dpo@wisenews.com</a></p>
+                                        <p class="mb-0">Data Protection Officer - 5 business days</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Updates -->
+                    <div class="alert alert-primary">
+                        <h5><i class="fas fa-calendar-alt"></i> Policy Updates</h5>
+                        <p><strong>This Cookie Policy may be updated from time to time.</strong> We will notify you of any significant changes through email or website notice. Continued use of WiseNews after changes constitutes acceptance of the updated policy.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.card-body section {
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+.card-body section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.card-body h3 {
+    color: #fd7e14;
+    margin-bottom: 1rem;
+}
+.me-2 {
+    margin-right: 0.5rem !important;
+}
+</style>
+{% endblock %}

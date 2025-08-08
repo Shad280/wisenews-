@@ -1,0 +1,289 @@
+{% extends "base.html" %}
+
+{% block title %}Analytics - News Aggregator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-chart-bar"></i> News Analytics</h1>
+        <p class="text-muted">Comprehensive analysis of your news collection</p>
+    </div>
+</div>
+
+<!-- Charts Row 1 -->
+<div class="row mb-4">
+    <!-- Source Distribution -->
+    <div class="col-md-6">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h5><i class="fas fa-chart-pie"></i> Articles by Source Type</h5>
+            </div>
+            <div class="card-body stable-card-body">
+                <canvas id="sourceChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Category Distribution -->
+    <div class="col-md-6">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h5><i class="fas fa-chart-bar"></i> Articles by Category</h5>
+            </div>
+            <div class="card-body stable-card-body">
+                <canvas id="categoryChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Daily Activity Chart -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h5><i class="fas fa-chart-line"></i> Daily Article Collection (Last 7 Days)</h5>
+            </div>
+            <div class="card-body stable-card-body">
+                <canvas id="dailyChart" height="150"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Keywords and Search Stats -->
+<div class="row mb-4">
+    <!-- Top Keywords -->
+    <div class="col-md-6">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h5><i class="fas fa-tags"></i> Top Keywords</h5>
+            </div>
+            <div class="card-body stable-card-body">
+                {% if top_keywords %}
+                <div class="keyword-cloud">
+                    {% for keyword, count in top_keywords %}
+                    <span class="keyword-tag me-2 mb-2" 
+                          style="font-size: {{ 0.8 + (count / top_keywords[0][1] * 0.8) }}em;">
+                        {{ keyword }} ({{ count }})
+                    </span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted text-center">No keywords available yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Search Statistics -->
+    <div class="col-md-6">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h5><i class="fas fa-search"></i> Popular Searches</h5>
+            </div>
+            <div class="card-body stable-card-body">
+                {% if search_stats %}
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Query</th>
+                                <th>Searches</th>
+                                <th>Last Used</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for query, count, last_used in search_stats %}
+                            <tr>
+                                <td>
+                                    <a href="{{ url_for('search', q=query) }}" class="text-decoration-none">
+                                        {{ query }}
+                                    </a>
+                                </td>
+                                <td><span class="badge bg-primary">{{ count }}</span></td>
+                                <td><small class="text-muted">{{ last_used[:10] }}</small></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center">No search history yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Summary Statistics -->
+<div class="row">
+    <div class="col-12">
+        <div class="card stable-card">
+            <div class="card-header stable-header">
+                <h5><i class="fas fa-info-circle"></i> Collection Summary</h5>
+            </div>
+            <div class="card-body stable-card-body">
+                <div class="row">
+                    <div class="col-md-3 text-center">
+                        <h4 class="text-primary stable-title">{{ source_data|length }}</h4>
+                        <p class="mb-0">Source Types</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h4 class="text-success stable-title">{{ category_data|length }}</h4>
+                        <p class="mb-0">Categories</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h4 class="text-info stable-title">{{ daily_data|length }}</h4>
+                        <p class="mb-0">Active Days</p>
+                    </div>
+                    <div class="col-md-3 text-center">
+                        <h4 class="text-warning stable-title">{{ top_keywords|length }}</h4>
+                        <p class="mb-0">Unique Keywords</p>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6>Source Breakdown:</h6>
+                        {% for source, count in source_data %}
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>{{ source }}</span>
+                            <span class="badge bg-secondary">{{ count }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-6">
+                        <h6>Category Breakdown:</h6>
+                        {% for category, count in category_data[:8] %}
+                        <div class="d-flex justify-content-between mb-1">
+                            <span>{{ category }}</span>
+                            <span class="badge bg-secondary">{{ count }}</span>
+                        </div>
+                        {% endfor %}
+                        {% if category_data|length > 8 %}
+                        <div class="text-muted"><small>... and {{ category_data|length - 8 }} more</small></div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Source Distribution Chart
+    const sourceCtx = document.getElementById('sourceChart').getContext('2d');
+    new Chart(sourceCtx, {
+        type: 'doughnut',
+        data: {
+            labels: [
+                {% for source, count in source_data %}
+                '{{ source }}'{{ ',' if not loop.last }}
+                {% endfor %}
+            ],
+            datasets: [{
+                data: [
+                    {% for source, count in source_data %}
+                    {{ count }}{{ ',' if not loop.last }}
+                    {% endfor %}
+                ],
+                backgroundColor: [
+                    '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', 
+                    '#9966FF', '#FF9F40', '#FF6384', '#C9CBCF'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Category Distribution Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    new Chart(categoryCtx, {
+        type: 'bar',
+        data: {
+            labels: [
+                {% for category, count in category_data %}
+                '{{ category }}'{{ ',' if not loop.last }}
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Articles',
+                data: [
+                    {% for category, count in category_data %}
+                    {{ count }}{{ ',' if not loop.last }}
+                    {% endfor %}
+                ],
+                backgroundColor: '#36A2EB',
+                borderColor: '#2E86AB',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+
+    // Daily Activity Chart
+    const dailyCtx = document.getElementById('dailyChart').getContext('2d');
+    new Chart(dailyCtx, {
+        type: 'line',
+        data: {
+            labels: [
+                {% for date, count in daily_data %}
+                '{{ date }}'{{ ',' if not loop.last }}
+                {% endfor %}
+            ],
+            datasets: [{
+                label: 'Articles Collected',
+                data: [
+                    {% for date, count in daily_data %}
+                    {{ count }}{{ ',' if not loop.last }}
+                    {% endfor %}
+                ],
+                borderColor: '#4BC0C0',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

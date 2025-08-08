@@ -1,0 +1,448 @@
+{% extends "base.html" %}
+
+{% block title %}WiseNews - Your Smart News Aggregator{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section text-white text-center py-5" style="background: linear-gradient(135deg, #2196F3, #1976D2); margin: -20px -15px 30px -15px; padding: 80px 15px 80px 15px !important;">
+    <div class="container fade-in">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-4 mb-4">
+                    <i class="fas fa-newspaper"></i> WiseNews
+                </h1>
+                <p class="lead mb-4">
+                    Your intelligent news aggregation platform that curates the world's news just for you.
+                    Stay informed with personalized content from trusted sources.
+                </p>
+                <div class="d-grid gap-2 d-md-block">
+                    <a href="#learn-more" class="btn btn-light btn-lg stable-btn">
+                        <i class="fas fa-info-circle"></i> Learn More
+                    </a>
+                    <a href="#get-started" class="btn btn-outline-light btn-lg stable-btn">
+                        <i class="fas fa-rocket"></i> Get Started
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center mt-4 mt-lg-0">
+                    <i class="fas fa-brain fa-5x opacity-75"></i>
+                    <h4 class="mt-3 stable-title">Intelligent • Personalized • Secure</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- App Description Section -->
+<section id="learn-more" class="mb-5">
+    <div class="container fade-in">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2>What is WiseNews?</h2>
+                <p class="lead text-muted">A next-generation news platform that puts you in control</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-primary rounded-circle p-3 me-3">
+                                <i class="fas fa-globe-americas text-white fa-lg"></i>
+                            </div>
+                            <h4 class="mb-0 stable-title">Global News Coverage</h4>
+                        </div>
+                        <p class="text-muted">
+                            WiseNews aggregates news from hundreds of trusted sources worldwide, 
+                            ensuring you never miss important stories from around the globe. 
+                            Our platform monitors RSS feeds in real-time to bring you the latest updates as they happen.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-success rounded-circle p-3 me-3">
+                                <i class="fas fa-user-cog text-white fa-lg"></i>
+                            </div>
+                            <h4 class="mb-0 stable-title">Smart Personalization</h4>
+                        </div>
+                        <p class="text-muted">
+                            Our AI-powered recommendation engine learns from your reading habits 
+                            to deliver personalized content that matters to you. Get news tailored 
+                            to your interests while discovering new topics that expand your perspective.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-warning rounded-circle p-3 me-3">
+                                <i class="fas fa-shield-alt text-white fa-lg"></i>
+                            </div>
+                            <h4 class="mb-0 stable-title">Privacy & Security</h4>
+                        </div>
+                        <p class="text-muted">
+                            Your privacy is our priority. WiseNews is fully GDPR compliant with 
+                            granular privacy controls, transparent data practices, and enterprise-grade 
+                            security. You control what data you share and how it's used.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6 mb-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body p-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="bg-info rounded-circle p-3 me-3">
+                                <i class="fas fa-filter text-white fa-lg"></i>
+                            </div>
+                            <h4 class="mb-0 stable-title">Quality Filtering</h4>
+                        </div>
+                        <p class="text-muted">
+                            Advanced algorithms filter out duplicate content, spam, and low-quality 
+                            articles. We prioritize credible sources and fact-based reporting 
+                            to ensure you receive only reliable, high-quality news content.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section class="bg-light py-5">
+    <div class="container fade-in">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2>Powerful Features</h2>
+                <p class="lead text-muted">Everything you need for an exceptional news experience</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-primary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-clock text-white fa-lg"></i>
+                    </div>
+                    <h5>Real-Time Updates</h5>
+                    <p class="text-muted">Get news as it happens with automatic content refresh every few minutes.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-success rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-bookmark text-white fa-lg"></i>
+                    </div>
+                    <h5>Save & Organize</h5>
+                    <p class="text-muted">Bookmark articles for later reading and organize them by your preferences.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-info rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-search text-white fa-lg"></i>
+                    </div>
+                    <h5>Advanced Search</h5>
+                    <p class="text-muted">Find specific topics, sources, or keywords with our powerful search engine.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-warning rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-mobile-alt text-white fa-lg"></i>
+                    </div>
+                    <h5>Mobile Responsive</h5>
+                    <p class="text-muted">Perfect experience on all devices - desktop, tablet, and mobile.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-danger rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-code text-white fa-lg"></i>
+                    </div>
+                    <h5>Developer API</h5>
+                    <p class="text-muted">RESTful API for developers to build amazing applications with our data.</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="text-center">
+                    <div class="bg-secondary rounded-circle d-inline-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                        <i class="fas fa-tags text-white fa-lg"></i>
+                    </div>
+                    <h5>Smart Categories</h5>
+                    <p class="text-muted">Automatically categorized content for easy browsing and discovery.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Terms & Conditions Notice -->
+<section id="get-started" class="py-5">
+    <div class="container fade-in">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card border-primary">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h3><i class="fas fa-gavel"></i> Before You Begin</h3>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <div class="alert alert-info">
+                            <h5><i class="fas fa-info-circle"></i> Important Notice</h5>
+                            <p class="mb-0">
+                                By using WiseNews, you agree to our Terms and Conditions and Privacy Policy. 
+                                Please read these documents carefully as they contain important information 
+                                about your rights and our services.
+                            </p>
+                        </div>
+                        
+                        <div class="row mb-4">
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body stable-card-body">
+                                        <h6><i class="fas fa-file-contract text-primary"></i> Terms & Conditions</h6>
+                                        <p class="text-muted small">
+                                            Comprehensive terms covering service usage, intellectual property, 
+                                            user responsibilities, and legal compliance including GDPR.
+                                        </p>
+                                        <a href="/terms" class="btn btn-outline-primary btn-sm stable-btn" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i> Read Terms
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-3">
+                                <div class="card h-100">
+                                    <div class="card-body stable-card-body">
+                                        <h6><i class="fas fa-shield-alt text-success"></i> Privacy Policy</h6>
+                                        <p class="text-muted small">
+                                            Detailed explanation of how we collect, use, and protect your personal 
+                                            data in compliance with GDPR and privacy laws.
+                                        </p>
+                                        <a href="/privacy-policy" class="btn btn-outline-success btn-sm stable-btn" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i> Read Policy
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Terms Acceptance Form -->
+                        <div class="border p-4 rounded bg-light">
+                            <h5 class="mb-3 stable-title">Agreement Required</h5>
+                            <form id="termsForm" class="stable-form">
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="acceptTerms" required>
+                                    <label class="form-check-label stable-label" for="acceptTerms" class="stable-label">
+                                        I have read and agree to the <a href="/terms" target="_blank">Terms and Conditions</a>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-3">
+                                    <input class="form-check-input" type="checkbox" id="acceptPrivacy" required>
+                                    <label class="form-check-label stable-label" for="acceptPrivacy" class="stable-label">
+                                        I have read and understand the <a href="/privacy-policy" target="_blank">Privacy Policy</a>
+                                    </label>
+                                </div>
+                                
+                                <div class="form-check mb-4">
+                                    <input class="form-check-input" type="checkbox" id="acceptAge" required>
+                                    <label class="form-check-label stable-label" for="acceptAge" class="stable-label">
+                                        I am at least 16 years old (or have parental consent if under 18)
+                                    </label>
+                                </div>
+                                
+                                <div class="d-grid gap-2 d-md-block text-center">
+                                    <a href="/register" class="btn btn-success btn-lg stable-btn" id="registerBtn" disabled>
+                                        <i class="fas fa-user-plus"></i> Create Free Account
+                                    </a>
+                                    <a href="/login" class="btn btn-outline-primary btn-lg stable-btn" id="loginBtn" disabled>
+                                        <i class="fas fa-sign-in-alt"></i> Sign In
+                                    </a>
+                                </div>
+                                
+                                <div class="text-center mt-3">
+                                    <small class="text-muted">
+                                        <i class="fas fa-lock"></i> Secure & GDPR Compliant • 
+                                        <i class="fas fa-gift"></i> Free Forever • 
+                                        <i class="fas fa-credit-card"></i> No Credit Card Required
+                                    </small>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Additional Information -->
+<section class="bg-dark text-white py-5">
+    <div class="container fade-in">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <h5><i class="fas fa-users"></i> Trusted by Thousands</h5>
+                <p>Join a growing community of users who trust WiseNews for their daily news consumption. Our platform serves thousands of readers worldwide.</p>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <h5><i class="fas fa-award"></i> Quality Guarantee</h5>
+                <p>We're committed to providing the highest quality news aggregation service with continuous improvements and user-focused features.</p>
+            </div>
+            
+            <div class="col-lg-4 mb-4">
+                <h5><i class="fas fa-headset"></i> 24/7 Support</h5>
+                <p>Our dedicated support team is here to help you get the most out of WiseNews. Contact us anytime at <a href="mailto:support@wisenews.com" class="text-light">support@wisenews.com</a></p>
+            </div>
+        </div>
+        
+        <hr class="my-4">
+        
+        <div class="row">
+            <div class="col-12 text-center">
+                <h4>Ready to Transform Your News Experience?</h4>
+                <p class="lead">Join WiseNews today and discover intelligent news aggregation.</p>
+                <a href="#get-started" class="btn btn-light btn-lg stable-btn">
+                    <i class="fas fa-arrow-up"></i> Get Started Above
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('termsForm');
+    const acceptTerms = document.getElementById('acceptTerms');
+    const acceptPrivacy = document.getElementById('acceptPrivacy');
+    const acceptAge = document.getElementById('acceptAge');
+    const registerBtn = document.getElementById('registerBtn');
+    const loginBtn = document.getElementById('loginBtn');
+    
+    function checkFormValidity() {
+        const allChecked = acceptTerms.checked && acceptPrivacy.checked && acceptAge.checked;
+        
+        if (allChecked) {
+            registerBtn.removeAttribute('disabled');
+            loginBtn.removeAttribute('disabled');
+            registerBtn.classList.remove('disabled');
+            loginBtn.classList.remove('disabled');
+            
+            // Store acceptance in session storage
+            sessionStorage.setItem('termsAccepted', 'true');
+        } else {
+            registerBtn.setAttribute('disabled', 'disabled');
+            loginBtn.setAttribute('disabled', 'disabled');
+            registerBtn.classList.add('disabled');
+            loginBtn.classList.add('disabled');
+            
+            sessionStorage.removeItem('termsAccepted');
+        }
+    }
+    
+    // Check if terms were already accepted in this session
+    if (sessionStorage.getItem('termsAccepted') === 'true') {
+        acceptTerms.checked = true;
+        acceptPrivacy.checked = true;
+        acceptAge.checked = true;
+        checkFormValidity();
+    }
+    
+    acceptTerms.addEventListener('change', checkFormValidity);
+    acceptPrivacy.addEventListener('change', checkFormValidity);
+    acceptAge.addEventListener('change', checkFormValidity);
+    
+    // Prevent form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+    });
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+});
+</script>
+
+<style>
+.hero-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(25, 118, 210, 0.1));
+    pointer-events: none;
+}
+
+.card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.me-3 {
+    margin-right: 1rem !important;
+}
+
+.opacity-75 {
+    opacity: 0.75;
+}
+
+section {
+    scroll-margin-top: 80px;
+}
+
+.disabled {
+    opacity: 0.6;
+    cursor: not-allowed !important;
+}
+
+.btn.disabled:hover {
+    transform: none !important;
+}
+</style>
+{% endblock %}
