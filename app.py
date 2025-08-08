@@ -2345,6 +2345,276 @@ def profile():
     ''', user=user)
 
 # =============================================================================
+# ADMIN DASHBOARD
+# =============================================================================
+
+from auth_decorators import admin_required
+
+@app.route('/admin')
+@admin_required
+def admin_dashboard():
+    """Admin dashboard with system overview"""
+    user = get_current_user()
+    
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get system statistics
+        cursor.execute('SELECT COUNT(*) FROM users')
+        total_users = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        total_articles = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(*) FROM user_sessions WHERE expires_at > datetime("now")')
+        active_sessions = cursor.fetchone()[0]
+        
+        cursor.execute('''
+            SELECT COUNT(*) FROM users 
+            WHERE created_at > datetime("now", "-24 hours")
+        ''')
+        new_users_today = cursor.fetchone()[0]
+        
+        cursor.execute('''
+            SELECT COUNT(*) FROM articles 
+            WHERE created_at > datetime("now", "-24 hours")
+        ''')
+        new_articles_today = cursor.fetchone()[0]
+        
+        # Get subscription statistics
+        cursor.execute('''
+            SELECT sp.display_name, COUNT(us.id) as user_count
+            FROM subscription_plans sp
+            LEFT JOIN user_subscriptions us ON sp.id = us.plan_id AND us.status = 'active'
+            GROUP BY sp.id, sp.display_name
+            ORDER BY sp.price_monthly
+        ''')
+        subscription_stats = cursor.fetchall()
+        
+        # Get recent users
+        cursor.execute('''
+            SELECT first_name, last_name, email, created_at
+            FROM users 
+            ORDER BY created_at DESC 
+            LIMIT 10
+        ''')
+        recent_users = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .admin-header { background: linear-gradient(135deg, #dc3545, #fd7e14); }
+        .stat-card { transition: transform 0.2s; }
+        .stat-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            <a class="navbar-brand" href="/admin"><i class="fas fa-shield-alt"></i> WiseNews Admin</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard"><i class="fas fa-user"></i> User Dashboard</a>
+                <a class="nav-link" href="/admin"><i class="fas fa-tachometer-alt"></i> Admin</a>
+                <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="admin-header text-white py-4">
+        <div class="container">
+            <h1><i class="fas fa-shield-alt"></i> WiseNews Admin Dashboard</h1>
+            <p class="lead">System management and monitoring • Welcome, {{ user.first_name }}</p>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <!-- System Statistics -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>Total Users</h6>
+                                <h3>{{ total_users }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-users fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>Total Articles</h6>
+                                <h3>{{ total_articles }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-newspaper fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>Active Sessions</h6>
+                                <h3>{{ active_sessions }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-clock fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3 mb-3">
+                <div class="card stat-card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>New Users Today</h6>
+                                <h3>{{ new_users_today }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-user-plus fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Subscription Statistics -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-pie"></i> Subscription Distribution</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for plan_name, user_count in subscription_stats %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>{{ plan_name }}</span>
+                            <span class="badge bg-primary">{{ user_count }} users</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Recent Users -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-user-clock"></i> Recent Users</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for user_info in recent_users %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <div>
+                                <strong>{{ user_info[0] }} {{ user_info[1] }}</strong><br>
+                                <small class="text-muted">{{ user_info[2] }}</small>
+                            </div>
+                            <small class="text-muted">{{ user_info[3][:10] }}</small>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Actions -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-tools"></i> Admin Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <a href="/api/fetch-news" class="btn btn-primary w-100">
+                                    <i class="fas fa-sync"></i> Refresh News
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <a href="/api/status" class="btn btn-info w-100">
+                                    <i class="fas fa-heartbeat"></i> System Status
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <a href="/api/deployment-check" class="btn btn-success w-100">
+                                    <i class="fas fa-check-circle"></i> Deployment Check
+                                </a>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <a href="/api/news-status" class="btn btn-warning w-100">
+                                    <i class="fas fa-rss"></i> News Status
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- System Health -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-line"></i> Today's Activity</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-md-6">
+                                <h4 class="text-success">{{ new_articles_today }}</h4>
+                                <p>New Articles Today</p>
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="text-info">{{ new_users_today }}</h4>
+                                <p>New Users Today</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        ''', user=user, total_users=total_users, total_articles=total_articles, 
+             active_sessions=active_sessions, new_users_today=new_users_today,
+             new_articles_today=new_articles_today, subscription_stats=subscription_stats,
+             recent_users=recent_users)
+        
+    except Exception as e:
+        return f"<h1>Admin Dashboard Error: {str(e)}</h1>", 500
+
+# =============================================================================
 # SUBSCRIPTION MANAGEMENT
 # =============================================================================
 
