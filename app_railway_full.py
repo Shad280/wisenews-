@@ -426,13 +426,17 @@ def login():
                 if user_data:
                     session['user_id'] = user_id
                     session['user_email'] = user_data[0]
-                    session['is_admin'] = bool(user_data[1])
+                    session['is_admin'] = bool(user_data[1])  # Ensure boolean conversion
                     flash('Login successful!', 'success')
+                    
+                    print(f"🔐 Login success: user_id={user_id}, email={user_data[0]}, is_admin={session['is_admin']}")
                     
                     # Redirect to admin dashboard if admin
                     if session['is_admin']:
+                        print("🎯 Redirecting to admin dashboard")
                         return redirect(url_for('admin_dashboard'))
                     else:
+                        print("🎯 Redirecting to main page")
                         return redirect(url_for('index'))
             else:
                 flash(message, 'error')

@@ -41,6 +41,7 @@ class UserManager:
                 -- Account management
                 is_active BOOLEAN DEFAULT TRUE,
                 is_verified BOOLEAN DEFAULT FALSE,
+                is_admin BOOLEAN DEFAULT FALSE,
                 verification_token TEXT,
                 password_reset_token TEXT,
                 password_reset_expires DATETIME,
