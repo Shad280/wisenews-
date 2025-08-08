@@ -181,8 +181,8 @@ def init_db():
                     ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 ''', (
                     'admin@wisenews.com', password_hash, 'Admin', 'User',
-                    True, False, True, True,  # GDPR consents
-                    True, True, True  # Active, verified, admin
+                    1, 0, 1, 1,  # Use 1/0 instead of True/False for SQLite compatibility
+                    1, 1, 1  # Active, verified, admin
                 ))
                 
                 admin_id = cursor.lastrowid
@@ -858,47 +858,6 @@ def api_status():
             'password': 'WiseNews2025!'
         }
     })
-
-@app.route('/api/debug-admin')
-def debug_admin():
-    """Debug admin user status"""
-    try:
-        conn = sqlite3.connect(app.config['DATABASE'])
-        cursor = conn.cursor()
-        
-        # Check if users table exists
-        cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='users'")
-        table_exists = bool(cursor.fetchone())
-        
-        if not table_exists:
-            conn.close()
-            return jsonify({"error": "Users table not found"})
-        
-        # Check table structure
-        cursor.execute("PRAGMA table_info(users)")
-        columns = [row[1] for row in cursor.fetchall()]
-        
-        # Check admin user
-        cursor.execute("SELECT id, email, is_admin, is_active, is_verified FROM users WHERE email = ?", ('admin@wisenews.com',))
-        admin_user = cursor.fetchone()
-        
-        # Count total users
-        cursor.execute("SELECT COUNT(*) FROM users")
-        total_users = cursor.fetchone()[0]
-        
-        conn.close()
-        
-        return jsonify({
-            "table_exists": table_exists,
-            "has_is_admin_column": "is_admin" in columns,
-            "admin_exists": admin_user is not None,
-            "admin_data": admin_user,
-            "total_users": total_users,
-            "all_columns": columns
-        })
-        
-    except Exception as e:
-        return jsonify({"error": str(e)})
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
