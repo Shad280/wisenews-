@@ -1,0 +1,88 @@
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+            the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+            Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+            and JavaScript.
+Advertisement
+Simon Tulloch is an engineering consultant in Jerez de La Frontera, Spain.
+Search author on:
+PubMed
+ Google Scholar
+Credit: Olivier Morin/AFP via Getty
+George E. Smith’s collaboration with Willard Boyle at Bell Labs in Murray Hill, New Jersey, led to the invention of the charge coupled device (CCD) in October 1969. Over an hour’s brainstorming session, in which they set out to design a memory device, the two engineers came up with an idea about how to move electrons between capacitors in a semiconductor. Owing to the dynamic and research-focused nature of Bell Labs, the idea was implemented in silicon just a week after it was conceived (W. S. Boyle and G. E. Smith Bell Syst. Tech. J. 49, 587–593; 1970), and proved ideally suited to capturing images. Boyle and Smith shared half of the 2009 Nobel Prize in Physics “for the invention of an imaging semiconductor circuit — the CCD sensor”.
+The invention was subsequently part of the Hubble Space Telescope (HST) and other space missions, transforming their ability to photograph astronomical objects, and was incorporated into many other applications including television cameras, medical radiography and digital consumer products. CCDs detect light using the photoelectric effect: the emission of electrons when light hits a material. They are sensitive to wavelengths between 300 and 1,000 nanometres. Absorbed photons liberate electrons, so they drift under the influence of whatever electric fields are present.
+The challenge for CCD designers is to manipulate such fields to ensure that these photoelectrons are collected efficiently and stored without loss during exposure. Once the shutter closes and the read-out begins, this charge then needs to be converted to a voltage signal and digitized with as little extra noise as possible. The genius of the CCD design is that the same structures that the device uses to collect light also transfer the photo-generated charge to a measurement amplifier at the edge of the detector once the exposure has finished.
+Will AI jeopardize science photography? There’s still time to create an ethical code of conduct
+Will AI jeopardize science photography? There’s still time to create an ethical code of conduct
+Smith was born in White Plains, New York, in 1930. After four years in the US Navy, he studied physics at the University of Pennsylvania in Philadelphia before gaining his PhD at the University of Chicago, Illinois, in 1959. He then moved to Bell Labs, and worked under Boyle, studying the electronic properties of semi-metals and low-temperature electronic technologies, before Boyle made him head of the new device concepts group.
+At the time they invented CCDs, exploiting the earlier Bell Labs invention of metal–oxide–semiconductor capacitors, Smith was working on a videophone based on a silicon-diode-array camera tube. It was never developed because of the difficulties of manufacturing chips with one million perfect diodes, but his exploration of digital imaging helped the Bell team to realize the potential of CCDs for that purpose.
+The expanding Universe — do ongoing tensions leave room for new physics?
+The expanding Universe — do ongoing tensions leave room for new physics?
+or
+Nature 644, 330 (2025)
+doi: https://doi.org/10.1038/d41586-025-02515-9
+The author declares no competing interests.
+Will AI jeopardize science photography? There’s still time to create an ethical code of conduct
+The expanding Universe — do ongoing tensions leave room for new physics?
+Light People: Prof. Daoxin Dai, Dr. Patrick Lo, and Prof. Yikai Su—innovators in silicon photonics
+Reply to: Inconclusive proof of ferroelectricity in peptide-VDF ribbons
+Matters Arising 06 AUG 25
+Inconclusive proof of ferroelectricity in peptide-VDF ribbons
+Matters Arising 06 AUG 25
+AI learns from nature to design super-adhesive gels that work underwater
+News & Views 06 AUG 25
+Optical control of resonances in temporally symmetry-broken metasurfaces
+Article 06 AUG 25
+High-accuracy laser spectroscopy of 
+              
+                
+              
+              $${{\bf{H}}}_{{\bf{2}}}^{{\boldsymbol{+}}}$$
+              
+                
+                  
+                    H
+                  
+                  
+                    2
+                  
+                  
+                    +
+                  
+                
+              
+             and the proton–electron mass ratio
+Article 06 AUG 25
+A natural nuclear reactor
+News & Views 22 JUL 25
+Superheated gold stays solid well past its predicted melting point
+News 23 JUL 25
+Broadband transient full-Stokes luminescence spectroscopy
+Article 25 JUN 25
+Water structure and electric fields at the interface of oil droplets
+Article 19 MAR 25
+AI4I is seeking to appoint the Founding Heads of its Research & Development Labs.
+Turin (IT)
+The Italian Institute of Artificial Intelligence for Industry (AI4I)
+Title:  Associate or Senior Editor (Thermoelectrics & Thermal Engineering) Location: Shanghai, Nanjing, Beijing, Madrid, Milan, New York, Jersey Ci...
+Shanghai, Nanjing, Beijing, Madrid, Milan, New York, Jersey City, or Washington DC
+Springer Nature Ltd
+Job Title:  Deputy Editor, Communications Health   Locations: New York, Jersey City, Shanghai or Beijing (Hybrid working model)  Application Deadli...
+New York City, New York (US)
+Springer Nature Ltd
+Postdoctoral fellow to study multimodal omics integration in neurodegeneration.
+Baltimore, Maryland
+Johns Hopkins University - BrainSigns Lab
+Title: Associate or Senior Editor, Nature Reviews Earth & Environment Organization: Nature Portfolio Locations: New York or Shanghai -Hybrid Workin...
+New York City, New York (US)
+Springer Nature Ltd
+Will AI jeopardize science photography? There’s still time to create an ethical code of conduct
+The expanding Universe — do ongoing tensions leave room for new physics?
+Light People: Prof. Daoxin Dai, Dr. Patrick Lo, and Prof. Yikai Su—innovators in silicon photonics
+An essential round-up of science news, opinion and analysis, delivered to your inbox every weekday.
+Sign up for the Nature Briefing newsletter — what matters in science, free to your inbox daily.
+Nature
+                    
+                    (Nature)
+ISSN 1476-4687 (online)
+ISSN 0028-0836 (print)
+© 2025 Springer Nature Limited

@@ -1,0 +1,19 @@
+3 min read
+NASA has selected six companies to produce studies focused on lower-cost ways to launch and deliver spacecraft of various sizes and forms to multiple, difficult-to-reach orbits.
+The firm-fixed-price awards comprise nine studies with a maximum total value of approximately $1.4 million. The awardees are:
+“With the increasing maturity of commercial space delivery capabilities, we’re asking companies to demonstrate how they can meet NASA’s need for multi-spacecraft and multi-orbit delivery to difficult-to-reach orbits beyond current launch service offerings,” said Joe Dant, orbital transfer vehicle strategic initiative owner for the Launch Services Program at NASA’s Kennedy Space Center in Florida. “This will increase unique science capability and lower the agency’s overall mission costs.”
+Each of the six companies will deliver studies exploring future application of orbital transfer vehicles for NASA missions:
+Arrow will partner with Quantum Space for its study. Quantum’s Ranger provides payload delivery service as a multi-mission spacecraft engineered for rapid maneuverability and adaptability, enabling multi-destination delivery for missions from low Earth orbit to lunar orbit.
+Blue Origin will produce two studies, including one for Blue Ring, a large, high-mobility space platform providing full-service payload delivery, on-board edge computing, hosting, and end-to-end mission operations. It uses hybrid solar-electric and chemical propulsion capability to reach geostationary, cislunar, Mars, and interplanetary destinations. The second is a New Glenn upper stage study.
+Firefly’s line of Elytra orbital vehicles offers on-demand payload delivery, imaging, long-haul communications, and domain awareness across cislunar space. Firefly’s Elytra Dark is equipped to serve as a transfer vehicle and enable ongoing operations in lunar orbit for more than five years.
+Impulse Space will produce two studies. The company provides in-space mobility with two vehicles, Mira and Helios. Mira is a high-thrust, highly maneuverable spacecraft for payload hosting and deployment, while Helios is a high-energy kick stage to rapidly deliver payloads from low Earth to medium Earth orbits, geostationary orbits and beyond.
+Rocket Lab’s two studies will feature the upper stage of the company’s Neutron rocket, as well as a long-life orbital transfer vehicle based on its Explorer spacecraft. Both vehicles are equipped with their own propulsion systems and other subsystems for missions to medium Earth and geosynchronous orbit and deep space destinations like the Moon, Mars, and near-Earth asteroids.
+United Launch Alliance will assess the cislunar mission capabilities of an extended-duration Centaur V upper stage. Centaur would be capable of directly delivering multiple rideshare spacecraft to two different orbital destinations in cislunar space, avoiding the need for an additional rocket stage or orbital transfer vehicle.
+The studies will be complete by mid-September. NASA will use the findings to inform mission design, planning, and commercial launch acquisition strategies for risk-tolerant payloads, with a possibility of expanding delivery services to larger-sized payloads and to less risk-tolerant missions in the future.
+NASA’s Launch Services Program selected providers through the agency’s VADR (Venture-Class Acquisition of Dedicated and Rideshare Launch Services) contract, which helps foster growth of the U.S. commercial launch market, enabling greater access to space at a lower cost for science and technology missions.
+For more information about NASA’s Launch Services Program, visit:
+https://www.nasa.gov/launch-services-program
+-end-
+Josh FinchHeadquarters, Washington202-358-1100joshua.a.finch@nasa.gov
+Leejay LockhartKennedy Space Center, Florida321-747-8310leejay.lockhart@nasa.gov
+NASA explores the unknown in air and space, innovates for the benefit of humanity, and inspires the world through discovery.

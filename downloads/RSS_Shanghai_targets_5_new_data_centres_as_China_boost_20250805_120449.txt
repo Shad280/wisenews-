@@ -1,0 +1,5 @@
+China’s computing power reached 246 exaflops as of June 2024, placing it second only to the US, according to government data
+The initiative is expected to elevate the city’s AI computing capacity beyond 100 exaflops, according to a recent plan from the Shanghai Communications Administration, made public on Friday. Exaflop is a measuring unit for computer speed, equivalent to 1 quintillion floating-point operations per second.
+For reference, China’s computing power reached 246 exaflops as of June last year, placing it second only to the US, according to data from the state-backed China Academy of Information and Communications Technology.
+China was expected to remain the largest data centre market in the Asia-Pacific region, with growth projected to accelerate at about 20 per cent annually through 2030, as the sector enjoyed “strong policy support” and domestic operators were set to receive increased government backing, the report said.
+Shanghai is the latest example of how local governments in China are driving the development of AI infrastructure.

@@ -1,0 +1,24 @@
+The bitcoin BTC$113,939.31 bull, once confidently gazing into the future, is reconsidering its long-term bullish conviction.
+That's evident from the 180-day skew, measuring the difference in implied volatility (pricing) between Deribit-listed out-of-the-money call and put options. The metric has recently retreated to zero, according to data source Amberdata, indicating that long-term market sentiment has shifted from bullish to neutral. The shift comes as some analysts warn of a bear market in 2026.
+A similar reset occurred at the onset of the previous bitcoin bear market, according to Griffin Ardern, head of options trading and research at crypto financial platform BloFin.
+"I've noticed a rather worrying sign with the recent market pullback. Bitcoin's bullish sentiment for the far-month options has vanished, and it is now firmly neutral," Ardern told CoinDesk. "This means the options market believes it's difficult for BTC to establish a long-term uptrend, and the likelihood of new highs in the coming months is decreasing."
+"A similar situation last occurred in Jan and Feb 2022," he added.
+A put option offers insurance against price drops in the underlying asset, while a call provides an asymmetric bullish exposure. A positive skew implies a bias towards calls, indicating bullishness in the market, whereas a negative skew suggests the opposite.
+The neutral shift in the 180-day skew could be partly driven by structured products selling higher strike call options to generate additional yield on top of the spot market holdings.
+The popularity of the so-called covered call strategy could be driving the call implied volatility lower relative to puts.
+BTC fell over 4% last week, nearly testing its former record high of $11,965, as the core PCE, the Fed's preferred inflation measure, rose in June, while nonfarm payrolls disappointed, stoking concerns about the economy.
+The price drop has pushed short-term skews below zero, a sign of traders seeking downside protection through puts.
+According to Ardern, the inflationary effects of "supply chain impulses" are already showing up in economic data.
+"Although falling auto prices in the last CPI report offset rising prices for other goods, one thing is undeniable: the impulse from the West Coast of the Pacific has reached the East Coast, and retailers are already trying to pass on tariffs and a host of associated costs to consumers. While wholesalers and commodity trading firms are working to smooth supply chains, price increases will still occur, albeit more moderately or "delayed by several months," Ardern noted, explaining the renewed neutrality of the long-term BTC options.
+According to JPMorgan, President Donald Trump's tariffs are likely to elevate inflation in the second half of the year.
+"Global core inflation is projected to increase to 3.4% (annualized rate) in the second half of 2025, largely due to a tariff-related U.S. spike," analysts at the investment bank noted, adding that cost pressures will likely be concentrated in the U.S.
+An uptick in inflation could make it harder for the Fed to cut rates. Trump has repeatedly criticized the central bank for keeping rates elevated at 4.25%.
+Traders will receive the ISM non-manufacturing PMI later Tuesday, providing insights into inflation in the service sector, which accounts for a significant portion of the U.S. economy. It will be followed by July CPI and PPI releases later this week.
+Read more: Bitcoin Still on Track for $140K This Year, But 2026 Will Be Painful: Elliott Wave Expert
+Omkar Godbole is a Co-Managing Editor and analyst on CoinDesk's Markets team. He has been covering crypto options and futures, as well as macro and cross-asset activity, since 2019, leveraging his prior experience in directional and non-directional derivative strategies at brokerage firms. His extensive background also encompasses the FX markets, having served as a fundamental analyst at currency and commodities desks for Mumbai-based brokerages and FXStreet. Omkar holds small amounts of bitcoin, ether, BitTorrent, tron and dot.Omkar holds a Master's degree in Finance and a Chartered Market Technician (CMT) designation.
+More For You
+Litecoin Surges 10% on ETF Hopes and Merchant Activity Amid Quiet Rotation
+Speculation over a spot ETF continues to build despite the SEC delaying its decision on Grayscale’s application until October.
+What to know:
+About
+Contact

@@ -1,0 +1,82 @@
+If you’re not invested in AI, you’re not invested in growth
+Key Takeaways:
+We’re roughly two-thirds of the way through the second-quarter earnings season, and the scoreboard doesn’t lie: AI is not just a line item in tech company presentations. It’s the engine driving the biggest corporate growth stories in a generation – from cloud computing and retail to healthcare, law enforcement, and beyond.
+Artificial Intelligence is eating the world. And that explosive proliferation has cracked open a ‘technochasm’ that grows wider by the day…
+I’m talking about a wealth divide unlike most anything we’ve seen before. The gap between tech companies and those falling behind has exploded, dramatically widening the schism between innovation investors and those stuck in ‘old-economy’ thinking.
+In short, if you’re not invested in AI, you’re not invested in growth, full-stop…
+Meaning you’re at risk of landing on the wrong side of a rapidly widening wealth divide.
+Let’s break it down.
+Alphabet’s (GOOGL) Q2 report wasn’t a beat; it was a slam dunk.
+Revenue crushed estimates. Profits soared. But what really stood out was how AI has transformed every major Alphabet business unit into a growth machine.
+Google Cloud revenues surged 32% year-over-year, driven almost entirely by demand for AI compute. Search and YouTube ad revenues both posted their best growth rates in several quarters – because artificial intelligence is making those engines smarter, faster, and more effective. (Translation: more money per user, per click, per second.)
+The company’s AI video platform, Veo3, has already generated over 70 million videos in just two months. Meanwhile, its Gemini AI has rocketed past 450 million monthly active users, with daily requests up 50% quarter-over-quarter.
+That’s what exponential usage looks like.
+In response, Alphabet hiked its capex guidance by another $10 billion – because it literally can’t build AI infrastructure fast enough to meet demand.
+Even still, you don’t spend that kind of cash unless you know exactly what the future holds…
+Microsoft (MSFT) also dropped a haymaker on Wall Street this season.
+Azure, the company’s cloud business, posted 39% year-over-year growth – its best performance since early 2024… and almost entirely AI-driven.
+Revenues from Microsoft Fabric, its AI data platform, jumped 55%. Fabric now has 25,000-plus customers and holds the title of fastest-growing database product in company history. Considering Microsoft has lived through the PC, dot-com, and cloud booms… that’s quite a powerful indicator.
+Then there’s Copilot, Microsoft’s flagship AI assistant suite, now with over 100 million monthly active users. In fact, all-in, more than 800 million people use a Microsoft AI product at least once per month.
+Folks, the growth that this company is experiencing is more than the result of a new product cycle.
+It’s a platform shift. And Microsoft is riding it to all-time highs.
+Similarly, Meta’s (META) AI strategy is paying off in triplicates: via engagement, ad dollars, and hardware adoption.
+Time spent on Facebook grew 5% in the quarter. Instagram saw even better numbers, with engagement up 6%.
+This progress is directly tied to AI-powered content ranking improvements. Of course, more time spent on apps = more ads = more revenue. But it gets better.
+Meta’s AI ad engine delivered a 3% boost in conversion rates on Facebook and a 5% bump on Instagram: massive numbers in the digital ad world.
+Meanwhile, Meta AI – the company’s consumer-facing chatbot – now boasts over 1 billion monthly active users.
+Not to mention, the Ray-Ban Meta smart glasses are flying off the shelves, with sales tripling over the year. Demand continues to outpace supply.
+We see it as an indicator of what’s to come…
+And that’s the point: AI isn’t just transforming how people engage with apps. It’s reshaping how work gets done across every sector of the economy.
+For example, surgical robot maker Intuitive Surgical (ISRG) crushed estimates this Q2 seasons, with 14% growth in AI-powered robot installations and 21% revenue growth. It looks like hospitals are adopting AI faster than medical schools can update their textbooks…
+AI insurance disrupter Lemonade (LMND) posted 24% customer growth and 35% revenue growth, showing that AI is now winning even in heavily regulated industries.
+Autonomous trucking startup Aurora (AUR) has now completed over 20,000 miles driverless between Dallas and Houston and is expanding operations to Arizona – nighttime driving included.
+And behind the scenes, the companies building the hardware, chips, and infrastructure for this AI revolution reported some of their strongest quarters ever.
+Advanced Micro Devices (AMD), Celestica (CLS), Rambus (RMBS), Cadence (CDNS), Seagate (STX), Vertiv (VRT), Lam Research (LRCX), Impinj (PI), BWX Technologies (BWXT), Arista Networks (ANET), Astera Labs (ALAB)…
+From chips and cooling to networking and power, the multi-trillion-dollar AI infrastructure buildout is only accelerating.
+Though, infrastructure is only half the story. The other half is software: the intelligent platforms that help enterprises harness AI to supercharge their workflows.
+And after delivering blowout Q2 results, enterprise software juggernauts ServiceNow (NOW) and Palantir (PLTR) displayed just how profitable this part of the story really is.
+ServiceNow’s revenue grew over 20%, fueled by red-hot demand for AI software. The number of AI deals surged 50%. Plus, the company landed its largest AI contract ever – a single $20 million deal for its Now Assist platform.
+Major customers like Exxon Mobil (XOM), Nvidia (NVDA), and Standard Chartered are all rolling out ServiceNow’s AI agents across their global operations.
+In other words, trillion-dollar companies across the board are embedding AI solutions into their workflows, making demand stronger than ever right now. And there’s no signs that’ll change anytime soon.
+We’re seeing the same thing play out with Palantir (PLTR).
+The company reported nearly 50% revenue growth in Q2, surpassing $1 billion in quarterly revenues for the very first time.
+Just a few years ago, it was bringing in less than $400 million a quarter… meaning AI adoption has resulted in 150%-plus growth.
+But the success isn’t restricted to revenue. This past quarter, PLTR closed 157 $1-million-plus deals, 66 of which are worth over $5 million – and 42 over $10 million.
+That is astounding – and screams that Palantir is becoming the backend infrastructure for AI’s transformation across industries.
+And yet, in our opinion, the most powerful AI transformations aren’t happening in software. Instead, they’re unfolding on the warehouse floor.
+Often, the headlines surrounding AI focus on flashy chatbots and cloud wars. But as we’ve pointed out before, AI is increasingly going physical.
+Self-driving cars, automated factories… humanoid robots.
+And Amazon (AMZN) is a potent example of just how physical AI can reshape legacy business models.
+This past quarter, the company’s e-commerce revenues rose 11%, and retail margins hit fresh highs. Net sales reached $167.7 billion, up 13% year‑over‑year. And operating income hit $19.2 billion, corresponding to an operating margin of about 11.4% – up from roughly 9.9% in Q2 2024.
+Driving this outperformance? Robots.
+Amazon recently hit a new milestone with 1 million robots deployed in its warehouses, nearly outnumbering the company’s human workers. These AI-driven machines are optimizing throughput, slashing costs, reducing errors, and seemingly turning warehouses into high-efficiency cash factories.
+Indeed, this was Amazon’s best retail quarter since 2021; and AI is driving its metamorphosis.
+Earnings season has made one thing abundantly clear: all the growth in today’s economy is happening inside the AI ecosystem. Everything else is just noise.
+AI is boosting productivity, supercharging revenues, and widening profit margins.
+It’s creating new markets, changing how work is done, how products get made, and how decisions are reached across every industry on the planet.
+We’re in the middle of the most profound platform shift in human economic history.
+If you want to capture that growth – while ensuring your financial future is secure – there’s only one move to make:
+Go all-in with AI.
+And now’s the time to move… Because AI’s next phase is quickly moving out of the theoretical and into the physical.
+We’re closer than ever to ubiquitous robots that move freight, drones that deliver goods, and machines that diagnose disease – all powered by a huge new AI development set to arrive just 100 days from now.
+This will mark a “Day Zero” moment for investors: a rare inflection point where AI begins reshaping the physical world… and potentially unleashing a $20 trillion economic wave.
+My colleagues Louis Navellier, Eric Fry, and I have identified seven key companies at the heart of this transformation – hardware makers, robot builders, rare earth suppliers – to get you in on the ground floor of AI’s biggest wave yet.
+If it’s true that every major technology wave ends up creating at least 3X more value than the one before it, this shift is one you can’t afford to miss.
+Check out our Day Zero Portfolio now.
+By uncovering early investments in hypergrowth industries, Luke Lango puts you on the ground-floor of world-changing megatrends.
+Article printed from InvestorPlace Media, https://investorplace.com/hypergrowthinvesting/2025/08/earnings-season-makes-it-clear-ai-is-the-only-game-in-town/.
+©2025 InvestorPlace Media, LLC
+Hot Stocks
+Market Analysis
+Market Analysis
+Market Analysis
+Market Analysis
+Hot Stocks
+Market Analysis
+Market Analysis
+All rights reserved. Nasdaq
+						quotes delayed at least 15 minutes, all others at least 20 minutes.
+						Copyright ©
+						2025 InvestorPlace Media, LLC. All rights reserved. 1125 N. Charles St, Baltimore, MD 21201.
+Not Yet a Premium Subscriber?
+Your Email

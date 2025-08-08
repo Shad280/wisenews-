@@ -1,0 +1,23 @@
+Welcome to Asia Morning Briefing, a daily summary of top stories during U.S. hours and an overview of market moves and analysis. For a detailed overview of U.S. markets, see CoinDesk's Crypto Daybook Americas.Bitcoin BTC$114,644.04 is treading water around $115K Thursday morning in Asia, up 1% in the last 24 hours, as the post-all-time-high correction continues to play out across low volume and weak conviction.
+According to Glassnode, BTC has entered what it calls an “air gap”, a low-liquidity zone between $110,000 and $116,000, after breaking down from a major supply cluster where short-term holders had previously found support.
+These areas typically see little trading activity and can either serve as a base for accumulation or become a trapdoor for deeper downside if demand fails to return.
+“The market is effectively re-finding its footing,” Glassnode analysts wrote, describing the range between $110K (the prior ATH) and $116K (recent buyer cost basis) as the new battleground.
+They noted that while opportunistic buying has emerged, with 120,000 BTC acquired on the dip, prices have yet to reclaim resistance levels convincingly, particularly the ~$116.9K threshold that marks recent short-term holder entry points.
+Short-term holder profitability has dropped from 100% to 70%, which Glassnode frames as typical for a bull market mid-phase. But without fresh inflows, this could quickly erode sentiment. ETF flows have turned negative, with a -1.5K BTC outflow earlier this week, the largest since April. At the same time, funding rates in the derivatives market have cooled, reflecting reduced leverage and a more cautious stance among speculators.
+Market maker Enflux offered a similar take: “Crypto markets remain in a fragile holding pattern. Despite some relief in the altcoin space, majors like BTC and ETH are still struggling to inspire confidence,” it wrote in a client note. “The broader trend? Heavy legs with more or less light volume.”
+ETH is up 2% in the last 24 hours, trading just below $3,600. The CoinDesk 20 Index, which tracks a broad basket of crypto assets, gained 1.69% to 3,815.22.
+“Until BTC and ETH reclaim strength with volume,” Enflux added, “the path of least resistance could remain sideways to down.”
+The market’s next move likely hinges on whether buyers are willing to step in and build a base within this low-volume zone, or whether another flush toward $110K is needed to reset the trend. For now, traders remain cautious, and the bulls remain unproven.
+BTC: A potential Bitcoin supply shock, driven by drying OTC desk reserves and steady corporate accumulation, could “uncork” BTC price action after a dip below $110K, market observers say.
+ETH: Ethereum may have formed a local top as sell pressure hits $419 million, its second-highest on record, while ETH retests a major resistance zone near $4,000 that preceded a 66% drop in late 2024, raising the risk of a 25–35% decline by September; meanwhile, Polymarket bettors remain split, with 48% backing a rally to $5,000 despite the bearish signals.
+Gold: Gold's rally stalled Wednesday as traders took profits and weighed rising Fed rate cut odds, U.S. trade tensions, and a looming Fed leadership shakeup, leaving prices flat after a three-day gain driven by economic weakness; spot gold last traded at $3,372.11, down 0.24% on the day.
+Nikkei 225: Asia-Pacific markets opened mixed Thursday, with Japan’s Nikkei 225 flat, as investors shrugged off new U.S. semiconductor tariff threats.
+S&P 500: U.S. stock futures were flat Wednesday night as traders digested Trump’s new semiconductor tariffs, with the S&P 500 still up 1.7% for the week.
+Sam Reynolds is a senior reporter based in Asia. Sam was part of the CoinDesk team that won the 2023 Gerald Loeb award in the breaking news category for coverage of FTX's collapse. Prior to CoinDesk, he was a reporter with Blockworks and a semiconductor analyst with IDC.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+Bitcoin Asset Manager Parataxis to Go Public in $400M SPAC Deal Backed by SilverBox
+The newly public firm will pursue bitcoin-focused treasury strategies in the U.S. and South Korea.
+What to know:
+About
+Contact

@@ -1,0 +1,26 @@
+{
+  "appId": "com.wisenews.mobile",
+  "appName": "WiseNews",
+  "webDir": "static",
+  "server": {
+    "androidScheme": "https",
+    "iosScheme": "https"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#2196F3",
+      "showSpinner": true,
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#ffffff"
+    },
+    "StatusBar": {
+      "style": "dark",
+      "backgroundColor": "#2196F3"
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  }
+}

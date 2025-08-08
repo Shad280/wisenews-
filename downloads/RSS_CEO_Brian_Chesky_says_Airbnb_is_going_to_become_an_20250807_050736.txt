@@ -1,0 +1,15 @@
+Not only does Airbnb want to be the "everything app" — where users can book literally everything, from accommodations to experiences and services — it also wants to do the booking for you.
+Brian Chesky, cofounder and CEO of Airbnb, laid out his vision for the travel app's AI-powered future during the company's second-quarter earnings call on Wednesday. Airbnb beat revenue expectations for quarter two and announced a $6 billion stock buyback, but said it expected slower growth in Q3. The stock was down more than 6% after-hours.
+"Over the next couple of years, I think what you're going to see is Airbnb becoming an AI-first application," Chesky said on the call with analysts.
+He added that currently "almost none" of the top 50 apps in the App Store are AI apps, with the notable exception of OpenAI's ChatGPT. But he predicted that soon every one of them will be AI apps, either AI startups or pre-generative AI apps that successfully transform into "native AI" apps. That's the transformation that he says is underway at Airbnb.
+Chesky said Airbnb's approach to utilizing AI has differed from some other travel companies in that they have not focused on using AI to offer travel planning and inspiration. Instead, the company has rolled out AI in customer service, with a custom agent built on 13 different models and trained on tens of thousands of conversations.
+As a result of the AI customer service chatbot, he said Airbnb has reduced the number of hosts and guests who need to contact a human agent by 15%.
+Chesky said the AI agent is going to become more personalized throughout the next year and that it will be able to take more actions on behalf of the user.
+"It will not only tell you how to cancel your reservation, it will know which reservation you want to cancel. It can cancel it for you and it can be agentic as in it can start to search and help you plan and book your next trip," he added.
+Airbnb declined to provide additional comment when reached by Business Insider.
+In February, Chesky said on Airbnb's quarter four earnings call that he thought it was still too early to use AI for trip planning, but that he believed AI would eventually have a "profound impact on travel."
+Chesky also said in February that he wants to make Airbnb the Amazon of travel, or a one-stop shop for "all of your traveling and living needs."
+Airbnb in May announced it was relaunching its Experiences business and launching Services, which allows users to book on-site professionals like photographers or massage therapists.
+On the call Wednesday, Chesky said he was "very bullish" on Experiences and that the feedback so far has been positive.
+Axel Springer, Insider Inc.'s parent company, is an investor in Airbnb.
+Jump to

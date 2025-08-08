@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.bloomberg.com/news/articles/2025-08-05/trump-s-tariff-to-test-india-s-central-bank-decision-guide

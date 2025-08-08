@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/tv-shows/press-review/20250805-serious-mood-and-fewer-perks-silicon-valley-enters-its-hard-tech-era

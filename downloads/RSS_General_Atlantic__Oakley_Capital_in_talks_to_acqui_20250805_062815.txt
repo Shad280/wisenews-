@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.privateequitywire.co.uk/general-atlantic-oakley-capital-in-talks-to-acquire-brevo-in-e1bn-saas-deal/

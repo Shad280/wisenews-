@@ -1,0 +1,18 @@
+Prosecutors say two men ‘knowingly and willfully’ used California-based company to evade export controls on AI chips.
+Authorities in the United States have charged two Chinese citizens with shipping tens of millions of dollars’ worth of advanced Nvidia chips to China in breach of export controls.
+Chuan Geng and Shiwei Yang are alleged to have “knowingly and willfully” exported the graphic processing units (GPUs) used to power artificial intelligence without authorisation from October 2022 to July 2025, the US Department of Justice said on Tuesday.
+Export records indicate that Geng and Yang, both 28, organised at least 21 shipments through their El Monte, California-based company ALX Solutions Inc to companies in Singapore and Malaysia, the Justice Department said.
+The exports included a December 2024 shipment of Nvidia H100 GPUs – described as the most powerful chip on the market – that was “falsely labelled” and had not obtained the necessary licence from the US Department of Commerce, the Justice Department said.
+According to prosecutors, ALX Solutions received payments from firms in Hong Kong and China, including a $1m sum from a China-based company in January 2024, rather than the companies that accepted the shipments.
+Prosecutors said a search of ALX Solutions’s office and Geng and Yang’s phones last week revealed “incriminating communications”, including communications about shipping chips to China through Malaysia to evade US export restrictions.
+Geng and Yang face a maximum penalty of 20 years in prison if convicted under the Export Control Reform Act.
+Al Jazeera could not immediately locate the accused’s lawyers for comment.
+Santa Clara, California-based Nvidia said the case showed that “smuggling is a nonstarter”.
+“We primarily sell our products to well-known partners, including OEMs [original equipment manufacturers], who help us ensure that all sales comply with US export control rules,” a company spokesperson said.
+“Even relatively small exporters and shipments are subject to thorough review and scrutiny, and any diverted products would have no service, support, or updates.”
+The US government has banned the export of the most advanced chips to China amid a heated battle for technological supremacy between Washington and Beijing.
+US officials have claimed that restrictions, many of which were introduced under former US President Joe Biden, are needed to safeguard national security.
+China, which has hit back with its own export controls against the US, has accused Washington of undermining global trade and abusing its dominance in tech.
+Last month, Nvidia CEO Jensen Huang announced that Washington had agreed to reverse its ban on the sale of its H20 GPU to China following discussions with US President Donald Trump.
+Huang said the lifting of the export ban on the H20, which was specifically designed for the Chinese market and is less powerful than the H100, would encourage “nations worldwide to choose  America” for their AI models.
+Follow Al Jazeera English:

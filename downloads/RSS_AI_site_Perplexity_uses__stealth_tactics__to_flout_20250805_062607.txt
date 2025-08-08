@@ -1,0 +1,21 @@
+The allegations are the latest to accuse Perplexity of improper web crawling.
+AI search engine Perplexity is using stealth bots and other tactics to evade websites’ no-crawl directives, an allegation that if true violates Internet norms that have been in place for more than three decades, network security and optimization service Cloudflare said Monday.
+In a blog post, Cloudflare researchers said the company received complaints from customers who had disallowed Perplexity scraping bots by implementing settings in their sites’ robots.txt files and through Web application firewalls that blocked the declared Perplexity crawlers. Despite those steps, Cloudflare said, Perplexity continued to access the sites’ content.
+The researchers said they then set out to test it for themselves and found that when known Perplexity crawlers encountered blocks from robots.txt files or firewall rules, Perplexity then searched the sites using a stealth bot that followed a range of tactics to mask its activity.
+“This undeclared crawler utilized multiple IPs not listed in Perplexity’s official IP range, and would rotate through these IPs in response to the restrictive robots.txt policy and block from Cloudflare," the researchers wrote. “In addition to rotating IPs, we observed requests coming from different ASNs in attempts to further evade website blocks. This activity was observed across tens of thousands of domains and millions of requests per day.”
+The researchers provided the following diagram to illustrate the flow of the technique they allege Perplexity used.
+Credit:
+
+          
+          Cloudflare
+If true, the evasion flouts Internet norms in place for more than three decades. In 1994, engineer Martijn Koster proposed the Robots Exclusion Protocol, which provided a machine-readable format for informing crawlers they weren’t permitted on a given site. Sites that their content indexed installed the simple robots.txt file at the top of their homepage. The standard, which has been widely observed and endorsed ever since, formally became a standard under the Internet Engineering Task Force in 2022.
+Cloudflare isn’t the first to say that Perplexity violates the spirit if not the letter of the norm. Last year, Reddit CEO Steve Huffman told The Verge that stopping Perplexity—and two other AI engines from Microsoft and Anthropic—was a real pain in the ass.” Huffman went on to say: “We’ve had Microsoft, Anthropic, and Perplexity act as though all of the content on the Internet is free for them to use. That’s their real position.”
+Perplexity has faced allegations from several other publishers that it plagiarized their content. Forbes, for instance, accused Perplexity of “cynical theft” after publishing a post that was “extremely similar to Forbes’ proprietary article” posted a day earlier. Ars Technica sister publication Wired has leveled similar claims. It cited what it said were suspicious traffic patterns from IP addresses, likely linked to Perplexity, that were ignoring robots.txt exclusions. Perplexity was also found to have manipulated its crawling bots' ID string to bypass website blocks.
+The Cloudflare researchers said that in response to their findings, the company is taking actions to prevent crawlers from accessing sites that use its content-delivery service.
+“There are clear preferences that crawlers should be transparent, serve a clear purpose, perform a specific activity, and, most importantly, follow website directives and preferences,” they wrote. “Based on Perplexity’s observed behavior, which is incompatible with those preferences, we have de-listed them as a verified bot and added heuristics to our managed rules that block this stealth crawling.”
+Perplexity representatives didn’t respond to an email asking if the allegations are true.
+Ars Technica has been separating the signal from
+          the noise for over 25 years. With our unique combination of
+          technical savvy and wide-ranging interest in the technological arts
+          and sciences, Ars is the trusted source in a sea of information. After
+          all, you don’t need to know everything, only what’s important.

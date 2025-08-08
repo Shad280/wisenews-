@@ -1,0 +1,16 @@
+Bitcoin's (BTC) volatility meltdown continues as the cryptocurrency remains stagnant, with slow price action between $110,000 and $120,000.
+The cryptocurrency's 30-day implied volatility, as represented by Volmex's BVIV index, fell to an annualized 36.5% late on Wednesday, reaching levels last seen in October 2023, when BTC was trading below $30,000, according to data source TradingView.
+The new multi-year low in implied volatility suggests that options traders are not yet rushing for hedges, despite U.S. economic data raising concerns about stagflation. The demand for options, which are contracts used to hedge against or profit from price swings, is a major driver of an asset's implied volatility.
+The same thing can be said about stocks, where the VIX index has reversed Friday's spike from 17 to 21. The VIX measures the 30-day implied volatility in the S&P 500.
+BTC's implied volatility has been in a months-long downtrend, moving in the opposite direction of the cryptocurrency's price, which has surged from $70,000 to over $110,000 since November.
+The negative correlation marks a profound shift in bitcoin's market dynamics. Historically, BTC's volatility and its spot price moved in tandem, with volatility rising in both bull and bear markets.
+The change in this spot-volatility correlation is attributed, in part, to the growing popularity of structured products that involve the writing (selling) of out-of-the-money call options, analysts told CoinDesk.
+This new dynamic suggests that bitcoin is increasingly mirroring patterns on Wall Street, where implied volatility often dwindles during steady bull runs.
+Read: Bitcoin's 'Low Volatility' Rally From $70K to $118K: A Tale of Transition From Wild West to Wall Street-Like Dynamics
+Omkar Godbole is a Co-Managing Editor and analyst on CoinDesk's Markets team. He has been covering crypto options and futures, as well as macro and cross-asset activity, since 2019, leveraging his prior experience in directional and non-directional derivative strategies at brokerage firms. His extensive background also encompasses the FX markets, having served as a fundamental analyst at currency and commodities desks for Mumbai-based brokerages and FXStreet. Omkar holds small amounts of bitcoin, ether, BitTorrent, tron and dot.Omkar holds a Master's degree in Finance and a Chartered Market Technician (CMT) designation.
+More For You
+Asia Morning Briefing: BTC Slips Into Low-Liquidity “Air Gap” as Post-ATH Drift Continues
+Glassnode data shows BTC caught in a fragile holding pattern after slipping below key support. Market makers say conviction remains weak, with majors struggling to lead.
+What to know:
+About
+Contact

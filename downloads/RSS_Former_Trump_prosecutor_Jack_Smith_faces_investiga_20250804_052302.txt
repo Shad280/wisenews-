@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/video/20250803-former-trump-prosecutor-jack-smith-faces-investigation-by-us-watchdog

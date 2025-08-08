@@ -1,0 +1,19 @@
+Commissioner’s recommendations for tech companies include measures that have been criticised on privacy grounds.
+Australia’s internet watchdog has accused tech giants including Google and Apple of failing to take action against child sex abuse on their platforms.
+In a report released on Wednesday, eSafety Commissioner Julie Inman Grant said tech platforms were failing to implement various measures to protect children, including scanning cloud services for known abuse material and using language analysis tools to detect attempted sexual extortion in messaging services.
+Grant said that Apple and YouTube, which is owned by Google, also failed to track reports of child sex abuse and could not say how long it took them to respond to the reports they received.
+“It shows that when left to their own devices, these companies aren’t prioritising the protection of children and are seemingly turning a blind eye to crimes occurring on their services,” Grant said in a statement.
+“We need to keep the pressure on the tech industry as a whole to live up to their responsibility to protect society’s most vulnerable members from the most egregious forms of harm and that’s what these periodic notices are designed to encourage.”
+Grant added that the companies had taken few steps to improve their efforts since being asked three years ago, “despite the promise of AI to tackle these harms and overwhelming evidence that online child sexual exploitation is on the rise”.
+“No other consumer-facing industry would be given the licence to operate by enabling such heinous crimes against children on their premises, or services,” she said.
+Google disputed the report’s findings, saying they were rooted in “reporting metrics, not online safety performance” and that more than 99 percent of abuse material on YouTube is automatically removed before being flagged.
+“Child safety is critical to us,” a Google spokesperson said.
+“We’ve led the industry fight against child sexual abuse material since day one, investing heavily in advanced technology to proactively find and remove this harmful content.”
+Apple, Microsoft, Meta, Snap, and Discord, which were also included in the report, did not respond to requests for comment.
+Tom Sulston, head of policy at Digital Rights Watch, said that while it was important for authorities to take action against online child abuse, some of the tools supported by the internet watchdog would raise serious civil liberties and privacy concerns.
+Sulston said that scanning live calls and private messages would require platforms to abandon end-to-end encryption, which prevents communications from being viewed by anyone apart from the sender and receiver.
+“That’s a gross invasion of privacy for all of the people making perfectly innocent and reasonable use of the service,” Sulston told Al Jazeera.
+“It also has dangerous knock-on effects where the users of that service would be subject to surveillance from hostile actors – foreign governments, criminals, hackers. That’s a huge risk for civic society, activists, journalists and anyone who communicates on the internet.
+Breaking encryption would be “disproportionate and dangerous,” Sulston added.
+“We don’t expect the post office to open all letters and read them for illegal content – in fact, most countries have laws specifically against this,” he said.
+Follow Al Jazeera English:

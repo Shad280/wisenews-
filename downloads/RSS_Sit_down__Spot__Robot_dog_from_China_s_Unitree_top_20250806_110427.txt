@@ -1,0 +1,6 @@
+Robot withstands an adult jumping on its back and also beats Boston Dynamics’ Spot on battery life, according to specifications
+Called the A2, the robot dog can withstand an adult standing and even hopping on it, according to a video published by the company on social media on Tuesday.
+When in motion, the unit’s payload falls to 25kg, but that outperforms rival four-legged robot Spot from US-based Boston Dynamics, which has a maximum payload of 14kg, according to specifications. Unitree said the A2 was suitable for “logistics, industrial inspection and emergency rescue” in “extreme and complex environments”.
+Constructed from aluminium alloy and high-strength engineering plastic, the machine was designed for demanding environments, Unitree said. In the video, the dog somersaults down stairs, hops on two legs, spins while supporting itself on one leg and rushes down steep slopes.
+The unit could operate for three hours when fully loaded, which could extend to five hours when unencumbered, Unitree said. Spot has an average runtime of one and a half hours and a standby time of three hours.
+Both models can operate in temperatures between minus 20 and 55 degrees Celsius, but the A2 can climb a slope of 45 degrees, better than Spot’s maximum of 30 degrees.

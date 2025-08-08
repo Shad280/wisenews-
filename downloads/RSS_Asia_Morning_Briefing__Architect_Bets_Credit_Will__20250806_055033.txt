@@ -1,0 +1,33 @@
+Welcome to Asia Morning Briefing, a daily summary of top stories during U.S. hours and an overview of market moves and analysis. For a detailed overview of U.S. markets, see CoinDesk's Crypto Daybook Americas.The maturing digital assets market that has sophisticated market making, capital markets, and decentralized finance, is still lacking one key market infrastructure to compete with traditional finance: an institutional-grade credit agency.
+Architect aims to change this by launching crypto's first institutional-grade credit ratings service, similar to traditional finance's Moody's – because most TradFi ratings agencies just won't touch crypto.
+Sure, Moody's has dipped its toes into digital assets, but a full-blown credit agency that operates only in crypto is still missing.
+This is partly because crypto does not have a trusted intermediary to objectively assess creditworthiness, according to Ruben Amenyogbo, Architect's Managing Partner.
+The industry's anonymous actors, unconventional data, and opaque risk profiles make traditional underwriters nervous, leaving potential lenders reluctant to provide debt financing, Amenyogbo said.
+Then there is the ongoing surge of publicly traded companies, including miners and crypto treasury firms. They are all attempting to provide equity investors with exposure to crypto via stocks.
+But that market is now saturated and overvalued.
+“Crypto equity is extremely overvalued. Way too much money has been raised chasing equity opportunities in crypto,” said Amenyogbo.
+This combination of a lack of credit agencies and an exhausted equity market creates the perfect storm for a new opportunity in Web3.
+“There's a huge opportunity in credit, but no one's provided the missing market structure needed to assess risk properly," he said.
+This is where Architect comes in with plans to utilize its proprietary blockchain-based data to systematically evaluate credit risk and unlock new pools of institutional capital.
+Amenyogbo believes that the crypto market has now matured enough to support institutional-grade credit analysis.
+“With equity, you look forward, you assess future growth,” Amenyogbo said. “With credit, you must look backwards and ask, ‘Have these people reliably performed?’ Crypto was too young and unproven for that until recently, but now there’s enough history for meaningful credit analysis.”
+So who benefits from such service? Bitcoin miners and Decentralized Physical Infrastructure Networks (DePIN) primarily, according to the Architect.
+In theory, with access to fiat credit, miners could reduce forced selling, allowing them to stake more assets, generate greater on-chain activity, and shift from reactive outflows to productive economic contribution, a “double knock-on effect” that turns liquidity pressure into real value creation.
+"If I want to speculate on bitcoin, I would buy bitcoin. But as a credit lender, I can underwrite a bitcoin miner and make a bet on that mining operation and its cashflows outcompeting the market,” he said.
+Meanwhile, Architect sees Decentralized Physical Infrastructure Networks (DePIN) as a particularly attractive and underfunded niche for credit, with Amenyogbo explaining that DePIN provides real economic outputs rather than merely betting on digital asset price appreciation.
+In the end, Architect’s ultimate ambition isn’t just to lend, it’s to rebuild crypto’s capital stack from the ground up.
+By positioning itself as the first credible risk assessor for decentralized infrastructure and applying TradFi-grade underwriting standards, the firm hopes to unlock a new wave of institutional capital.
+“Raising a $100 million fund is cool, but it’s just a drop in the ocean,” Amenyogbo said. “What we’re really doing is laying the groundwork for crypto credit to scale the way traditional debt does, bundled, rated, insured, and syndicated into the largest pools of capital in the world.”
+BTC: BTC is trading above $114K. "Until BTC and ETH reclaim strength with volume, the path of least resistance could remain sideways to down. Opportunistic traders may continue to find short-term setups in memecoins and alt-beta, but the broader picture hasn’t flipped," market maker Enflux said in a note to CoinDesk.
+ETH: ETH is trading at $3500, down 2.8% as ETF outflows ramp up.
+Gold: Gold prices dipped during the U.S. trading day, as a stronger U.S. dollar and falling oil prices weighed on sentiment, while silver saw modest gains and mixed global economic signals, including robust Chinese services data and growing Fed rate cut odds, added complexity to market direction.
+Nikkei 225: Asia-Pacific markets traded mixed Tuesday after Wall Street losses, as investors digested weak U.S. economic data and new technology tariff remarks from President Trump, with Japan’s Nikkei 225 slipping 0.12%.
+S&P 500: The S&P 500 fell 0.49% Tuesday as weak economic data and fresh Trump tariff remarks fueled concern, though analysts expect the bull market to continue despite near-term volatility.
+Sam Reynolds is a senior reporter based in Asia. Sam was part of the CoinDesk team that won the 2023 Gerald Loeb award in the breaking news category for coverage of FTX's collapse. Prior to CoinDesk, he was a reporter with Blockworks and a semiconductor analyst with IDC.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+DOGE Sheds 5% as Volume Quadruples, Testing Key Support Zones
+Traders are monitoring whether DOGE can stabilize above $0.198 or face further downside toward $0.185.
+What to know:
+About
+Contact

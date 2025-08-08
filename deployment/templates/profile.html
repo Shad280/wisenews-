@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4 fade-in">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card stable-card">
+                <div class="card-header stable-header">
+                    <h4 class="stable-title"><i class="fas fa-user"></i> My Profile</h4>
+                </div>
+                <div class="card-body stable-card-body">
+                    <form method="POST" class="stable-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group stable-form-group">
+                                    <label for="first_name" class="stable-label">First Name</label>
+                                    <input type="text" class="form-control stable-input" id="first_name" name="first_name" 
+                                           value="{{ user_data.first_name }}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group stable-form-group">
+                                    <label for="last_name" class="stable-label">Last Name</label>
+                                    <input type="text" class="form-control stable-input" id="last_name" name="last_name" 
+                                           value="{{ user_data.last_name }}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" value="{{ user_data.email }}" disabled>
+                            <small class="form-text text-muted">Email cannot be changed. Contact support if needed.</small>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country">Country</label>
+                                    <select class="form-control" id="country" name="country">
+                                        <option value="">Select Country</option>
+                                        <option value="US" {% if user_data.country == 'US' %}selected{% endif %}>United States</option>
+                                        <option value="UK" {% if user_data.country == 'UK' %}selected{% endif %}>United Kingdom</option>
+                                        <option value="CA" {% if user_data.country == 'CA' %}selected{% endif %}>Canada</option>
+                                        <option value="AU" {% if user_data.country == 'AU' %}selected{% endif %}>Australia</option>
+                                        <option value="DE" {% if user_data.country == 'DE' %}selected{% endif %}>Germany</option>
+                                        <option value="FR" {% if user_data.country == 'FR' %}selected{% endif %}>France</option>
+                                        <option value="IT" {% if user_data.country == 'IT' %}selected{% endif %}>Italy</option>
+                                        <option value="ES" {% if user_data.country == 'ES' %}selected{% endif %}>Spain</option>
+                                        <option value="NL" {% if user_data.country == 'NL' %}selected{% endif %}>Netherlands</option>
+                                        <option value="SE" {% if user_data.country == 'SE' %}selected{% endif %}>Sweden</option>
+                                        <option value="NO" {% if user_data.country == 'NO' %}selected{% endif %}>Norway</option>
+                                        <option value="DK" {% if user_data.country == 'DK' %}selected{% endif %}>Denmark</option>
+                                        <option value="FI" {% if user_data.country == 'FI' %}selected{% endif %}>Finland</option>
+                                        <option value="other" {% if user_data.country == 'other' %}selected{% endif %}>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date_of_birth">Date of Birth</label>
+                                    <input type="date" class="form-control" id="date_of_birth" value="{{ user_data.date_of_birth }}" disabled>
+                                    <small class="form-text text-muted">Date of birth cannot be changed for security reasons.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_number">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" 
+                                   value="{{ user_data.phone_number or '' }}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Update Profile
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <!-- Account Information -->
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-info-circle"></i> Account Information</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <tr>
+                            <td><strong>Member Since:</strong></td>
+                            <td>{{ user_data.created_at.split(' ')[0] if user_data.created_at else 'Unknown' }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Last Login:</strong></td>
+                            <td>{{ user_data.last_login or 'First time!' }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Logins:</strong></td>
+                            <td>{{ user_data.login_count or 0 }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Privacy Status -->
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-shield-alt"></i> Privacy Status</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-2">
+                        <span class="badge {% if user_data.gdpr_consent %}badge-success{% else %}badge-danger{% endif %}">
+                            GDPR Consent: {% if user_data.gdpr_consent %}✓ Given{% else %}✗ Required{% endif %}
+                        </span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="badge {% if user_data.marketing_consent %}badge-success{% else %}badge-secondary{% endif %}">
+                            Marketing: {% if user_data.marketing_consent %}✓ Enabled{% else %}✗ Disabled{% endif %}
+                        </span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="badge {% if user_data.analytics_consent %}badge-success{% else %}badge-secondary{% endif %}">
+                            Analytics: {% if user_data.analytics_consent %}✓ Enabled{% else %}✗ Disabled{% endif %}
+                        </span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="badge {% if user_data.data_processing_consent %}badge-success{% else %}badge-secondary{% endif %}">
+                            Data Processing: {% if user_data.data_processing_consent %}✓ Enabled{% else %}✗ Disabled{% endif %}
+                        </span>
+                    </div>
+                    
+                    <div class="mt-3">
+                        <a href="{{ url_for('privacy_settings') }}" class="btn btn-sm btn-outline-primary">
+                            <i class="fas fa-cog"></i> Manage Privacy
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Account Actions -->
+            <div class="card">
+                <div class="card-header">
+                    <h5><i class="fas fa-tools"></i> Account Actions</h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="/change-password" class="btn btn-outline-warning btn-sm">
+                            <i class="fas fa-key"></i> Change Password
+                        </a>
+                        <a href="/download-data" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-download"></i> Download My Data
+                        </a>
+                        <a href="{{ url_for('request_account_deletion') }}" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-trash"></i> Delete Account
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

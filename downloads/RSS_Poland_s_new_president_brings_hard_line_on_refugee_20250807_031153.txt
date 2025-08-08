@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.rfi.fr/en/international/20250806-poland-s-new-president-brings-hard-line-on-refugees-abortion-and-rule-of-law

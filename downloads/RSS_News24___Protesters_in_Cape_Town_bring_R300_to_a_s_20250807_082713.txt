@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/news/protesters-in-cape-town-bring-r300-to-a-standstill-causing-major-peak-hour-disruptions-20250807-0298

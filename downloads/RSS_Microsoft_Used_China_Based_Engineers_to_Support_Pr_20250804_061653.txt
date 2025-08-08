@@ -1,0 +1,87 @@
+Investigative Journalism in the Public Interest
+ProPublica is a nonprofit newsroom that investigates abuses of power. Sign up to receive our biggest stories as soon as they’re published.
+Last month, Microsoft announced that Chinese state-sponsored hackers had exploited vulnerabilities in SharePoint, the company’s widely used collaboration software, to access the computer systems of hundreds of companies and government agencies, including the National Nuclear Security Administration and the Department of Homeland Security.
+The company did not include in its announcement, however, that support for SharePoint is handled by a China-based engineering team that has been responsible for maintaining the software for years.
+ProPublica viewed screenshots of Microsoft’s internal work-tracking system that showed China-based employees recently fixing bugs for SharePoint “OnPrem,” the version of the software involved in last month’s attacks. The term, short for “on premises,” refers to software installed and run on customers’ own computers and servers.
+Microsoft said the China-based team “is supervised by a US-based engineer and subject to all security requirements and manager code review. Work is already underway to shift this work to another location.”
+It’s unclear if Microsoft’s China-based staff had any role in the SharePoint hack. But experts have said allowing China-based personnel to perform technical support and maintenance on U.S. government systems can pose major security risks. Laws in China grant the country’s officials broad authority to collect data, and experts say it is difficult for any Chinese citizen or company to meaningfully resist a direct request from security forces or law enforcement. The Office of the Director of National Intelligence has deemed China the “most active and persistent cyber threat to U.S. Government, private-sector, and critical infrastructure networks.”
+ProPublica revealed in a story published last month that Microsoft has for a decade relied on foreign workers — including those based in China — to maintain the Defense Department’s cloud systems, with oversight coming from U.S.-based personnel known as digital escorts. But those escorts often don’t have the advanced technical expertise to police foreign counterparts with far more advanced skills, leaving highly sensitive information vulnerable, the investigation showed.
+ProPublica found that Microsoft developed the escort arrangement to satisfy Defense Department officials who were concerned about the company’s foreign employees, and to meet the department’s requirement that people handling sensitive data be U.S. citizens or permanent residents. Microsoft went on to win federal cloud computing business and has said in earnings reports that it receives “substantial revenue from government contracts.” ProPublica also found that Microsoft uses its China-based engineers to maintain the cloud systems of other federal departments, including parts of Justice, Treasury and Commerce.
+In response to the reporting, Microsoft said that it had halted its use of China-based engineers to support Defense Department cloud computing systems, and that it was considering the same change for other government cloud customers. Additionally, Defense Secretary Pete Hegseth launched a review of tech companies’ reliance on foreign-based engineers to support the department. Sens. Tom Cotton, an Arkansas Republican, and Jeanne Shaheen, a New Hampshire Democrat, have written letters to Hegseth, citing ProPublica’s investigation, to demand more information about Microsoft’s China-based support.
+Microsoft said its analysis showed that Chinese hackers were exploiting SharePoint weaknesses as early as July 7. The company released a patch on July 8, but hackers were able to bypass it. Microsoft subsequently issued a new patch with “more robust protections.”
+The U.S. Cybersecurity and Infrastructure Security Agency said that the vulnerabilities enable hackers “to fully access SharePoint content, including file systems and internal configurations, and execute code over the network.” Hackers have also leveraged their access to spread ransomware, which encrypts victims’ files and demands a payment for their release, CISA said.
+Read More
+A DHS spokesperson said there is no evidence that data was taken from the agency. A spokesperson for the Department of Energy, which includes the National Nuclear Security Administration, said in a statement the agency was “minimally impacted.”
+“At this time, we know of no sensitive or classified information that was compromised,” the spokesperson, Ben Dietderich said.
+Microsoft has said that, beginning next July, it will no longer support on-premises versions of SharePoint. It has urged customers to switch to the online version of the product, which generates more revenue because it involves an ongoing software subscription as well as usage of Microsoft’s Azure cloud computing platform. The strength of the Azure cloud computing business has propelled Microsoft’s share price in recent years. On Thursday, it became the second company in history to be valued at more than $4 trillion.
+Doris Burke contributed research.
+Filed under —
+I am a ProPublica reporter focused on technology, cybersecurity and business.
+I’m interested in the intersection of Big Tech and national security. If you’ve worked in tech or government, or otherwise have tips about this area, please get in touch.
+During Donald Trump’s second presidency, ProPublica will focus on the areas most in need of scrutiny. Here are some of the issues our reporters will be watching — and how to get in touch with them securely.
+Learn more about our reporting team. We will continue to share our areas of interest as the news develops.
+I cover health and the environment and the agencies that govern them, including the Environmental Protection Agency.
+I cover justice and the rule of law, including the Justice Department, U.S. attorneys and the courts.
+I report on immigration and labor, and I am based in Chicago.
+I cover housing and transportation, including the companies working in those fields and the regulators overseeing them.
+If you don’t have a specific tip or story in mind, we could still use your help. Sign up to be a member of our federal worker source network to stay in touch.
+Microsoft says it will no longer use China-based engineers to support the Pentagon. But ProPublica found that the tech giant has relied on its global workforce for years to support other federal clients, including the Justice Department.
+by Renee Dudley, with research by Doris Burke,
+            
+
+July 25, 2025, 12:05 p.m. EDT
+A ProPublica investigation found that a Microsoft program could expose Pentagon computers to cyberattacks from China, the nation’s greatest cyber adversary. Here are the biggest takeaways from our reporting.
+by ProPublica,
+            
+
+July 15, 2025, 5:30 p.m. EDT
+The Pentagon bans foreign citizens from accessing highly sensitive data, but Microsoft bypasses this by using engineers in China and elsewhere to remotely instruct American “escorts” who may lack expertise to identify malicious code.
+by Renee Dudley, with research by Doris Burke,
+            
+
+July 15, 2025, 5 a.m. EDT
+Asian crime syndicates’ online scams have reached industrial proportions, cheating victims around the world out of more than $44 billion a year. U.S. banks have been unable to stop them.
+by Cezary Podkul,
+            
+
+June 25, 2025, 5 a.m. EDT
+Experts who reviewed the code for ProPublica found numerous and troubling flaws in the system, providing a disturbing glimpse into how the Trump administration is allowing artificial intelligence to guide critical cuts in services.
+by Brandon Roberts and Vernal Coleman,
+            
+
+June 6, 2025, 5:05 a.m. EDT
+We obtained records showing how a Department of Government Efficiency staffer with no medical experience used artificial intelligence to identify which VA contracts to kill. “AI is absolutely the wrong tool for this,” one expert said.
+by Brandon Roberts, Vernal Coleman and Eric Umansky,
+            
+
+June 6, 2025, 5 a.m. EDT
+Venezuelan men deported by the Trump administration say they endured months of physical and mental abuse inside a Salvadoran prison. Though happy to be home, they say the fact that they were released is proof of how senseless their detentions were.
+by Perla Trevizo, ProPublica and The Texas Tribune, Melissa Sanchez and Mica Rosenberg, ProPublica, Ronna Rísquez, Alianza Rebelde Investiga,  and Adrián González, Cazadores de Fake News, photography and additional reporting by Adriana Loureiro Fernández for ProPublica and The Texas Tribune,
+            
+
+July 30, 2025, 6 a.m. EDT
+Authorities are investigating why two women fell ill at the Revolution Against Aging and Death Festival. They both received peptide injections, an alternative therapy promoted by Robert F. Kennedy Jr. as a way to fight aging and chronic disease.
+by Anjeanette Damon,
+            
+
+July 29, 2025, 6 a.m. EDT
+Lawmakers only budgeted $40 million of the nearly $800 million that districts say is needed to fix and maintain schools to keep them safe and operating. Gov. Mike Dunleavy then vetoed more than two-thirds of that.
+by Emily Schwing, KYUK,
+            
+
+Aug. 1, 2025, 5 a.m. EDT
+Local Reporting Network
+The DOJ’s Civil Rights Division had brought lawsuits accusing Louisiana of confining prisoners longer than they should and South Carolina of keeping mentally ill people in unreasonably restrictive group homes. Both cases are now on hold.
+by Corey G. Johnson,
+            
+
+July 31, 2025, 5 a.m. EDT
+Microsoft announced that Chinese state-sponsored hackers had exploited vulnerabilities in its popular SharePoint software but didn’t mention that it has long used China-based engineers to maintain the product.
+by Renee Dudley,
+            
+
+Aug. 1, 2025, 3:15 p.m. EDT
+© Copyright 2025 Pro Publica Inc.
+Creative Commons License (CC BY-NC-ND 3.0)
+Thank you for your interest in republishing this story. You are free to republish it so long as you do the following:
+Sign up for ProPublica’s Big Story newsletter and get our latest stories delivered straight to your inbox.

@@ -1,0 +1,43 @@
+{
+  "name": "wisenews-desktop",
+  "version": "1.0.0",
+  "description": "WiseNews desktop application",
+  "main": "electron-main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux",
+    "dev": "NODE_ENV=development electron ."
+  },
+  "build": {
+    "appId": "com.wisenews.app",
+    "productName": "WiseNews",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "**/*",
+      "!node_modules",
+      "!dist",
+      "!.git"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "static/icon-512.png"
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "static/icon-512.png"
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "static/icon-512.png"
+    }
+  },
+  "devDependencies": {
+    "electron": "^22.0.0",
+    "electron-builder": "^24.0.0"
+  }
+}

@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.etftrends.com/leveraged-inverse-channel/still-top-tier-palantir-1-billion-q2-revenue/

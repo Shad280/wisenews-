@@ -1,0 +1,603 @@
+{% extends "base.html" %}
+
+{% block title %}Register - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card stable-card register-card">
+                <div class="card-header bg-primary text-white stable-header">
+                    <h4 class="stable-title"><i class="fas fa-user-plus"></i> Create Your WiseNews Account</h4>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-info stable-alert">
+                        <h5><i class="fas fa-shield-alt"></i> Data Protection Notice</h5>
+                        <p>WiseNews is committed to protecting your privacy and complying with GDPR regulations. Your personal data will be processed securely and only for the purposes you consent to.</p>
+                    </div>
+
+                    <form method="POST" id="registerForm" class="stable-form">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group stable-form-group">
+                                    <label for="first_name" class="stable-label"><i class="fas fa-user"></i> First Name *</label>
+                                    <input type="text" class="form-control stable-input" id="first_name" name="first_name" 
+                                           value="{{ form_data.first_name if form_data else '' }}" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group stable-form-group">
+                                    <label for="last_name" class="stable-label"><i class="fas fa-user"></i> Last Name *</label>
+                                    <input type="text" class="form-control stable-input" id="last_name" name="last_name" 
+                                           value="{{ form_data.last_name if form_data else '' }}" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group stable-form-group">
+                            <label for="email" class="stable-label"><i class="fas fa-envelope"></i> Email Address *</label>
+                            <input type="email" class="form-control stable-input" id="email" name="email" 
+                                   value="{{ form_data.email if form_data else '' }}" required>
+                            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password"><i class="fas fa-lock"></i> Password *</label>
+                            <input type="password" class="form-control" id="password" name="password" required>
+                            <small class="form-text text-muted">
+                                Must be at least 8 characters with uppercase, lowercase, number, and special character.
+                            </small>
+                            <div class="password-strength" id="passwordStrength"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirm_password"><i class="fas fa-lock"></i> Confirm Password *</label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="country"><i class="fas fa-globe"></i> Country</label>
+                                    <select class="form-control" id="country" name="country">
+                                        <option value="">Select Country</option>
+                                        <option value="US">United States</option>
+                                        <option value="UK">United Kingdom</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="FR">France</option>
+                                        <option value="IT">Italy</option>
+                                        <option value="ES">Spain</option>
+                                        <option value="NL">Netherlands</option>
+                                        <option value="SE">Sweden</option>
+                                        <option value="NO">Norway</option>
+                                        <option value="DK">Denmark</option>
+                                        <option value="FI">Finland</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="date_of_birth"><i class="fas fa-calendar"></i> Date of Birth</label>
+                                    <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" 
+                                           value="{{ form_data.date_of_birth if form_data else '' }}">
+                                    <small class="form-text text-muted">Optional - for age-appropriate content.</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone_number"><i class="fas fa-phone"></i> Phone Number</label>
+                            <input type="tel" class="form-control" id="phone_number" name="phone_number" 
+                                   value="{{ form_data.phone_number if form_data else '' }}">
+                            <small class="form-text text-muted">Optional - for account security notifications.</small>
+                        </div>
+
+                        <hr>
+                        <h5><i class="fas fa-gavel"></i> Legal Agreement</h5>
+                        
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="terms_accepted" name="terms_accepted" required>
+                                <label class="form-check-label" for="terms_accepted">
+                                    <strong>I have read and agree to the <a href="/terms" target="_blank">Terms and Conditions</a></strong> *
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Required: You must accept our terms of service to create an account.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="privacy_policy_accepted" name="privacy_policy_accepted" required>
+                                <label class="form-check-label" for="privacy_policy_accepted">
+                                    <strong>I have read and understand the <a href="/privacy-policy" target="_blank">Privacy Policy</a></strong> *
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Required: Please review how we handle your personal data.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="age_verification" name="age_verification" required>
+                                <label class="form-check-label" for="age_verification">
+                                    <strong>I am at least 16 years old (or have parental consent if under 18)</strong> *
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Required: Age verification for legal compliance.
+                            </small>
+                        </div>
+
+                        <hr>
+                        <h5><i class="fas fa-shield-alt"></i> Privacy & Consent Settings</h5>
+                        
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="gdpr_consent" name="gdpr_consent" required>
+                                <label class="form-check-label" for="gdpr_consent">
+                                    <strong>I agree to the processing of my personal data</strong> *
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Required: We need your consent to create and manage your account. 
+                                <a href="/privacy-policy" target="_blank">Read our Privacy Policy</a>
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="data_processing_consent" name="data_processing_consent">
+                                <label class="form-check-label" for="data_processing_consent">
+                                    I agree to data processing for improved user experience
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Optional: Allow us to analyze your reading preferences to suggest relevant articles.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="analytics_consent" name="analytics_consent">
+                                <label class="form-check-label" for="analytics_consent">
+                                    I agree to analytics data collection
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Optional: Help us improve WiseNews by sharing anonymous usage statistics.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="marketing_consent" name="marketing_consent">
+                                <label class="form-check-label" for="marketing_consent">
+                                    I agree to receive marketing communications
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                Optional: Receive newsletters and updates about new features.
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="data_retention_agreed" name="data_retention_agreed">
+                                <label class="form-check-label" for="data_retention_agreed">
+                                    I understand the data retention policy
+                                </label>
+                            </div>
+                            <small class="form-text text-muted">
+                                We retain your data for as long as your account is active or as needed to provide services.
+                                <a href="/data-retention" target="_blank">Learn more</a>
+                            </small>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="terms_agreed" name="terms_agreed" required>
+                                <label class="form-check-label" for="terms_agreed">
+                                    I agree to the <a href="/terms" target="_blank">Terms of Service</a> *
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-lg">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+
+                    <hr>
+                    <div class="text-center">
+                        <p>Already have an account? <a href="{{ url_for('login_form') }}">Sign in here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.password-strength {
+    height: 5px;
+    margin-top: 5px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.password-weak {
+    background-color: #dc3545;
+    width: 33%;
+}
+
+.password-medium {
+    background-color: #ffc107;
+    width: 66%;
+}
+
+.password-strong {
+    background-color: #28a745;
+    width: 100%;
+}
+
+.form-check {
+    margin-bottom: 10px;
+}
+
+.form-check-label {
+    font-weight: normal;
+}
+</style>
+
+<script>
+// Password strength checker
+document.getElementById('password').addEventListener('input', function() {
+    const password = this.value;
+    const strengthDiv = document.getElementById('passwordStrength');
+    
+    let strength = 0;
+    
+    // Check length
+    if (password.length >= 8) strength++;
+    
+    // Check for uppercase
+    if (/[A-Z]/.test(password)) strength++;
+    
+    // Check for lowercase
+    if (/[a-z]/.test(password)) strength++;
+    
+    // Check for numbers
+    if (/\d/.test(password)) strength++;
+    
+    // Check for special characters
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) strength++;
+    
+    // Update visual indicator
+    strengthDiv.className = 'password-strength';
+    
+    if (strength < 3) {
+        strengthDiv.classList.add('password-weak');
+    } else if (strength < 5) {
+        strengthDiv.classList.add('password-medium');
+    } else {
+        strengthDiv.classList.add('password-strong');
+    }
+});
+
+// Password confirmation checker
+document.getElementById('confirm_password').addEventListener('input', function() {
+    const password = document.getElementById('password').value;
+    const confirmPassword = this.value;
+    
+    if (password !== confirmPassword) {
+        this.setCustomValidity('Passwords do not match');
+    } else {
+        this.setCustomValidity('');
+    }
+});
+
+// Form validation
+document.getElementById('registerForm').addEventListener('submit', function(e) {
+    const gdprConsent = document.getElementById('gdpr_consent').checked;
+    const termsAgreed = document.getElementById('terms_agreed').checked;
+    
+    if (!gdprConsent) {
+        e.preventDefault();
+        alert('GDPR consent is required to create an account.');
+        return false;
+    }
+    
+    if (!termsAgreed) {
+        e.preventDefault();
+        alert('You must agree to the Terms of Service to create an account.');
+        return false;
+    }
+    
+    // Check password match
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm_password').value;
+    
+    if (password !== confirmPassword) {
+        e.preventDefault();
+        alert('Passwords do not match.');
+        return false;
+    }
+});
+</script>
+
+{% block extra_css %}
+<style>
+/* Register Page Stability Improvements */
+.register-card.stable-card {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 12px !important;
+    border: none;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.stable-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    border: none;
+    padding: 1.5rem;
+}
+
+.stable-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+.stable-card-body {
+    padding: 2rem !important;
+}
+
+.stable-alert {
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #e3f2fd 0%, #f8f9fa 100%);
+    border-left: 4px solid #2196f3;
+    margin-bottom: 2rem;
+}
+
+.stable-alert h5 {
+    color: #1976d2;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.stable-alert p {
+    color: #424242;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+.stable-form {
+    min-height: 600px;
+}
+
+.stable-form-group {
+    margin-bottom: 1.5rem !important;
+}
+
+.stable-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+.stable-input, .stable-select {
+    border-radius: 8px;
+    border: 2px solid #e9ecef;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    min-height: 48px;
+}
+
+.stable-input:focus, .stable-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    outline: none;
+}
+
+.stable-checkbox {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.stable-checkbox-input {
+    width: 18px;
+    height: 18px;
+    margin: 0 !important;
+    margin-top: 2px !important;
+    flex-shrink: 0;
+}
+
+.stable-checkbox-label {
+    margin: 0 !important;
+    font-weight: 500;
+    color: #495057;
+    line-height: 1.4;
+}
+
+.stable-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 0.875rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.15s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    min-height: 50px;
+    will-change: transform;
+    backface-visibility: hidden;
+}
+
+.stable-btn:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.stable-btn:active {
+    transform: translateY(0) translateZ(0);
+}
+
+.stable-divider {
+    margin: 2rem 0;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.stable-links {
+    min-height: 50px;
+    text-align: center;
+}
+
+.stable-link {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s ease;
+}
+
+.stable-link:hover {
+    color: #5a6fd8;
+    text-decoration: underline;
+}
+
+/* Password strength indicator */
+.password-strength {
+    margin-top: 0.5rem;
+}
+
+.strength-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: #e9ecef;
+    overflow: hidden;
+}
+
+.strength-fill {
+    height: 100%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 2px;
+}
+
+.strength-weak { background-color: #dc3545; }
+.strength-medium { background-color: #ffc107; }
+.strength-strong { background-color: #28a745; }
+
+/* Form validation styles */
+.stable-input:invalid:not(:focus) {
+    border-color: #dc3545;
+}
+
+.stable-input:valid:not(:focus) {
+    border-color: #28a745;
+}
+
+/* Loading state */
+.stable-btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.stable-btn.loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 10px;
+    border: 2px solid transparent;
+    border-top: 2px solid currentColor;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .register-card.stable-card {
+        margin: 1rem;
+    }
+    
+    .stable-card-body {
+        padding: 1.5rem !important;
+    }
+    
+    .stable-header {
+        padding: 1.25rem !important;
+    }
+    
+    .stable-title {
+        font-size: 1.25rem;
+    }
+    
+    .stable-checkbox {
+        padding: 0.75rem;
+    }
+}
+
+/* Focus management */
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Smooth page transitions */
+.container {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Row and column stability */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-md-6, .col-md-8 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+</style>
+{% endblock %}
+{% endblock %}

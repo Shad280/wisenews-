@@ -1,0 +1,12 @@
+A Palantir exec had some strong words for Large Language Models.
+The Denver-based AI software company reported its first-ever billion-dollar quarter in Monday's Q2 earnings report, and the executives opened the investors call with comments on LLMs and how it plans to win the AI race.
+"LLMs, on their own, are at best a jagged intelligence divorced from even basic understanding," Ryan Taylor, the company's chief revenue officer and chief legal officer, told shareholders on the earnings call. "In one moment, they may appear to outperform humans in some problem-solving task, but in the next, they make catastrophic errors no human would ever make."
+"By contrast, our ontology is pure understanding concretized in software. This is reality, not rhetoric," Taylor added, referring to a company approach to AI that is based on using logic and data to recreate a digital model of how an organization works.
+These comments came after the company smashed analyst expectations and nearly doubled its commercial revenue in the US since last year's second quarter to $628 million, mostly thanks to a 10-year, $10 billion consolidated contract with the US Army.
+Company executives also outlined how it plans to win the AI race and what kind of talent would thrive at Palantir.
+Shyam Sankar, chief technology officer, told investors that the Trump administration's new AI Action Plan, which promotes the deregulation of AI, has taken "all the brakes off" and that industry customers are "really excited to get to work."
+These comments are in response to a Bank of America analyst, who asked how Palantir plans to win the AI race both in innovation and in talent retention.
+"If you are a highly talented person and would believe that the West is superior or at least tolerant of me telling you it every day, you'll not find a place anywhere I've seen — and now over 20 years I've interacted with almost every agency in the West, many of the largest companies, many of the smaller companies — that is comparable on time of joining to full agency like Palantir," Karp said toward the end of the call.
+"If you come to Palantir, your career is set," he added.
+Palantir did not immediately respond to a request for comment from Business Insider.
+Jump to

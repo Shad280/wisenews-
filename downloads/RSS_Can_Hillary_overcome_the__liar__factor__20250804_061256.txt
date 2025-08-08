@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.politico.com/story/2015/08/hillary-clinton-liar-factor-2016-121828.html

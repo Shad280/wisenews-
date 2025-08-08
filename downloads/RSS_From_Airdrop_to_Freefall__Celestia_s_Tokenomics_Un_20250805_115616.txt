@@ -1,0 +1,17 @@
+When Celestia airdropped its TIA token to 580,000 users in 2023 it was the plat du jour among traders and investors, with the project saying the release aligned with a new "modular era."
+However, despite rallying to a dizzying $20 price point in September, 2024, it has since slumped to less than $1.65 in a desperate plight spurred by a series of massive cliffs in the token's vesting schedule.
+Data from Tokenomist shows that core contributors and early backers, notably a slew of venture capitalists, could sell tokens purchased for relatively cheap in early fundraising rounds onto the open market.
+This coincided with TIA's precipitous move to the downside, although it's worth noting that the token's market cap, currently at $1.2 billion, actually increased by 50% despite the token losing 90% of its value due to the sheer scale of supply increase.
+TIA’s price collapse mirrors similar drawdowns across newer tokens. Blast’s 10.5 billion token unlock in June, over half of its supply, sent prices tumbling to all-time lows as investors struggled to absorb the sudden flood of liquidity.
+Berachain also suffered heavy losses after its airdrop and early vesting cliffs triggered a long squeeze, cutting its token nearly in half from launch highs. Meanwhile, Omni Network’s token dropped over 50% within a day of its debut as early recipients rushed to sell.
+These cases underscore how aggressive vesting schedules and poor post-launch liquidity continue to weigh on token performance, even among the most hyped projects.
+With Celestia’s TIA token down over 90% from its highs, investors are now watching whether the asset is bottoming, or unraveling. Following an October 2024 cliff unlock that released 176 million tokens (nearly doubling circulating supply), TIA has entered a phase of steady linear emissions. Roughly 409 million more tokens are scheduled to vest through early 2027, adding continuous pressure on price.
+Some traders see a setup for a short squeeze. According to Stix’s head of trading Taran Sabharwal, a significant portion of unlocked tokens were sold over-the-counter, with buyers hedging via perpetuals. This has led to elevated open interest and negative funding, a dynamic that, if reversed, could force shorts to cover. “Funding is deeply negative,” Sabharwal said. “If that resets, you could see a pop.”
+But barring a squeeze, fundamentals remain weak. Monthly vesting continues, liquidity is thin, and new demand for TIA is limited. Without a fresh catalyst, such as growth in Celestia’s modular ecosystem, TIA risks further downside as each unlock adds to sell pressure in an already oversupplied market.
+Oliver Knight is the co-leader of CoinDesk data tokens and data team. Before joining CoinDesk in 2022 Oliver spent three years as the chief reporter at Coin Rivet. He first started investing in bitcoin in 2013 and spent a period of his career working at a market making firm in the UK. He does not currently have any crypto holdings.
+More For You
+Base Network Suffers 1st Downtime Since 2023, Halts Operations for 29 Minutes
+The Coinbase-backed layer-2 blockchain went offline due to a block production issue, marking its first service disruption since 2023.
+What to know:
+About
+Contact

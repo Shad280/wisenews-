@@ -1,0 +1,53 @@
+As artificial intelligence threatens jobs across Europe, lawmakers face pressure to amend the AI Act
+While the US has largely pursued AI development with minimal regulatory oversight, Europe has taken a markedly different approach. The Data Protection Act, the GDPR, and the recent AI Act — aligned more closely with local workers’ laws and unions — have set the continent on a separate path.
+A recent joint study from the International Labour Organisation (ILO) and Poland’s National Research Institute (NASK) found that Europe — along with Asia — tops the list of most exposed regions to AI, far surpassing the Americas. With studies finding that one in four jobs are at risk of being transformed by AI globally, the impact in Europe — a region which faces a significant shortage of skilled workers — has become a pressing concern.
+“In many ways, it’s too early to tell where the AI wave will take us — we’ve only seen a fraction of its capabilities so far, which is equal parts exciting and terrifying,” Adam Maurer, COO at Connecting Software, a tech company operating across Europe, told TNW.
+In recent years, Big Tech companies have frequently carried out mass layoffs, driven both by revenue concerns and the belief that AI can take over many of the functions of employees from entry to mid-level, Maurer said.
+Some of these AI-driven layoffs have effectively targeted low performers, but other initiatives have been problematic. At Klarna, for example, they had concerning impacts on the business.
+Klarna, a Swedish fintech company that fired 700 workers and replaced them with AI, recently announced it will hire humans back again. The company’s CEO admitted to having made a “mistake” when replacing workers with AI.
+“It’s very clear that AI will definitely replace some jobs,” Maurer said. “On the other side of the coin, I think it will make some other jobs far more valuable.”
+In the EU, labour laws and regulations will shape the impact on jobs. Tech leaders believe they could lead to an AI future that benefits both workers and businesses.
+Maurer said there may be some expectation for the EU to step in and regulate job displacement. However, he argued that would stagnate growth and discourage startups from doing business in the union.
+But not every business leader agrees. Displacement will happen, but not because of AI, said Volodymyr Kubytskyi, head of AI at MacPaw, a Ukrainian software company developing solutions for Apple devices.
+“AI disrupts the traditional logic and processes of work,” Kubytskyi told TNW. “The real question is, ‘Can we redesign work processes before this outdated system collapses?’” To prevent the system from collapsing, leaders must stop thinking of AI as a quick-win or cost-saving tool, he said.
+Kubytskyi argued that while the AI Act was necessary to set a baseline for the industry, it doesn’t account for potential job disruption, which is a gap in the regulatory landscape.
+“To account for this, the AI Act should be updated, but it’s unlikely that this will happen soon,” he said.
+Roman Eloshvili, founder of ComplyControl, a UK compliance company, told TNW that the AI Act targets safety, transparency, and ethics, but falls short on socio-economic impact, especially on jobs. “So, amendments are necessary,” he said.
+“I expect that, over time, some of them, such as mandates for employer-led upskilling or protections for displaced workers, will appear to address workforce implications more effectively.”
+Will the AI Act become outdated or even counterproductive, especially if its stringent compliance mechanisms amplify inequalities in access to AI benefits? Or is it too early in the game to amend the law?
+Kris Jones, who leads the engineering team in Belfast for iVerify, believes it’s too soon to make changes. He said the AI Act’s risk-based framework already strikes a delicate balance between protecting fundamental rights and giving innovators room to breathe.
+Amending the regulation is not the only policy idea discussed among executives. Jones told TNW that member states have other levers to pull. “One idea floating around is an ‘AI token’ tax,” he said.
+A token tax would enable governments to generate revenue from AI usage that is producing income. These funds would then be redistributed through measures such as reskilling programs or support for affected industries.
+Dario Amodei, the CEO of Anthropic, recently told Axios that the concept could offset the inevitable wipeout of millions of entry-level white-collar jobs lost to AI.
+“Measures like that can cushion any job shocks without putting a blanket lid on innovation,” Amodei said.
+European labour and trade union bodies have often been ignored in the debate over AI job displacement. But many of them have already made official statements expressing concerns over AI.
+Ahead of the Paris AI Summit in February 2025, the ETUC, representing over 45 million European workers, issued an open letter about AI’s dangers. It warned that any efforts to ensure AI has “a positive impact on workers in the labour markets, quality jobs, and society will be annulled if AI is monopolised by a handful of tech companies”.
+The previous August, UK unions, including Accord and Unite, had called for regulations to protect workers from AI. They also proposed reskilling programs for workers, reminded companies of their transparency obligations, and emphasised the need for union consultations. They said that they intended to protect workers’ rights against AI‑driven hiring and firing, as well as defend IP rights for creative professionals.
+We asked tech firms whether they expect companies to face challenges with labour laws and unions in Europe.
+“Undoubtedly,” Eloshvili from ComplyControl said. “European robust worker protections and active unions present both a safeguard and challenges for AI integration.”
+Unions will demand transparency and worker involvement in AI deployment as automation threatens certain jobs, he said. “Firms that try to impose AI solutions without dialogue definitely risk conflict and backlash.”
+Despite the challenges, Eloshvili said it isn’t a zero-sum game. “When businesses and unions work together — for example, under joint upskilling initiatives — AI can become an effective tool for improving working conditions,” he said.
+Kubytskyi from MacPaw agreed that challenges will arise on this front and described the pushback from unions and workers’ organisations as “understandable”.
+“Clarity, structure, and communication are vital,” he said. “If you integrate new [AI] agents into existing workflows without involving people, you’ll get pushback, and for a good reason.”
+Kubytskyi also believes that conflict can be avoided. “To prevent this, we need to show people what AI does, what guardrails are in place, and why it will benefit the team.”
+Jorge Rieto, the CEO of big data and AI consultancy Dataco, agrees. “The most effective AI deployments are strategic,” he said, adding that careful analysis is needed to decipher which work tasks should be offloaded to AI.
+Jones from iVerify explained that regulations, trade unions, and workers’ rights in Europe are not necessarily an obstacle and could, in fact, be beneficial.
+He believes companies should embed responsible AI, bias checks, explainability, and human oversight loops into each product cycle. That way, they can transform the AI Act from a compliance hurdle into a market differentiator, Jones explained.
+“Europe can’t sit out the AI wave; the Bay Area now fields roughly half of the world’s unicorns and hoovers up 80% of GenAI funding, while much of the European workforce is ageing and a quarter of young Europeans can’t find work,” Jones said.
+Europe is not only facing competition from the usual suspects — Asia and the US — but also from Latin America, where heavy investment in technology is underway.
+Mahesh Raja, CEO of Ness Digital Engineering, which operates innovation centres in the UK and Czechia, highlighted how this lack of similar investment is hurting business. “Fifty-three percent of small- and medium-size businesses found the initial cost of AI implementation to be much higher than anticipated. We need to address the adoption challenges that stem from legacy IT infrastructures and improve the collective time-to-value for this emerging technology,” he said.
+However, Europe’s stringent regulations can become a premium brand for banks, healthtechs, and any sector that values trust and data privacy.
+”Europe shouldn’t just photocopy Silicon Valley,” Jones said. He believes the continent’s strengths lie in a combination of factors, including upskilling and STEM PhD graduates per capita. The privacy-first and safe AI leadership — solidified in regulation — can bolster the package.
+“Overall, Europe should push hard on AI augmentation and skill-building, or we’ll fall further behind,” Jones said. “But do it Europe’s way, leveraging our ethical governance, deep industrial know-how, and cross-border talent pipelines instead of importing the Valley’s blitz-and-break culture wholesale.”
+Ray Fernandez is a journalist with over a decade of experience reporting on technology, finance, science, and natural resources. His work ha
+
+                                                                                            
+                                                    (show all)
+                                                
+
+
+                                            Ray Fernandez is a journalist with over a decade of experience reporting on technology, finance, science, and natural resources. His work has been published in Bloomberg, TechRepublic, The Sunday Mail, eSecurityPlanet, and many others. He is a contributing writer for Espacio Media Incubator, which has reporters across the US, Europe, Asia, and Latin America.
+Get the most important tech news in your inbox each week.
+The heart of tech
+Copyright © 2006—2025, The Next Web B.V.
+                    Made with <3 in Amsterdam.

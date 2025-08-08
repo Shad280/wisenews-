@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+
+{% block title %}API Key Application - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card stable-card">
+                <div class="card-header bg-primary text-white">
+                    <h4><i class="fas fa-key"></i> WiseNews API Access Application</h4>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-info">
+                        <h5><i class="fas fa-info-circle"></i> API Access Information</h5>
+                        <p>WiseNews API provides programmatic access to our news aggregation data. All API requests require authentication and are subject to rate limiting.</p>
+                        <ul>
+                            <li><strong>Rate Limit:</strong> 100 requests per hour (can be increased upon approval)</li>
+                            <li><strong>Format:</strong> JSON responses</li>
+                            <li><strong>Authentication:</strong> API key required in header or query parameter</li>
+                            <li><strong>Approval Time:</strong> 24-48 hours</li>
+                        </ul>
+                    </div>
+
+                    <form id="apiApplicationForm" class="stable-form">
+                        <div class="form-group stable-form-group">
+                            <label for="email" class="stable-label"><i class="fas fa-envelope"></i> Email Address *</label>
+                            <input type="email" class="form-control stable-input" id="email" name="email" required>
+                            <small class="form-text text-muted">We'll use this to contact you about your application</small>
+                        </div>
+
+                        <div class="form-group stable-form-group">
+                            <label for="key_name" class="stable-label"><i class="fas fa-tag"></i> API Key Name *</label>
+                            <input type="text" class="form-control stable-input" id="key_name" name="key_name" required>
+                            <small class="form-text text-muted">A descriptive name for this API key (e.g., "My News App")</small>
+                        </div>
+
+                        <div class="form-group stable-form-group">
+                            <label for="organization" class="stable-label"><i class="fas fa-building"></i> Organization/Company</label>
+                            <input type="text" class="form-control stable-input" id="organization" name="organization">
+                            <small class="form-text text-muted">Optional: Your company or organization name</small>
+                        </div>
+
+                        <div class="form-group stable-form-group">
+                            <label for="purpose" class="stable-label"><i class="fas fa-clipboard-list"></i> Intended Use</label>
+                            <textarea class="form-control stable-textarea" id="purpose" name="purpose" rows="3" placeholder="Please describe how you plan to use the WiseNews API..."></textarea>
+                            <small class="form-text text-muted">Help us understand your use case (optional but recommended)</small>
+                        </div>
+
+                        <div class="form-group stable-form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="terms" required>
+                                <label class="form-check-label stable-label" for="terms" class="stable-label">
+                                    I agree to the <a href="/api/docs" target="_blank">API Terms of Service</a> and will not use the API for scraping or unauthorized data collection
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block stable-btn">
+                            <i class="fas fa-paper-plane"></i> Submit Application
+                        </button>
+                    </form>
+
+                    <div id="applicationResult" class="mt-3" style="display: none;"></div>
+                </div>
+            </div>
+
+            <div class="card mt-4">
+                <div class="card-header stable-header">
+                    <h5><i class="fas fa-book"></i> API Documentation</h5>
+                </div>
+                <div class="card-body stable-card-body">
+                    <p>Once your API key is approved, you can access:</p>
+                    <ul>
+                        <li><strong>GET /api/articles</strong> - Retrieve news articles</li>
+                        <li><strong>GET /api/sync</strong> - Trigger news synchronization</li>
+                        <li><strong>GET /api/duplicate-stats</strong> - Get duplicate detection statistics</li>
+                    </ul>
+                    <a href="/api/docs" class="btn btn-outline-primary stable-btn">
+                        <i class="fas fa-external-link-alt"></i> View Full Documentation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.getElementById('apiApplicationForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData);
+    
+    try {
+        const response = await fetch('/api/apply', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        });
+        
+        const result = await response.json();
+        const resultDiv = document.getElementById('applicationResult');
+        
+        if (result.success) {
+            resultDiv.innerHTML = `
+                <div class="alert alert-success">
+                    <h5><i class="fas fa-check-circle"></i> Application Submitted Successfully!</h5>
+                    <p><strong>Your API Key:</strong> <code>${result.api_key}</code></p>
+                    <p><strong>Status:</strong> ${result.status}</p>
+                    <p>${result.message}</p>
+                    <hr>
+                    <p><strong>Next Steps:</strong> ${result.next_steps}</p>
+                    <small class="text-muted">Keep your API key safe. You'll need it once approved.</small>
+                </div>
+            `;
+            this.reset();
+        } else {
+            resultDiv.innerHTML = `
+                <div class="alert alert-danger">
+                    <h5><i class="fas fa-exclamation-triangle"></i> Application Failed</h5>
+                    <p>${result.message || result.error}</p>
+                </div>
+            `;
+        }
+        
+        resultDiv.style.display = 'block';
+        resultDiv.scrollIntoView({ behavior: 'smooth' });
+        
+    } catch (error) {
+        document.getElementById('applicationResult').innerHTML = `
+            <div class="alert alert-danger">
+                <h5><i class="fas fa-exclamation-triangle"></i> Error</h5>
+                <p>Failed to submit application. Please try again.</p>
+            </div>
+        `;
+        document.getElementById('applicationResult').style.display = 'block';
+    }
+});
+</script>
+{% endblock %}

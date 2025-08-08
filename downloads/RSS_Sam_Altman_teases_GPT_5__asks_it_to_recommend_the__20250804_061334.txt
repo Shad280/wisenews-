@@ -1,0 +1,10 @@
+OpenAI CEO Sam Altman shared a screenshot on X on Sunday that appeared to be the much-anticipated GPT-5.
+Altman posted a seemingly innocuous comment on X praising the animated sci-fi show "Pantheon." The show is a cult favorite in tech circles and tackles themes like artificial general intelligence.
+In response, one X user asked if GPT-5 also recommends the show. Altman responded with a screenshot and said, "turns out yes!"
+turns out yes! pic.twitter.com/yVsZXKSmKR
+It is one of the first public glimpses of GPT-5, which is expected to be more powerful than earlier models, feature a larger context window, be able to take on more agentic tasks, and have multimodal capabilities.
+According to the screenshot, some things will remain the same, however, like ChatGPT's love of the em dash.
+OpenAI is under pressure to unveil a flashy new model as competitors like Google Deepmind, Meta, xAI, and Anthropic continue to nip at its heels.
+The screenshot shows that GPT-5 is capable, at the very least, of accurately synthesizing information from the internet. The bot said Pantheon has a "100% critic rating on Rotten Tomatoes" and is "cerebral, emotional, and philosophically intense."
+Business Insider confirmed that it does have a 100% rating on Rotten Tomatoes. Reviews of the show on the site use similar language. One review described it as "gripping, cerebral, remarkably high-concept." Another called it "a portrait of a rapidly changing world that takes care to document the emotional carnage left in its wake."
+Jump to

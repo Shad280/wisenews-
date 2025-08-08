@@ -1,0 +1,1 @@
+Error fetching article: 404 Client Error: Not Found for url: https://www.dailynewsegypt.com/2024/09/14/violence-kenya-ethiopia-border-insecurity/

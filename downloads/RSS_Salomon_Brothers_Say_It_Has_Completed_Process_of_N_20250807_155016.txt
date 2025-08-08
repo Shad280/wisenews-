@@ -1,0 +1,17 @@
+The revived Salomon Brothers announced on Thursday that it has completed the process of inserting OP_Return notices to bitcoin BTC$116,345.31 wallets assumed to have been abandoned.
+According to a press release shared with CoinDesk, the New York-based investment bank are sending the notices to prevent "rogue states and criminal organizations with significant resources" from potentially accessing these wallets in future.
+The process itself has created a wealth of debate, with speculation suggesting the Salomon Brothers have ties to people like Craig Wright.
+"[They] are using Bitcoin's own infrastructure as a bulletin board," David Carvalho, CEO of Naoris Protocol, told CoinDesk. "It's very clever. And they're going big, targeting some infamous wallets like the "1Feex" address, which holds around 80,000 BTC."
+According to the Salomon Brothers website, assets left untouched for 14 years may be considered legally abandoned under a "Doctrine of Abandonment,” thus leaving the front door open in terms of repossession.
+The method of gaining access to those wallets remains unclear, Carvalho told CoinDesk that the bitcoin community "isn't doing what needs to be done" to prevent methods like Quantum hacking.
+"The draft BIP proposals are entirely inadequate, and achieving consensus on a hard fork will take so long that it will be too late. Considering 6.51 million bitcoin worth of $700 billion is at stake, it’s staggering how slow the Bitcoin community is moving," he added.
+The Salomon Brothers said that its client, who remains anonymous, plans to allocate a portion of the recovered bitcoin to a fund intended for wallet owners who lost their keys, details of which will be released over the coming months.
+The notices sent to wallet holders give a 90 day deadline, within which they can "claim ownership" of the wallets by sending a transaction or filling out a form on the Salomon Brothers website.
+The press release notes that "some owners responded to the notices by moving their digital assets to new wallets."
+Oliver Knight is the co-leader of CoinDesk data tokens and data team. Before joining CoinDesk in 2022 Oliver spent three years as the chief reporter at Coin Rivet. He first started investing in bitcoin in 2013 and spent a period of his career working at a market making firm in the UK. He does not currently have any crypto holdings.
+More For You
+Ripple to Buy Stablecoin Payments Firm Rail for $200M to Boost RLUSD
+The Rail acquisition is a way for Ripple to delve deeper into the fast-growing stablecoin ecosystem after launching its RLUSD stablecoin
+What to know:
+About
+Contact

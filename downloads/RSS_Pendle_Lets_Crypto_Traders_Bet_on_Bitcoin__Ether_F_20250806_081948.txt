@@ -1,0 +1,15 @@
+Pendle has opened up Boros, a new platform on Arbitrum that allows users to directly trade the funding rates of bitcoin BTC$114,245.27 and ether (ETH) perpetual markets.
+Boros lets users go long or short on funding rate exposure using “Yield Units” (YUs), which are structurally similar to Pendle’s existing Yield Tokens. Each YU represents the realized funding yield on 1 unit of notional, such as 1 ETH or 1 BTC, until expiry, offering a mechanism to speculate or hedge against changing funding conditions on Binance and other major derivatives venues.
+The platform launched with capped parameters of $10 million open interest per market and 1.2x leverage.
+Additional listings (including SOL and BNB) and integrations (such as Hyperliquid and Bybit) are planned, but the team has deliberately paced growth to prioritize risk management and system validation.
+For traders who pay or earn funding fees on CEXs, Boros offers a new hedge: short YU if funding is expected to fall; long if rates are projected to spike.
+Liquidity provisioning is also in focus. Boros Vaults will allow LPs to supply capital to the system and earn swap fees, PENDLE incentives, and positive carry from favorable shifts in implied APR.
+These vaults mirror Pendle’s fixed yield vaults and are expected to drive protocol-side liquidity bootstrapping in early phases.
+PENDLE incentives will be distributed pro rata to order flow and notional filled, with an open referral program and fee rebates set to follow in the coming weeks.
+Shaurya is the Co-Leader of the CoinDesk tokens and data team in Asia with a focus on crypto derivatives, DeFi, market microstructure, and protocol analysis.Shaurya holds over $1,000 in BTC, ETH, SOL, AVAX, SUSHI, CRV, NEAR, YFI, YFII, SHIB, DOGE, USDT, USDC, BNB, MANA, MLN, LINK, XMR, ALGO, VET, CAKE, AAVE, COMP, ROOK, TRX, SNX, RUNE, FTM, ZIL, KSM, ENJ, CKB, JOE, GHST, PERP, BTRFLY, OHM, BANANA, ROME, BURGER, SPIRIT, and ORCA.He provides over $1,000 to liquidity pools on Compound, Curve, SushiSwap, PancakeSwap, BurgerSwap, Orca, AnySwap, SpiritSwap, Rook Protocol, Yearn Finance, Synthetix, Harvest, Redacted Cartel, OlympusDAO, Rome, Trader Joe, and SUN.
+More For You
+Bitcoin ETFs Bleed Millions for 4th Straight Day as U.S. Stagflation Fears Weigh on BTC and Stocks
+Investors withdrew $196 million from U.S.-listed bitcoin ETFs on Tuesday, while pouring money into ether ETFs.
+What to know:
+About
+Contact

@@ -1,0 +1,140 @@
+ProPublica is a nonprofit newsroom that investigates abuses of power. Sign up for Dispatches, a newsletter that spotlights wrongdoing around the country, to receive our stories in your inbox every week.
+This is how misinformation gets accepted as fact.
+A year after Oregon endures its most destructive fire season on record in 2020, state lawmakers order a map estimating the wildfire risk for every property in the state. It’s the kind of rating now available on real estate sites like Zillow. The state wants to use the results to decide where it will apply forthcoming codes for fire-resistant construction and protections around homes.
+Around the same time, insurance companies start dropping Oregon homeowners’ policies and raising premiums to limit future losses, much as they have done in other disaster-prone states. Insurers have their own sophisticated risk maps to guide them, but some brokers instead tell homeowners the blame lies with the map the state produced. The belief gets treated as fact both on social media and in mainstream news — even though insurers and regulators say it’s not true.
+The anger quickly spreads. Not only is Oregon’s map seen as at fault for higher insurance premiums, one conservative talk radio host calls it an attempt to “depopulate rural areas.” People in an anti-map Facebook group start musing about “Agenda 21,” a conspiracy theory implicating the United Nations in an effort to force people into cities so they can be more easily controlled.
+By the time the state pulls back the map and starts over, the myths about it have gained so much momentum there’s no stopping them. Oregon’s hotter, drier climate isn’t the problem; the map is.
+Christine Drazan, the Oregon House Republican leader, joins more than a dozen other Republicans in February 2025 behind a sign that says “REPEAL THE WILDFIRE HAZARD MAP.” She calls the state’s map “faulty, defective, harmful” and says it, along with related fire-safe building and landscaping rules that are in the works, is “a heavy-handed bureaucratic takeover” that’s kept rural residents from insuring or selling homes.
+“This map is destroying their property values,” she says.
+In the end, what’s most remarkable about the campaign against Oregon’s wildfire map isn’t that misinformation found an audience.
+It’s that it worked.
+Chris Dunn, a wildfire risk scientist at Oregon State University and a former wildland firefighter, thought Oregon had a chance to be a national model for adapting to wildfire risks when he was asked to make the statewide map in 2021.
+Oregon adopted a unique set of land use laws in the late 1960s and 1970s that helped curb urban sprawl. A coalition of farmers and conservationists formulated the legislation to preserve farmland and keep cities compact. To Dunn, protecting homes seemed within reach because the state had maintained agricultural buffers around cities, helping to serve as firebreaks.
+At the time, Zillow hadn’t yet come out with risk ratings. By building its own map, Oregon could use local input and make adjustments as it went along.
+The map results would help Oregon decide where to require a tool proven to save homes from wind-driven wildfires: “defensible space.” Owners would have to prune trees up and away from their houses; they would need to keep their roofs clear of leaves, needles and other dead vegetation. The idea was to deny wind-borne embers fuel that can burn down dwellings — a problem fresh on lawmakers’ minds after Oregon’s devastating 2020 fire season destroyed more than 2,000 homes.
+Dunn knew public communication would be important. Before the map was released, a private property rights group had warned its members in a letter that the map and its rules were worrisome. Gov. Kate Brown’s wildfire council, advising state leaders about the map’s rollout, knew about the letter and the potential for pushback, according to emails Dunn provided to ProPublica.
+Dunn said he was clear with Brown’s wildfire director, Doug Grafe, and others on the council that the map needed a significant, coordinated and effective communications campaign starting months before its release. Dunn said all the state developed was a one-page document on the roles of each government agency.
+(Brown and Grafe did not respond to ProPublica’s questions. Grafe told Oregon Public Broadcasting in 2022 that “we are committed to ensuring people understand what they can do to increase the likelihood their homes and properties will survive wildfires.”)
+Without state outreach, many homeowners learned their homes were in “extreme risk” zones from a July 2022 letter in the mail. It gave them 60 days to appeal the designation or face complying with new building and defensible-space codes the state was developing.
+Dunn could see that an uproar was building around his work. One community meeting where he was scheduled to present was canceled after state officials received threats of violence.
+On Facebook, more than 6,000 people joined a private group, ODF Wildfire Risk Map Support, a base of opposition. ODF stands for the Oregon Department of Forestry, the state agency overseeing the map’s creation.
+One member warned that state officials would snoop around their rural properties to tell owners what to do.
+“Guys this is a agenda 21,” said the member, referencing the conspiracy theory promoted in part by former Fox News talk show host Glenn Beck.
+Along with 31 thumbs-ups, eight angry faces and several other emojis, the post got 24 comments.
+Oregon can’t stop firestorms with regulations, conservative talk show host Bill Meyer told listeners, “unless you just get people off the land, and people wonder if that’s what the intent of all of this is ultimately.” Invoking a phrase associated with the Agenda 21 conspiracy, Meyer said rural residents would wind up having to move into “stack-and-pack” housing in Oregon’s cities. (Meyer did not respond to ProPublica’s emails.)
+State officials’ lack of communication with the public “led to really significant challenges,” Dunn told ProPublica. “We don’t know if we could have well-communicated and sort of avoided those conspiracy theories and misinformation. But it was just so propagated in the media that it just took over.”
+Jeff Golden, the Democratic state senator who helped draft the bill creating the map, said rural residents were understandably upset. The impacts of climate change were abstract to many people, Golden said, until they started getting those letters — at the same time insurance companies were dumping them.
+“It’s a really hard adjustment,” said Golden, chairperson of the Senate’s Natural Resources and Wildfire Committee. “This is a very big chicken coming home to roost.”
+Misinformation stoked people’s anger. “It makes a conversation that would have been difficult at best almost impossible,” Golden said.
+State officials withdrew the map just over a month after its 2022 release, saying that while they had met the legislative deadline for delivering it, “there wasn’t enough time to allow for the type of local outreach and engagement that people wanted, needed and deserved.”
+After homeowners blamed the newly released risk map for insurance cancellations and premium increases, Oregon’s insurance regulator formally asked insurers: Did you use the state risk map?
+Companies filed statements, required by law to be answered truthfully, saying they had not. Oregon’s then-insurance commissioner, Andrew Stolfi, announced the industry’s response publicly at the time.
+“Insurance companies have been using their own risk maps and other robust risk management tools to assess wildfire risk for years in making rating and underwriting decisions,” Stolfi said in a news release.
+Stolfi told consumers to submit any documentation they received from insurance companies showing that the state’s map had been used to influence underwriting or rating decisions. Jason Horton, a spokesperson for Oregon’s insurance regulator, told ProPublica the agency has not substantiated any complaints.
+For good measure, lawmakers in 2023 passed a bill explicitly banning insurers from using the map to set rates.
+But as Dunn reworked the map, the cloud of misinformation continued to swirl on social media.
+After Zillow and other real estate sites began posting wildfire risk ratings on properties nationwide last year, participants in the anti-map Facebook group alleged the state was behind it.
+“Who would decide to move out here after seeing that?” one asked.
+Zillow uses data from the research firm First Street, a Zillow spokesperson told ProPublica. A First Street spokesperson also said the group doesn’t use Oregon’s map.
+Andrew DeVigal, a University of Oregon journalism professor who has studied news ecosystems around the state, said places where news outlets have shrunk or closed down have grown particularly reliant on such Facebook groups. These community watercoolers help confirm participants’ biases. “You surround yourself with people who think like you, so you’re in your space,” he said.
+A ProPublica reporter identified himself to the group’s participants, asking in June for evidence that they’d been harmed by the state’s map. None provided definitive proof. Some acknowledged that they couldn’t demonstrate that the map had affected them but said they suspected it lowered their homes’ values or their insurability.
+Among the respondents was Chris Dalton, who lives in La Pine, south of Bend. Dalton described spending about $2,000 trimming trees and another $500 putting down gravel to create defensible space.
+However, Dalton said, the house’s location had been designated as being at moderate risk. That means it was not subject to the state’s defensible-space requirements. And even if Dalton’s property had been designated as high enough risk to be governed by the new regulations, they had not been finalized at that point and were not being enforced.
+“I guess you could say we used common sense to get ahead of future problems,” Dalton said.
+Oregon officials decided to give the map another try last year.
+They re-released it, this time doing more outreach. Following California’s lead and aiming to make the map less confusing, Oregon also changed its nomenclature. Properties weren’t in risk classes, they were in hazard zones. The highest rating was no longer “extreme,” it was “high.” Dunn, the Oregon State scientist, said he thought the map had survived the effort to kill it.
+But the backlash continued. Of the 106,000 properties found to face the highest hazard, more than 6,000 landowners  filed appeals. At least one county appealed the designation on behalf of every high-hazard property in its borders — more than 20,000 of them.
+In January, a new Oregon legislative session kicked off and wildfire preparedness was once again a top priority for the body’s Democratic leadership. Gov. Tina Kotek ordered a pause on decisions about homeowners’ appeals until the session ended, giving lawmakers a chance to decide what to do with the map.
+Drazan, the House minority leader, led fellow Republicans in opposition.
+She told ProPublica she “can’t know for sure” that the map caused homeowners to lose insurance or have trouble selling, as she’d asserted at February’s news conference. “I am reflecting what we were told,” she said.
+Regardless, she said, the mandates on protecting properties went too far. “We’re not looking for the state to be the president of our homeowner’s association and tell us what color our paint can be,” Drazan said.
+Even Golden, who’d helped shepherd the original bill mandating a map, began to waver.
+Golden described conversations with homeowners who struggled to understand why work they’d done to protect their properties from fires didn’t lower their state risk rating. He said the map couldn’t account for the specific characteristics of each property, ultimately making it clear to him that it couldn’t work.
+“I got tired of trying to convince people that the model was smarter than they were,” Golden said.
+Dunn told ProPublica that the map was not intended to reflect all the changing conditions at a particular property, only the hazards that the surrounding topography, climate, weather and vegetation create. It wasn’t about whether homeowners had cleared defensible space — just whether they should. The work they do makes their individual homes less vulnerable, he said, but it doesn’t eliminate the broader threats around them.
+By April, the map was on its way out.
+The state Senate voted unanimously, Golden included, to repeal the state’s defensible-space and home-hardening requirements as well as the map that showed where they would apply.
+Ahead of a 50-1 vote in the House to kill the map, familiar claims got repeated — including from a legislative leader’s office.
+Virgle Osborne, the House Republican whip, lamented in a May press release: “These wildfire maps have cost people property values, insurance increases, and many heartaches.”
+Osborne told ProPublica he stood behind his comment even though he had no evidence for it. Osborne said he believed Oregon’s maps helped insurance companies justify rate increases and policy cancellations.
+“I can’t give you, you know, here’s the perfect example of somebody that, you know, did it, but no insurance company is that foolish,” Osborne said. “They’re not going to write a statement that would put them in jeopardy. But common sense is going to tell you, when the state is on your side, the insurance companies are going to bail out. And they have.”
+With or without a map, former California insurance commissioner Dave Jones said, Oregon lawmakers could require insurers to provide incentives for homeowners to protect their properties. Colorado, for instance, ordered insurers this year to account for risk-reduction efforts in models used to decide who can obtain insurance and at what price.
+Jones nonetheless called Oregon’s decision to kill the wildfire map “very unfortunate.”
+“One of the biggest public health and safety challenges states are facing are climate-driven, severe-weather-related events,” Jones said. “Not giving people useful information to make decisions on that, to me, is not a path to public health and safety.”
+During the June vote in the Oregon House, the lone person who voted to preserve Oregon’s wildfire map and its associated mandates was Dacia Grayber, a Democrat from the Portland area who’s a longtime firefighter and worked a brush rig during the 2020 wildfires.
+She told ProPublica that by training, the first things she looks for while defending homes in wildland fires are the types of hazards the state intended to target: firewood under the deck, cedar shake siding, flammable juniper bushes growing close to homes.
+Read More
+Grayber said she was disturbed by the sentiment in the Capitol as the repeal vote neared. The decision to kill the map and eliminate home-hardening requirements, she said, had become a “feel-good, bipartisan vote.”
+“We are walking away from a very clear decision to build safer, more resilient communities,” Grayber said.
+The tragedy of it, she said, is “that it was 100% based in misinformation.”
+Kotek, Oregon’s Democratic governor, signed the repeal on July 24.
+Filed under —
+I cover the environment and business in the Pacific Northwest.
+If you live in the Pacific Northwest and have details about an abuse of power by a business, a government agency or an elected official, I want to hear from you.
+During Donald Trump’s second presidency, ProPublica will focus on the areas most in need of scrutiny. Here are some of the issues our reporters will be watching — and how to get in touch with them securely.
+Learn more about our reporting team. We will continue to share our areas of interest as the news develops.
+I cover health and the environment and the agencies that govern them, including the Environmental Protection Agency.
+I cover justice and the rule of law, including the Justice Department, U.S. attorneys and the courts.
+I report on immigration and labor, and I am based in Chicago.
+I cover housing and transportation, including the companies working in those fields and the regulators overseeing them.
+If you don’t have a specific tip or story in mind, we could still use your help. Sign up to be a member of our federal worker source network to stay in touch.
+Decades of NASA satellite data reveal how quickly the planet’s underground stores of fresh water have been depleted and how their use is contributing to rising sea levels. Here are the key takeaways.
+by ProPublica,
+            
+
+July 28, 2025, 5 a.m. EDT
+A new study finds that freshwater resources are rapidly disappearing, creating arid “mega” regions and causing sea levels to rise.
+by Abrahm Lustgarten, Graphics by Lucas Waldron, Illustrations by Olivier Kugler for ProPublica,
+            
+
+July 25, 2025, 2 p.m. EDT
+Law enforcement agencies, including the FBI, have collaborated with private security to surveil largely peaceful protesters opposed to the Thacker Pass mine, according to a ProPublica review of thousands of pages of law enforcement communications.
+by Mark Olalde,
+            
+
+July 23, 2025, 5 a.m. EDT
+DOGE cuts and voluntary resignations have severely hampered the agency as the nation enters the peak of fire season, with more than 1 million acres burning across 10 Western states.
+by Abe Streep,
+            
+
+July 22, 2025, 2:45 p.m. EDT
+A draft executive order viewed by ProPublica directs the secretary of transportation to “use all available authorities to eliminate or expedite” environmental reviews for launch licenses — a change Elon Musk’s SpaceX and others have long sought.
+by Heather Vogell and Topher Sanders,
+            
+
+July 22, 2025, 10:35 a.m. EDT
+Texas lawmakers’ inaction on flood prevention often hits rural and economically disadvantaged communities the hardest, experts said.
+by Lexi Churchill and Lomi Kriel, ProPublica and The Texas Tribune,
+            
+
+July 21, 2025, 1 p.m. CDT
+For months, Carmen, Lina and Doris awaited news about their loved ones, who were sent to a maximum-security Salvadoran prison by the Trump administration. Now that the families have been reunited, they open up about the harm they experienced.
+by Gerardo del Valle, ProPublica, and Alejandro Bonilla Suárez and Edwin Corona Ramos for ProPublica,
+            
+
+Aug. 6, 2025, 2:30 p.m. EDT
+Some of America’s largest law firms are refusing to take pro bono and paid legal work from groups that seek to hold the government to account on issues like environmental protection, LGBTQ+ rights and police accountability.
+by Molly Redden,
+            
+
+Aug. 6, 2025, 6 a.m. EDT
+Many of the same Republican lawmakers who have targeted the Consumer Financial Protection Bureau for cuts have collectively directed thousands of constituents’ complaints about banks, credit cards, loans and other products to the agency.
+by Joel Jacobs,
+            
+
+Aug. 6, 2025, 7 a.m. EDT
+Oil companies are holding back a large portion of revenue payments to the people they lease drilling rights from, often with little explanation. But the industry has an outsize influence in the state, and public officials have refused to take action.
+by Jacob Orledge, North Dakota Monitor, photography by Sarahbeth Maney, ProPublica,
+            
+
+Aug. 4, 2025, 6 a.m. EDT
+Local Reporting Network
+U.S. delegates have objected to use of the word “gender” in U.N. documents during forums on topics as varied as women’s rights, science and technology, global health, toxic pollution and chemical waste.
+by Lisa Song,
+            
+
+Aug. 5, 2025, 6 a.m. EDT
+© Copyright 2025 Pro Publica Inc.
+Creative Commons License (CC BY-NC-ND 3.0)
+Thank you for your interest in republishing this story. You are free to republish it so long as you do the following:
+Sign up for ProPublica’s Big Story newsletter and get our latest stories delivered straight to your inbox.

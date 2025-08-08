@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cancel Subscription - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .cancel-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+        }
+        .warning-icon {
+            font-size: 4rem;
+            color: #dc3545;
+            margin-bottom: 2rem;
+        }
+        .benefits-list {
+            background: rgba(220, 53, 69, 0.1);
+            border-left: 4px solid #dc3545;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+        .retention-offer {
+            background: rgba(40, 167, 69, 0.1);
+            border-left: 4px solid #28a745;
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="text-center py-4">
+                    <h1 class="display-4 text-white fw-bold mb-3" class="stable-page-title">
+                        Cancel Subscription
+                    </h1>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="cancel-card text-center">
+                    <i class="fas fa-exclamation-triangle warning-icon"></i>
+                    
+                    <h3 class="mb-4">We're sorry to see you go!</h3>
+                    
+                    {% if subscription %}
+                        <p class="lead mb-4">
+                            You're about to cancel your <strong>{{ subscription.plan_display_name }}</strong> subscription.
+                        </p>
+                        
+                        <div class="benefits-list text-start">
+                            <h5 class="text-danger mb-3">
+                                <i class="fas fa-times-circle"></i> What you'll lose:
+                            </h5>
+                            <ul class="list-unstyled">
+                                {% for feature in subscription.features %}
+                                <li class="mb-2">
+                                    <i class="fas fa-times text-danger"></i> {{ feature }}
+                                </li>
+                                {% endfor %}
+                                
+                                {% if subscription.max_articles_per_day == -1 %}
+                                <li class="mb-2">
+                                    <i class="fas fa-times text-danger"></i> Unlimited article access
+                                </li>
+                                {% endif %}
+                                
+                                {% if subscription.api_access %}
+                                <li class="mb-2">
+                                    <i class="fas fa-times text-danger"></i> API access with 1000 requests/day
+                                </li>
+                                {% endif %}
+                                
+                                {% if subscription.priority_support %}
+                                <li class="mb-2">
+                                    <i class="fas fa-times text-danger"></i> Priority customer support
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        
+                        <div class="retention-offer text-start">
+                            <h5 class="text-success mb-3">
+                                <i class="fas fa-gift"></i> Special offer - Don't leave yet!
+                            </h5>
+                            <p class="mb-3">
+                                We'd love to keep you as a valued member. Here's what we can offer:
+                            </p>
+                            <ul class="list-unstyled">
+                                <li class="mb-2">
+                                    <i class="fas fa-percentage text-success"></i> 
+                                    <strong>20% off</strong> your next billing cycle
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-pause text-success"></i> 
+                                    <strong>Pause</strong> your subscription for up to 3 months
+                                </li>
+                                <li class="mb-2">
+                                    <i class="fas fa-arrow-down text-success"></i> 
+                                    <strong>Downgrade</strong> to a lower-cost plan instead
+                                </li>
+                            </ul>
+                            
+                            <div class="text-center mt-3">
+                                <a href="mailto:support@wisenews.com?subject=Retention%20Offer" class="btn btn-success stable-btn">
+                                    <i class="fas fa-envelope"></i> Contact Support for Special Offer
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Good news:</strong> You can continue using WiseNews until 
+                            {{ subscription.subscription_end_date.strftime('%B %d, %Y') if subscription.subscription_end_date else 'the end of your billing period' }}.
+                            You can reactivate anytime before then.
+                        </div>
+                        
+                        <h5 class="mt-4 mb-3 stable-title">Are you sure you want to cancel?</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form method="POST" action="{{ url_for('cancel_subscription') }}" class="stable-form">
+                                    <button type="submit" class="btn btn-danger btn-lg w-100 stable-btn">
+                                        <i class="fas fa-times"></i> Yes, Cancel My Subscription
+                                    </button>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="{{ url_for('my_subscription') }}" class="btn btn-success btn-lg w-100 stable-btn">
+                                    <i class="fas fa-heart"></i> Keep My Subscription
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <p class="text-muted">
+                                <small>
+                                    <i class="fas fa-shield-alt"></i>
+                                    No cancellation fees. Your data will be preserved for 30 days in case you change your mind.
+                                </small>
+                            </p>
+                        </div>
+                        
+                    {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            You don't have an active subscription to cancel.
+                        </div>
+                        
+                        <a href="{{ url_for('subscription_plans') }}" class="btn btn-primary stable-btn">
+                            <i class="fas fa-plus"></i> View Available Plans
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="text-center py-4">
+            <a href="{{ url_for('my_subscription') }}" class="btn btn-outline-light btn-lg me-2 stable-btn">
+                <i class="fas fa-arrow-left"></i> Back to Subscription
+            </a>
+            <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg stable-btn">
+                <i class="fas fa-home"></i> Dashboard
+            </a>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

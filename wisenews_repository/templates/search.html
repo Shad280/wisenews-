@@ -1,0 +1,490 @@
+{% extends "base.html" %}
+
+{% block title %}Search{% if query %} - "{{ query }}"{% endif %} - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-content">
+        <!-- Search Header -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="search-header text-center">
+                    <div class="search-icon mb-3">
+                        <i class="fas fa-search fa-4x text-primary"></i>
+                    </div>
+                    {% if query %}
+                        <h1 class="display-5 mb-3">Search Results</h1>
+                        <p class="lead text-muted">
+                            Found <strong>{{ results|length }}</strong> article{{ 's' if results|length != 1 else '' }} for 
+                            <strong>"{{ query }}"</strong>
+                        </p>
+                    {% else %}
+                        <h1 class="display-5 mb-3">Search Articles</h1>
+                        <p class="lead text-muted">Find the news and articles you're looking for</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Form -->
+        <div class="row mb-5">
+            <div class="col-md-8 mx-auto">
+                <form action="{{ url_for('search') }}" method="GET" class="search-form">
+                    <div class="input-group input-group-lg">
+                        <input type="text" class="form-control search-input" name="q" 
+                               placeholder="Search for articles, keywords, authors..." 
+                               value="{{ query or '' }}" 
+                               autocomplete="off">
+                        <button class="btn btn-primary search-btn" type="submit">
+                            <i class="fas fa-search"></i> Search
+                        </button>
+                    </div>
+                    
+                    <!-- Search Suggestions -->
+                    {% if not query %}
+                    <div class="search-suggestions mt-3">
+                        <small class="text-muted">Try searching for: </small>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <button type="button" class="btn btn-outline-secondary btn-sm suggestion-btn" onclick="searchFor('technology')">
+                                Technology
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm suggestion-btn" onclick="searchFor('features')">
+                                Features
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm suggestion-btn" onclick="searchFor('guide')">
+                                Guide
+                            </button>
+                            <button type="button" class="btn btn-outline-secondary btn-sm suggestion-btn" onclick="searchFor('updates')">
+                                Updates
+                            </button>
+                        </div>
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+
+        <!-- Search Filters (if there's a query) -->
+        {% if query %}
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="search-filters">
+                    <h6><i class="fas fa-filter"></i> Filter Results:</h6>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ url_for('search', q=query) }}" 
+                           class="btn btn-sm {% if not request.args.get('category') %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                            All Results ({{ results|length }})
+                        </a>
+                        {% for category, count in category_counts %}
+                        <a href="{{ url_for('search', q=query, category=category) }}" 
+                           class="btn btn-sm {% if request.args.get('category') == category %}btn-primary{% else %}btn-outline-primary{% endif %}">
+                            {{ category }} ({{ count }})
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Search Results -->
+        {% if query %}
+            {% if results %}
+            <div class="row">
+                {% for article in results %}
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card article-card h-100">
+                        <div class="card-body d-flex flex-column">
+                            <!-- Article Header -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <span class="badge category-badge 
+                                    {% if article.category == 'Technology' %}bg-primary
+                                    {% elif article.category == 'Features' %}bg-warning text-dark
+                                    {% elif article.category == 'Guide' %}bg-success
+                                    {% elif article.category == 'Updates' %}bg-info text-dark
+                                    {% else %}bg-secondary{% endif %}">
+                                    <i class="fas fa-tag"></i> {{ article.category }}
+                                </span>
+                                <small class="text-muted">
+                                    <i class="fas fa-calendar"></i> {{ article.published_date.strftime('%b %d, %Y') }}
+                                </small>
+                            </div>
+
+                            <!-- Article Title with highlighted search terms -->
+                            <h5 class="card-title mb-3">
+                                <a href="{{ url_for('article_detail', id=article.id) }}" class="text-decoration-none text-dark article-link">
+                                    {{ article.title|safe }}
+                                </a>
+                            </h5>
+
+                            <!-- Article Preview with highlighted search terms -->
+                            <p class="card-text text-muted flex-grow-1">
+                                {{ (article.content[:200] + '...' if article.content|length > 200 else article.content)|safe }}
+                            </p>
+
+                            <!-- Article Meta -->
+                            <div class="article-meta mb-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-user"></i> {{ article.author }}
+                                    <span class="mx-2">•</span>
+                                    <i class="fas fa-clock"></i> {{ (article.content|length / 200)|round|int }} min read
+                                </small>
+                            </div>
+
+                            <!-- Article Footer -->
+                            <div class="mt-auto">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="search-relevance">
+                                        <small class="text-success">
+                                            <i class="fas fa-check-circle"></i> Match
+                                        </small>
+                                    </div>
+                                    <a href="{{ url_for('article_detail', id=article.id) }}" class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-arrow-right"></i> Read More
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Search Statistics -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="search-stats text-center">
+                        <div class="card">
+                            <div class="card-body">
+                                <h6><i class="fas fa-chart-bar"></i> Search Statistics</h6>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <h4 class="text-primary">{{ results|length }}</h4>
+                                        <small>Total Results</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="text-success">{{ category_counts|length }}</h4>
+                                        <small>Categories</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="text-warning">{{ query.split()|length }}</h4>
+                                        <small>Search Terms</small>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <h4 class="text-info">{{ (results|length / 100 * 100)|round|int }}%</h4>
+                                        <small>Relevance</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+            <!-- No Results -->
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="no-results py-5">
+                        <div class="search-icon mb-4">
+                            <i class="fas fa-search fa-5x text-muted"></i>
+                        </div>
+                        <h3 class="text-muted">No Results Found</h3>
+                        <p class="text-muted">We couldn't find any articles matching "<strong>{{ query }}</strong>"</p>
+                        
+                        <div class="search-suggestions mt-4">
+                            <h6>Try these suggestions:</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-lightbulb text-warning"></i> Check your spelling</li>
+                                <li><i class="fas fa-lightbulb text-warning"></i> Try different keywords</li>
+                                <li><i class="fas fa-lightbulb text-warning"></i> Use more general terms</li>
+                                <li><i class="fas fa-lightbulb text-warning"></i> Browse our categories</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <a href="{{ url_for('articles') }}" class="btn btn-primary me-2">
+                                <i class="fas fa-newspaper"></i> Browse All Articles
+                            </a>
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                                <i class="fas fa-home"></i> Back to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        {% else %}
+        <!-- Search Landing Page -->
+        <div class="row">
+            <div class="col-12">
+                <div class="search-landing">
+                    <h3 class="mb-4"><i class="fas fa-compass"></i> Explore by Category</h3>
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <a href="{{ url_for('category_articles', category='Technology') }}" class="text-decoration-none">
+                                <div class="card category-card h-100 text-center">
+                                    <div class="card-body">
+                                        <i class="fas fa-laptop-code fa-3x text-primary mb-3"></i>
+                                        <h5 class="card-title">Technology</h5>
+                                        <p class="card-text text-muted">Latest tech news and innovations</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <a href="{{ url_for('category_articles', category='Features') }}" class="text-decoration-none">
+                                <div class="card category-card h-100 text-center">
+                                    <div class="card-body">
+                                        <i class="fas fa-star fa-3x text-warning mb-3"></i>
+                                        <h5 class="card-title">Features</h5>
+                                        <p class="card-text text-muted">In-depth features and reports</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <a href="{{ url_for('category_articles', category='Guide') }}" class="text-decoration-none">
+                                <div class="card category-card h-100 text-center">
+                                    <div class="card-body">
+                                        <i class="fas fa-book fa-3x text-success mb-3"></i>
+                                        <h5 class="card-title">Guide</h5>
+                                        <p class="card-text text-muted">Helpful guides and tutorials</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-3 col-sm-6 mb-3">
+                            <a href="{{ url_for('category_articles', category='Updates') }}" class="text-decoration-none">
+                                <div class="card category-card h-100 text-center">
+                                    <div class="card-body">
+                                        <i class="fas fa-sync fa-3x text-info mb-3"></i>
+                                        <h5 class="card-title">Updates</h5>
+                                        <p class="card-text text-muted">Latest updates and news</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+.search-header {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    padding: 50px 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.search-input {
+    border-radius: 25px 0 0 25px;
+    border: 2px solid #e9ecef;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+}
+
+.search-input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.search-btn {
+    border-radius: 0 25px 25px 0;
+    padding: 15px 30px;
+    font-weight: 600;
+}
+
+.suggestion-btn {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.suggestion-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.search-filters {
+    background: rgba(248, 249, 250, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.article-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.article-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.article-link:hover {
+    color: #667eea !important;
+    transition: color 0.3s ease;
+}
+
+.category-badge {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.category-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.category-card:hover i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.no-results {
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 15px;
+    padding: 50px;
+}
+
+.search-stats .card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.search-relevance {
+    opacity: 0.8;
+}
+
+/* Highlight search terms in results */
+.highlight {
+    background-color: rgba(255, 193, 7, 0.3);
+    padding: 1px 2px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+/* Animation for search results */
+@keyframes searchResultFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.article-card {
+    animation: searchResultFadeIn 0.5s ease-out;
+}
+
+.article-card:nth-child(1) { animation-delay: 0.1s; }
+.article-card:nth-child(2) { animation-delay: 0.2s; }
+.article-card:nth-child(3) { animation-delay: 0.3s; }
+.article-card:nth-child(4) { animation-delay: 0.4s; }
+.article-card:nth-child(5) { animation-delay: 0.5s; }
+.article-card:nth-child(6) { animation-delay: 0.6s; }
+
+@media (max-width: 768px) {
+    .search-header {
+        padding: 30px 20px;
+    }
+    
+    .search-input {
+        border-radius: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .search-btn {
+        border-radius: 15px;
+        width: 100%;
+    }
+    
+    .input-group-lg {
+        flex-direction: column;
+    }
+}
+</style>
+
+<script>
+function searchFor(term) {
+    document.querySelector('input[name="q"]').value = term;
+    document.querySelector('.search-form').submit();
+}
+
+// Auto-focus search input
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector('.search-input');
+    if (searchInput && !searchInput.value) {
+        searchInput.focus();
+    }
+
+    // Add loading state to search form
+    const searchForm = document.querySelector('.search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', function() {
+            const submitBtn = this.querySelector('.search-btn');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Searching...';
+            submitBtn.disabled = true;
+        });
+    }
+
+    // Highlight search terms in results
+    const query = "{{ query|e }}";
+    if (query) {
+        highlightSearchTerms(query);
+    }
+});
+
+function highlightSearchTerms(query) {
+    const terms = query.toLowerCase().split(' ');
+    const articleCards = document.querySelectorAll('.article-card');
+    
+    articleCards.forEach(card => {
+        const title = card.querySelector('.card-title a');
+        const content = card.querySelector('.card-text');
+        
+        terms.forEach(term => {
+            if (term.length > 2) { // Only highlight terms longer than 2 characters
+                const regex = new RegExp(`(${term})`, 'gi');
+                
+                if (title) {
+                    title.innerHTML = title.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+                }
+                if (content) {
+                    content.innerHTML = content.innerHTML.replace(regex, '<span class="highlight">$1</span>');
+                }
+            }
+        });
+    });
+}
+
+// Search suggestions with enter key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && e.target.classList.contains('suggestion-btn')) {
+        e.target.click();
+    }
+});
+</script>
+{% endblock %}

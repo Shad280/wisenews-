@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Preferences - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .notification-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        .notification-section {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #28a745;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .category-tag {
+            display: inline-block;
+            background: #e9ecef;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            padding: 0.5rem 1rem;
+            margin: 0.25rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .category-tag.selected {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        .keyword-input {
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        .keyword-tag {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            border-radius: 15px;
+            padding: 0.25rem 0.75rem;
+            margin: 0.25rem;
+            font-size: 0.9rem;
+        }
+        .remove-keyword {
+            margin-left: 0.5rem;
+            cursor: pointer;
+            opacity: 0.7;
+        }
+        .remove-keyword:hover {
+            opacity: 1;
+        }
+        .notification-preview {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+        }
+        .time-picker {
+            max-width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container fade-in">
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center py-4">
+                    <h1 class="display-4 text-white fw-bold mb-3">
+                        <i class="fas fa-bell"></i> Notification Preferences
+                    </h1>
+                    <p class="lead text-white">Customize how and when you receive news updates</p>
+                </div>
+            </div>
+        </div>
+        
+        <form method="POST" action="{{ url_for('notification_preferences') }}" id="preferencesForm" class="stable-form">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Notification Types -->
+                    <div class="notification-card">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-cog"></i> Notification Settings
+                        </h4>
+                        
+                        <div class="notification-section">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h6 class="fw-bold mb-1">
+                                        <i class="fas fa-envelope text-primary"></i> Email Notifications
+                                    </h6>
+                                    <small class="text-muted">Receive news updates via email</small>
+                                </div>
+                                <label class="toggle-switch stable-label" class="stable-label">
+                                    <input type="checkbox" name="email_notifications" 
+                                           {% if preferences.email_notifications %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <div class="notification-section">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div>
+                                    <h6 class="fw-bold mb-1">
+                                        <i class="fas fa-mobile-alt text-success"></i> Push Notifications
+                                    </h6>
+                                    <small class="text-muted">Get instant notifications in your browser</small>
+                                </div>
+                                <label class="toggle-switch stable-label" class="stable-label">
+                                    <input type="checkbox" name="push_notifications" id="pushToggle"
+                                           {% if preferences.push_notifications %}checked{% endif %}>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div id="pushNotificationSetup" style="display: none;">
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i>
+                                    <strong>Enable Push Notifications:</strong> Click "Allow" when prompted by your browser.
+                                </div>
+                                <button type="button" class="btn btn-success btn-sm stable-btn" id="enablePushBtn">
+                                    <i class="fas fa-bell"></i> Enable Push Notifications
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Notification Frequency -->
+                        <div class="notification-section">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fas fa-clock text-warning"></i> Notification Frequency
+                            </h6>
+                            
+                            {% if not has_real_time_access %}
+                            <div class="alert alert-warning">
+                                <i class="fas fa-crown"></i>
+                                <strong>Premium Feature:</strong> Instant notifications are only available for Premium subscribers. 
+                                {{ access_message }}
+                                <a href="{{ url_for('subscription_plans') }}" class="btn btn-sm btn-warning ms-2 stable-btn">
+                                    <i class="fas fa-star"></i> Upgrade to Premium
+                                </a>
+                            </div>
+                            {% endif %}
+                            
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="notification_frequency" 
+                                               value="instant" id="instant"
+                                               {% if preferences.notification_frequency == 'instant' %}checked{% endif %}
+                                               {% if not has_real_time_access %}disabled{% endif %}>
+                                        <label class="form-check-label fw-bold {% if not has_real_time_access %}text-muted{% endif %} stable-label" for="instant" class="stable-label">
+                                            <i class="fas fa-bolt text-warning"></i> Instant
+                                            {% if not has_real_time_access %}<i class="fas fa-crown text-warning ms-1"></i>{% endif %}
+                                        </label>
+                                        <br><small class="text-muted">
+                                            {% if has_real_time_access %}
+                                                Get notified immediately
+                                            {% else %}
+                                                Premium only - Real-time alerts
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="notification_frequency" 
+                                               value="daily" id="daily"
+                                               {% if preferences.notification_frequency == 'daily' %}checked{% endif %}>
+                                        <label class="form-check-label fw-bold stable-label" for="daily" class="stable-label">
+                                            <i class="fas fa-calendar-day text-primary"></i> Daily
+                                        </label>
+                                        <br><small class="text-muted">Once per day digest (All plans)</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="notification_frequency" 
+                                               value="weekly" id="weekly"
+                                               {% if preferences.notification_frequency == 'weekly' %}checked{% endif %}>
+                                        <label class="form-check-label fw-bold stable-label" for="weekly" class="stable-label">
+                                            <i class="fas fa-calendar-week text-success"></i> Weekly
+                                        </label>
+                                        <br><small class="text-muted">Weekly summary (All plans)</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3" id="timePreferenceSection">
+                                <label for="time_preference" class="form-label fw-bold stable-label" class="stable-label">Preferred Time:</label>
+                                <input type="time" class="form-control time-picker stable-input" name="time_preference" 
+                                       value="{{ preferences.time_preference or '09:00' }}">
+                                <small class="text-muted">Choose when you'd like to receive your notifications</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Content Preferences -->
+                    <div class="notification-card">
+                        <h4 class="fw-bold mb-3">
+                            <i class="fas fa-filter"></i> Content Preferences
+                        </h4>
+                        
+                        <!-- Categories -->
+                        <div class="notification-section">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fas fa-tags text-primary"></i> Categories You're Interested In
+                            </h6>
+                            <p class="text-muted mb-3">Select the news categories you want to receive notifications for:</p>
+                            
+                            <div id="categorySelection">
+                                {% for category in available_categories %}
+                                <span class="category-tag" data-category="{{ category }}"
+                                      {% if category in preferences.categories %}data-selected="true"{% endif %}>
+                                    <i class="fas fa-tag"></i> {{ category }}
+                                </span>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="categories" id="selectedCategories" 
+                                   value="{{ preferences.categories|join(',') if preferences.categories else '' }}">
+                            
+                            <div class="mt-3">
+                                <small class="text-muted">
+                                    <i class="fas fa-info-circle"></i> 
+                                    If no categories are selected, you'll receive notifications for all categories.
+                                </small>
+                            </div>
+                        </div>
+                        
+                        <!-- Keywords -->
+                        <div class="notification-section">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fas fa-search text-success"></i> Keywords & Topics
+                            </h6>
+                            <p class="text-muted mb-3">Add keywords to get notified about specific topics:</p>
+                            
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control stable-input" id="keywordInput" 
+                                       placeholder="Enter a keyword or topic (e.g., AI, cryptocurrency, climate change)">
+                                <button type="button" class="btn btn-success stable-btn" id="addKeywordBtn">
+                                    <i class="fas fa-plus"></i> Add
+                                </button>
+                            </div>
+                            
+                            <div id="keywordTags">
+                                {% for keyword in preferences.keywords %}
+                                <span class="keyword-tag">
+                                    {{ keyword }}
+                                    <span class="remove-keyword" data-keyword="{{ keyword }}">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                </span>
+                                {% endfor %}
+                            </div>
+                            <input type="hidden" name="keywords" id="selectedKeywords" 
+                                   value="{{ preferences.keywords|join(',') if preferences.keywords else '' }}">
+                        </div>
+                        
+                        <!-- Sources -->
+                        <div class="notification-section">
+                            <h6 class="fw-bold mb-3">
+                                <i class="fas fa-newspaper text-info"></i> Preferred News Sources
+                            </h6>
+                            <p class="text-muted mb-3">Choose specific news sources you want notifications from:</p>
+                            
+                            <select class="form-select stable-select" name="sources" multiple size="5">
+                                {% for source in available_sources %}
+                                <option value="{{ source }}" 
+                                        {% if source in preferences.sources %}selected{% endif %}>
+                                    {{ source }}
+                                </option>
+                                {% endfor %}
+                            </select>
+                            <small class="text-muted">Hold Ctrl (Cmd on Mac) to select multiple sources</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <!-- Preview -->
+                    <div class="notification-card">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-user-circle"></i> Your Subscription
+                        </h5>
+                        
+                        {% if current_subscription %}
+                        <div class="alert {% if has_real_time_access %}alert-success{% else %}alert-info{% endif %}">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <strong>{{ current_subscription.plan_name }}</strong>
+                                    <br><small>Status: {{ current_subscription.status|title }}</small>
+                                    {% if current_subscription.status == 'trial' %}
+                                    <br><small class="text-muted">Trial ends: {{ current_subscription.trial_end_date }}</small>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    {% if has_real_time_access %}
+                                    <i class="fas fa-bolt text-warning fs-4" title="Real-time notifications enabled"></i>
+                                    {% else %}
+                                    <i class="fas fa-clock text-info fs-4" title="Daily/Weekly notifications only"></i>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {% if not has_real_time_access %}
+                        <div class="text-center">
+                            <a href="{{ url_for('subscription_plans') }}" class="btn btn-warning stable-btn">
+                                <i class="fas fa-crown"></i> Upgrade for Real-Time Alerts
+                            </a>
+                        </div>
+                        {% endif %}
+                        {% else %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            No active subscription found.
+                            <br><a href="{{ url_for('subscription_plans') }}" class="btn btn-sm btn-primary mt-2 stable-btn">
+                                Choose a Plan
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Preview -->
+                    <div class="notification-card">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-eye"></i> Notification Preview
+                        </h5>
+                        
+                        <div class="notification-preview">
+                            <div class="d-flex align-items-center mb-2">
+                                <i class="fas fa-bell text-primary me-2"></i>
+                                <strong>📰 New Technology Article</strong>
+                            </div>
+                            <p class="mb-2">Breaking: AI Revolution Continues with New Breakthrough</p>
+                            <small class="text-muted">
+                                <i class="fas fa-clock"></i> 
+                                <span id="previewTime">Daily at 9:00 AM</span>
+                            </small>
+                        </div>
+                        
+                        <div class="mt-3">
+                            <h6 class="fw-bold">Your Current Settings:</h6>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-envelope text-primary"></i> Email: <span id="emailStatus">Enabled</span></li>
+                                <li><i class="fas fa-mobile-alt text-success"></i> Push: <span id="pushStatus">Disabled</span></li>
+                                <li><i class="fas fa-clock text-warning"></i> Frequency: <span id="frequencyStatus">Daily</span></li>
+                                <li><i class="fas fa-tags text-info"></i> Categories: <span id="categoryCount">All</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Notification History -->
+                    <div class="notification-card">
+                        <h5 class="fw-bold mb-3">
+                            <i class="fas fa-history"></i> Recent Notifications
+                        </h5>
+                        
+                        {% if notification_history %}
+                            <div class="list-group list-group-flush">
+                                {% for notification in notification_history[:5] %}
+                                <div class="list-group-item {% if not notification.read %}bg-light{% endif %}">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fas fa-{% if notification.type == 'email' %}envelope{% else %}mobile-alt{% endif %} text-muted me-2"></i>
+                                        <div class="flex-grow-1">
+                                            <div class="fw-bold small">{{ notification.title }}</div>
+                                            <div class="text-muted small">{{ notification.message[:50] }}...</div>
+                                            <div class="text-muted small">
+                                                <i class="fas fa-clock"></i> {{ notification.sent_time }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <p class="text-muted text-center">
+                                <i class="fas fa-inbox fa-2x mb-2"></i><br>
+                                No notifications yet
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Save Button -->
+            <div class="row">
+                <div class="col-12">
+                    <div class="text-center mb-4">
+                        <button type="submit" class="btn btn-success btn-lg me-3 stable-btn">
+                            <i class="fas fa-save"></i> Save Preferences
+                        </button>
+                        
+                        {% if has_real_time_access %}
+                        <button type="button" class="btn btn-info me-3 stable-btn" onclick="sendTestNotification()">
+                            <i class="fas fa-bell"></i> Send Test Notification
+                        </button>
+                        <button type="button" class="btn btn-warning me-3 stable-btn" onclick="sendEnhancedTestNotification()">
+                            <i class="fas fa-star"></i> Test Enhanced Notification
+                        </button>
+                        {% else %}
+                        <button type="button" class="btn btn-secondary me-3 stable-btn" disabled title="Premium feature only">
+                            <i class="fas fa-crown"></i> Test Notification (Premium Only)
+                        </button>
+                        {% endif %}
+                        
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light btn-lg stable-btn">
+                            <i class="fas fa-arrow-left"></i> Back to Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Category selection
+        document.querySelectorAll('.category-tag').forEach(tag => {
+            if (tag.dataset.selected === 'true') {
+                tag.classList.add('selected');
+            }
+            
+            tag.addEventListener('click', function() {
+                this.classList.toggle('selected');
+                updateSelectedCategories();
+                updatePreview();
+            });
+        });
+        
+        function updateSelectedCategories() {
+            const selected = Array.from(document.querySelectorAll('.category-tag.selected'))
+                                  .map(tag => tag.dataset.category);
+            document.getElementById('selectedCategories').value = selected.join(',');
+        }
+        
+        // Keyword management
+        const keywordInput = document.getElementById('keywordInput');
+        const addKeywordBtn = document.getElementById('addKeywordBtn');
+        const keywordTags = document.getElementById('keywordTags');
+        
+        addKeywordBtn.addEventListener('click', addKeyword);
+        keywordInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                addKeyword();
+            }
+        });
+        
+        function addKeyword() {
+            const keyword = keywordInput.value.trim();
+            if (keyword && !isKeywordExists(keyword)) {
+                const tag = document.createElement('span');
+                tag.className = 'keyword-tag';
+                tag.innerHTML = `${keyword} <span class="remove-keyword" data-keyword="${keyword}"><i class="fas fa-times"></i></span>`;
+                keywordTags.appendChild(tag);
+                
+                tag.querySelector('.remove-keyword').addEventListener('click', function() {
+                    tag.remove();
+                    updateSelectedKeywords();
+                    updatePreview();
+                });
+                
+                keywordInput.value = '';
+                updateSelectedKeywords();
+                updatePreview();
+            }
+        }
+        
+        function isKeywordExists(keyword) {
+            return Array.from(keywordTags.querySelectorAll('.keyword-tag'))
+                        .some(tag => tag.textContent.trim().toLowerCase() === keyword.toLowerCase());
+        }
+        
+        function updateSelectedKeywords() {
+            const keywords = Array.from(keywordTags.querySelectorAll('.keyword-tag'))
+                                  .map(tag => tag.textContent.trim().replace(/\s*×\s*$/, ''));
+            document.getElementById('selectedKeywords').value = keywords.join(',');
+        }
+        
+        // Remove existing keywords
+        document.querySelectorAll('.remove-keyword').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.closest('.keyword-tag').remove();
+                updateSelectedKeywords();
+                updatePreview();
+            });
+        });
+        
+        // Push notification setup
+        const pushToggle = document.getElementById('pushToggle');
+        const pushSetup = document.getElementById('pushNotificationSetup');
+        const enablePushBtn = document.getElementById('enablePushBtn');
+        
+        pushToggle.addEventListener('change', function() {
+            if (this.checked && !('Notification' in window)) {
+                alert('This browser does not support push notifications');
+                this.checked = false;
+                return;
+            }
+            
+            if (this.checked && Notification.permission === 'default') {
+                pushSetup.style.display = 'block';
+            } else {
+                pushSetup.style.display = 'none';
+            }
+            updatePreview();
+        });
+        
+        enablePushBtn.addEventListener('click', function() {
+            if ('Notification' in window) {
+                Notification.requestPermission().then(function(permission) {
+                    if (permission === 'granted') {
+                        pushSetup.style.display = 'none';
+                        alert('Push notifications enabled successfully!');
+                        subscribeToPush();
+                    } else {
+                        pushToggle.checked = false;
+                        alert('Push notifications were denied. Please enable them in your browser settings.');
+                    }
+                    updatePreview();
+                });
+            }
+        });
+        
+        function subscribeToPush() {
+            // This would implement service worker registration and push subscription
+            // For now, it's a placeholder
+            console.log('Would subscribe to push notifications');
+        }
+        
+        // Preview updates
+        function updatePreview() {
+            const emailEnabled = document.querySelector('input[name="email_notifications"]').checked;
+            const pushEnabled = document.querySelector('input[name="push_notifications"]').checked;
+            const frequency = document.querySelector('input[name="notification_frequency"]:checked').value;
+            const timePreference = document.querySelector('input[name="time_preference"]').value;
+            const selectedCategories = document.querySelectorAll('.category-tag.selected').length;
+            
+            document.getElementById('emailStatus').textContent = emailEnabled ? 'Enabled' : 'Disabled';
+            document.getElementById('pushStatus').textContent = pushEnabled ? 'Enabled' : 'Disabled';
+            document.getElementById('frequencyStatus').textContent = frequency.charAt(0).toUpperCase() + frequency.slice(1);
+            document.getElementById('categoryCount').textContent = selectedCategories > 0 ? `${selectedCategories} selected` : 'All';
+            
+            let previewTimeText = '';
+            if (frequency === 'instant') {
+                previewTimeText = 'Immediately';
+            } else if (frequency === 'daily') {
+                previewTimeText = `Daily at ${timePreference}`;
+            } else if (frequency === 'weekly') {
+                previewTimeText = `Weekly on Monday at ${timePreference}`;
+            }
+            document.getElementById('previewTime').textContent = previewTimeText;
+        }
+        
+        // Time preference visibility
+        document.querySelectorAll('input[name="notification_frequency"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const timeSection = document.getElementById('timePreferenceSection');
+                timeSection.style.display = this.value !== 'instant' ? 'block' : 'none';
+                updatePreview();
+            });
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSelectedCategories();
+            updateSelectedKeywords();
+            updatePreview();
+            
+            // Hide time preference if instant is selected
+            const instantRadio = document.getElementById('instant');
+            if (instantRadio && instantRadio.checked) {
+                document.getElementById('timePreferenceSection').style.display = 'none';
+            }
+        });
+        
+        // Test enhanced notification function
+        function sendEnhancedTestNotification() {
+            fetch('/test-enhanced-notification', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('🎉 Enhanced notification queued successfully! This notification includes:\n\n• Detailed headline and context\n• Source credibility information\n• Personalized relevance explanation\n• Timing context\n• Category-specific impact analysis\n• Follow-up suggestions\n• Premium subscription value reminder\n\nCheck your notification history to see the full enhanced format!');
+                } else {
+                    alert('Error: ' + data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while sending the test notification.');
+            });
+        }
+    </script>
+</body>
+</html>

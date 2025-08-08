@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/weather/mondays-weather-winds-and-rough-seas-to-batter-parts-of-western-northern-cape-20250803-0867

@@ -1,0 +1,603 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="main-content">
+        <!-- Contact Header -->
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <div class="contact-header">
+                    <i class="fas fa-envelope fa-4x text-primary mb-3"></i>
+                    <h1 class="display-4 mb-3">Contact Us</h1>
+                    <p class="lead text-muted">We'd love to hear from you. Get in touch with our team.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-8 mb-5">
+                <div class="card contact-form-card">
+                    <div class="card-body">
+                        <h3 class="card-title mb-4">
+                            <i class="fas fa-paper-plane text-primary"></i> Send us a Message
+                        </h3>
+                        
+                        <form id="contactForm" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName" class="form-label">
+                                        <i class="fas fa-user"></i> First Name *
+                                    </label>
+                                    <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName" class="form-label">
+                                        <i class="fas fa-user"></i> Last Name *
+                                    </label>
+                                    <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">
+                                        <i class="fas fa-envelope"></i> Email Address *
+                                    </label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="phone" class="form-label">
+                                        <i class="fas fa-phone"></i> Phone Number
+                                    </label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">
+                                    <i class="fas fa-tag"></i> Subject *
+                                </label>
+                                <select class="form-select" id="subject" name="subject" required>
+                                    <option value="">Select a subject...</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="technical">Technical Support</option>
+                                    <option value="feature">Feature Request</option>
+                                    <option value="bug">Bug Report</option>
+                                    <option value="api">API Documentation</option>
+                                    <option value="partnership">Partnership</option>
+                                    <option value="press">Press Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="message" class="form-label">
+                                    <i class="fas fa-comment"></i> Message *
+                                </label>
+                                <textarea class="form-control" id="message" name="message" rows="6" 
+                                          placeholder="Please describe your inquiry in detail..." required></textarea>
+                                <div class="form-text">
+                                    <span id="charCount">0</span>/1000 characters
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="newsletter" name="newsletter">
+                                    <label class="form-check-label" for="newsletter">
+                                        <i class="fas fa-bell"></i> Subscribe to our newsletter for updates
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacy" name="privacy" required>
+                                    <label class="form-check-label" for="privacy">
+                                        I agree to the <a href="#" class="text-primary">Privacy Policy</a> and <a href="#" class="text-primary">Terms of Service</a> *
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-lg-4">
+                <div class="contact-info-sidebar">
+                    <!-- Quick Contact -->
+                    <div class="card contact-info-card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-info-circle text-primary"></i> Quick Contact
+                            </h5>
+                            <div class="contact-method mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-envelope fa-lg text-primary me-3"></i>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <br>
+                                        <a href="mailto:support@wisenews.com" class="text-decoration-none">
+                                            support@wisenews.com
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-method mb-3">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-clock fa-lg text-success me-3"></i>
+                                    <div>
+                                        <strong>Response Time</strong>
+                                        <br>
+                                        <small class="text-muted">Usually within 24 hours</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="contact-method">
+                                <div class="d-flex align-items-center">
+                                    <i class="fas fa-globe fa-lg text-info me-3"></i>
+                                    <div>
+                                        <strong>Support Portal</strong>
+                                        <br>
+                                        <small class="text-muted">24/7 Online Help</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Section -->
+                    <div class="card contact-info-card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-question-circle text-warning"></i> Frequently Asked
+                            </h5>
+                            <div class="faq-item mb-3">
+                                <h6>How do I search for articles?</h6>
+                                <small class="text-muted">
+                                    Use our search bar or browse by categories to find relevant content.
+                                </small>
+                            </div>
+                            
+                            <div class="faq-item mb-3">
+                                <h6>Is WiseNews free to use?</h6>
+                                <small class="text-muted">
+                                    Yes! WiseNews is completely free with no hidden charges.
+                                </small>
+                            </div>
+
+                            <div class="faq-item mb-3">
+                                <h6>How can I access the API?</h6>
+                                <small class="text-muted">
+                                    Visit our <a href="{{ url_for('api_status') }}" class="text-primary">API documentation</a> for details.
+                                </small>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-book"></i> View All FAQs
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="card contact-info-card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-share-alt text-success"></i> Follow Us
+                            </h5>
+                            <div class="social-links d-flex justify-content-around">
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                            </div>
+                            <p class="text-center text-muted mt-3 mb-0">
+                                <small>Stay updated with our latest news and features</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="additional-info">
+                    <h3 class="text-center mb-4">
+                        <i class="fas fa-lightbulb"></i> How We Can Help
+                    </h3>
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="card help-card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-headset fa-3x text-primary mb-3"></i>
+                                    <h5 class="card-title">Technical Support</h5>
+                                    <p class="card-text">
+                                        Having trouble with the platform? Our technical team is here to help with any issues.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card help-card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-code fa-3x text-success mb-3"></i>
+                                    <h5 class="card-title">API Integration</h5>
+                                    <p class="card-text">
+                                        Need help integrating our API? We provide comprehensive documentation and support.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="card help-card h-100">
+                                <div class="card-body text-center">
+                                    <i class="fas fa-handshake fa-3x text-warning mb-3"></i>
+                                    <h5 class="card-title">Partnerships</h5>
+                                    <p class="card-text">
+                                        Interested in partnering with us? Let's discuss how we can work together.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.contact-header {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+    padding: 60px 30px;
+    border-radius: 20px;
+}
+
+.contact-form-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.contact-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 2px solid #e9ecef;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-label {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 8px;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    border-radius: 25px;
+    padding: 12px 30px;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(45deg, #5a6fd8, #6a4190);
+    transform: translateY(-2px);
+}
+
+.contact-method {
+    padding: 15px;
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.contact-method:hover {
+    background: rgba(102, 126, 234, 0.1);
+}
+
+.faq-item {
+    padding: 15px;
+    background: rgba(248, 249, 250, 0.8);
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.social-links .btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.social-links .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.help-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.help-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+.help-card:hover i {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+.additional-info {
+    background: rgba(248, 249, 250, 0.5);
+    padding: 40px;
+    border-radius: 15px;
+}
+
+#charCount {
+    font-weight: 600;
+    color: #667eea;
+}
+
+.form-check-input:checked {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+/* Loading animation for form submission */
+.btn-loading {
+    position: relative;
+    color: transparent !important;
+}
+
+.btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    left: 50%;
+    margin-left: -8px;
+    margin-top: -8px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    border-top-color: transparent;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Form validation styles */
+.is-invalid {
+    border-color: #dc3545 !important;
+}
+
+.is-valid {
+    border-color: #28a745 !important;
+}
+
+@media (max-width: 768px) {
+    .contact-header {
+        padding: 40px 20px;
+    }
+    
+    .contact-header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .additional-info {
+        padding: 20px;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const messageTextarea = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+
+    // Character counter for message textarea
+    messageTextarea.addEventListener('input', function() {
+        const currentLength = this.value.length;
+        const maxLength = 1000;
+        
+        charCount.textContent = currentLength;
+        
+        if (currentLength > maxLength) {
+            charCount.style.color = '#dc3545';
+            this.classList.add('is-invalid');
+        } else if (currentLength > maxLength * 0.9) {
+            charCount.style.color = '#ffc107';
+            this.classList.remove('is-invalid');
+        } else {
+            charCount.style.color = '#667eea';
+            this.classList.remove('is-invalid');
+        }
+        
+        // Trim message if too long
+        if (currentLength > maxLength) {
+            this.value = this.value.substring(0, maxLength);
+            charCount.textContent = maxLength;
+        }
+    });
+
+    // Form validation
+    const inputs = contactForm.querySelectorAll('input[required], select[required], textarea[required]');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', validateField);
+        input.addEventListener('input', function() {
+            if (this.classList.contains('is-invalid')) {
+                validateField.call(this);
+            }
+        });
+    });
+
+    function validateField() {
+        const isValid = this.checkValidity();
+        
+        if (isValid) {
+            this.classList.remove('is-invalid');
+            this.classList.add('is-valid');
+        } else {
+            this.classList.remove('is-valid');
+            this.classList.add('is-invalid');
+        }
+    }
+
+    // Form submission
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validate all fields
+        let isFormValid = true;
+        inputs.forEach(input => {
+            validateField.call(input);
+            if (!input.checkValidity()) {
+                isFormValid = false;
+            }
+        });
+
+        if (!isFormValid) {
+            // Scroll to first invalid field
+            const firstInvalid = contactForm.querySelector('.is-invalid');
+            if (firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                firstInvalid.focus();
+            }
+            return;
+        }
+
+        // Show loading state
+        submitButton.classList.add('btn-loading');
+        submitButton.disabled = true;
+
+        // Simulate form submission (replace with actual submission logic)
+        setTimeout(function() {
+            submitButton.classList.remove('btn-loading');
+            submitButton.disabled = false;
+            
+            // Show success message
+            showAlert('success', 'Thank you! Your message has been sent successfully. We\'ll get back to you within 24 hours.');
+            
+            // Reset form
+            contactForm.reset();
+            inputs.forEach(input => {
+                input.classList.remove('is-valid', 'is-invalid');
+            });
+            charCount.textContent = '0';
+            
+        }, 2000);
+    });
+
+    // Subject-specific form adjustments
+    const subjectSelect = document.getElementById('subject');
+    subjectSelect.addEventListener('change', function() {
+        const messageTextarea = document.getElementById('message');
+        const placeholders = {
+            'technical': 'Please describe the technical issue you\'re experiencing, including any error messages...',
+            'feature': 'Please describe the feature you\'d like to see added to WiseNews...',
+            'bug': 'Please describe the bug you encountered, including steps to reproduce it...',
+            'api': 'Please describe what you need help with regarding our API...',
+            'partnership': 'Please describe your partnership proposal...',
+            'press': 'Please provide details about your press inquiry...',
+            'general': 'Please describe your inquiry in detail...'
+        };
+        
+        messageTextarea.placeholder = placeholders[this.value] || 'Please describe your inquiry in detail...';
+    });
+});
+
+function showAlert(type, message) {
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    const container = document.querySelector('.container');
+    container.insertBefore(alertDiv, container.firstChild);
+    
+    // Auto-dismiss after 5 seconds
+    setTimeout(function() {
+        if (alertDiv.parentNode) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+
+// Add smooth animations
+const cards = document.querySelectorAll('.contact-info-card, .help-card');
+cards.forEach((card, index) => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(20px)';
+    card.style.transition = 'all 0.6s ease-out';
+    
+    setTimeout(() => {
+        card.style.opacity = '1';
+        card.style.transform = 'translateY(0)';
+    }, index * 100);
+});
+</script>
+{% endblock %}

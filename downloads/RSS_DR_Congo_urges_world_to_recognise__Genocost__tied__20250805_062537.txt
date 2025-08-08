@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.rfi.fr/en/africa/20250804-dr-congo-urges-world-to-recognise-genocost-tied-to-decades-of-resource-war

@@ -1,0 +1,21 @@
+Bitcoin BTC$114,838.71 project Babylon took another step toward offering a decentralized finance (DeFi) experience on its $5 billion staking protocol akin to that seen elsewhere in the crypto world.
+The latest development is the introduction of trustless vaults, designed to allow BTC holders to deposit their tokens without relying on a centralized entity, as outlined in a new white paper shared with CoinDesk on Wednesday.
+In DeFi ecosystems, trustless vaults are a form of digital asset storage or management that removes the need for users to trust a central authority or intermediary. Instead, the systems use smart contracts to ensure security and enforce the rules of the vault.
+Babylon says its vaults will allow bitcoin to be used as collateral in DeFi applications such as lending and stablecoin issuance, as well as the staking that its protocol provides. Users can also earn yield on their BTC holdings by staking it to support the operation of proof-of-stake networks. They then receive rewards paid in BABY, Babylon's native token.
+The development forms part of the broader movement to utilize the enormous value held in bitcoin to power DeFi activity across other blockchains.
+Accounting for over 60% of the total cryptocurrency market cap, bitcoin is worth comfortably more than every other digital asset combined and could prove a far more potent source of blockchain-based fuel than any other crypto in existence.
+Existing bridges that allow bitcoin to be deployed on external blockchains rely on centralized third parties. Furthermore, Bitcoin's scripting language does not allow for covenants — mechanisms that allows specific conditions on how the funds can be spent in the future — although not for a lack of trying from developers. The absence makes it harder to build trustless bridges.
+Babylon proposes solving this by providing on-chain vaults, with the stored BTC tied to a specific smart contract protocol on an external chain.
+This harnesses BitVM3, the latest evolution of BitVM, a framework for enabling smart contracts on Bitcoin. BitVM3 is designed to improve the efficiency of its predecessor by moving the bulk of computational work off-chain using "garbled circuits," to make fraud proofs more compact on-chain.
+The trustless bitcoin vaults are "programmable, and withdrawals are permitted only when a zero-knowledge proof of a specific smart contract state is verified on the Bitcoin chain," Babylon said in the abstract of the paper.
+"Together with an appropriate Bitcoin scripting design of the vault, this eliminates the need for mutual trust among parties."
+Read More: Crypto Exchange Kraken Adds Bitcoin Staking Via Babylon as BTC Driven DeFi Picks Up
+Jamie has been part of CoinDesk's news team since February 2021, focusing on breaking news, Bitcoin tech and protocols and crypto VC. He holds BTC, ETH and DOGE.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+The Protocol: Solana’s Seeker Mobile Begins to Ship
+Also: Base Block Production Failure Due to Sequencer, Jito Proposes Rerouting Block Engine Fees and Cardano Core Devs Get $70M Budget.
+What to know:
+This article is featured in the latest issue of The Protocol, our weekly newsletter exploring the tech behind crypto, one block at a time. Sign up here to get it in your inbox every Wednesday.
+About
+Contact

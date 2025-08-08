@@ -1,0 +1,15 @@
+One-year ago today, markets were rattled by the unwind of the yen carry trade. As Japan shifted toward a tighter monetary policy and bond yields rose, the strategy of borrowing in a low-interest currency like the yen to buy higher-yielding assets became less attractive.
+At the time, capital rapidly fled risk assets. Bitcoin BTC$114,873.90 fell sharply, dropping nearly 30% to $49,000, a level previously seen at the time of the U.S. spot ETF debuts in January 2024.
+Since then, however, the largest cryptocurrency by market cap has rebounded strongly, rallying over 130% in the past year. Traditional markets also performed well, with the S&P 500 rising 24% and gold appreciating 40%, reflecting growing demand for both risk and defensive assets.
+In contrast, the dollar index (DXY), a gauge of the U.S. currency against a basket of peers, has weakened to just under 100 from 103 as returns on long-dated bonds marched higher. The U.S. 10-year yield increased to 4.2% from 3.7%, while the 30-year rose to 4.8% from 4.0%. The shifts were amplified by international interest-rate moves, with the U.K.’s 30-year yield climbing to 5.3% from 4.3% and Japan’s soaring to above 3% from 1.9%.
+Despite the price volatility, long-term bitcoin holders have steadily increased their share of supply.
+According to Glassnode's HODL Waves chart, which visualizes the distribution of bitcoin supply by age, each colored band represents the percentage of BTC in existence that last moved within a specific time range. The bands collectively show how long coins have been held, offering insight into investor behavior and conviction over time.The 7-to-10-year cohort now holds over 8%, up from 4% a year ago, while 6 to 12-month holders have increased from 8% to 15%. This suggests longer-term holders remain confident and are still accumulating, while newer investors entered the market during the rally.
+While a greater percentage of supply is now held by sub-3-month holders than in 2024, indicating many buyers have likely entered at higher prices, possibly chasing tops rather than buying the lows.
+James Van Straten is a Senior Analyst at CoinDesk, specializing in Bitcoin and its interplay with the macroeconomic environment. Previously, James worked as a Research Analyst at Saidler & Co., a Swiss hedge fund, where he developed expertise in on-chain analytics. His work focuses on monitoring flows to analyze Bitcoin's role within the broader financial system.
+In addition to his professional endeavors, James serves as an advisor to Coinsilium, a UK publicly traded company, where he provides guidance on their Bitcoin treasury strategy. He also holds investments in Bitcoin and Strategy (MSTR).
+More For You
+Capital B Buys 62 BTC for $7.13M, Boosting Holdings to 2,075 BTC
+Europe's first bitcoin treasury firm has reached BTC yield of 1,446.3% year to date.
+What to know:
+About
+Contact

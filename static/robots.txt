@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /static/
+Allow: /articles
+Allow: /search
+Allow: /analytics
+
+Disallow: /api/
+Disallow: /admin/
+Disallow: /downloads/
+
+Sitemap: https://wisenews.com/static/sitemap.xml

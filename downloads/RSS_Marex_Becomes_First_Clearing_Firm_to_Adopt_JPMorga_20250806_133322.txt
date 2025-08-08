@@ -1,0 +1,16 @@
+Marex (MRX), a global financial services platform, has become the first clearing firm to integrate Kinexys Digital Payments, a blockchain-based settlement system developed by JPMorgan (JPM), through a collaboration with Brevan Howard Digital, the company said in a press release on Wednesday.
+The initiative is aimed at modernizing payment infrastructure and reducing settlement risk by leveraging programmable, always-on digital ledger technology, the company said.
+Kinexys is part of JPMorgan’s broader push into digital assets and allows for near-instant settlement through blockchain deposit accounts, marking a significant shift from legacy rails to 24/7 digital clearing mechanisms.
+Brevan Howard Digital, which joined the Kinexys network in 2024, has been collaborating with partners to develop a broader ecosystem for blockchain-based financial services.
+Marex’s adoption of the platform underscores its commitment to streamlining operations and enhancing client service via next-gen infrastructure.
+“Kinexys by JPMorgan is the next generation of financial market infrastructure,” said Terry Hollingsworth, Marex’s global head of futures and over-the-counter (OTC) clearing sales, in the release.
+Akshika Gupta, global head of client solutions at Kinexys, said "24/7 settlements represents a significant milestone  in the advancement of financial market infrastructure,” reaffirming the firm’s role in pushing forward institutional-grade blockchain solutions.
+Read more: Jamie Dimon Says JPMorgan to Get More Involved With Stablecoins
+Will Canny is an experienced market reporter with a demonstrated history of working in the financial services industry. He's now covering the crypto beat as a finance reporter at CoinDesk. He owns more than $1,000 of SOL.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+Ripple’s Partnership With BDACS Pays Off as XRP Support Goes Live at Korean Crypto Custodian
+BDACS launches XRP custody for institutions in Korea, deepening Ripple partnership and boosting regulatory alignment for XRP’s global institutional use.
+What to know:
+About
+Contact

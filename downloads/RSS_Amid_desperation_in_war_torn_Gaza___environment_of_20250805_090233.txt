@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/video/20250805-amid-desperation-in-war-torn-gaza-environment-of-fear-intimidation-and-worry-in-west-bank

@@ -1,0 +1,35 @@
+Connecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and accurately delivers business and financial information, news and insight around the world
+Americas+1 212 318 2000
+EMEA+44 20 7330 7500
+Asia Pacific+65 6212 1000
+Connecting decision makers to a dynamic network of information, people and ideas, Bloomberg quickly and accurately delivers business and financial information, news and insight around the world
+Americas+1 212 318 2000
+EMEA+44 20 7330 7500
+Asia Pacific+65 6212 1000
+We look at the scenarios that could play out as the US and Israel consider their next steps.
+By Jonathan Tirone
+Share this article
+The US spent billions of dollars accounting for gram levels of uranium around the world since the end of the Cold War. It paid for UN monitoring and security summits while directly repatriating some 7,000 kilograms of the radioactive material from 47 countries to minimize the possibility that it could ever be used in a weapon.
+But on June 13, those decades of international effort were rolled back overnight. Even as Israeli attacks dealt grave damage to Iran’s capacity to make new nuclear fuel, it eliminated monitoring of the Islamic Republic’s vast inventory of enriched uranium.
+Iran’s 409 kg of highly-enriched uranium could be stored in 16 transport cylinders
+At last count, Iran possessed 409 kg of near-bomb-grade material, along with 8,000 kg of uranium enriched to lower levels. The whereabouts of that stockpile hasn’t been verified since the attacks began.
+Iran had warned it would take the material to a secure location if attacked. With the UN nuclear watchdog prohibited from inspecting for the first time since Iran began making fuel in the early 2000s, there’s now the possibility that Tehran has taken its stockpile to a clandestine facility.
+By failing to account for or destroy the nuclear-fuel inventory, Israel and the US have provided Iran with “strategic ambiguity” it didn’t have before the war began — a bargaining chip in any potential negotiations over what happens next.
+The dilemma is how to respond.
+Here’s a set of scenarios and options the US and the International Atomic Energy Agency could take in their approach to handling the situation. Click on the options below to see how events might unfold.
+Cold War Legacy
+The concept of strategic ambiguity was developed during the Cold War, most notably by Nobel Laureate economist Thomas Schelling, to manage uncertainty at the onset of the nuclear age. Effectively a measure of risk or threat, it allowed some level of guess work over capacity and intentions that was meant to prevent a slide toward all-out war. Israel, for example, uses it to manage perception of its own nuclear stockpile, neither denying nor confirming its existence.
+While intelligence agencies may be able to reduce ambiguity by using spies and analyzing satellite imagery, eliminating it altogether requires diplomacy or force. That’s because nuclear material needs some level of physical verification to ensure it hasn’t been diverted for military use. Less than 25 kg of highly enriched uranium is needed to construct a bomb. At last count, Iran possesses uranium enriched to various levels, which taken together is enough feedstock for two dozen weapons.
+After Israeli and US bombed three sites in June, governments  are attempting to detect Iranian efforts to reconstitute activities
+The amount of ambiguity the US and Israel can tolerate is set to play a decisive role in their actions through the end of the year. How much of Iran’s nuclear inventory are they willing to leave to chance? That’s the question facing decision makers.
+Given the Trump administration insists it has obliterated Iran’s nuclear program, the US and Israel may choose no further action. In such a scenario, actors would have to be highly tolerant of ambiguity, not least because the cache of uranium last seen in Iran’s possession will be weapons-usable for thousands of years.
+Another possibility is that the US and Israel have low tolerance for ambiguity, and that they are willing to go all in on compelling Iran to verify the state and location of its uranium. In the absence of an Iranian capitulation, they will need to enforce compliance, potentially with boots on the ground for verification. Even with the most powerful weapons at their disposal, air strikes alone cannot eliminate ambiguity over Iran’s fuel inventory status.
+Mutually acceptable, or negotiated ambiguity, is another potential outcome. A combination of remote-sensing, statistical methods and physical on-the-ground verification is used to account for material. That’s what UN nuclear inspectors were doing before the attack, publishing the results every three months.
+Methodology
+This simulation applies game theory to test potential pathways. Key decision points correspond to real-world events including IAEA and UN General Assembly meetings in September, as well as the deadline to reimpose Security Council sanctions before they expire on Oct. 18. It also weighs the length of time required by diplomats and legislators to implement certain decisions.
+The first set of scenarios involves resolving “ambiguity” over the location of Iran’s stockpile of enriched uranium:• In our “high ambiguity” scenario, sides take a low cost wait-and-see approach that doesn’t include physical verification of the uranium inventory.• In our “mutually acceptable ambiguity” scenario, sides opt for negotiations. They include physical verification of Iran’s uranium inventory at the cost of allowing some enrichment.• In our “zero ambiguity” scenario, the option is for escalation through military confrontation to force Iran to allow physical verification of its uranium inventory.
+We also look at potential outcomes and costs of the strategies used by Iran and the US. Scenarios were repeated in mixed-strategy simulations to test how the dynamics between Iran and the US may evolve.
+Key assumptions include:• Iran is 100% committed to retaining at least some enrichment capacity because not doing so would in practice result in additional capitulation. • The US needs to be at least 50% committed to enforcing a zero-enrichment strategy to involve troops on the ground.• The scenarios are constructed around the decision points in September and October and take into account the approximate diplomatic timelines required to convene meetings, draft resolutions and vote on the decisions.
+Editing: Rodney Jefferson
+With assistance from: Jeremy Scott Diamond
+Photos: Jody Megson and Aisha Ziaullah

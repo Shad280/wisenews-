@@ -1,0 +1,27 @@
+Authored by Vince Quill via CoinTelegraph.com,
+US President Donald Trump’s administration has signed a deal with OpenAI to provide the enterprise-level version of the ChatGPT platform to all federal agencies in an effort to “modernize” operations.
+Under the deal, all US government agencies will have access to the AI platform for $1 per agency to facilitate integration of AI into workflow operations, according to a Wednesday announcement from the US General Services Administration (GSA).
+The GSA, which is the US government’s procurement office, said the private-public partnership “directly supports” the White House’s AI Action Plan, a three-pillar strategy to establish US leadership in AI development recently disclosed by the admnistration.
+OpenAI CEO Sam Altman pitches the importance of the US investing in AI during a press conference with US President Donald Trump in January. Source: CBS News
+Despite the modernization efforts, critics say the ongoing AI race between nation-states may have negative implications for privacy, data protection policies, censorship, narrative control, cybersecurity, civil liberties and governance.
+In 2023, the US Space Force, a branch of the military, paused the use of generative AI tools at the organization, including ChatGPT, due to cybersecurity concerns over sensitive data critical to national security.
+Large-language models (LLMs) and AI service providers would need to overhaul their data protection standards before the tools can be widely adopted by the military, said Lisa Costa, Space Force’s deputy chief of space operations for technology and innovation at the time.
+Public concerns over automating government work with AI have also grown as the AI industry develops.
+Sweden Prime Minister Ulf Kristersson recently came under fire after acknowledging that he had consulted AI for policy decisions, according to The Guardian.
+Tom Samuelsson, a spokesperson for the prime minister, said Kristersson did not use AI to discuss classified matters or sensitive information related to national security.
+Large-language models and AI chatbots intake large quantities of user data from the internet and conversations with willing users, which trains the AI.
+The cybersecurity risks of information storage on centralized servers are the root of the privacy concerns voiced by users, tech executives, and civil liberties activists.
+ChatGPT conversations could be used as evidence against a user in a court of law, OpenAI CEO Sam Altman recently warned.
+The CEO said that AI conversations do not have any kind of privacy protections and are subject to government search and seizure laws.
+Assistance and Requests: Contact Us
+Tips: tips@zerohedge.com
+General: info@zerohedge.com
+Legal: legal@zerohedge.com
+Advertising: Contact Us
+Abuse/Complaints: abuse@zerohedge.com
+Make sure to read our "How To [Read/Tip Off] Zero Hedge Without Attracting The
+                        Interest Of [Human Resources/The Treasury/Black
+                        Helicopters]" Guide
+It would be very wise of you to study our privacy policy and our (non)policy on conflicts / full disclosure.Here's our Cookie Policy.
+How to report offensive comments
+Notice on Racial Discrimination.

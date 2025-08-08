@@ -1,0 +1,28 @@
+You are viewing Crypto Daybook Americas, your morning briefing on what happened in the crypto markets overnight and what's expected during the coming day. Crypto Daybook Americas will arrive in your inbox at 7 a.m. ET to kickstart your morning with comprehensive insights. If you're not already subscribed, click here. You won't want to start your day without it.
+By Omkar Godbole (All times ET unless indicated otherwise)
+As the crypto market reels under U.S. stagflation concerns, traders on the decentralized platform Polymarket are seeing a more than 50% chance of bitcoin BTC$113,917.83 prices dropping into five figures before year-end.
+Shares in the Yes side of Polymarket's "Will bitcoin dip below $100K before 2026" contract traded at 55 cents, implying a 55% probability. That pricing looks justified against the backdrop of recent economic data.
+"With both manufacturing and services ISMs now weaker than the most bearish forecasts, the market is coming to terms with something darker: Job growth could be rolling over hard," Stephen Innes, managing partner at SPI Asset Management, wrote in a post on FXStreet.
+"If you weigh these surveys together by their economic footprint, the implications are staggering — potential NFP prints dropping by over 100,000. Not just soft, but recessionary-soft. Yet the kicker? Inflation’s still sticky where it counts."
+Interest-rate traders have already ramped up bets on a Fed reduction. Still, observers are divided on whether rate cuts fueled by economic weakness bode well for risk assets, including cryptocurrencies.
+While lower rates often make riskier assets more attractive, Wall Street appears to expect some pain, and momentum traders have shifted to selling, according to Innes. The same is true of bitcoin, with Deribit-listed short-term puts now costing more than calls, reflecting downside concerns.
+Even so, the options market sees a lower chance of a sub-$100K bitcoin by year-end than Polymarket. That's evident from the -0.25 delta of the December expiry $100K put. Delta refers to the sensitivity of the option's price to a change in the underlying asset and represents the probability of the option expiring in profit.
+The outlook for ether (ETH) seems more constructive since the SEC said staking activities and the receipt of tokens, under certain conditions, do not constitute securities offerings. The guidance clears the way for the regulatory approval of spot ether ETFs with staking, which is expected to boost the cryptocurrency's appeal as a sort of internet bond.
+Speaking of the broader market, altcoins appeared weak compared with majors. The CoinDesk 80 Index traded 2.9% lower over 24 hours, slightly more than CoinDesk 20 Index's 2.3%.
+In other news, Japan's largest bank, SBI, announced an ETF tied to bitcoin and XRP. A governance proposal circulating in the Metamask community revealed the wallet's plan to launch a "MetaMask USD" stablecoin through a partnership with Stripe's payment infrastructure.
+In traditional markets, futures tied to the S&P 500 traded 0.2% higher, indicating a marginally positive open on Wall Street while the dollar index was flat around 98.70. Stay alert!
+The CoinDesk Policy & Regulation conference (formerly known as State of Crypto) is a one-day boutique event held in Washington on Sept. 10 that allows general counsels, compliance officers and regulatory executives to meet with public officials responsible for crypto legislation and regulatory oversight. Space is limited. Use code CDB10 for 10% off your registration through Aug. 31.
+By Shaurya Malwa
+Spot BTC ETFs
+Spot ETH ETFs
+Source: Farside Investors
+Jamie Crawley, Siamak Masnavi contributed reporting.
+Omkar Godbole is a Co-Managing Editor and analyst on CoinDesk's Markets team. He has been covering crypto options and futures, as well as macro and cross-asset activity, since 2019, leveraging his prior experience in directional and non-directional derivative strategies at brokerage firms. His extensive background also encompasses the FX markets, having served as a fundamental analyst at currency and commodities desks for Mumbai-based brokerages and FXStreet. Omkar holds small amounts of bitcoin, ether, BitTorrent, tron and dot.Omkar holds a Master's degree in Finance and a Chartered Market Technician (CMT) designation.
+Shaurya is the Co-Leader of the CoinDesk tokens and data team in Asia with a focus on crypto derivatives, DeFi, market microstructure, and protocol analysis.Shaurya holds over $1,000 in BTC, ETH, SOL, AVAX, SUSHI, CRV, NEAR, YFI, YFII, SHIB, DOGE, USDT, USDC, BNB, MANA, MLN, LINK, XMR, ALGO, VET, CAKE, AAVE, COMP, ROOK, TRX, SNX, RUNE, FTM, ZIL, KSM, ENJ, CKB, JOE, GHST, PERP, BTRFLY, OHM, BANANA, ROME, BURGER, SPIRIT, and ORCA.He provides over $1,000 to liquidity pools on Compound, Curve, SushiSwap, PancakeSwap, BurgerSwap, Orca, AnySwap, SpiritSwap, Rook Protocol, Yearn Finance, Synthetix, Harvest, Redacted Cartel, OlympusDAO, Rome, Trader Joe, and SUN.
+More For You
+Mixed Signals as ETFs Bleed Millions, Bitcoin, Ether Rise: Crypto Daybook Americas
+Your day-ahead look for Aug. 5, 2025
+What to know:
+You are viewing Crypto Daybook Americas, your morning briefing on what happened in the crypto markets overnight and what's expected during the coming day. Crypto Daybook Americas will arrive in your inbox at 7 a.m. ET to kickstart your morning with comprehensive insights. If you're not already subscribed, click here. You won't want to start your day without it.
+About
+Contact

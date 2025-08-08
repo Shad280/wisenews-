@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/europe/20250807-trump-says-putin-meeting-over-ukraine-war-likely-to-happen-very-soon

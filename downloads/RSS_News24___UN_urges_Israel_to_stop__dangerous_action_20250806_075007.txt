@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/world/un-urges-israel-to-stop-dangerous-actions-of-a-gaza-military-takeover-20250806-0298

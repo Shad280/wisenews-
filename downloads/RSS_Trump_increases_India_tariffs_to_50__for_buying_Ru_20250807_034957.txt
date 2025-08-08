@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/video/20250807-trump-increases-india-tariffs-to-50-for-buying-russian-oil

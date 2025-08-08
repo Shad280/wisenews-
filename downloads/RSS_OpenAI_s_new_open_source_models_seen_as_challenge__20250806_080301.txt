@@ -1,0 +1,7 @@
+Co-founder and CEO Sam Altman said in an X.com post that OpenAI’s two new open-source models were ‘a big deal’
+US artificial intelligence powerhouse OpenAI on Tuesday launched two open-source AI models, a move that is expected to challenge China’s dominance in the field.
+Sam Altman, co-founder and chief executive at the San Francisco-based firm, said in an X.com post that the two new open models, the GPT-OSS-120b and GPT-OSS-20b, were “a big deal”, adding that the company believed them to be “the best and most usable open models in the world”.
+The launch came as more Chinese open-source AI models – including the Qwen family developed by Alibaba Cloud, the AI and cloud computing unit of Alibaba Group Holding – are gaining global popularity. Alibaba owns the South China Morning Post.
+OpenAI is also expected to launch its GPT-5 model soon. Bloomberg News reported that OpenAI was in early talks about a potential stock sale for current and former employees that would value the company at about US$500 billion.
+According to OpenAI, the performance of the two open source models was comparable to o4-mini and o3-mini, two of the Microsoft-backed firm’s smaller o-series of reasoning models.
+OpenAI’s change of direction signals a return to the company’s origins – its last open model was in 2019 – in what is seen as a challenge to the flurry of Chinese open-source models. However, analysts said China still leads in the field in terms of sheer numbers of open models in the market.

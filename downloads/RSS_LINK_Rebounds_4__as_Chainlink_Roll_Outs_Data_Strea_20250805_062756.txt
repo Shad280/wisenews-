@@ -1,0 +1,18 @@
+The price of LINK (LINK), native token of oracle provider Chainlink, climbed 4% on Monday extending its rebound from late last week's crypto carnage.
+The token hit $17 during the session, up nearly 10% from the weekend lows, CoinDesk data shows.
+The move occurred as Chainlink rolled out market data feed for U.S. Equities and ETFs, aiming to connect traditional financial instrument with on-chain capital markets. Chainlink Data Streams now provide "real-time, high-throughput pricing" for assets such as SPY, QQQ, NVDA, AAPL, MSFT, and other instruments across 37 blockchain networks, according to a blog post. The feature enables use cases such as tokenized stock trading, perpetual futures and synthetic ETFs on blockchain rails.
+Solana-based DeFi protocol Kamino and decentraliized perpetuals trading venue GMX have already started using the service, according to the post.
+"This is a significant leap forward for tokenized markets — closing a critical gap between traditional finance and blockchain infrastructure," Johann Eid, Chief Business Officer at Chainlink Labs, said in the post.
+LINK exhibited remarkable bullish performance throughout the 24-hour trading session, climbing from $16.16 to $16.87 and delivering a substantial 4.39% gain, according to CoinDesk Research's technical analysis model.
+The persistent upward momentum, distinguished by progressively higher lows and consistently above-average volume during rally phases, indicates sustained bullish market sentiment with strong potential for additional gains targeting the $17.00 psychological threshold, the model said.
+Disclaimer: Parts of this article were generated with the assistance from AI tools and reviewed by our editorial team to ensure accuracy and adherence to our standards. For more information, see CoinDesk's full AI Policy.
+CoinDesk Analytics is CoinDesk's AI-powered tool that, with the help of human reporters, generates market data analysis, price movement reports, and financial content focused on cryptocurrency and blockchain markets.
+All content produced by CoinDesk Analytics is undergoes human editing by CoinDesk's editorial team before publication. The tool synthesizes market data and information from CoinDesk Data and other sources to create timely market reports, with all external sources clearly attributed within each article.
+CoinDesk Analytics operates under CoinDesk's AI content guidelines, which prioritize accuracy, transparency, and editorial oversight. Learn more about CoinDesk's approach to AI-generated content in our AI policy.
+Krisztian Sandor is a U.S. markets reporter focusing on stablecoins, tokenization, real-world assets. He graduated from New York University's business and economic reporting program before joining CoinDesk. He holds BTC, SOL and ETH.
+More For You
+Justin Sun Comes Back to Earth With Cosmic Plans for Tron Ecosystem
+After finally taking his $28 million Blue Origin ride, the Tron founder says the view from space changed his perspective and strengthened his commitment to innovation.
+What to know:
+About
+Contact

@@ -1,0 +1,1 @@
+Error fetching article: 401 Client Error: HTTP Forbidden for url: https://www.marketwatch.com/story/mcdonalds-stock-rises-as-adjusted-q2-profit-and-revenue-top-analyst-estimates-64b16aa8?mod=mw_rss_marketpulse

@@ -1,0 +1,1 @@
+Error fetching article: 401 Client Error: HTTP Forbidden for url: https://www.marketwatch.com/story/swiss-national-bank-cuts-interest-rates-by-a-half-point-to-0-5-ed1fce78?mod=mw_rss_realtimeheadlines

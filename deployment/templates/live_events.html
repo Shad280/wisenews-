@@ -1,0 +1,337 @@
+{% extends "base.html" %}
+
+{% block title %}Live Events - WiseNews{% endblock %}
+
+{% block extra_head %}
+<style>
+    .event-card {
+        background: white;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 15px 0;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .event-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    
+    .event-status {
+        display: inline-block;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    
+    .status-live {
+        background: #ff4444;
+        color: white;
+        animation: pulse 2s infinite;
+    }
+    
+    .status-upcoming {
+        background: #ffa500;
+        color: white;
+    }
+    
+    .status-finished {
+        background: #888;
+        color: white;
+    }
+    
+    @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.7; }
+        100% { opacity: 1; }
+    }
+    
+    .event-category {
+        display: inline-block;
+        padding: 2px 8px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        font-size: 11px;
+        margin-right: 8px;
+    }
+    
+    .subscribe-btn {
+        background: #2196f3;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    
+    .subscribe-btn:hover {
+        background: #1976d2;
+    }
+    
+    .subscribe-btn.subscribed {
+        background: #4caf50;
+    }
+    
+    .premium-badge {
+        background: #ffd700;
+        color: #000;
+        padding: 2px 6px;
+        border-radius: 3px;
+        font-size: 10px;
+        font-weight: bold;
+        margin-left: 8px;
+    }
+    
+    .search-bar {
+        width: 100%;
+        max-width: 500px;
+        padding: 12px;
+        border: 2px solid #ddd;
+        border-radius: 25px;
+        font-size: 16px;
+        margin: 20px 0;
+    }
+    
+    .filter-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0;
+    }
+    
+    .filter-tab {
+        padding: 8px 16px;
+        border: 2px solid #ddd;
+        border-radius: 20px;
+        background: white;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .filter-tab.active {
+        background: #2196f3;
+        color: white;
+        border-color: #2196f3;
+    }
+    
+    .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+        margin: 20px 0;
+    }
+    
+    .no-events {
+        text-align: center;
+        padding: 40px;
+        color: #666;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container fade-in">
+    <div class="hero-section">
+        <h1 class="stable-page-title">🔴 Live Events</h1>
+        <p>Follow sports, finance, conferences, and breaking news in real-time</p>
+        
+        {% if not has_real_time_notifications_access_template(session['user_id']) %}
+        <div class="premium-notice" style="background: #fff3cd; border: 1px solid #ffeaa7; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h4>🔔 Real-time Event Notifications</h4>
+            <p>Upgrade to Premium to receive instant notifications for live events and breaking updates!</p>
+            <a href="{{ url_for('subscription_plans') }}" class="btn btn-warning stable-btn">Upgrade to Premium</a>
+        </div>
+        {% endif %}
+    </div>
+    
+    <!-- Search Bar -->
+    <div style="text-align: center;">
+        <input type="text" class="search-bar" id="eventSearch" placeholder="Search for events, teams, companies...">
+    </div>
+    
+    <!-- Category Filters -->
+    <div class="filter-tabs">
+        <div class="filter-tab active" data-category="all">All Events</div>
+        {% for category in categories %}
+        <div class="filter-tab" data-category="{{ category }}">
+            📊 {{ category.replace('_', ' ').title() }}
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Status Filters -->
+    <div class="filter-tabs">
+        <div class="filter-tab" data-status="live">🔴 Live</div>
+        <div class="filter-tab" data-status="upcoming">🟡 Upcoming</div>
+        <div class="filter-tab" data-status="finished">⚫ Finished</div>
+    </div>
+    
+    <!-- Events Grid -->
+    <div class="events-grid" id="eventsGrid">
+        {% if has_active_events %}
+            {% for event in events %}
+            <div class="event-card" data-category="{{ event.category }}" data-status="{{ event.status }}">
+                <div class="event-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                    <div>
+                        <span class="event-status status-{{ event.status }}">{{ event.status }}</span>
+                        <span class="event-category">{{ event.category }}</span>
+                        {% if event.status == 'live' %}
+                        <span class="premium-badge">LIVE</span>
+                        {% endif %}
+                    </div>
+                    <button class="subscribe-btn {% if event.id in subscribed_events %}subscribed{% endif %}" 
+                            data-event-id="{{ event.id }}"
+                            onclick="toggleEventSubscription({{ event.id }})">
+                        {% if event.id in subscribed_events %}Subscribed{% else %}Follow{% endif %}
+                    </button>
+                </div>
+                
+                <h3 style="margin: 0 0 10px 0;">
+                    <a href="{{ url_for('live_event_detail', event_id=event.id) }}" style="text-decoration: none; color: #333;">
+                        {{ event.title }}
+                    </a>
+                </h3>
+                
+                <p style="color: #666; margin: 8px 0;">{{ event.description if event.description else 'Live event in progress...' }}</p>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+                    <div style="font-size: 12px; color: #888;">
+                        🗓️ {{ event.created_at[:19] if event.created_at else '' }}
+                        {% if event.update_count %}
+                        <br>� {{ event.update_count }} updates
+                        {% endif %}
+                    </div>
+                    <a href="{{ url_for('live_event_detail', event_id=event.id) }}" class="btn btn-sm btn-primary stable-btn">
+                        View Live Updates
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="no-events">
+            <h3>🚫 No Live Events</h3>
+            <p>There are currently no live events happening. Check back later for live sports, financial updates, and breaking news!</p>
+            <div style="margin-top: 20px;">
+                <p style="color: #888; font-size: 14px;">
+                    Live events typically include:
+                </p>
+                <ul style="color: #888; font-size: 14px; text-align: left; display: inline-block;">
+                    <li>🏈 Sports matches and tournaments</li>
+                    <li>📈 Stock market movements</li>
+                    <li>🏛️ Government announcements</li>
+                    <li>🚨 Breaking news events</li>
+                    <li>💰 Cryptocurrency updates</li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+// Search functionality
+document.getElementById('eventSearch').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase();
+    const eventCards = document.querySelectorAll('.event-card');
+    
+    eventCards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (text.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+
+// Category filtering
+document.querySelectorAll('.filter-tab[data-category]').forEach(tab => {
+    tab.addEventListener('click', function() {
+        // Update active tab
+        document.querySelectorAll('.filter-tab[data-category]').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        const category = this.dataset.category;
+        const eventCards = document.querySelectorAll('.event-card');
+        
+        eventCards.forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Status filtering
+document.querySelectorAll('.filter-tab[data-status]').forEach(tab => {
+    tab.addEventListener('click', function() {
+        const status = this.dataset.status;
+        const eventCards = document.querySelectorAll('.event-card');
+        
+        eventCards.forEach(card => {
+            if (card.dataset.status === status) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    });
+});
+
+// Subscribe/Unsubscribe functionality
+function toggleEventSubscription(eventId) {
+    const btn = document.querySelector(`button[data-event-id="${eventId}"]`);
+    const isSubscribed = btn.classList.contains('subscribed');
+    
+    const url = isSubscribed ? 
+        `/api/live-events/${eventId}/unsubscribe` : 
+        `/api/live-events/${eventId}/subscribe`;
+    
+    const data = isSubscribed ? {} : {
+        notification_types: ['all']  // Subscribe to all types by default
+    };
+    
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+        if (result.success) {
+            if (isSubscribed) {
+                btn.classList.remove('subscribed');
+                btn.textContent = 'Follow';
+            } else {
+                btn.classList.add('subscribed');
+                btn.textContent = 'Subscribed';
+            }
+        } else {
+            alert(result.message || 'Failed to update subscription');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred');
+    });
+}
+
+// Auto-refresh for live events every 30 seconds
+setInterval(function() {
+    // Only refresh if we're showing live events
+    const liveCards = document.querySelectorAll('.event-card[data-status="live"]');
+    if (liveCards.length > 0) {
+        location.reload();
+    }
+}, 30000);
+</script>
+{% endblock %}

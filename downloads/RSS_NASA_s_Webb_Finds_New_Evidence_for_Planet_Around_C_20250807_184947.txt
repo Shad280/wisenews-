@@ -1,0 +1,45 @@
+Astronomers using NASA’s James Webb Space Telescope have found strong evidence of a giant planet orbiting a star in the stellar system closest to our own Sun. At just 4 light-years away from Earth, the Alpha Centauri triple star system has long been a compelling target in the search for worlds beyond our solar system.
+Visible only from Earth’s Southern hemisphere, it’s made up of the binary Alpha Centauri A and Alpha Centauri B, both Sun-like stars, and the faint red dwarf star Proxima Centauri. Alpha Centauri A is the third brightest star in the night sky. While there are three confirmed planets orbiting Proxima Centauri, the presence of other worlds surrounding Alpha Centauri A and Alpha Centauri B has proved challenging to confirm.
+Now, Webb’s observations from its Mid-Infrared Instrument (MIRI) are providing the strongest evidence to date of a gas giant orbiting Alpha Centauri A. The results have been accepted in a series of two papers in The Astrophysical Journal Letters.
+If confirmed, the planet would be the closest to Earth that orbits in the habitable zone of a Sun-like star. However, because the planet candidate is a gas giant, scientists say it would not support life as we know it.
+“With this system being so close to us, any exoplanets found would offer our best opportunity to collect data on planetary systems other than our own. Yet, these are incredibly challenging observations to make, even with the world’s most powerful space telescope, because these stars are so bright, close, and move across the sky quickly,” said Charles Beichman, NASA’s Jet Propulsion Laboratory and the NASA Exoplanet Science Institute at Caltech’s IPAC astronomy center, co-first author on the new papers. “Webb was designed and optimized to find the most distant galaxies in the universe. The operations team at the Space Telescope Science Institute had to come up with a custom observing sequence just for this target, and their extra effort paid off spectacularly.”
+Several rounds of meticulously planned observations by Webb, careful analysis by the research team, and extensive computer modeling helped determine that the source seen in Webb’s image is likely to be a planet, and not a background object (like a galaxy), foreground object (a passing asteroid), or other detector or image artifact.
+The first observations of the system took place in August 2024, using the coronagraphic mask aboard MIRI to block Alpha Centauri A’s light. While extra brightness from the nearby companion star Alpha Centauri B complicated the analysis, the team was able to subtract out the light from both stars to reveal an object over 10,000 times fainter than Alpha Centauri A, separated from the star by about two times the distance between the Sun and Earth.
+While the initial detection was exciting, the research team needed more data to come to a firm conclusion. However, additional observations of the system in February 2025 and April 2025 (using Director’s Discretionary Time) did not reveal any objects like the one identified in August 2024.
+“We are faced with the case of a disappearing planet! To investigate this mystery, we used computer models to simulate millions of potential orbits, incorporating the knowledge gained when we saw the planet, as well as when we did not,” said PhD student Aniket Sanghi of Caltech in Pasadena, California. Sanghi is a co-first author on the two papers covering the team’s research.
+In these simulations, the team took into account both a 2019 sighting of the potential exoplanet candidate by the European Southern Observatory’s Very Large Telescope, the new data from Webb, and considered orbits that would be gravitationally stable in the presence of Alpha Centauri B, meaning the planet wouldn’t get flung out of the system.
+Researchers say a non-detection in the second and third round of observations with Webb isn’t surprising.
+“We found that in half of the possible orbits simulated, the planet moved too close to the star and wouldn’t have been visible to Webb in both February and April 2025,” said Sanghi.
+Based on the brightness of the planet in the mid-infrared observations and the orbit simulations, researchers say it could be a gas giant approximately the mass of Saturn orbiting Alpha Centauri A in an elliptical path varying between 1 to 2 times the distance between Sun and Earth.
+"If confirmed, the potential planet seen in the Webb image of Alpha Centauri A would mark a new milestone for exoplanet imaging efforts," Sanghi says. "Of all the directly imaged planets, this would be the closest to its star seen so far. It's also the most similar in temperature and age to the giant planets in our solar system, and nearest to our home, Earth," he says. "Its very existence in a system of two closely separated stars would challenge our understanding of how planets form, survive, and evolve in chaotic environments."
+If confirmed by additional observations, the team’s results could transform the future of exoplanet science.
+“This would become a touchstone object for exoplanet science, with multiple opportunities for detailed characterization by Webb and other observatories,” said Beichman.
+For example, NASA’s Nancy Grace Roman Space Telescope, set to launch by May 2027 and potentially as early as fall 2026, is equipped with dedicated hardware that will test new technologies to observe binary systems like Alpha Centauri in search of other worlds. Roman’s visible light data would complement Webb’s infrared observations, yielding unique insights on the size and reflectivity of the planet.
+The James Webb Space Telescope is the world’s premier space science observatory. Webb is solving mysteries in our solar system, looking beyond to distant worlds around other stars, and probing the mysterious structures and origins of our universe and our place in it. Webb is an international program led by NASA with its partners, ESA (European Space Agency) and CSA (Canadian Space Agency).
+To learn more about Webb, visit:
+https://science.nasa.gov/webb
+Click any image to open a larger version.
+View/Download all image products at all resolutions for this article from the Space Telescope Science Institute.
+View/Download the science paper by C. Beichman et al.
+View/Download the science paper by A. Sanghi et al.
+Laura Betz - laura.e.betz@nasa.govNASA’s Goddard Space Flight Center, Greenbelt, Md.
+Hannah Braun - hbraun@stsci.eduSpace Telescope Science Institute, Baltimore, Md.
+Christine Pulliam - cpulliam@stsci.eduSpace Telescope Science Institute, Baltimore, Md.
+Video: How to Study Exoplanets: Webb and Challenges
+Webb Blog: NASA’s Webb Takes Its First-Ever Direct Image of Distant World
+Webb Blog: How Webb’s Coronagraphs Reveal Exoplanets in the Infrared
+Video: Eclipse/Coronagraph Animation
+More Webb News
+More Webb Images
+Webb Science Themes
+Webb Mission Page
+What is the Webb Telescope?
+SpacePlace for Kids
+Ciencia de la NASA
+NASA en español
+Space Place para niños
+Webb is the premier observatory of the next decade, serving thousands of astronomers worldwide. It studies every phase in the…
+Exoplanets
+Stars
+Universe
+NASA explores the unknown in air and space, innovates for the benefit of humanity, and inspires the world through discovery.

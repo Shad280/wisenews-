@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/middle-east/20250803-at-least-68-african-migrants-dead-and-scores-missing-after-ship-capsizes-off-yemen-coast

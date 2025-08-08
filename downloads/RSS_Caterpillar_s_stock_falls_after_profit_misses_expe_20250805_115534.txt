@@ -1,0 +1,1 @@
+Error fetching article: 401 Client Error: HTTP Forbidden for url: https://www.marketwatch.com/story/caterpillars-stock-falls-after-profit-misses-expectations-again-to-offset-a-raised-outlook-d92aa1b6?mod=mw_rss_marketpulse

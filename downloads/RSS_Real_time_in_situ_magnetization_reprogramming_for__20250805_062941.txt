@@ -1,0 +1,101 @@
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+            the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+            Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+            and JavaScript.
+Advertisement
+Nature
+
+                         (2025)Cite this article
+We are providing an unedited version of this manuscript to give early access to its
+                            findings. Before final publication, the manuscript will undergo further editing. Please note
+                            there may be errors present which affect the content, and all legal disclaimers apply.
+Magnetic soft robots offer considerable potential across various scenarios, such as biomedical applications and industrial tasks, due to their shape programmability and reconfigurability, safe interaction, and biocompatibility1–4. Despite recent advances, magnetic soft robots are still limited by the difficulties in reprogramming their required magnetization profiles in real time on the spot (in situ), which is essential for performing multiple functions or executing diverse tasks5,6. Here, we introduce a method for real-time, in situ magnetization reprogramming that enables the rearrangement and recombination of magnetic units to achieve diverse magnetization profiles. We explore the applications of this method in structures of varying dimensions, from one-dimensional (1D) tubes to three-dimensional (3D) frameworks, showcasing a diverse and expanded range of configurations and their deformations. This method also demonstrates versatility in diverse scenarios, including navigating around objects without undesired contact, reprogramming cilia arrays, managing multiple instruments cooperatively or independently under the same magnetic field, and manipulating objects of various shapes. These capabilities extend the range of applications for magnetic actuation technologies. Furthermore, this method emancipates magnetic soft robots from the sole reliance on external magnetic fields for shape change, facilitating unprecedented modes and varieties of deformation while simultaneously reducing the need for complex magnetic field generation systems; thereby, opening new avenues for the development of magnetic actuation technologies.
+This is a preview of subscription content, access via your institution
+Access Nature and 54 other Nature Portfolio journals
+Get Nature+, our best-value online-access subscription
+£17.99 / 30 days
+cancel any time
+Subscribe to this journal
+Receive 51 print issues and online access
+£199.00 per year
+only £3.90 per issue
+Rent or buy this article
+Prices vary by article type
+from$1.95
+to$39.95
+Prices may be subject to local taxes which are calculated during checkout
+These authors contributed equally: Xianqiang Bao, Fan Wang, Jianhua Zhang
+Physical Intelligence Department, Max Planck Institute for Intelligent Systems, Stuttgart, Germany
+Xianqiang Bao, Fan Wang, Jianhua Zhang, Mingtong Li, Shuaizhong Zhang, Ziyu Ren, Jiahe Liao, Yingbo Yan, Wenbin Kang, Rongjing Zhang, Zemin Liu, Tianlu Wang & Metin Sitti
+State Key Laboratory of Digital Medical Engineering, School of Instrument Science and Engineering, Southeast University, Nanjing, China
+Xianqiang Bao
+Jiangsu Key Laboratory of Robot Perception and Control, School of Instrument Science and Engineering, Southeast University, Nanjing, China
+Xianqiang Bao
+Institute for Biomedical Engineering, ETH Zurich, Zurich, Switzerland
+Fan Wang
+State Key Laboratory of Fluid Power and Mechatronic Systems, School of Mechanical Engineering, Zhejiang University, Hangzhou, China
+Jianhua Zhang
+Liangzhu Laboratory, School of Mechanical Engineering, Zhejiang University, Hangzhou, China
+Jianhua Zhang
+School of Mechanical Engineering & Hebei Provincial Key Laboratory of Heavy Machinery Fluid Power Transmission and Control, Yanshan University, Qinhuangdao, China
+Shuaizhong Zhang
+College of Engineering, Koç University, Istanbul, Turkey
+Metin Sitti
+School of Medicine, Koç University, Istanbul, Turkey
+Metin Sitti
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Correspondence to
+                Metin Sitti.
+This Supplementary Information file contains Supplementary Notes 1-11, Supplementary Figures 1-96, and Legends for the Supplementary Videos.
+1D magnetization reprogramming. To demonstrate 1D magnetization reprogramming, we designed various soft tubes in Configurations A–G and evaluated their ability to undergo a range of deformations under a constant external magnetic field. Each deformation was achieved by adjusting its intrinsic magnetization profile, rather than by varying the external magnetic field. In Configuration G, we performed a control experiment to confirm that the tube’s linear response in the magnetic field was not caused by stiffness changes from the internal rod. Moreover, two properties, magnetic neutralization and magnetic reversal, are also showcased in the movie.
+2D and 3D magnetization reprogramming. To more thoroughly demonstrate the proposed method, we selected four Configurations (A-D) in 2D magnetization reprogramming and included one configuration in 3D magnetization reprogramming. Their capacity to undergo a variety of deformations under a constant external magnetic field was then evaluated. The 2D magnetization reprogramming uses 2D sheets as carriers, while the 3D magnetization reprogramming employs 3D box-shaped structures as carriers.
+Application I-1- Comparison of operating characteristics. To demonstrate the differences in operating characteristics between the proposed and the existing methods, we conducted experiments in a uniform magnetic field. With the existing method, the bent sections of the soft tube moved along with the tube itself. In contrast, using the proposed method, whether forming with two or three bends, the displacement of the bent sections of the soft tube remained independent of the motion of the soft tube.
+Application I-2- Avoidance object bypassing. We established an experimental setup using soft tubes fabricated by both the existing and the proposed methods to observe potential contact with avoidance objects. We discovered that the proposed method, which involves forming with a bend and maintaining its position, successfully avoided any contact with the avoidance objects, an improvement not achieved by the existing methods. Moreover, we implemented a more complex scenario involving multiple avoidance objects, requiring the soft tube to form and maintain two bends to navigate through.
+Application I-3- Experiments in vascular models. To validate the potential application of the proposed method in vascular interventional surgery, we constructed a vascular model featuring three different branches, each at a unique angle to the main vessel. We observed the performance of both existing and proposed methods in guiding a soft tube from the main vessel into these branches.
+Application I-4- Ex vivo experiment. To further demonstrate the potential application of the proposed method in vascular interventional surgery, we conducted experiments using porcine heart vessels. The soft tube was placed within the vessels, and we advanced it while employing ultrasound imaging to observe and record the tube’s movements and its contact with the vessel walls. We found that the soft tube could avoid contact with the sides of the vessels and only made contact with the vessel’s bottom, thus achieving the ideal scenario.
+Application II-1- Targeted cilia activation. We first demonstrated the activation of a single cilium, exploring the fundamental functionality of cilia. We then illustrated targeted cilia activation within a 5×5 cilia array, showcasing selective activation over a multiciliary system. Additionally, we explored potential path-directed propulsion, highlighting how directed movement could be achieved. Lastly, we integrated the targeted cilia activation with the ciliary phase modulation, demonstrating advanced techniques for coordinating ciliary movement to achieve optimized performance.
+Application II-2- Ciliary bending amplitude modulation .We initially demonstrated bending amplitude modulation of a single cilium, showing that the cilium was able to achieve five distinct motion patterns under a constant-amplitude rotating magnetic field. Subsequently, to vividly demonstrate the variations in bending amplitude, we opted for a uniform magnetic field and conducted experiments within both 1×4 and 3×3 cilia arrays, respectively. These videos showcase the potential of cilia to achieve different motion patterns through the ciliary bending amplitude modulation.
+Application II-3- Ciliary phase modulation. This video provides a comprehensive overview of our experiments on phase modulation in cilia arrays and its effects on fluid dynamics. Initially, we demonstrated phase modulation in two cilia, followed by experiments involving six cilia, illustrating that the proposed method enables real-time, in-situ phase modulation of the cilia. Subsequently, we explored the effects of different phases on fluid propulsion. Ultimately, by adjusting the phase of the cilia in real time, we successfully altered the direction of the fluid drive.
+Application III-1- Independent control of multiple soft tubes under the same magnetic field. To demonstrate independent control of multiple soft tubes under the same magnetic field, we achieved separate deformation control of two soft tubes within a uniform magnetic field. Initially, we controlled the deformation of a single soft tube. We then maintained the deformation of this tube while changing the deformation of a second soft tube. Subsequently, we retracted the second tube, returned to controlling the first, and finally retracted the first soft tube. These operations effectively demonstrated that the proposed method could achieve independent control of multiple soft tubes under the same magnetic field.
+Application III-2- Coordinated operation of two soft tubes. We established a simple operational scenario where one soft tube advanced in a straight state before circumventing an obstacle in a curved state, and maintained this state. Subsequently, another soft tube advanced in a straight state and then maneuvered around the opposite side of the obstacle in a curved state, collaboratively completing the operation with the first tube. After completing the task, both tubes retracted in a straight state. All operations were conducted under a uniform magnetic field.
+Application III-3- Coordinated operation of three soft tubes. We established a more intricate operational scenario, featuring an increased number of obstacles and requiring additional soft tubes. All operations required the soft tubes to transition between straight and curved states within the same uniform magnetic field, navigating through obstacles to reach designated targets. After completing the task, the tubes similarly switched between straight and curved states to navigate back through the obstacles in a retraction phase.
+Application III-4- Coordinated operation of three soft tubes in more complex tasks. We established an operational scenario more complex than that in Supplementary Video 12, involving two soft tubes sequentially navigating through obstacles to reach and operate at the target locations. One of the pathways was completely obstructed, rendering it impassable by mere changes in the soft tube’s state. This required the deployment of a third soft tube tasked with appropriately repositioning the obstacle to enable passage. This operation further demonstrated the capability of the proposed method to achieve coordinated multi-instrument operations.
+Application IV-1- Various bending modes of shape-conforming soft grippers. We illustrated how shape-conforming soft grippers can achieve multiple bending modes under a uniform magnetic field by adjusting their magnetization profiles. These bending modes are similar to the movements of a human hand, enabling the selective bending of “fingers” based on specific needs. For more intuitive presentation, schematic diagrams were provided alongside each experimental video.
+Application IV-2- Demonstration of grasping objects with different shapes. We positioned two shape-conforming soft grippers side by side, creating a setup akin to a pair of human hands. This arrangement allows us to dictate the state of each “finger” (whether bent or straight), facilitating the grasp of objects with various shapes. We created objects in three distinct shapes to showcase the versatility of the soft grippers. By altering their magnetization profiles, we successfully demonstrated the capability to grasp these varied objects in a uniform magnetic field.
+3D operation under a fixed magnetic field. To demonstrate the 3D manipulation capabilities of the proposed method under a fixed magnetic field, we generated the magnetic field using a Halbach array, which maintains constant magnitude and direction. Simultaneously, we utilized a rod featuring a helical magnetization profile at its tip, in conjunction with an outer tube. We observed the 3D manipulation of the tube under a fixed magnetic field.
+3D Navigation operation demonstration. To demonstrate the 3D navigation ability of the proposed method, we controlled the tube to bypass various obstacles under a single magnetic field. Two different obstacle configurations were set up—one with a single obstacle and another with two obstacles—both of which require 3D navigation to overcome. Accordingly, we configured the tube with two distinct magnetization profiles. Under a constant magnetic field direction, the field was gradually ramped up. As the field intensity was incrementally increased or decreased, the tube underwent smooth 3D deformation and successfully surmounted both obstacle configurations.
+Long-range operation with a large Magnetic Interaction Length. This video validates our proposed “Long-Range Operation with a Large Magnetic Interaction Length” mode. Two Halbach arrays were employed to generate dual magnetic fields, spatially configured to form an extensive Magnetic Interaction Zone. Initially, we showed that the tube can maintain a fixed operating mode at its tip, where its 3D deformation pattern remains constant. Subsequently, we illustrated that the tube can also adopt a variable operating mode at its tip, enabling real-time adjustment of its 3D deformation pattern. In the aforementioned operations, the tube’s operational length reached 305 mm.
+Long-range operation with a large Feeding Length. In this video, we demonstrate a mode we term “Long-range Operation with a Large Feeding Length.” Utilizing the proposed segmented design method, the tube was constructed in segments. The tube integrates a commercial catheter with a soft tube to accommodate operations within a large Feeding Zone. By manipulating the tube to traverse the Feeding Zone and enter the magnetic field region, the desired deformations are achieved. We demonstrated that at the tube’s tip, both 2D and 3D deformations—as well as variable operating modes—can be realized. In this operation, the tube’s effective operational length reached 1240 mm.
+1D magnetization reprogramming in miniature structures. To demonstrate that the proposed method is applicable for small-scale operations, we fabricated a tube with an outer diameter of 0.7 mm, configured according to Configurations B in 1D magnetization reprogramming. The video shows that the tube’s magnetization profile can be altered using the proposed method to achieve different deformation modes. To rule out the influence of the inner rod on the deformation, we fabricated a non-magnetic rod and conducted a control experiment. The comparison revealed that the deformation exhibited by the tube with a non-magnetic rod is completely different from that of the tube with a magnetic rod.
+Surface tension effects in tube fabrication. We employed the dip coating method to fabricate tubes in this study. To demonstrate the defects associated with fabricating small-scale tubes using this approach, we recorded the flow behavior of polydimethylsiloxane (PDMS) on the surface during the fabrication process. A 0.5 mm diameter copper wire was used as the carrier, on which PDMS with a base-to-curing agent mass ratio of 10:1 was uniformly applied. At this scale, surface tension dominates, causing the PDMS to gradually coalesce into spherical droplets. This phenomenon renders the method unsuitable for fabricating small-scale tubes.
+Reprints and permissions
+Bao, X., Wang, F., Zhang, J. et al. Real-time in-situ magnetization reprogramming for soft robotics.
+                    Nature  (2025). https://doi.org/10.1038/s41586-025-09459-0
+Download citation
+Received: 22 October 2024
+Accepted: 28 July 2025
+Published: 04 August 2025
+DOI: https://doi.org/10.1038/s41586-025-09459-0
+Anyone you share the following link with will be able to read this content:
+Sorry, a shareable link is not currently available for this article.
+Provided by the Springer Nature SharedIt content-sharing initiative
+Advertisement
+Nature
+                    
+                    (Nature)
+ISSN 1476-4687 (online)
+ISSN 0028-0836 (print)
+© 2025 Springer Nature Limited
+Sign up for the Nature Briefing newsletter — what matters in science, free to your inbox daily.

@@ -1,0 +1,278 @@
+/* WiseNews Modern UI Enhancements */
+
+/* Custom properties for consistent theming */
+:root {
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --success-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --info-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --border-radius: 0.5rem;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --shadow-light: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    --shadow-heavy: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+/* Enhanced card styling */
+.card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    transition: var(--transition);
+    overflow: hidden;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+}
+
+.card-header {
+    background: transparent;
+    border: none;
+    padding: 1.5rem 1.5rem 0;
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Modern button styles */
+.btn {
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    padding: 0.75rem 1.5rem;
+    transition: var(--transition);
+    border-width: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: var(--primary-gradient);
+    border-color: #667eea;
+}
+
+.btn-success {
+    background: var(--success-gradient);
+    border-color: #11998e;
+}
+
+.btn-warning {
+    background: var(--warning-gradient);
+    border-color: #f093fb;
+}
+
+.btn-info {
+    background: var(--info-gradient);
+    border-color: #4facfe;
+}
+
+/* Enhanced progress bars */
+.progress {
+    height: 1rem;
+    border-radius: var(--border-radius);
+    background-color: #f8f9fa;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.progress-bar {
+    border-radius: var(--border-radius);
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(45deg, 
+        rgba(255, 255, 255, 0.2) 25%, 
+        transparent 25%, 
+        transparent 50%, 
+        rgba(255, 255, 255, 0.2) 50%, 
+        rgba(255, 255, 255, 0.2) 75%, 
+        transparent 75%, 
+        transparent);
+    background-size: 1rem 1rem;
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    0% {
+        background-position: 1rem 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+/* Enhanced badges */
+.badge {
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Navigation enhancements */
+.navbar {
+    box-shadow: var(--shadow-light);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 1.5rem;
+    letter-spacing: -0.5px;
+}
+
+.nav-link {
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    margin: 0 0.25rem;
+    transition: var(--transition);
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Modern input styling */
+.form-control {
+    border-radius: var(--border-radius);
+    border: 2px solid #e9ecef;
+    padding: 0.75rem 1rem;
+    transition: var(--transition);
+}
+
+.form-control:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+/* Loading animations */
+@keyframes shimmer {
+    0% {
+        background-position: -468px 0;
+    }
+    100% {
+        background-position: 468px 0;
+    }
+}
+
+.loading-shimmer {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 400% 100%;
+    animation: shimmer 1.2s ease-in-out infinite;
+}
+
+/* Responsive typography */
+.display-5 {
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.fw-bold {
+    font-weight: 700;
+}
+
+/* Custom utility classes */
+.text-gradient-primary {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.bg-glass {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.border-gradient-primary {
+    border: 2px solid transparent;
+    background: linear-gradient(white, white), var(--primary-gradient);
+    background-clip: padding-box, border-box;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 1rem;
+    }
+    
+    .btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+    
+    .display-5 {
+        font-size: 2rem;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --card-bg: #2d3748;
+        --text-color: #f7fafc;
+        --border-color: #4a5568;
+    }
+    
+    .card {
+        background-color: var(--card-bg);
+        color: var(--text-color);
+    }
+    
+    .progress {
+        background-color: #4a5568;
+    }
+}
+
+/* Accessibility improvements */
+.btn:focus,
+.form-control:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .btn,
+    .card-hover,
+    .progress-bar::before {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}

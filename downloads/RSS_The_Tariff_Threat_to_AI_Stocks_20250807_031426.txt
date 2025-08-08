@@ -1,0 +1,91 @@
+VIEW IN BROWSER
+Over the past two days, we’ve taken you inside a rapidly unfolding story – the rise of Physical AI.
+We’ve featured interviews with two of the architects behind the AI Revolution Portfolio, Louis Navellier and Eric Fry.
+Today, we close out our three-part video series with the final interview, this time featuring Luke Lango – someone who’s built his reputation spotting game-changing tech trends before they go mainstream.
+From the first two interviews, you already know the landscape: AI is no longer just about chatbots, language models, or cloud software. It’s stepping into the real world, powering humanoids, robots, autonomous systems, and next-gen machines.
+But how fast is this happening? And how close are we to the tipping point moment?
+In today’s interview, InvestorPlace’s Chief Content Creator Luis Hernandez and Luke dive into such questions, resulting in a fascinating discussion about what’s coming next.
+The conversation includes:
+If you’re trying to get ahead of where AI is truly heading and want to know which parts of this tech revolution still have the most explosive upside, don’t miss this final installment.
+And for more details on the specific Physical AI stocks that Louis, Eric, and Luke just recommended in their new research package – their Day Zero Portfolio – click here. It’s a basket of Physical AI leaders that are at the forefront of this next wave.
+To watch Luke and Luis, click here or on the image below.
+In last week’s Digest, we dove into the potential for unprecedented labor force disruption due to AI – and what to do about it.
+Using the example of the ATM as a case study, we detailed how, historically, new technologies have led to new jobs.
+But with AI, we’re in unfamiliar territory. We’ve never had a technology that can potentially replace nearly all human tasks.
+We highlighted analysis from Luke that led him to conclude:
+AI could eliminate 20–30 million U.S. jobs by 2035: a level of disruption that may break the economic flywheel if left unaddressed.
+Well, on Monday, Mo Gawdat, former chief business officer at Google X and a 30-year tech veteran, echoed our concern that “this time is different.”
+From CNBC:
+[Gawdat] says AI is likely coming for your role — whether you’re in the C-suite or an entry-level worker.
+The idea that artificial intelligence will create jobs is “100% crap,” Gawdat said Monday…
+Even the jobs you may think require humans will be eliminated, including video editors, podcasters and executives, said Gawdat. Bill Gates has predicted that doctors and teachers will also be replaced in the coming years…
+Artificial general intelligence is “going to be better than humans at everything, including being a CEO,” said Gawdat.
+“There will be a time where most incompetent CEOs will be replaced.”
+Anthropic CEO Dario Amodei has a similar perspective that we highlighted last week.
+His recommendation to the average worker today is “you’ve got 18 months, not 18 years,” which means you should “launch that side gig yesterday.”
+We’ve been bringing you some of the top ideas of our experts. For example, here’s Luke with some specific picks:
+You must invest in the AI economy.
+And not just any stocks – not “tech” broadly or the old software companies pretending to be AI. You need to own the platforms, infrastructure, and picks and shovels behind the AI revolution.
+We’re talking:
+These companies are likely to be the only ones compounding real earnings while the rest of the market flails.
+(Disclaimer: I own AMD and SYM.)
+But this brings us to a new challenge…
+Yesterday, President Trump said he plans to unveil new tariffs on semiconductor chips “within the next week or so.”
+While all the details aren’t clear, the announcement is part of a broader tariff strategy focused on national security and economic reciprocity. Similar measures have already targeted metals, autos, and even copper.
+This is a big deal for tech investors.
+With tariffs, chip giants like Nvidia and Broadcom are suddenly facing potential margin compression and supply chain disruption – even if they’re U.S. based. After all, though these companies design their chips in the U.S., the manufacturing is mostly outsourced overseas (particularly to Taiwan Semiconductor Manufacturing Company).
+If Trump’s tariffs target imported semiconductors, those chips would still fall under the tariff umbrella, even if designed by U.S. firms. That means U.S. companies could face tariffs on their own products when they re-enter the country.
+And don’t forget, there’s also the risk that foreign governments enact their own tariffs on U.S. chips, dinging demand and revenues.
+We’re already seeing a preview of the impact in AMD’s earnings report this morning.
+The world’s second-largest maker of artificial intelligence processors provided a hazy outlook on revenues from China, in large part due to policy uncertainty.
+From Bloomberg:
+The Trump administration had barred shipments of such chips to China in April, though it reversed course last month, raising hopes that AMD and rival Nvidia Corp. could soon resume sales.
+China is the largest market for semiconductors, and the restrictions have threatened to erase billions of dollars in total revenue from both companies…
+The uncertainty weighed on the shares and overshadowed AMD’s generally upbeat forecast for its AI business.
+So, are new semi tariffs about to make this situation much worse?
+Semiconductor chips are the “brains” of every electronic product we use daily.
+So, if Trump follows through with semiconductor tariffs, near-term turbulence in tech stocks across the board – especially chipmakers – is a real risk.
+But let’s zoom out.
+Semiconductors are the picks and shovels of the AI revolution – including the Physical AI revolution that our experts have been profiling in their interviews. It’s bigger than any single administration, tariff or geopolitical headline.
+AI data centers still need chips. Robots still need chips. AI models still need chips. That demand doesn’t disappear; it just momentarily stumbles.
+This makes any price pullback in top-tier chip/tech stocks caused by political noise a gift for long-term investors.
+Bottom line: You must stay in the AI trade. But it is time to refine how you’re investing. Three general principles:
+Yesterday, the President said that tariffs on pharmaceuticals could eventually hit 250%.
+From CNBC:
+He said he will initially impose a “small tariff” on pharmaceuticals, but then in a year to a year and a half “maximum,” he will raise that rate to 150% and then 250%…
+The tariffs are the president’s bid to incentivize drug companies to move manufacturing operations to the U.S. at a time when domestic drug production has shrunk dramatically over the last few decades.
+Over the last six months, companies like Eli Lilly and Johnson & Johnson have announced fresh U.S. investments to build goodwill with the president.
+“We want pharmaceuticals made in our country,” Trump told CNBC.
+If Trump follows through with 250% tariffs, it could spark a massive shift in where, and how, drugs are manufactured.
+Companies with significant offshore exposure may face pressure, while those already investing domestically could benefit.
+From a “portfolio watch” perspective, start with Eli Lilly (LLY) and Johnson & Johnson (JNJ). Both are already ramping up U.S.-based production, potentially positioning themselves as early winners if we’re really starting a new era of “Made in America” medicine.
+On the other hand, be careful about companies like Pfizer (PFE) which still lean heavily on global manufacturing. They could face near-term headwinds if they don’t pivot.
+Bottom line: Focus on companies with strong U.S. infrastructure, deep pipelines, and pricing power. If the future of pharma is “domestic,” let’s be ready to position ourselves accordingly.
+One final tariff headline before we sign off today.
+This morning, President Trump announced an additional 25% tariff on India, bringing the total rate to 50%. This is political punishment for India’s purchases of Russian oil.
+Here’s CNBC:
+Trump’s new tariff rate on India is now among the highest levy on all of the United States’ trading partners.
+It’s the latest sign that Trump is moving on making good on his threat to punish countries that buy Russian oil, as he’s increased his rhetoric in recent weeks over President Vladimir Putin’s invasion of Ukraine.
+While India isn’t one of America’s largest trading partners, this development carries outsized implications. We’ll unpack it further in an upcoming Digest, but here’s the key issue…
+As we’ve profiled here in the Digest, rare earth elements (REEs) are essential to today’s most advanced technologies and military systems. China currently dominates global REE production, leaving the U.S. exposed.
+Well, the world’s third-largest REE reserves are held by India.
+Lots of strategic chess moves to make in this complex geopolitical game.
+More on this to come…
+Have a good evening,
+Jeff Remsburg
+Article printed from InvestorPlace Media, https://investorplace.com/2025/08/the-tariff-threat-to-ai-stocks/.
+©2025 InvestorPlace Media, LLC
+Hot Stocks
+Market Analysis
+Market Analysis
+Market Analysis
+Market Analysis
+Hot Stocks
+Market Analysis
+Market Analysis
+All rights reserved. Nasdaq
+						quotes delayed at least 15 minutes, all others at least 20 minutes.
+						Copyright ©
+						2025 InvestorPlace Media, LLC. All rights reserved. 1125 N. Charles St, Baltimore, MD 21201.
+Not Yet a Premium Subscriber?
+Your Email

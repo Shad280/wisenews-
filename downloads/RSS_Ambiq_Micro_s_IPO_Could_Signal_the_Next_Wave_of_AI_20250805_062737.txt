@@ -1,0 +1,46 @@
+Founded in 1993, The Motley Fool is a financial services company dedicated to making the world smarter, happier, and richer. The Motley Fool reaches millions of people every month through our premium investing solutions, free guidance and market analysis on Fool.com, top-rated podcasts, and non-profit The Motley Fool Foundation.
+Founded in 1993, The Motley Fool is a financial services company dedicated to making the world smarter, happier, and richer. The Motley Fool reaches millions of people every month through our premium investing solutions, free guidance and market analysis on Fool.com, personal finance education, top-rated podcasts, and non-profit The Motley Fool Foundation.
+Founded in 1993, The Motley Fool is a financial services company dedicated to making the world smarter, happier, and richer. The Motley Fool reaches millions of people every month through our premium investing solutions, free guidance and market analysis on Fool.com, top-rated podcasts, and non-profit The Motley Fool Foundation.
+Founded in 1993, The Motley Fool is a financial services company dedicated to making the world smarter, happier, and richer. The Motley Fool reaches millions of people every month through our premium investing solutions, free guidance and market analysis on Fool.com, personal finance education, top-rated podcasts, and non-profit The Motley Fool Foundation.
+You're reading a free article with opinions that may differ
+       from The Motley Fool's Premium Investing Services. Become a Motley Fool member today to
+       get instant access to our top analyst recommendations, in-depth research, investing resources,
+       and more. Learn More
+Key Points
+AI has been growing by leaps and bounds, but some believe it has a power problem. Ambiq might have the solution.
+Since generative artificial intelligence (AI) burst on the scene more than two years ago, some of the biggest beneficiaries have been chipmakers. More specifically, advanced semiconductors provide the computational horsepower necessary to breathe life into these AI algorithms.
+Nvidia, Broadcom, and Arm Holdings have all been at the forefront of AI chip design and reaped the rewards. Nvidia and Broadcom stocks have soared 961% and 439%, respectively, since late 2022, while Arm has gained 173% since its September 2023 initial public offering (IPO).
+Ambiq Micro (AMBQ -3.42%) made a big splash during its public debut, as the low-power chip designer's stock surged 61% on its first day of trading last Wednesday, though it has since leveled off. Investors have been keen to profit from the ongoing adoption of AI, and the robust demand for Ambiq Micro stock suggests that power-miserly AI chip stocks could mark the next frontier.
+Image source: Getty Images.
+One of the biggest challenges associated with the increasing adoption of AI is the issue of power consumption. Most chipmakers have taken a brute-force approach, increasing the sheer magnitude of computational horsepower to decrease the time necessary to train and run these next-generation algorithms. The complex calculations required are computationally intensive, resulting in an increasing amount of energy consumption.
+Ambiq is taking a different approach. In the S-1 filed with the Securities and Exchange Commission (SEC) prior to its IPO, the company described itself as a "pioneer and leading provider of ultra-low-power semiconductor solutions designed to address the significant power consumption challenges of general-purpose and AI compute -- especially at the edge." Ambiq suggests its hardware and software innovations "deliver two to five times lower power consumption than traditional semiconductor design."
+The company is currently focused on the edge, including personal devices, as well as the medical and healthcare industries. Many of these applications are currently handled by small devices with limited battery life, where reduced power consumption is critical.
+In the future, Ambiq is working to expand its ultra-low-power technology to other areas of AI, including high-performance computing (HPC), data centers, and automotive, which could mark the next wave of AI chip solutions.
+The need for power-miserly solutions could usher in the next wave of AI chips, and Ambiq's results are intriguing. For the year ended Dec. 31, the company generated revenue of $76 million, up 16% year over year, while its loss per share of $113.81 improved 24%. The trend continued in the quarter ended March 31, as revenue of $15.7 million climbed 3%, while its loss per share of $18.96 improved 30%.
+There is a significant concentration risk. Ambiq divulged that its top five customers accounted for 92% of revenue in the most recent quarter. Furthermore, wireless device specialist Garmin, Alphabet's Google, and "another confidential customer" represented 38%, 25%, and 23% of net sales, respectively, according to its regulatory filing.
+Ambiq's flagship system-on-a-chip (SoC) is designed for smaller form-factor devices, such as smartwatches, fitness trackers, hearing aids, virtual and augmented reality glasses, and livestock tracking devices.
+Chief technology officer (CTO) Scott Hanson noted the company's next frontier is smart glasses. "We spent the last 10-plus years figuring out how to build the lowest power chips, and so we're in a great position to attack the same problem (on glasses)," he said.
+The low-power wearable chips market is expected to grow by 15% annually between 2024 and 2030 to nearly $28 billion. When viewed in the context of Ambiq's 2024 sales of $76 million, the opportunity is apparent.
+It's important to remember that while Ambiq's potential is clear, risks abound. It has only just entered the glare of the public spotlight, and investors should keep in mind the aforementioned concentration risk and mounting losses, though its results are moving in the right direction.
+There's also the matter of Ambiq's valuation. As of market close on Monday, the stock had a market cap of roughly $673 million and trailing-12-month sales of $76.6 million. That works out to about 9 times sales, and while that's certainly not outrageous, it is a high price to pay for an unprofitable company with little public track record.
+As such, investors interested in taking a stake in this ultra-low-power pioneer should make Ambiq a small part of a well-balanced portfolio.
+Danny Vena, CPA, is a contributing Motley Fool Tech Analyst covering publicly traded companies across artificial intelligence, cloud computing, semiconductor, software, cybersecurity, and consumer electronics. 
+
+Prior to The Motley Fool, Danny was a controller and accountant in a variety of small and medium-sized businesses. He proudly served for 13 years in the United States Army. 
+
+Danny holds a B.S. in Accounting from the University of Phoenix and is a Certified Public Accountant.
+
+In his spare time, he and his wife love international travel. It helps provide important perspective.
+Danny Vena has positions in Alphabet, Broadcom, and Nvidia. The Motley Fool has positions in and recommends Alphabet, Garmin, and Nvidia. The Motley Fool recommends Broadcom. The Motley Fool has a disclosure policy.
+Stocks Mentioned
+*Average returns of all recommendations since inception. Cost basis and return based on previous market day close.
+Related Articles
+Invest better with The Motley Fool. Get stock recommendations, portfolio guidance, and more from The Motley Fool's premium services.
+Making the world smarter, happier, and richer.
+© 1995 - 2025 The Motley Fool. All rights reserved.
+Market data powered by Xignite and Polygon.io.
+About The Motley Fool
+Our Services
+Around the Globe
+Free Tools
+Affiliates & Friends

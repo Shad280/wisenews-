@@ -1,0 +1,89 @@
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+            the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+            Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+            and JavaScript.
+Advertisement
+Search author on:
+PubMed
+ Google Scholar
+HIV particles (red dots) enter cells using proteins that bind to the cell membrane.Credit: Steve Gschmeissner/Science Photo Library
+Two vaccine candidates using mRNA technology elicit a potent immune response against HIV, according to an early-stage clinical trial1.
+The trial is only the third to test mRNA vaccines against HIV. “These are the first studies, so they’re very, very important,” says infectious-disease physician Sharon Lewin, who heads the Peter Doherty Institute for Infection and Immunity in Melbourne, Australia.
+Around 41 million people globally live with HIV, for which there is currently no vaccine.
+To design vaccines against a virus, researchers often study how the body clears the pathogen from its system, says Lewin. But HIV attacks the immune system, and the body rarely manages to clear it out. As a result, candidates for vaccines against the virus must undergo lots of testing through trial and error.
+That makes HIV vaccines a good place to use mRNA technology. The first mRNA vaccine was approved in 2020, for COVID-19. Compared with other modes of delivery, mRNA vaccines can be modified at low cost quickly — in months, not years — which enables researchers to test out different strategies. The vaccines work by delivering instructions to cells, in the form of mRNA, to produce specific proteins typically found on the surface of viruses. This induces an immune response, which helps the body to recognize and clear out a virus, should it be exposed to the real thing.
+HIV uses an ‘envelope’ protein on its outer membrane to bind to and infect cells. In the latest study, published in Science Translational Medicine, a team including William Schief at Scripps Research in La Jolla, California, who works on protein design, conducted a small trial, comparing two vaccine approaches. In one, the standard method for HIV vaccine candidates, the cell is directed to produce envelope proteins that float freely. In the other, the mRNA vaccine instructs the cell to make envelope proteins that are attached to the cell membrane — similar to how they are found in the live virus. The authors describe animal tests of this method in a companion paper2.
+The trial involved 108 healthy adults aged between 18 and 55 across ten study sites in the United States. It tested two membrane-bound vaccine candidates and one unbound candidate.
+Participants each received three doses of a single vaccine, at a low or high dose, several weeks apart; which vaccine they received was selected randomly. The vaccines were provided by pharmaceutical company Moderna in Cambridge, Massachusetts, where Schief is vice-president for protein design.
+Some 80% of the participants who received either of the vaccines that made membrane-bound proteins went on to produce antibodies that could block that protein from entering cells. By contrast, only 4% of the participants who received the unbound-protein vaccine produced corresponding antibodies.
+“The difference is pretty striking,” says Lewin. She expects the findings to inform the development of future vaccine candidates.
+or
+doi: https://doi.org/10.1038/d41586-025-02439-4
+Parks, K. R. et al. Sci. Transl. Med. 17, eady6831 (2025).
+Article 
+    PubMed 
+    
+                    Google Scholar
+Ramezani-Rad, P. et al. Sci. Transl. Med. 17, eadw0721 (2025).
+Article 
+    PubMed 
+    
+                    Google Scholar
+Willis, J. R. et al. Science 389, eadr8382 (2025).
+Article 
+    PubMed 
+    
+                    Google Scholar
+Download references
+Reprints and permissions
+HIV: how close are we to a vaccine — or a cure?
+Seventh patient ‘cured’ of HIV: why scientists are excited
+Trump’s cuts to international aid are stifling Africa’s HIV research
+Stunning trial shows twice-yearly shots can prevent HIV infection
+The HIV epidemic 40 years on
+Hope rises that a vaccine can shield people with HIV from a deadly threat
+Determinants of successful AAV-vectored delivery of HIV-1 bNAbs in early life
+Article 30 JUL 25
+Trump’s cuts to international aid are stifling Africa’s HIV research
+Career News 20 MAY 25
+Trump blew up the global fight against AIDS. Can it recover?
+News Feature 30 APR 25
+The COVID-19 pandemic transformed this scientist into a research-integrity sleuth
+Career Feature 22 JUL 25
+Help save 2 million lives: close the vaccine funding gap
+Editorial 22 JUL 25
+Promising vaccine against deadly Nipah virus can also treat infection
+News 10 JUL 25
+The brain fires up immune cells when sick people are nearby
+News 01 AUG 25
+Help save 2 million lives: close the vaccine funding gap
+Editorial 22 JUL 25
+Identification of medication–microbiome interactions that affect gut infection
+Article 16 JUL 25
+Postdoc opportunity to engage in both foundational machine learning research and high-impact interdisciplinary applications in the life sciences.
+Vienna, Austria
+AITHYRA GmbH - Research Institute for Biomedical Artificial Intelligence of the Austrian Academy of Sciences
+Shenzhen, Guangdong (CN)
+Shenzhen Medical Academy of Research and Translation
+Shenzhen, Guangdong (CN)
+Shenzhen Medical Academy of Research and Translation
+The Carol and Gene Ludwig Program for the Study of Neuroimmune Interactions in Dementia at Yale School of Medicine seeks new tenure-track faculty.
+New Haven, Connecticut
+Yale School of Medicine - Ludwig Program for the Study of Neuroimmune Interaction in Dementia
+6 major schools are now hiring faculty members.
+Shanghai, China
+ShanghaiTech University
+HIV: how close are we to a vaccine — or a cure?
+Seventh patient ‘cured’ of HIV: why scientists are excited
+Trump’s cuts to international aid are stifling Africa’s HIV research
+Stunning trial shows twice-yearly shots can prevent HIV infection
+The HIV epidemic 40 years on
+Hope rises that a vaccine can shield people with HIV from a deadly threat
+An essential round-up of science news, opinion and analysis, delivered to your inbox every weekday.
+Sign up for the Nature Briefing newsletter — what matters in science, free to your inbox daily.
+Nature
+                    
+                    (Nature)
+ISSN 1476-4687 (online)
+ISSN 0028-0836 (print)
+© 2025 Springer Nature Limited

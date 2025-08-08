@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block title %}API Documentation - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card stable-card">
+                <div class="card-header stable-header">
+                    <h5><i class="fas fa-list"></i> Contents</h5>
+                </div>
+                <div class="card-body stable-card-body">
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#authentication">Authentication</a>
+                        <a class="nav-link" href="#rate-limits">Rate Limits</a>
+                        <a class="nav-link" href="#endpoints">Endpoints</a>
+                        <a class="nav-link" href="#examples">Examples</a>
+                        <a class="nav-link" href="#errors">Error Codes</a>
+                        <a class="nav-link" href="#terms">Terms of Service</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-9">
+            <h1><i class="fas fa-code"></i> WiseNews API Documentation</h1>
+            <p class="lead">Access WiseNews data programmatically with our RESTful API</p>
+            
+            <div class="alert alert-warning">
+                <h5><i class="fas fa-key"></i> API Key Required</h5>
+                <p>All API endpoints require authentication. <a href="/api/apply">Apply for an API key here</a>.</p>
+            </div>
+
+            <section id="authentication" class="mb-5">
+                <h2><i class="fas fa-shield-alt"></i> Authentication</h2>
+                <p>Include your API key in every request using one of these methods:</p>
+                
+                <h4>Header Authentication (Recommended)</h4>
+                <pre><code>X-API-Key: your_api_key_here</code></pre>
+                
+                <h4>Query Parameter</h4>
+                <pre><code>GET /api/articles?api_key=your_api_key_here</code></pre>
+            </section>
+
+            <section id="rate-limits" class="mb-5">
+                <h2><i class="fas fa-tachometer-alt"></i> Rate Limits</h2>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tier</th>
+                                <th>Requests/Hour</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Free</td>
+                                <td>100</td>
+                                <td>Default rate limit for new API keys</td>
+                            </tr>
+                            <tr>
+                                <td>Premium</td>
+                                <td>1,000</td>
+                                <td>Available upon request</td>
+                            </tr>
+                            <tr>
+                                <td>Enterprise</td>
+                                <td>10,000</td>
+                                <td>Contact admin for enterprise access</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="alert alert-info">
+                    <strong>Rate Limit Headers:</strong>
+                    <ul class="mb-0">
+                        <li><code>X-RateLimit-Limit</code> - Your rate limit</li>
+                        <li><code>X-RateLimit-Remaining</code> - Requests remaining</li>
+                        <li><code>X-RateLimit-Reset</code> - When the limit resets</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="endpoints" class="mb-5">
+                <h2><i class="fas fa-link"></i> API Endpoints</h2>
+                
+                <div class="card mb-3">
+                    <div class="card-header stable-header">
+                        <h4><span class="badge badge-success">GET</span> /api/articles</h4>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <p>Retrieve news articles with pagination and filtering options.</p>
+                        
+                        <h5>Parameters</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Parameter</th>
+                                        <th>Type</th>
+                                        <th>Description</th>
+                                        <th>Default</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>limit</code></td>
+                                        <td>integer</td>
+                                        <td>Number of articles to return (max 100)</td>
+                                        <td>50</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>offset</code></td>
+                                        <td>integer</td>
+                                        <td>Number of articles to skip</td>
+                                        <td>0</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h5>Response</h5>
+                        <pre><code>{
+  "articles": [
+    {
+      "id": 1,
+      "title": "Sample News Article",
+      "content": "Article content...",
+      "source_type": "RSS",
+      "source_name": "Example News",
+      "date_added": "2025-08-05T10:00:00",
+      "keywords": "news, example",
+      "category": "Technology",
+      "read_status": false
+    }
+  ]
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header stable-header">
+                        <h4><span class="badge badge-success">GET</span> /api/sync</h4>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <p>Trigger news synchronization to fetch latest articles.</p>
+                        
+                        <h5>Response</h5>
+                        <pre><code>{
+  "status": "success",
+  "message": "Sync started"
+}</code></pre>
+                    </div>
+                </div>
+
+                <div class="card mb-3">
+                    <div class="card-header stable-header">
+                        <h4><span class="badge badge-success">GET</span> /api/duplicate-stats</h4>
+                    </div>
+                    <div class="card-body stable-card-body">
+                        <p>Get statistics about duplicate detection and prevention.</p>
+                        
+                        <h5>Response</h5>
+                        <pre><code>{
+  "total_articles": 1250,
+  "sources": {"RSS": 800, "Twitter": 450},
+  "recent_articles": 45,
+  "potential_duplicates": 2,
+  "duplicate_prevention": "Active"
+}</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section id="examples" class="mb-5">
+                <h2><i class="fas fa-code"></i> Code Examples</h2>
+                
+                <h4>Python</h4>
+                <pre><code>import requests
+
+headers = {
+    'X-API-Key': 'your_api_key_here'
+}
+
+# Get articles
+response = requests.get('https://wisenews.com/api/articles', headers=headers)
+articles = response.json()
+
+print(f"Found {len(articles['articles'])} articles")
+</code></pre>
+
+                <h4>JavaScript (Node.js)</h4>
+                <pre><code>const axios = require('axios');
+
+const apiKey = 'your_api_key_here';
+const headers = { 'X-API-Key': apiKey };
+
+// Get articles
+axios.get('https://wisenews.com/api/articles', { headers })
+    .then(response => {
+        console.log(`Found ${response.data.articles.length} articles`);
+    })
+    .catch(error => {
+        console.error('Error:', error.response.data);
+    });
+</code></pre>
+
+                <h4>cURL</h4>
+                <pre><code>curl -H "X-API-Key: your_api_key_here" \
+     https://wisenews.com/api/articles?limit=10
+</code></pre>
+            </section>
+
+            <section id="errors" class="mb-5">
+                <h2><i class="fas fa-exclamation-triangle"></i> Error Codes</h2>
+                
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Message</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>401</td>
+                                <td>API key required</td>
+                                <td>No API key provided</td>
+                            </tr>
+                            <tr>
+                                <td>403</td>
+                                <td>Invalid API key</td>
+                                <td>API key is invalid or pending approval</td>
+                            </tr>
+                            <tr>
+                                <td>403</td>
+                                <td>Access blocked</td>
+                                <td>Your access has been blocked</td>
+                            </tr>
+                            <tr>
+                                <td>429</td>
+                                <td>Rate limit exceeded</td>
+                                <td>Too many requests, wait before retrying</td>
+                            </tr>
+                            <tr>
+                                <td>500</td>
+                                <td>Internal server error</td>
+                                <td>Server error, try again later</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section id="terms" class="mb-5">
+                <h2><i class="fas fa-gavel"></i> Terms of Service</h2>
+                
+                <div class="alert alert-warning">
+                    <h5>API Usage Guidelines</h5>
+                    <ul>
+                        <li><strong>No scraping:</strong> Do not use the API to scrape or mass-download content</li>
+                        <li><strong>Attribution:</strong> Credit WiseNews when using our data</li>
+                        <li><strong>Rate limits:</strong> Respect rate limits and implement proper caching</li>
+                        <li><strong>Commercial use:</strong> Contact us for commercial usage agreements</li>
+                        <li><strong>Security:</strong> Keep your API key secure and do not share it</li>
+                    </ul>
+                </div>
+                
+                <h4>Prohibited Uses</h4>
+                <ul>
+                    <li>Bulk downloading of articles for republication</li>
+                    <li>Creating competing news aggregation services</li>
+                    <li>Automated scraping or crawling</li>
+                    <li>Sharing API keys with third parties</li>
+                    <li>Circumventing rate limits</li>
+                </ul>
+                
+                <p><strong>Violation of these terms may result in immediate API access revocation.</strong></p>
+            </section>
+
+            <div class="text-center mt-5">
+                <a href="/api/apply" class="btn btn-primary btn-lg stable-btn">
+                    <i class="fas fa-key"></i> Apply for API Access
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+pre {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 15px;
+    overflow-x: auto;
+}
+
+code {
+    background-color: #f8f9fa;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+}
+
+.badge {
+    font-size: 12px;
+    padding: 4px 8px;
+}
+</style>
+{% endblock %}

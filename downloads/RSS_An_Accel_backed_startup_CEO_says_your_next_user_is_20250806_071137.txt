@@ -1,0 +1,19 @@
+The future of software isn't being built for people — it's being built for machines, said Vercel's CEO, Guillermo Rauch.
+"Your customer is no longer the developer," said Rauch on an episode of the "Sequoia Capital" podcast published Tuesday. "Your customer is the agent that the developer or non-developer is wielding."
+The CEO of the web infrastructure startup, valued at $3.25 billion last year, said code isn't just being written for humans to read or interact with anymore. It's increasingly being written so AI agents can understand, use, and extend it.
+"That is actually a pretty significant change," said Rauch. "Is there something that I could change about that API that actually favors the LLM being the, quote-unquote, entity or user of this API?"
+This new AI-first era means software tools may need to evolve based on how large language models interact with them.
+"LLMs' strengths and weaknesses will inform the development of runtimes, languages, type checkers, and frameworks of the future," Rauch said.
+Rauch also said that in the AI era, Vercel's newer users — who may not be developers but designers, marketers, or even AI agents — expect things to just work.
+Developers were used to dealing with errors and "terrible, negative feedback all day long," he said. But today's users have a much shorter fuse when something goes wrong.
+Still, he sees that as an "amazing pressure" for product builders. "You want something that works 99.99% of the time," he added.
+Last year, Vercel raised $250 million in a Series E round led by Accel, with investors including Tiger Global and GV.
+Rauch and Vercel did not respond to a request for comment from Business Insider.
+2025 has been hailed as the year of AI agents. They could change how the internet works and how apps and software interact with users.
+Bernstein analysts wrote in February that while websites and apps won't go away, users may no longer interact with them directly. Instead, they will access information, content, and widgets through an AI assistant that becomes "the aggregator of the aggregators."
+"If it scales and plays out like we think it might, this. Changes. Everything. The aggregators get disaggregated, and much of consumer internet may be structural shorts. Welcome to the Agentic AI era," the analysts wrote. "There's nowhere to hide."
+But these agents are not perfect. Researchers have warned that agent errors are prevalent and compound with each step they take.
+"An error at any step can derail the entire task. The more steps involved, the higher the chance something goes wrong by the end," Patronus AI, a startup that helps companies evaluate and optimize AI technology, wrote on its blog.
+The startup built a statistical model that found that an agent with a 1% error rate per step can compound to a 63% chance of error by the 100th step.
+Still, they said that guardrails — such as filters, rules, and tools that can be used to identify and remove inaccurate content — can help mitigate error rates. Small improvements "can yield outsized reductions in error probability," Patronus AI said.
+Jump to

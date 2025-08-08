@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.rfi.fr/en/france/20250806-fire-kills-woman-as-it-sweeps-through-at-least-11-000-hectares-in-southern-france

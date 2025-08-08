@@ -1,0 +1,22 @@
+If you want to succeed in AI, a good hack would be to impersonate Google. You just can't get caught.
+This is what just happened to Perplexity, a startup that competes with ChatGPT, Google's Gemini, and other generative AI services.
+Quality data is crucial for success in AI, but tech companies don't want to pay for this, so they crawl the web and scrape information for free, often without permission. This has sparked a backlash by some content creators and others interested in preserving the incentives that built the web.
+Cloudflare and its CEO, Matthew Prince, have stormed into this battle with new features that help websites block unwanted AI bot crawlers. Cloudflare is an infrastructure, security, and software company that helps run about 20% of the internet. It thrives when the web does well, hence its interest in helping sites get paid for content.
+Some Cloudflare customers recently complained to the company that Perplexity was evading these blocks and continued to scrape and collect data without permission.
+So, CloudFlare set a digital trap and caught this startup red-handed, according to a Monday blog describing the escapade.
+"Some supposedly 'reputable' AI companies act more like North Korean hackers," Prince wrote on X on Monday. "Time to name, shame, and hard block them."
+Perplexity didn't respond to a request for comment.
+Cloudflare created entirely new, unpublished websites and configured them with robots.txt files that explicitly blocked all crawlers — including Perplexity's declared bots, PerplexityBot and Perplexity-User. These test sites had no public links, search engine entries, or metadata that would normally make them discoverable.
+Yet, when Cloudflare queried Perplexity's AI with questions about these specific sites, the startup's service responded with detailed information that could only have come from those restricted pages. The conclusion? Perplexity had accessed the content despite being clearly told not to.
+Perplexity initially crawled these sites using its official user-agent string, complying with standard protocols. However, Cloudflare said it discovered that once blocked, Perplexity resorted to stealth tactics.
+Cloudflare found that Perplexity began deploying undeclared crawlers disguised as normal web browsers and sending requests from unknown or rotated IP addresses and unofficial ASNs, which are crucial identifiers that help route internet traffic efficiently.
+When its official crawlers were blocked, Perplexity also used a generic web browser designed to impersonate Google's Chrome browser on Apple Mac computers. (Business Insider asked Google whether it has told Perplexity to stop impersonating Chrome. Google did not respond).
+According to Cloudflare, Perplexity has been making millions of such "stealth" requests daily across tens of thousands of web domains.
+This behavior not only violated web standards, but also betrays the fundamental trust that underpins the functioning of the open web, Cloudflare explained.
+To emphasize what good bot behavior looks like, Cloudflare compared Perplexity's conduct to that of OpenAI's crawlers, which scrape data for developing ChatGPT and giant AI models such as the upcoming GPT-5.
+When OpenAI's bots encountered a robots.txt file or a similar block, they simply backed off. No circumvention. No masking. No backdoor crawling, according to Cloudflare tests.
+As a result of these findings, Cloudflare has de-listed Perplexity as a verified bot and rolled out new detection and blocking techniques across its network.
+Cloudflare's takedown serves as a cautionary tale in the AI arms race. While the web shifts toward stronger control over data access and usage, actors who flout these evolving norms may find themselves not just blocked, but publicly called out.
+In an era where AI systems are hungry for training data, Cloudflare's sting operation is a signal to startups and established players alike: Respect the rules of the web, or risk being exposed.
+Sign up for BI's Tech Memo newsletter here. Reach out to me via email at abarr@businessinsider.com.
+Jump to

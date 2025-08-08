@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/crime-and-courts/johannesburg-investment-broker-mark-kretzschmar-hands-himself-over-to-police-20250806-0464

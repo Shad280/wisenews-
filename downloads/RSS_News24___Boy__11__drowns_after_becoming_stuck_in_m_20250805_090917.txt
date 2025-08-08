@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/news/boy-11-drowns-after-becoming-stuck-in-muddy-excavation-pit-20250805-0411

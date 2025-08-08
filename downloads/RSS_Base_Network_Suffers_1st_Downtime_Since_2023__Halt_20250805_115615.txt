@@ -1,0 +1,14 @@
+CORRECT (Aug. 5, 10:00 UTC): Changes reference to first outage since 2023. An earlier version of this story said the outage was the blockchain's first since its debut.
+Base, Coinbase’s (COIN) Ethereum layer-2 scaling product, ground to a halt for the first time since 2023, disabling critical functions including block production, deposits, withdrawals and flashblock operations for 29 minutes before service resumed.
+The incident occurred at 06:15 UTC as a result of an “unsafe head delay," according to Base’s incident status page. That is a technical fault disrupting the network's ability to confirm and produce blocks.
+The team responded at 06:43 UTC that it was investigating the stoppage, and just a minute later reported the issue had been identified and resolved, with monitoring put in place to ensure no further complications emerged.
+The outage is the first since September 2023, when the blockchain went down for about 45 minutes.
+Though brief, the outage is significant given Base's growing role in the Ethereum layer-2 ecosystem. Since its introduction, Base has accrued $4.2 billion in total value locked (TVL). A substantial portion of this, some $1.5 billion, is tied to the Morpho lending protocol, according to data from DeFiLlama.
+UPDATE (Aug. 5, 10:10 UTC): Adds previous outage in penultimate paragraph.
+Oliver Knight is the co-leader of CoinDesk data tokens and data team. Before joining CoinDesk in 2022 Oliver spent three years as the chief reporter at Coin Rivet. He first started investing in bitcoin in 2013 and spent a period of his career working at a market making firm in the UK. He does not currently have any crypto holdings.
+More For You
+From Airdrop to Freefall: Celestia’s Tokenomics Under Fire
+Celestia’s TIA token has lost over 90% of its value amid aggressive unlocks, mirroring broader trends in tokenomics failures across high-profile projects.
+What to know:
+About
+Contact

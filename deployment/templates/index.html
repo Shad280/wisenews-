@@ -1,0 +1,444 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - News Aggregator{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4 stable-header">
+            <h1 class="stable-page-title"><i class="fas fa-tachometer-alt"></i> News Dashboard</h1>
+            <button class="btn btn-primary stable-btn" onclick="runScraper()">
+                <i class="fas fa-sync-alt"></i> Run News Scraper
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-3 mb-3">
+        <div class="card stats-card h-100 stable-card">
+            <div class="card-body text-center stable-card-body">
+                <i class="fas fa-newspaper fa-2x mb-2 stable-icon"></i>
+                <h3 class="stable-stat-number">{{ total_articles }}</h3>
+                <p class="mb-0 stable-stat-label">Total Articles</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card bg-success text-white h-100 stable-card">
+            <div class="card-body text-center stable-card-body">
+                <i class="fas fa-plus-circle fa-2x mb-2 stable-icon"></i>
+                <h3 class="stable-stat-number">{{ today_articles }}</h3>
+                <p class="mb-0 stable-stat-label">Added Today</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card bg-info text-white h-100 stable-card">
+            <div class="card-body text-center stable-card-body">
+                <i class="fas fa-rss fa-2x mb-2 stable-icon"></i>
+                <h3 class="stable-stat-number">{{ source_stats|length }}</h3>
+                <p class="mb-0 stable-stat-label">Active Sources</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mb-3">
+        <div class="card bg-warning text-white h-100 stable-card">
+            <div class="card-body text-center stable-card-body">
+                <i class="fas fa-tags fa-2x mb-2 stable-icon"></i>
+                <h3 class="stable-stat-number">{{ category_stats|length }}</h3>
+                <p class="mb-0">Categories</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Charts and Data -->
+<div class="row">
+    <!-- Source Distribution -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-pie"></i> Articles by Source</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="sourceChart" width="400" height="300"></canvas>
+                <div class="mt-3">
+                    {% for source, count in source_stats %}
+                    <span class="badge bg-primary me-2 mb-1">{{ source }}: {{ count }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Category Distribution -->
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-bar"></i> Top Categories</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="categoryChart" width="400" height="300"></canvas>
+                <div class="mt-3">
+                    {% for category, count in category_stats %}
+                    <span class="badge bg-secondary me-2 mb-1">{{ category }}: {{ count }}</span>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Recent Articles -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5><i class="fas fa-clock"></i> Recent Articles</h5>
+                <a href="{{ url_for('articles') }}" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body">
+                {% if recent_articles %}
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Source</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for article in recent_articles %}
+                            <tr class="{{ 'table-light' if article[5] else '' }}">
+                                <td>
+                                    <a href="{{ url_for('view_article', article_id=article[0]) }}" 
+                                       class="text-decoration-none">
+                                        {{ article[1][:60] }}{% if article[1]|length > 60 %}...{% endif %}
+                                    </a>
+                                </td>
+                                <td>
+                                    <span class="badge source-badge bg-{{ 'primary' if article[2] == 'RSS' else 'info' if article[2] == 'Twitter' else 'danger' }}">
+                                        {{ article[2] }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge category-badge bg-secondary">{{ article[3] }}</span>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        {{ article[4][:16] }}
+                                    </small>
+                                </td>
+                                <td>
+                                    {% if article[5] %}
+                                        <span class="badge bg-success">Read</span>
+                                    {% else %}
+                                        <span class="badge bg-warning">Unread</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-secondary" 
+                                            onclick="bookmarkArticle({{ article[0] }})"
+                                            title="Bookmark">
+                                        <i class="fas fa-bookmark"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <div class="text-center text-muted py-4">
+                    <i class="fas fa-inbox fa-3x mb-3"></i>
+                    <p>No articles found. Run the news scraper to get started!</p>
+                    <button class="btn btn-primary" onclick="runScraper()">
+                        <i class="fas fa-sync-alt"></i> Start Scraping
+                    </button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Source Distribution Chart
+    const sourceCtx = document.getElementById('sourceChart').getContext('2d');
+    new Chart(sourceCtx, {
+        type: 'doughnut',
+        data: {
+            labels: [{% for source, count in source_stats %}'{{ source }}'{{ ',' if not loop.last }}{% endfor %}],
+            datasets: [{
+                data: [{% for source, count in source_stats %}{{ count }}{{ ',' if not loop.last }}{% endfor %}],
+                backgroundColor: [
+                    '#FF6384',
+                    '#36A2EB',
+                    '#FFCE56',
+                    '#4BC0C0',
+                    '#9966FF',
+                    '#FF9F40'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }
+    });
+
+    // Category Distribution Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    new Chart(categoryCtx, {
+        type: 'bar',
+        data: {
+            labels: [{% for category, count in category_stats %}'{{ category }}'{{ ',' if not loop.last }}{% endfor %}],
+            datasets: [{
+                label: 'Articles',
+                data: [{% for category, count in category_stats %}{{ count }}{{ ',' if not loop.last }}{% endfor %}],
+                backgroundColor: '#36A2EB',
+                borderColor: '#2E86AB',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            },
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+
+{% block extra_css %}
+<style>
+/* Index/Homepage Stability Improvements */
+.stable-header {
+    min-height: 60px;
+    align-items: center !important;
+}
+
+.stable-page-title {
+    font-size: 2.25rem;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.stable-card {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    min-height: 140px;
+}
+
+.stable-card:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.stable-card-body {
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1.5rem !important;
+}
+
+.stable-icon {
+    transition: transform 0.15s ease;
+    margin-bottom: 0.75rem !important;
+}
+
+.stable-card:hover .stable-icon {
+    transform: scale(1.05);
+}
+
+.stable-stat-number {
+    font-size: 2.5rem !important;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem !important;
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stable-stat-label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0 !important;
+    min-height: 1.2rem;
+}
+
+.stable-btn {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                background-color 0.15s ease,
+                border-color 0.15s ease,
+                box-shadow 0.15s ease;
+    will-change: transform;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.stable-btn:hover {
+    transform: translateY(-1px) translateZ(0);
+}
+
+.btn-primary.stable-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary.stable-btn:hover {
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+/* Chart containers */
+.chart-container {
+    min-height: 300px;
+    position: relative;
+}
+
+/* Article cards */
+.article-card {
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 12px !important;
+    overflow: hidden;
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    min-height: 200px;
+}
+
+.article-card:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+.article-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+    min-height: 2.8em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.article-title a {
+    color: inherit;
+    transition: color 0.15s ease;
+    text-decoration: none;
+}
+
+.article-title a:hover {
+    color: #667eea !important;
+}
+
+/* List improvements */
+.list-group-item {
+    transition: background-color 0.15s ease, transform 0.15s ease;
+    border-radius: 8px !important;
+    margin-bottom: 0.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.05) !important;
+}
+
+.list-group-item:hover {
+    background-color: #f8f9fa;
+    transform: translateX(4px);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+    .stable-page-title {
+        font-size: 1.8rem !important;
+    }
+    
+    .stable-header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: stretch !important;
+    }
+    
+    .stable-stat-number {
+        font-size: 2rem !important;
+    }
+    
+    .stable-card-body {
+        padding: 1rem !important;
+        min-height: 120px;
+    }
+    
+    .stable-btn {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+}
+
+/* Loading states */
+.loading-placeholder {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+    border-radius: 4px;
+}
+
+@keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Prevent layout shifts */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-md-3, .col-md-6, .col-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Smooth focus states */
+*:focus {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+</style>
+{% endblock %}
+{% endblock %}

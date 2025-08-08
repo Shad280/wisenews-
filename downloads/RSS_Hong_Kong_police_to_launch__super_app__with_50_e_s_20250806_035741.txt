@@ -1,0 +1,8 @@
+App offers platform for residents to access services such as force’s e-Report Centre, emergency rescue and Scameter search engine
+Hong Kong police will launch a “super app” equipped with an AI chatbot on Sunday to provide a one-stop platform offering about 50 e-services to the public.
+Senior Superintendent Swalikh Mohammed of the force’s digital policing services bureau said on Monday that the mobile app offered six new functions, including an AI chatbot named “Yes Sir”.
+“This super app offers a one-stop service platform where residents can find around 50 different police services without having to go to various places,” he said.
+Users can log in to the new app through the Hong Kong Police Force’s digital services platform or through iAM Smart – the government’s digital identity platform that allows residents to access various services, auto-fill forms and perform legal digital signings.
+After logging in, icons representing different types of services will be displayed, including e-Report Centre, HKSOS for emergency rescue, and Scameter, a search engine to check suspicious or fraudulent links and phone numbers.
+“The app’s interface is more user-friendly so that the public can get the most commonly used police services that they need on a daily basis,” said Johnson Chan Joon-sun, the force’s deputy commissioner.
+The first generation of the police mobile app was launched in 2012, and the new version was developed to integrate and further digitise the force’s services.

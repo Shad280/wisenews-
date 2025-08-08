@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.rfi.fr/en/africa/20250805-rwanda-agrees-to-take-migrants-from-us-in-deal-that-includes-cash-grant

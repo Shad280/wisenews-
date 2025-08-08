@@ -1,0 +1,1 @@
+Error fetching article: 401 Client Error: HTTP Forbidden for url: https://www.marketwatch.com/story/pfizer-boosts-2025-profit-estimate-in-a-sign-of-confidence-b53242ae?mod=mw_rss_marketpulse

@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.nytimes.com/2025/08/03/world/europe/ukraine-corruption-zelensky.html

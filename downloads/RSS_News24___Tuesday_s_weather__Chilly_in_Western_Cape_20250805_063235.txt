@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/weather/tuesdays-weather-chilly-in-western-cape-northern-cape-with-light-snow-in-eastern-cape-20250804-0835

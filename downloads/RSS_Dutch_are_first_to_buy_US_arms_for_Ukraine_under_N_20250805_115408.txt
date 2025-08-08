@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.rfi.fr/en/international-news/20250805-dutch-are-first-to-buy-us-arms-for-ukraine-under-nato-scheme

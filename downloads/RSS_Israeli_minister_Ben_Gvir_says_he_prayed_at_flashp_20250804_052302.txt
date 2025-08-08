@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/video/20250803-israeli-minister-ben-gvir-says-he-prayed-at-flashpoint-holy-site

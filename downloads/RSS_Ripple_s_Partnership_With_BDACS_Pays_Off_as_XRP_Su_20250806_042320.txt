@@ -1,0 +1,17 @@
+XRP is now live on BDACS, a regulated crypto custodian for South Korean institutions, marking the first concrete outcome of Ripple’s custody partnership announced in February.
+BDACS talked about the launch in a post made Aug. 5 on X. The firm said it will offer custody support for XRP, which it described as one of the most popular digital assets in South Korea. This update follows a partnership announced Feb. 26 with Ripple, the U.S.-based blockchain company that developed the XRP Ledger and its native token.
+When the partnership was announced in February, BDACS said the deal aligned with South Korea’s Financial Services Commission roadmap, which seeks to expand institutional participation in the country’s digital asset market.
+At the time, the firm said it would support both XRP and RLUSD, Ripple’s U.S. dollar–denominated stablecoin, using Ripple Custody, a software platform built for institutions to store and manage digital assets securely. The Aug. 5 launch puts that plan into effect, giving institutional clients regulated access to XRP in South Korea.
+In the Feb. 26 press release, BDACS said the partnership was intended to support developers building on the XRP Ledger and help expand use cases for tokenization and stablecoin adoption. The firm also cited research projecting that crypto custody could reach $16 trillion in assets by 2030 and that 10% of global GDP could be tokenized by then.
+At the time, Fiona Murray, Ripple’s managing director for the Asia-Pacific region, said the collaboration came amid rising market activity and evolving regulatory conditions in South Korea. BDACS CEO Harry Ryoo said the firm aimed to provide secure and compliant custody services to support Ripple’s blockchain initiatives.
+XRP is the native token of the XRP Ledger, a layer 1 blockchain designed for low-cost, scalable transfers of digital and tokenized assets. RLUSD is Ripple’s stablecoin, backed by dollar reserves and targeted at enterprise and financial institutions.
+BDACS has also partnered with Avalanche, Polymesh and Woori Bank, and participates in projects within the blockchain regulation-free zone in Busan. In its February release, the firm said its collaboration with Ripple supported efforts to expand institutional custody services under Korea’s regulatory framework.
+As of the time of writing, XRP was trading at $2.97, down 3.4% in the past 24 hours, according to CoinDesk Data.
+Siamak Masnavi is a researcher specializing in blockchain technology, cryptocurrency regulations, and macroeconomic trends shaping the crypto market. He holds a PhD in computer science from the University of London and began his career in software development, including four years in the banking industry in the City of London and Zurich. In April 2018, Siamak transitioned to writing about cryptocurrency news, focusing on journalism until January 2025, when he shifted exclusively to research on the aforementioned topics.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+U.S Neobank Slash Debuts Stablecoin with Stripe's Bridge for Global Business Payments
+The firm aims to reduce settlement times and foreign exchange fees with its USDSL stablecoin, issued by Bridge.
+What to know:
+About
+Contact

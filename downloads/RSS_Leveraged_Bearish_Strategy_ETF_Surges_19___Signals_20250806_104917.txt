@@ -1,0 +1,17 @@
+This is a technical analysis post by CoinDesk analyst and Chartered Market Technician Omkar Godbole.
+A U.S.-listed leveraged anti-Strategy (MSTR) exchange-traded fund (ETF) surged last week, suggesting a potential bearish outlook for bitcoin BTC$114,015.46 and MSTR.
+The Defiance Daily Target 2x Short MSTR ETF, listed under the ticker SMST on Nasdaq, rose 19%, its best performance since late February, according to data source TradingView. It was also the third consecutive weekly gain, the first such instance since the ETF debuted in August last year.
+That's not all, the 19% surge pierced the bearish trendline, representing the meltdown from September 2024 highs of around $2,368 to under $20. The so-called bullish breakout is clearly visible on a long-scale weekly candlesticks chart. The log-scale is used for assets which have experienced exponential price moves, as is the case with SMST.
+The macro-level trendline breakout is supported by a powerful bullish signal in the form of a bullish marubozu candle, indicating that buyers were in firm control last week and momentum is now decisively upward. The bullish marubozu candle is identified by a prominent green body and little-to-no wicks (shadows), indicating buyer dominance.
+The overall takeaway for traders is that the SMST is suggesting a dour outlook for Strategy and bitcoin. Strategy is the largest publicly listed bitcoin holder, possessing 628,791 BTC, worth over $71 billion, as of the time of writing.
+The 2x short ETF seeks to deliver daily investment results that are -200%, or minus 2x, the daily percentage change in the MSTR share price. The fund represents a bearish leveraged bet on MSTR.
+The ETF has seen a net inflow of 16.3 million in the past six months, according to data source VettaFi. Meanwhile, its bullish peer, the 2x long MSTR fund (SMST), has seen net outflows of over $275 million.
+Read more: Bitcoin ETFs Bleed Millions for 4th Straight Day as U.S. Stagflation Fears Weigh on BTC and Stocks
+Omkar Godbole is a Co-Managing Editor and analyst on CoinDesk's Markets team. He has been covering crypto options and futures, as well as macro and cross-asset activity, since 2019, leveraging his prior experience in directional and non-directional derivative strategies at brokerage firms. His extensive background also encompasses the FX markets, having served as a fundamental analyst at currency and commodities desks for Mumbai-based brokerages and FXStreet. Omkar holds small amounts of bitcoin, ether, BitTorrent, tron and dot.Omkar holds a Master's degree in Finance and a Chartered Market Technician (CMT) designation.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+SBI Files for Bitcoin–XRP ETF in Japan, Pushing Dual Crypto Exposure Into Regulated Markets
+The ‘Crypto-Assets ETF’ is structured to track the performance of both assets simultaneously, providing a single-entry point for investors seeking crypto exposure.
+What to know:
+About
+Contact

@@ -1,0 +1,1 @@
+Error fetching article: 401 Client Error: HTTP Forbidden for url: https://www.marketwatch.com/story/consumer-credit-growth-soars-in-december-d405d18e?mod=mw_rss_marketpulse

@@ -1,0 +1,1 @@
+Error fetching article: 404 Client Error: Not Found for url: https://www.channelnewsasia.com/sport/tomljanovic-adds-aussie-joy-first-quarters-new-york-2920991?cid=cna_flip_070214

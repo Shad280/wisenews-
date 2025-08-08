@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/news/very-cold-conditions-in-several-parts-of-sa-snow-in-eastern-cape-20250806-0423

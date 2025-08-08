@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.bloomberg.com/news/videos/2025-08-05/the-china-show-8-5-2025-video

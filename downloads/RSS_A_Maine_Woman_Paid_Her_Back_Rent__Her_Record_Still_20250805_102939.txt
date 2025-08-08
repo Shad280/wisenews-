@@ -1,0 +1,115 @@
+This article was produced for ProPublica’s Local Reporting Network in partnership with the Bangor Daily News. Sign up for Dispatches to get stories like this one as soon as they are published.
+When Jasmin Belanger agreed to a plan to pay $750 in back rent, she had no idea how the decision would haunt her.
+It wasn’t until 10 months later, while apartment hunting to distance herself from an ex-boyfriend she said had abused her, that she discovered an eviction on her record. She hadn’t ever been ordered to move out, having paid her back rent on schedule. But it turned out that the 2023 deal she made in court with her landlord to help her avoid eviction created a paper record that made it look like she had been evicted. That black mark kept her from finding a new place to live.
+Belanger’s landlord was the Bangor public housing authority, which operates apartments for low-income residents. The U.S. Department of Housing and Urban Development strongly encourages public housing authorities to offer so-called repayment agreements to tenants who have fallen behind on rent in order to help them stay in their homes. It recommends that authorities reach these deals before cases reach eviction court.
+But housing authorities have flexibility as to how to design and enforce such agreements. And the way these second-chance opportunities are executed in some parts of Maine — verbally in eviction courts with little judicial oversight — has come back to harm even tenants who meet every term of their deals.
+That’s because judges here don’t pause eviction cases even when tenants and housing authorities reach agreements. In fact, those judges often grant landlords possession of properties at the time that repayment deals are made — expediting the process of kicking out tenants who violate the agreements.
+Some states have taken steps to prevent this, requiring landlords to return to court to evict tenants who don’t fulfill the terms of their repayment plans. Housing authorities also could choose to pause or close eviction cases if repayment agreements are made in court, but they rarely do so in Maine, said Erica Veazey, an attorney with Pine Tree Legal Assistance, a legal aid group based in Portland that represents low-income tenants throughout the state.
+Most housing authorities in Maine, including Bangor’s, told the Bangor Daily News and ProPublica that they follow HUD’s guidance and try to reach agreements with tenants outside of courts. But court records show that’s not always true in Bangor, the state’s second-largest housing authority. There, 54 tenants had repayment agreements made in court, according to the newsrooms’ examination of eviction filings between 2019 and 2024. All 54 tenants ended up with eviction judgments in court records, including those who may have repaid their debts. (If a repayment agreement was made outside of court, it would not appear in any official record.)
+Maine’s court system is one of the last in the country to rely on paper records, making a holistic accounting of such ghost evictions difficult. But the Bangor cases show for the first time how these repayment agreements can backfire for tenants against the intent of the HUD guidance.
+Presented with these findings, Mike Myatt, executive director of Bangor’s housing authority, said he did not know public housing residents would automatically end up with evictions on their records if they entered into repayment agreements in court.
+“I don’t quite understand or know how those processes may be changed,” Myatt said, “but we would certainly lead an effort or be part of an effort that would change those rules.”
+HUD, during President Donald Trump’s first term, began urging housing authorities to reach repayment agreements before taking tenants to eviction court in July 2020 amid the coronavirus pandemic. In January, just before President Joe Biden left office, the agency reemphasized that guidance as part of new safeguards for public housing tenants; that doesn’t include a recommendation about whether evictions should be included on tenants’ records as part of such deals.
+“HUD’s intent seems pretty clear: Eviction filing should be a last resort for housing authorities and not essentially a way to strong-arm tenants into agreeing to whatever terms you want to put them under,” said Hannah Adams, a senior attorney at the National Housing Law Project, a nonprofit legal advocacy center for low-income tenants and homeowners. She practices in Louisiana, where judges regularly sign off on repayment agreements without entering an eviction judgment.
+Of the more than three dozen tenants contacted by the Bangor Daily News and ProPublica, only Belanger agreed to publicly share her experience about the consequences of having an eviction on her record.
+An eviction, even one that never actually happened, can haunt a person’s financial record for years, visible to lenders and prospective landlords and hurting opportunities to obtain credit or rent a home, Adams said.
+Asked to comment on a range of questions, including the effect of housing authorities deviating from federal guidance, HUD spokesperson Kasey Lovett issued a statement saying the Trump administration is reviewing all rules finalized during the last administration.
+“Many artificially raised the cost of housing and administration of HUD programs,” Lovett said. “HUD is looking into this specific rule and considering necessary options to revise or remove this burden.”
+The agency did not respond to follow-up questions about whether or how it would revise the guidance about repayment agreements.
+Belanger said she fell behind on her rent in 2023 because she was paying to stay at a hotel to live away from her ex. She had also lost income because she was no longer showing up regularly to her cosmetology job due to the stress.
+An eviction notice delivered to her door in May 2023 prompted her to meet with a financial counselor at the Bangor housing authority. The counselor advised her to seek a repayment plan in order to remain in her apartment and avoid eviction court, Belanger said. But the housing authority initially refused, telling her that she could only get a repayment plan in court, according to a text message from a housing authority representative to Belanger. The text message appears to contradict Myatt’s characterization of his agency’s standard practice.
+Myatt would not explain why Belanger was not allowed to enter into an agreement before court, saying he could not speak about individual eviction cases even with Belanger’s permission.
+“Every eviction case is unique and has different circumstances,” he said. “We go above and beyond to help people stay in their housing.”
+When her court date arrived two months later in July, Belanger said the process moved quickly. The judge called her name, and she was ushered to a conference room off the courthouse hallway where the housing authority’s attorney, Joseph Bethony, verbally offered her a deal: She could remain in her apartment if she paid her back rent. She said he never mentioned anything about an eviction going on her record. Bethony declined to comment, referring the Bangor Daily News and ProPublica to Myatt. There is no guidance on what housing authority attorneys are supposed to tell tenants when making repayment agreements, Myatt said.
+“Our goal is to keep families housed and collect the very important rent we need to pay our expenses,” Myatt said. “Our counsel works with everyone to accomplish that goal.”
+Belanger, who did not have an attorney, said she agreed to the repayment plan without seeing it in writing.
+She returned to the courtroom, where a judge asked if she had reached an agreement with the housing authority. She responded yes and the hearing ended, Belanger said. She believed the deal had been simple: Pay what she owed, make the payments on time and the housing authority would let her stay.
+The repayment agreements are drawn up by attorneys for the housing authority and are not typically reviewed by judges, according to Barbara Cardone, a spokesperson for the Maine Judicial Branch. Cardone said the court’s authority in eviction cases is limited to determining whether the landlord can take possession of the property.
+The housing authority said it does not give tenants the agreements to sign in court. After the hearing, the agency sends a letter to the tenant outlining the repayment agreement and terms of the court ruling. Myatt said he does not review the agreements.
+The copy of the agreement that Belanger eventually received was dated seven days after the court hearing and was signed by Bethony but not Belanger, according to the document reviewed by the Bangor Daily News and ProPublica. The one-page document said Belanger had agreed that the judge ruled in favor of the housing authority, which would have the power to immediately evict her if she does not pay her rent — and back rent — on time over the next year.
+She would not understand the implications until March 2024, while trying to move away from her ex, when a prospective landlord informed her she would not get the apartment because an eviction judgment had been entered against her in court. Belanger even had a reference letter from the housing authority saying that she had fulfilled her repayment agreement and her previous struggles paying rent “were due to the monies she has had to spend staying away from her apartment to be safe,” according to an email reviewed by the Bangor Daily News and ProPublica.
+“I had paid off all of my debt,” Belanger said in an interview. “I would have fought this if I had known this was a consequence.”
+Myatt, head of the Bangor housing authority, said he trains his staff to use court-based agreements as a last resort. He said tenants should not be punished with eviction records if they’ve fulfilled their agreements.
+“If the obligations are met,” he said, “the eviction should be lifted.” There is currently no way to expunge an eviction record in Maine.
+Unlike in Maine, other places across the country have set up more guardrails around repayment agreements and evictions. Massachusetts requires all repayment agreements made in court to be in writing and approved by judicial officials. In addition, landlords can’t automatically evict tenants who don’t abide by their agreements; they must return to court to prove tenants did not uphold their side of the deals before obtaining enforceable eviction orders.
+In SeaTac, a Seattle suburb, local ordinances require eviction proceedings to stop in court if a tenant and landlord agree to a repayment agreement, so tenants do not wind up with evictions on their records. In Portland, Oregon, the public housing authority allows residents to sign repayment agreements at any point before eviction hearings.
+Nicole Summers, an associate professor at Georgetown Law who has extensively studied eviction settlements, refers to repayment agreements as “civil probation.” That’s because these agreements often include rules and conditions governing tenants’ behavior well beyond paying off back rent.
+In Maine, Veazey said that under some agreements, violating public housing rules by failing to mow your lawn or smoking too close to the building can lead to a tenant’s forced removal without having to return to court for an eviction order.
+In Presque Isle, the housing authority gave a public housing resident 48 hours to pack up and leave after she missed a rent payment. The woman, featured in a story by the Bangor Daily News and ProPublica in December, was homeless for three years after violating the repayment plan she had made in court. When there is no repayment agreement in place, landlords normally must provide tenants 30 days’ notice for most lease violations before filing eviction cases in court.
+Read More
+Belanger’s agreement in Bangor featured a similar trigger for eviction. She wasn’t just required to pay what she owed, she also had to make future rent payments on time for 12 months.
+In the two years since Belanger agreed to the repayment deal in court, she said she has felt trapped.
+Despite a positive reference from the Bangor housing authority’s director of property management, landlord after landlord rejected her rental application because of the eviction. It took the single mother of a toddler nine months to get into another apartment far away from her ex, who was out on bail after being arrested for allegedly beating and threatening to kill her. (He was later found not guilty after a trial.)
+Belanger said she’s afraid to move again because the paper eviction hasn’t gone away.
+“I’m probably still going to have this hassle coming along with me wherever I go.”
+This story was supported in part by a grant from the Fund for Investigative Journalism.
+Mariam Elba of ProPublica and Christina Wallace contributed research.
+Filed under —
+During Donald Trump’s second presidency, ProPublica will focus on the areas most in need of scrutiny. Here are some of the issues our reporters will be watching — and how to get in touch with them securely.
+Learn more about our reporting team. We will continue to share our areas of interest as the news develops.
+I cover health and the environment and the agencies that govern them, including the Environmental Protection Agency.
+I cover justice and the rule of law, including the Justice Department, U.S. attorneys and the courts.
+I report on immigration and labor, and I am based in Chicago.
+I cover housing and transportation, including the companies working in those fields and the regulators overseeing them.
+If you don’t have a specific tip or story in mind, we could still use your help. Sign up to be a member of our federal worker source network to stay in touch.
+Oil companies are holding back a large portion of revenue payments to the people they lease drilling rights from, often with little explanation. But the industry has an outsize influence in the state, and public officials have refused to take action.
+by Jacob Orledge, North Dakota Monitor, photography by Sarahbeth Maney, ProPublica,
+            
+
+Aug. 4, 2025, 6 a.m. EDT
+Local Reporting Network
+Authorities are investigating why two women fell ill at the Revolution Against Aging and Death Festival. They both received peptide injections, an alternative therapy promoted by Robert F. Kennedy Jr. as a way to fight aging and chronic disease.
+by Anjeanette Damon,
+            
+
+July 29, 2025, 6 a.m. EDT
+The latest inspection comes 2 1/2 years after the agency allowed Sun Pharma to keep shipping some drugs to Americans even after banning the factory from the U.S. market because of quality problems.
+by Megan Rose and Debbie Cenziper,
+            
+
+July 16, 2025, 1:45 p.m. EDT
+ProPublica has obtained the blueprint for the Trump administration’s unprecedented plan to turn over IRS records to Homeland Security in order to speed up the agency’s mass deportation efforts.
+by William Turton, Christopher Bing and Avi Asher-Schapiro,
+            
+
+July 15, 2025, 11:45 a.m. EDT
+Beyond staff cuts, the departures of some longtime investigators in recent months have left less experienced people tasked with rooting out dangerous manufacturing practices.
+by Victoria Malis, Katherine Dailey and Sadie Leite, Medill Investigative Lab, and Debbie Cenziper and Megan Rose, ProPublica,
+            
+
+July 7, 2025, 5 a.m. EDT
+EPA Administrator Lee Zeldin claims to prioritize combatting long-lasting chemicals called PFAS. Despite this, the agency has delayed enforcement of standards and terminated over $15 million in funding for “forever chemicals” research.
+by Anna Clark,
+            
+
+July 2, 2025, 6:30 a.m. EDT
+Oil companies are holding back a large portion of revenue payments to the people they lease drilling rights from, often with little explanation. But the industry has an outsize influence in the state, and public officials have refused to take action.
+by Jacob Orledge, North Dakota Monitor, photography by Sarahbeth Maney, ProPublica,
+            
+
+Aug. 4, 2025, 6 a.m. EDT
+Local Reporting Network
+While the IRS move applies across the country, Texas — with more than 200 megachurches — will be the epicenter for pastors and congregations to test out their new influence, one expert said.
+by Marissa Greene, Fort Worth Report and Report for America,
+            
+
+Aug. 4, 2025, 4 a.m. CDT
+Authorities are investigating why two women fell ill at the Revolution Against Aging and Death Festival. They both received peptide injections, an alternative therapy promoted by Robert F. Kennedy Jr. as a way to fight aging and chronic disease.
+by Anjeanette Damon,
+            
+
+July 29, 2025, 6 a.m. EDT
+Venezuelan men deported by the Trump administration say they endured months of physical and mental abuse inside a Salvadoran prison. Though happy to be home, they say the fact that they were released is proof of how senseless their detentions were.
+by Perla Trevizo, ProPublica and The Texas Tribune, Melissa Sanchez and Mica Rosenberg, ProPublica, Ronna Rísquez, Alianza Rebelde Investiga,  and Adrián González, Cazadores de Fake News, photography and additional reporting by Adriana Loureiro Fernández for ProPublica and The Texas Tribune,
+            
+
+July 30, 2025, 6 a.m. EDT
+Microsoft announced that Chinese state-sponsored hackers had exploited vulnerabilities in its popular SharePoint software but didn’t mention that it has long used China-based engineers to maintain the product.
+by Renee Dudley,
+            
+
+Aug. 1, 2025, 3:15 p.m. EDT
+© Copyright 2025 Pro Publica Inc.
+Creative Commons License (CC BY-NC-ND 3.0)
+Thank you for your interest in republishing this story. You are free to republish it so long as you do the following:
+Sign up for ProPublica’s Big Story newsletter and get our latest stories delivered straight to your inbox.

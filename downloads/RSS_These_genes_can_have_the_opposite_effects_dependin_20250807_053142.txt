@@ -1,0 +1,66 @@
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+            the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+            Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+            and JavaScript.
+Advertisement
+Search author on:
+PubMed
+ Google Scholar
+Children inherit two copies of most genes from their parents, but one copy of certain genes can be silenced.  Credit: Oscar Wong/Getty
+The effect of a gene can vary greatly — and sometimes be the complete opposite — depending on whether it is inherited from the mother or the father. Some genetic variants can, for instance, increase a person’s risk of developing type 2 diabetes when inherited from the father, but lower it when inherited from the mother. But such effects have been challenging to unpick owing to gaps in genomic data. A study published in Nature this week describes a statistical method used to identify at least 30 parent-of-origin effects1 in 14 genes.
+When a child is conceived, it inherits two copies of almost every gene — one from each parent — and both are generally turned either on or off. But in some regions of the genome, one copy can be turned on, or expressed, while the other is silenced. This can lead to ‘imprinting’ disorders such as Prader-Willi syndrome, which is usually caused by a missing or non-functional paternal copy of the UBE3A gene on chromosome 15. In contrast, a missing or non-functional maternal copy can cause Angelman syndrome.
+Researchers have for decades suggested that the silencing of certain genes is driven by an evolutionary conflict between maternal and parental origin. For instance, the expression of paternal genes would promote the growth of offspring during pregnancy, but that would come at the cost of the mother’s resources. By contrast, the expression of maternal genes would help to conserve the mother’s resources so that she can have more children at the expense of her current offspring’s growth. But studying how parent-of-origin variants affect human traits is difficult because researchers usually need genomic data from a person and their parents, which are not often available.
+To avoid the need for parental genomic data, a research team in Europe and the United States developed a statistical method that can infer the parent of origin for genetic variants using genomic data that are available from any relatives.
+The team determined the parental origin of genes for nearly 109,000 people whose genomic data are included in the UK Biobank. Among those, they identified roughly 30 variants that had differing effects on growth and metabolism, including 19 that had a ‘bipolar’ effect, meaning that it would have opposite effects depending on which parent it came from. Around half of these bipolar variants were located on chromosome 11, which hosts a large cluster of imprinted genes associated with controlling growth. One of these variants increased the risk of developing type 2 diabetes by 14% when inherited from the father but decreased it by 9% when inherited from the mother.
+The team repeated its analysis and confirmed its findings with data for 85,000 people in the Estonian Biobank and 42,000 in the Norwegian Mother, Father and Child Cohort Study. They also used the Norwegian and UK data to show that a variant on a gene called KLF14 was associated with a higher body mass index in infancy if it was inherited from the mother.
+or
+doi: https://doi.org/10.1038/d41586-025-02499-6
+Hofmeister, R. J. et al. Nature https://doi.org/10.1038/s41586-025-09357-5 (2025).
+Article 
+    
+                    Google Scholar
+Download references
+Reprints and permissions
+Century-old genetics mystery of Mendel’s peas finally solved
+Is your AI benchmark lying to you?
+Technology Feature 06 AUG 25
+Whole-genome sequencing of 490,640 UK Biobank participants
+Article 06 AUG 25
+Parent-of-origin effects on complex traits in up to 236,781 individuals
+Article 06 AUG 25
+Is your AI benchmark lying to you?
+Technology Feature 06 AUG 25
+This company claimed to ‘de-extinct’ dire wolves. Then the fighting started.
+News Feature 04 AUG 25
+The tiny mouse lemur could make for a mighty model organism
+News & Views 30 JUL 25
+Parent-of-origin effects on complex traits in up to 236,781 individuals
+Article 06 AUG 25
+A male-essential miRNA is key for avian sex chromosome dosage compensation
+Article 16 JUL 25
+Investigating the molecular ‘scars’ of PTSD in the human brain
+News & Views 18 JUN 25
+AI4I is seeking to appoint the Founding Heads of its Research & Development Labs.
+Turin (IT)
+The Italian Institute of Artificial Intelligence for Industry (AI4I)
+Title:  Associate or Senior Editor (Thermoelectrics & Thermal Engineering) Location: Shanghai, Nanjing, Beijing, Madrid, Milan, New York, Jersey Ci...
+Shanghai, Nanjing, Beijing, Madrid, Milan, New York, Jersey City, or Washington DC
+Springer Nature Ltd
+Job Title:  Deputy Editor, Communications Health   Locations: New York, Jersey City, Shanghai or Beijing (Hybrid working model)  Application Deadli...
+New York City, New York (US)
+Springer Nature Ltd
+Postdoctoral fellow to study multimodal omics integration in neurodegeneration.
+Baltimore, Maryland
+Johns Hopkins University - BrainSigns Lab
+Title: Associate or Senior Editor, Nature Reviews Earth & Environment Organization: Nature Portfolio Locations: New York or Shanghai -Hybrid Workin...
+New York City, New York (US)
+Springer Nature Ltd
+Century-old genetics mystery of Mendel’s peas finally solved
+An essential round-up of science news, opinion and analysis, delivered to your inbox every weekday.
+Sign up for the Nature Briefing newsletter — what matters in science, free to your inbox daily.
+Nature
+                    
+                    (Nature)
+ISSN 1476-4687 (online)
+ISSN 0028-0836 (print)
+© 2025 Springer Nature Limited

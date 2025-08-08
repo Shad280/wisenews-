@@ -1,0 +1,14 @@
+Bitcoin’s trademark volatility may be entering a new phase thanks to the Securities and Exchange Commission (SEC).
+The agency's decision to raise position limits on options for most bitcoin ETFs could help smooth price swings by encouraging strategies like covered call selling, which caps the upside in exchange for steady income, according to NYDIG Research.
+That increase in position limits for options trading on IBIT came as the regulator approved in-kind redemptions for spot bitcoin ETFs.
+By letting traders hold ten times more contracts than before, NYDIG wrote, the SEC has opened the door to more aggressive and sustained options activity. Covered call strategies, in particular, work best at scale.
+They’re designed to earn yield from existing holdings by selling upside exposure, which can naturally suppress price movement if done across large portfolios.
+Bitcoin’s volatility has already been on the decline, with Deribit’s BTC Volatility Index (DVOL) showing a steady decline from around 90 to 38 over the past four years.
+Still, it stands out compared to bonds, stocks, and other traditional assets. That makes it a tempting target for investors trying to collect income from market swings, effectively harvesting volatility, but also risky for institutions that require stable exposures.
+“As volatility declines, the asset becomes more investable for institutional portfolios seeking balanced risk exposure. This dynamic could reinforce spot demand,” NYDIG’s analysts wrote.
+Ray Dalio, one of the earliest champions of such risk-parity strategies, recently suggested a 15% allocation to gold and crypto amid rising debt levels.
+“The feedback loop of falling volatility leading to increased spot buying could become a powerful driver of sustained demand,” the firm concluded.
+Read more: Wall Street Has Claimed Bitcoin—Now What?
+Francisco is a reporter for CoinDesk with a passion for cryptocurrencies and personal finance. Before joining CoinDesk he worked at major financial and crypto publications. He owns bitcoin, ether, solana, and PAXG above CoinDesk's $1,000 disclosure threshold.
+About
+Contact

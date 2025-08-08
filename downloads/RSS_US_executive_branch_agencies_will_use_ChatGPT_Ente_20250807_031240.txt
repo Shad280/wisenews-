@@ -1,0 +1,17 @@
+Questions linger about ideological bias in models as well as data security.
+OpenAI announced an agreement to supply more than 2 million workers for the US federal executive branch access to ChatGPT and related tools at practically no cost: just $1 per agency for one year.
+The deal was announced just one day after the US General Services Administration (GSA) signed a blanket deal to allow OpenAI and rivals like Google and Anthropic to supply tools to federal workers.
+The workers will have access to ChatGPT Enterprise, a type of account that includes access to frontier models and cutting-edge features with relatively high token limits, alongside a more robust commitment to data privacy than general consumers of ChatGPT get. ChatGPT Enterprise has been trialed over the past several months at several corporations and other types of large organizations.
+The workers will also have unlimited access to advanced features like Deep Research and Advanced Voice Mode for a 60-day period. After the one-year trial period, the agencies are under no obligation to renew.
+A limited deployment of ChatGPT for federal workers was already done via a pilot program with the US Department of Defense earlier this summer.
+In a blog post, OpenAI heralded this announcement as an act of public service:
+This effort delivers on a core pillar of the Trump Administration’s AI Action Plan by making powerful AI tools available across the federal government so that workers can spend less time on red tape and paperwork, and more time doing what they came to public service to do: serve the American people.
+The AI Action Plan aims to expand AI-focused data centers in the United States while bringing AI tools to federal workers, ostensibly to improve efficiency.
+There's an additional wrinkle that OpenAI may have to contend with: The Trump administration also recently issued an executive order labeled "Preventing Woke AI" that insists that AI tools procured by the federal government not push "ideological dogmas such as DEI."
+So far, conservatives in the Trump administration's camp have been consistently frustrated by ChatGPT's alleged left-leaning biases on issues just like that one, and efforts to train LLMs to consistently adhere to one ideology have had mixed results at best. It's not known what, if anything, OpenAI will do on this front; the company has already offered the federal government "custom models for national security," but there's no public commitment to custom models that avoid certain ideological inclinations.
+The details of how ChatGPT will ensure the necessary high standards of security for federal workers are also not publicly known, though a GSA spokesperson responded to a question on that topic from TechCrunch by saying "the government is taking a cautious, security-first approach to AI," adding, "this ensures sensitive information remains protected while enabling agencies to benefit from AI-driven efficiencies."
+Ars Technica has been separating the signal from
+          the noise for over 25 years. With our unique combination of
+          technical savvy and wide-ranging interest in the technological arts
+          and sciences, Ars is the trusted source in a sea of information. After
+          all, you don’t need to know everything, only what’s important.

@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/live-news/20250803-bolsonaro-backers-rally-to-praise-trump-for-brazil-pressure

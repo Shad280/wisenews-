@@ -1,0 +1,15 @@
+Artificial intelligence is reshaping the US job market — and young tech workers are feeling the brunt of it.
+"It is true that AI is starting to show up more clearly in the data," wrote Jan Hatzius, Goldman Sachs' chief economist, in a Monday note.
+Goldman's analysis shows that the tech sector's share of the US employment market peaked in November 2022 — when ChatGPT was launched — and has since fallen below its long-term trend.
+The impact has been especially sharp for young tech workers. The unemployment rate for 20- to 30-year-olds in tech has risen by nearly 3 percentage points since early 2024, over four times the increase in the overall jobless rate.
+That spike is yet another sign that generative AI is starting to displace white-collar jobs, especially among early-career workers.
+"While this is still a small share of the overall US labor market, we estimate that generative AI will eventually displace 6-7% of all US workers," Hatzius wrote.
+Goldman expects that shift to happen over the next decade. The firm forecasts that the peak unemployment impact will be limited to a "manageable" 0.5 percentage point, as other industries absorb many displaced workers.
+The report comes amid growing concerns about US labor market weakness.
+The US economy added just 73,000 jobs in July, far short of the 106,000 expected by economists, according to data from the Bureau of Labor Statistics on Friday. Job growth for May and June was also revised sharply lower.
+"Friday's jobs numbers reinforced our view that US growth is near stall speed — a pace below which the labor market weakens in a self-reinforcing fashion," wrote Hatzius.
+Despite AI's impact, Hatzius pointed to a bigger near-term problem: a slowdown in US output growth, which he attributes in part to higher tariffs.
+Goldman estimates that real GDP grew at a 1.2% annualized rate in the first half of the year. Analysts wrote that they expect a "similarly sluggish pace" in the second half.
+"While the easing in financial conditions and the pickup in business confidence should support growth, real disposable income and consumer spending are likely to grow very slowly, not just because of the weakness in job growth but also because most of the pass-through from tariffs to consumer prices is still ahead of us," Hatzius wrote.
+Tech leaders have warned of an AI-induced jobs cliff. In May, Anthropic CEO Dario Amodei said that AI may eliminate 50% of entry-level, white-collar jobs in the next five years.
+Jump to

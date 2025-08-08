@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.rfi.fr/en/environment/20250806-french-court-to-rule-on-agriculture-law-that-poses-threat-to-bees-and-nature-duplomb

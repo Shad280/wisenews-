@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/middle-east/20250803-renewed-clashes-in-syria-s-druze-majority-sweida-kill-four-people-monitor-says

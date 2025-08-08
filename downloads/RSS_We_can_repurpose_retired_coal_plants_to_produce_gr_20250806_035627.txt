@@ -1,0 +1,40 @@
+Advertisement
+Piles of dirt can cheaply store renewable energy as heat – and that stored energy can reactivate the machinery of retired coal power plants, letting them provide backup power for the electricity grid
+By Jeremy Hsu
+5 August 2025
+A derelict coal power plant at the abandoned Indiana Army Ammunition PlantThe American Explorer/Shutterstock
+A derelict coal power plant at the abandoned Indiana Army Ammunition Plant
+The American Explorer/Shutterstock
+Dozens of retired coal-fired power plants could find new life providing backup or emergency power for the electricity grid – except this time without the need for fossil fuels. They could instead rely on heat energy stored in dirt.
+Read moreIs ultra cheap green hydrogen on the horizon?
+Read more
+Is ultra cheap green hydrogen on the horizon?
+The concept involves creating a huge dirt pile near a coal plant and placing industrial heaters inside. During the grid’s low-demand periods, these machines would convert cheap electricity into heat, which would remain stored within the dirt at a temperature of about 600°C. During times of high power demand, the heat could be transferred out of the dirt via pipes of heated liquid.
+The coal plant’s turbine blades and connected generator could then turn that heat into backup energy. The heat would transform water into steam, which would spin the turbine blades to produce electricity. “Instead of taking the coal to heat up the water to produce the steam, you use the heat from this energy stored in the dirt,” says Ken Caldeira at Stanford University in California.
+Energy storage like this is necessary to supplement renewable power sources, such as wind and solar, which only provide energy intermittently. And dirt is cheaper, more abundant and more widely available than other types of long-term energy storage, such as lithium batteries or hydrogen fuel.
+“The really exciting part is specifically the low energy capacity cost, because it’s so much cheaper than other energy technologies,” says Alicia Wongel at Stanford University.
+Free newsletter
+Unmissable news about our planet, delivered straight to your inbox each month.
+However, this approach could have other costs. “Reducing piping and electrical costs are essential in such systems and may be a challenge,” says Andrew Maxson at the Electric Power Research Institute, a non-profit research organisation headquartered in California.
+Most dirt includes naturally heat-resistant materials, such as silicon dioxide and aluminium oxide, which make it “pretty robust to heating”, says Austin Vernon at Standard Thermal in Oklahoma. His start-up is looking to commercialise this “heat battery” technology for repowering retired coal power plants, especially at sites with nearby solar or wind power sources.
+Read moreWhy do we burn more coal and wood than ever, asks a provocative book
+Read more
+Why do we burn more coal and wood than ever, asks a provocative book
+In the US, such retired coal facilities are abundant – nearly 300 coal-fired plants retired between 2010 and 2019 alone, and an additional 50 gigawatts of coal plant capacity is expected to reach the typical retirement age of 50 years by 2030. Although the Trump administration has attempted to delay coal plant retirements, coal’s share of US electricity production peaked in the late 2000s, unable to out-compete cheaper natural gas and renewables.
+Christian Fong at the Rocky Mountain Institute, a research organisation based in Colorado, is optimistic about the idea of giving defunct coal plants a new purpose. “This provides a way for local communities to participate in the clean energy transition by providing jobs and additional tax revenue to help displace the retirement of the coal plant,” he says.
+Journal referenceFindings DOI: 10.32866/001c.141340
+Journal reference
+Findings DOI: 10.32866/001c.141340
+Topics:
+Advertisement
+Receive a weekly dose of discovery in your inbox.
+            We'll also keep you up to date with New Scientist 
+            events and special offers.
+Explore the latest news, articles and features
+News
+News
+News
+News
+Trending New Scientist articles
+Advertisement
+Download the app

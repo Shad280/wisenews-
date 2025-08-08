@@ -1,0 +1,22 @@
+{
+  "timestamp": "2025-08-07T23:16:18.867948",
+  "system_info": {
+    "cpu_count": 4,
+    "memory_total_gb": 15.614360809326172,
+    "memory_available_gb": 5.701038360595703,
+    "disk_usage_gb": 88.44094467163086
+  },
+  "database_info": {
+    "articles_count": 12887,
+    "users_count": 2,
+    "user_subscriptions_count": 2,
+    "user_daily_usage_count": 0,
+    "live_events_count": 57,
+    "size_mb": 74.2890625
+  },
+  "cache_info": {
+    "cache_size": 0,
+    "max_cache_size": 1000
+  },
+  "recommendations": []
+}

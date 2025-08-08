@@ -1,0 +1,29 @@
+Advertisement
+Inspired by the work of Victorian mathematician Mary Everest Boole, try making a symmetric curve using string and some hole-punched card, says Peter Rowlett
+By Peter Rowlett
+30 July 2025
+“As with any mathematical concept, this idea is open to exploration”Peter Rowlett
+“As with any mathematical concept, this idea is open to exploration”
+Peter Rowlett
+When she was young, Mary Everest Boole found some cards with evenly spaced holes around the edges. She laced a thread from each hole to the one opposite, covering the card with lines that crossed in the middle. When she tried connecting each hole to one not exactly opposite, she was delighted to find the threads left a symmetric curve in the middle of the card. She felt this activity gave her an intuition that helped her learn formal geometry.
+Years later, in 1864, she was widowed with five children. Even though the academic system didn’t value the contributions of women, she worked as a librarian and maths tutor in London.
+Boole thought children should be given mathematical objects, such as her curve-stitching activities, to play with to help them develop their understanding. She linked mathematical imagination and creativity in other ways, including explaining logic and algebra using fable and history.
+Now you can play, too, by making a “string art” image inspired by her work, in which you draw lines instead of threading them. Draw a pair of horizontal and vertical axes 10 centimetres long, marking the numbers 1 to 10 on each line, 1 cm apart. Now draw a straight line from point 1 on the horizontal axis to point 10 on the vertical. Then connect 2 to 9, 3 to 8, and so on. Even though each line is straight, a curve should start to appear, as the straight lines are all tangent to the curve.
+You may have used drawing software, where the shape of a path can be controlled by setting its two end points and a third point that controls how much it bends. These are Bézier curves, now used widely in computer-aided design. They are related to Boole’s early stitched curve, with the curve fixed by the end of the axes and the point where they cross.
+After some practice, you should be able to draw the lines without numbering the marks – and try using different colours for them. She recommended it as a stitching exercise rather than a drawing one, especially for young children, because it is easier to stitch a straight line than to draw one. You can use thread: just replace dots with holes.
+As with any mathematical concept, this idea is open to exploration. You could, say, change a pair of axes that meet at a right angle into a pair of lines that meet at more or less than 90 degrees. Or you could find out what happens if the gap between the dots is 1 cm on one line and 2 cm on the other.
+Perhaps draw a circle or another shape and place dots equidistant around it, then connect each dot to another in a systematic way – for example, connect every dot to the one 10 dots around, clockwise. You might also like to work out how to create pictures like the boat in the photo above (middle, right). What else can you create?
+For other projects visit newscientist.com/maker
+Topics:
+Advertisement
+Receive a weekly dose of discovery in your inbox! 
+            We'll also keep you up to date with New Scientist 
+            events and special offers.
+Explore the latest news, articles and features
+News
+News
+News
+News
+Trending New Scientist articles
+Advertisement
+Download the app

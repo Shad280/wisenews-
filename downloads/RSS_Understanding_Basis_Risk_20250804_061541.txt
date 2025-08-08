@@ -1,0 +1,1 @@
+Error fetching article: HTTPSConnectionPool(host='commodityhq.com', port=443): Max retries exceeded with url: /education/understanding-basis-risk/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate has expired (_ssl.c:1006)')))

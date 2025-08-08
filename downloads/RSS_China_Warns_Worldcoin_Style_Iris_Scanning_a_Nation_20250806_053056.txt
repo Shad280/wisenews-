@@ -1,0 +1,15 @@
+China’s Ministry of State Security (MSS) is warning of a national security threat posed by the misuse of biometric data, singling out foreign companies that incentivize iris scans with cryptocurrency, in what appears to be a thinly veiled reference to Worldcoin via a post on its official WeChat account.
+In a post, the MSS described a case in which a foreign firm offered crypto token rewards to scan users' irises around the world.
+The company later transferred the biometric data abroad, raising concerns about both personal data privacy and national security. While the company wasn’t named, the description closely matches Worldcoin, the crypto project co-founded by OpenAI CEO Sam Altman, which exchanges tokens for iris scans in a bid to build a global identity network.
+The project has already faced regulatory pushback in Germany, France, and Kenya, CoinDesk previously reported, where concerns have been raised over informed consent, data storage, and surveillance potential.
+Beijing's advisory goes further, citing other cases where stolen facial data has allegedly been used by foreign intelligence services to deepfake identities, allowing spies to infiltrate secure locations.
+Worldcoin's WLD token is trading for 93 cents, down 4%, according to CoinDesk market data.
+Read more: Sam Altman’s World Network in Talks With Visa for Stablecoin Payments Wallet: Source
+Sam Reynolds is a senior reporter based in Asia. Sam was part of the CoinDesk team that won the 2023 Gerald Loeb award in the breaking news category for coverage of FTX's collapse. Prior to CoinDesk, he was a reporter with Blockworks and a semiconductor analyst with IDC.
+“AI Boost” indicates a generative text tool, typically an AI chatbot, contributed to the article. In each and every case, the article was edited, fact-checked and published by a human. Read more about CoinDesk's AI Policy.
+More For You
+SEC Says Liquid Staking Doesn't Run Afoul of Securities Laws
+The SEC's latest staff statement — which isn't binding guidance — addresses certain aspects of liquid staking.
+What to know:
+About
+Contact

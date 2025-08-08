@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Center - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .support-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+        }
+        .support-card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        .support-card:hover {
+            transform: translateY(-5px);
+        }
+        .support-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        .chat-widget:hover {
+            background: #0056b3;
+            transform: scale(1.1);
+        }
+        .faq-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container fade-in">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-newspaper me-2"></i>WiseNews
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/live-feeds">Live Feeds</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/support">Support</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="support-hero">
+        <div class="container text-center">
+            <h1 class="display-4 mb-4">
+                <i class="fas fa-life-ring me-3"></i>Support Center
+            </h1>
+            <p class="lead mb-4">Get help with WiseNews - we're here to assist you 24/7</p>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <div>Support Available</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">&lt;2min</div>
+                        <div>Average Response</div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div>Customer Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Options -->
+    <section class="py-5">
+        <div class="container fade-in">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card support-card text-center p-4">
+                        <div class="support-icon text-primary">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h4>Live Chat</h4>
+                        <p>Get instant help from our AI assistant or connect with our support team in real-time.</p>
+                        <a href="/support/chat" class="btn btn-primary stable-btn">Start Chat</a>
+                        <a href="/support/chat/guest" class="btn btn-outline-primary mt-2 stable-btn">Chat as Guest</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card support-card text-center p-4">
+                        <div class="support-icon text-success">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <h4>FAQ</h4>
+                        <p>Find quick answers to frequently asked questions about WiseNews features and functionality.</p>
+                        <a href="/support/faq" class="btn btn-success stable-btn">Browse FAQ</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card support-card text-center p-4">
+                        <div class="support-icon text-info">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Contact Us</h4>
+                        <p>Send us a detailed message and we'll get back to you within 24 hours.</p>
+                        <a href="/support/contact" class="btn btn-info stable-btn">Contact Form</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card support-card text-center p-4">
+                        <div class="support-icon text-warning">
+                            <i class="fas fa-ticket-alt"></i>
+                        </div>
+                        <h4>My Tickets</h4>
+                        <p>View and track your support tickets and their resolution status.</p>
+                        <a href="/support/tickets" class="btn btn-warning stable-btn">View Tickets</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card support-card text-center p-4">
+                        <div class="support-icon text-secondary">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>User Guide</h4>
+                        <p>Comprehensive guides and tutorials to help you get the most out of WiseNews.</p>
+                        <a href="#" class="btn btn-secondary stable-btn">User Guide</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card support-card text-center p-4">
+                        <div class="support-icon text-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h4>Report Issue</h4>
+                        <p>Report bugs, technical issues, or content problems for immediate attention.</p>
+                        <a href="/support/chat" class="btn btn-danger stable-btn">Report Issue</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Help Section -->
+    <section class="faq-section">
+        <div class="container fade-in">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-4">Quick Help</h2>
+                    <p class="lead mb-5">Common questions and instant solutions</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body stable-card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-user-plus text-primary me-2"></i>Getting Started
+                            </h5>
+                            <p class="card-text">Learn how to create an account, set preferences, and navigate WiseNews.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Account registration</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Profile setup</li>
+                                <li><i class="fas fa-check text-success me-2"></i>News preferences</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body stable-card-body">
+                            <h5 class="card-title">
+                                <i class="fas fa-cog text-info me-2"></i>Features & Settings
+                            </h5>
+                            <p class="card-text">Customize your experience with advanced features and settings.</p>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Live feeds setup</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Notification settings</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Privacy controls</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information -->
+    <section class="py-5 bg-dark text-white">
+        <div class="container fade-in">
+            <div class="row">
+                <div class="col-lg-4">
+                    <h4><i class="fas fa-headset me-2"></i>24/7 Support</h4>
+                    <p>Our support team is available around the clock to help you with any questions or issues.</p>
+                </div>
+                <div class="col-lg-4">
+                    <h4><i class="fas fa-envelope me-2"></i>Email Support</h4>
+                    <p>Send us an email at <a href="mailto:support@wisenews.com" class="text-white">support@wisenews.com</a></p>
+                </div>
+                <div class="col-lg-4">
+                    <h4><i class="fas fa-clock me-2"></i>Response Time</h4>
+                    <p>We aim to respond to all inquiries within 2 hours during business hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Chat Widget -->
+    <div class="chat-widget" onclick="openChat()" title="Start Live Chat">
+        <i class="fas fa-comment-dots fa-lg"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function openChat() {
+            // Check if user is logged in (you can modify this logic)
+            const isLoggedIn = false; // This would come from your authentication system
+            
+            if (isLoggedIn) {
+                window.open('/support/chat', 'chat_window', 'width=400,height=600,scrollbars=yes,resizable=yes');
+            } else {
+                window.open('/support/chat/guest', 'chat_window', 'width=400,height=600,scrollbars=yes,resizable=yes');
+            }
+        }
+
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

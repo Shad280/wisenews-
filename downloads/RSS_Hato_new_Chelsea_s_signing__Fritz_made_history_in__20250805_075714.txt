@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/tv-shows/sports/20250805-hato-new-chelsea-signing-fritz-made-history-in-toronto

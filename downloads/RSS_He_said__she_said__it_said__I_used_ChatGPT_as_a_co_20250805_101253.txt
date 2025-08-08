@@ -1,0 +1,55 @@
+Emma Bowman
+One recent evening, my new boyfriend and I found ourselves in a spat.
+I accused him of giving in to his anxious thoughts.
+"It's hard to get out of my head," David said. "Mental spiraling is part of the nature of sensitivity sometimes — there's emotional overflow from that."
+"Well, spiraling is bad," said I, a woman who spirals.
+Our different communication styles fueled the tense exchange. While I lean practical and direct, he's contemplative and conceptual.
+I felt we could benefit from a mediator. So, I turned to my new relationship consultant, ChatGPT.
+Almost half of Generation Z uses artificial intelligence for dating advice, more than any other generation, according to a recent nationwide survey by Match Group, which owns the dating apps Tinder and Hinge. Anecdotally, I know women who've been consulting AI chatbots about casual and serious relationships alike. They gush over crushes, upload screenshots of long text threads for dissection, gauge long-term compatibility, resolve disagreements and even soundboard their sexts.
+Kat, a friend of mine who uses ChatGPT to weed out dating prospects, told me she found it pretty objective. Where emotions might otherwise get in the way, the chatbot helped her uphold her standards.
+"I feel like it gives better advice than my friends a lot of the time. And better advice than my therapist did," said Kat, who asked to go by her first name due to concerns that her use of AI could jeopardize future romantic connections. "With friends, we're all just walking around with our heads chopped off when it comes to emotional situations."
+When apps are challenging our old ways of finding connection and intimacy, it seems ironic to add another layer of technology to dating. But could Kat be on to something? Maybe a seemingly neutral AI is a smart tool for working out relationship issues, sans human baggage.
+For journalistic purposes, I decided to immerse myself in the trend.
+Drawing on the theory that couples should seek therapy before major problems arise, I proposed to my boyfriend of less than six months that we turn to an AI chatbot for advice, assess the bot's feedback and share the results. David, an artist who's always up for a good experimental project (no last name for him, either!), agreed to the pitch.
+Our first foray into ChatGPT-mediated couples counseling began with a question suggested by the bot to spark discussion about the health of our relationship. Did David have resources to help him manage his stress and anxiety? He did — he was in therapy, exercised and had supportive friends and family. That reference to his anxiety then sent him on a tangent.
+He reflected on being a "sensitive artist type." He felt that women, who might like that in theory, don't actually want to deal with emotionally sensitive male partners.
+"I'm supposed to be unflappable but also emotionally vulnerable," David said.
+He was opening up. But I accused him of spiraling, projecting assumptions and monologuing.
+While he was chewing over big ideas, I tried to steer the conversation back to our interpersonal friction. That's where ChatGPT came in: I recorded our conversation and uploaded the transcript to the bot. And then I posed a question. (Our chats have been heavily edited for brevity — it talks a lot.)
+Loading...
+David was incredulous. "It feels like a cliché," he said.
+Deflection, I thought. I turned back to ChatGPT and read on:
+Loading...
+It was a damning summary. Was I, as ChatGPT suggested, carrying a burnout level of emotional labor at this early stage in the relationship?
+A human brought me back to reality.
+"It might be true that you were doing more emotional labor [in that moment] or at the individual level. But there's a huge bias," said Myra Cheng, an AI researcher and computer science Ph.D. student at Stanford University.
+The material that large language models (LLMs), such as ChatGPT, Claude and Gemini, are trained on — the internet, mostly — has a "huge American and white and male bias," she said.
+And that means all the cultural tropes and patterns of bias are present, including the stereotype that women disproportionately do the emotional labor in work and relationships.
+Cheng was part of a research team that compared two datasets, each comprising personal advice: one dataset written by humans responding to real-world situations and the second dataset consisting of judgments made by LLMs in response to posts on Reddit's AITA ("Am I the A**hole?") advice forum.
+The study found that LLMs consistently exhibit higher rates of sycophancy — excessive agreement with or flattery of the user — than humans do.
+For soft-skill matters such as advice, sycophancy in AI chatbots can be especially dangerous, Cheng said, because there's no certainty about whether its guidance is sensible. In one recent case revealing the perils of a sycophantic bot, a man who was having manic episodes said ChatGPT's affirmations had prevented him from seeking help.
+So, striving for something closer to objectivity in the biased bot, I changed my tack.
+Loading...
+There it was again: I was stuck doing the emotional labor. I accused ChatGPT of continuing to lack balance.
+"Why do you get 'clear communication'?" David asked me, as if I chose those words.
+At this point, I asked Faith Drew, a licensed marriage and family therapist based in Arizona who has written about the topic, for pointers on how to bring ChatGPT into my relationship.
+It's a classic case of triangulation, according to Drew. Triangulation is a coping strategy in relationships when a third person — a friend, parent or AI, for example — is brought in to ease tension between two people.
+There's value in triangulation, whether the source is a bot or a friend. "AI can be helpful because it does synthesize information really quickly," Drew said.
+But triangulation can go awry when you don't keep sight of your partner in the equation.
+"One person goes out and tries to get answers on their own — 'I'm going to just talk to AI,'" she said. "But it never forces me back to deal with the issue with the person."
+The bot might not even have the capacity to hold me accountable if I'm not feeding it all the necessary details, she said. Triangulation in this case is valuable, she said, "if we're asking the right questions to the bot, like: 'What is my role in the conflict?'"
+In search of neutrality and accountability, I calibrated my chatbot once more. "Use language that doesn't cast blame," I commanded. Then I sent it the following text from David:
+I feel like you accuse me of not listening before I even have a chance to listen. I'm making myself available and open and vulnerable to you.
+"What's missing on my end?" I asked ChatGPT.
+After much flattery, it finally answered:
+Loading...
+I found its response simple and revelatory. Plus, it was accurate.
+He was picking up a lot of slack in the relationship lately. He made me dinners when work kept me late and set aside his own work to indulge me in long-winded, AI-riddled conversations.
+I reflected on a point Drew made — about the importance of putting work into our relationships, especially in the uncomfortable moments, instead of relying on AI.
+"Being able to sit in the distress with your partner — that's real," she said. "It's OK to not have the answers. It's OK to be empathic and not know how to fix things. And I think that's where relationships are very special — where AI could not ever be a replacement."
+Here's my takeaway. ChatGPT had a small glimpse into our relationship and its dynamics. Relationships are fluid, and the chatbot can only ever capture a snapshot. I called on AI in moments of tension. I could see how that reflex could fuel our discord, not help mend it. ChatGPT could be hasty to choose sides and often decided too quickly that something was a pattern.
+Humans don't always think and behave in predictable patterns. And chemistry is a big factor in compatibility. If an AI chatbot can't feel the chemistry between people — sense it, recognize that magical thing that happens in three-dimensional space between two imperfect people — it's hard to put trust in the machine when it comes to something as important as relationships.
+A few times, we both felt that ChatGPT gave objective and creative feedback, offered a valid analysis of our communication styles and defused some disagreements.
+But it took a lot of work to get somewhere interesting. In the end, I'd rather invest that time and energy — what ChatGPT might call my emotional labor — into my human relationships.
+Sponsor Message
+Become an NPR sponsor

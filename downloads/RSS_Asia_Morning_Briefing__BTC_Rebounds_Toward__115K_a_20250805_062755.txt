@@ -1,0 +1,22 @@
+Welcome to Asia Morning Briefing, a daily summary of top stories during U.S. hours and an overview of market moves and analysis. For a detailed overview of U.S. markets, see CoinDesk's Crypto Daybook Americas.As East Asia begins its trading day, bitcoin BTC$114,359.88 is changing hands at just over $115K, staging a modest rebound from last week’s selloff that saw over $1 billion in leveraged longs liquidated and BTC briefly test $113K.
+The bounce comes amid signs of stabilization in institutional flows, with Bitwise reporting $18.74 million in net inflows, a potential reversal after one of the largest ETF outflow days on record last Friday.
+The latest correction, which marked BTC’s third straight Friday selloff, was driven by a hawkish macro cocktail: weak U.S. jobs data and a fresh wave of tariffs from Washington, triggering a broader risk-off mood in both equities and crypto. Altcoins bore the brunt of the move, with SOL falling nearly 20% on the week and ETH losing close to 10%.
+Yet despite the drop, QCP Capital remains cautiously optimistic.
+“The broader structural setup remains intact,” the firm wrote in a Monday note, citing BTC’s highest-ever monthly close in July.
+QCP views the selloff as a leverage flush rather than a trend reversal, pointing to historical post-rally shakeouts that cleared the path for renewed accumulation.
+That said, market hedging behavior suggests investors aren’t ruling out deeper downside. On Polymarket, traders currently assign a 49% probability that BTC dips below $100,000 before the end of 2025 — up 2 percentage points from the day prior.
+The pricing reflects a market that’s still on edge, with downside tail risk priced in despite supportive long-term fundamentals such as regulatory clarity, growing stablecoin adoption, and tokenization initiatives.
+The next catalyst could come during the Asia trading day as U.S. issuers report flows, which typically happens by mid-day Hong Kong time.
+If ETF inflows continue and implied volatility begins to compress, it may provide the confirmation needed for the market to embrace the buy-the-dip narrative and shake off the macro jitters that have kept it stuck in neutral.
+BTC: Bitcoin is trading back above $115,000, signaling early signs of market stabilization.
+ETH: Ether is holding steady around $3,700, with Polymarket traders showing confidence it will break above $4,000 sometime in August.
+Gold: Gold extended its rally for a third session on Monday, rising to a two-week high as soft U.S. economic data boosted expectations of a September Fed rate cut, with CME traders now pricing in an 86% chance of that happening.
+Nikkei 225: Asia-Pacific markets opened higher after U.S. President Donald Trump unveiled plans to sharply increase tariffs on Indian exports. Japan’s Nikkei 225 rose 0.54% at the open.
+S&P 500: Stocks rebounded Monday, with the S&P 500 rising 1.47% to 6,329.94, snapping a four-day losing streak and marking its best session since May.
+Sam Reynolds is a senior reporter based in Asia. Sam was part of the CoinDesk team that won the 2023 Gerald Loeb award in the breaking news category for coverage of FTX's collapse. Prior to CoinDesk, he was a reporter with Blockworks and a semiconductor analyst with IDC.
+More For You
+Justin Sun Comes Back to Earth With Cosmic Plans for Tron Ecosystem
+After finally taking his $28 million Blue Origin ride, the Tron founder says the view from space changed his perspective and strengthened his commitment to innovation.
+What to know:
+About
+Contact

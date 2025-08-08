@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - WiseNews</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        
+        .error-container {
+            text-align: center;
+            max-width: 500px;
+            padding: 2rem;
+        }
+        
+        .error-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .error-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .error-details {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            text-align: left;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <div class="error-icon">⚠️</div>
+        <div class="error-title">Oops! Something went wrong</div>
+        <div class="error-message">
+            {{ error if error else "We're having trouble loading this page right now." }}
+        </div>
+        
+        <div class="error-actions">
+            <a href="javascript:history.back()" class="btn btn-primary">Go Back</a>
+            <a href="/" class="btn btn-primary">Home</a>
+            <a href="javascript:location.reload()" class="btn btn-primary">Retry</a>
+            {% if details %}
+            <button onclick="toggleDetails()" class="btn btn-primary">Show Details</button>
+            {% endif %}
+        </div>
+        
+        {% if details %}
+        <div class="error-details" id="errorDetails">
+            <strong>Error Details:</strong><br>
+            {{ details }}
+        </div>
+        {% endif %}
+    </div>
+    
+    <script>
+        function toggleDetails() {
+            const details = document.getElementById('errorDetails');
+            details.style.display = details.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Auto-refresh after 30 seconds
+        setTimeout(function() {
+            if (confirm('This page has been inactive for 30 seconds. Would you like to refresh?')) {
+                location.reload();
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

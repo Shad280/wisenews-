@@ -1,0 +1,124 @@
+Investigative Journalism in the Public Interest
+ProPublica is a nonprofit newsroom that investigates abuses of power. Sign up to receive our biggest stories as soon as they’re published.
+A New York business frozen out of its checking account. A Georgia chemotherapy patient denied a credit card refund after a product dispute. A New Jersey service member defrauded out of their savings.
+These consumers — along with hundreds of others — reached out to their congressional representatives for help in the past 12 months.
+“I have been unable to pay my rent, utilities, personal bills, student loans, or my credit card. I have been unable to buy groceries or put gas in my car,” wrote the New Yorker, who contacted Rep. Nicole Malliotakis’ office.
+Records show their representatives — all Republicans — referred them to the Consumer Financial Protection Bureau, the watchdog agency formed in the wake of the Great Recession to shield Americans from unfair or abusive business practices. All three consumers got relief, according to agency data.
+Then the lawmakers — along with nearly every other Republican in Congress — voted to slash the agency’s funding by nearly half as part of President Donald Trump’s signature legislative package, the One Big Beautiful Bill Act, a step toward the administration’s goal of gutting the agency.
+Republicans have long been critical of the CFPB, accusing it of imposing unreasonable burdens on businesses. Already, the CFPB under Trump has dropped a number of cases and frozen investigations into dozens of companies.
+Yet the agency has historically benefited consumers across the political spectrum, securing around $20 billion in relief through its enforcement actions.
+Data obtained by ProPublica through a public records request shows that many of the same Republican members of Congress who have targeted the CFPB for cuts have collectively routed thousands of constituent complaints to the agency.
+Rep. Darrell Issa of California and Rep. Rob Wittman of Virginia, for example, voted to reduce the CFPB’s budget. Yet each of their offices has referred more than 100 constituents to the CFPB for help, among the most of any House members. The office of Sen. John Cornyn of Texas, who also voted for the CFPB cuts, has routed more than 800 constituent complaints to the agency, the most of any current lawmaker from either party, ProPublica found.
+A spokesperson for Issa said in an email that most of his office’s referrals to the agency “occurred several years ago” and reflected “a conventional way” to handle constituents’ consumer issues.
+Wittman and Cornyn didn’t respond to questions from ProPublica about the disconnect between their offices’ use of the CFPB’s services and their votes to cut it. Neither did New Jersey Rep. Chris Smith, whose office fielded the defrauded service member’s complaint, or Malliotakis, who was approached by the New York business owner, or Rep. Rick Allen, whose office directed the Georgia chemotherapy patient to the agency.
+Overall, members of Congress have steered nearly 24,000 complaints to the CFPB since it opened its doors in 2011. Roughly 10,000 of those were referred by the offices of current and former Republican lawmakers, ProPublica found.
+“This is how members of Congress from both parties get help for the people who live in their districts,” said Erie Meyer, the CFPB’s former chief technologist, who left the agency in February. The agency has a particular mandate to help service members and seniors, she noted. “This is how, if a service member is getting screwed on an auto loan, this is the only place they can go.”
+Sen. Richard Blumenthal, D-Conn., has referred more than 200 constituents to CFPB since its creation. In a statement to ProPublica, he accused Republicans in Congress of “pursuing senseless cuts that will undermine their own ability to protect their constituents, who will be left in the lurch when they fall victim to scams or deceptive and unfair business practices.”
+“Republicans have made clear that they stand on the side of big businesses — not consumers,” he added. “Their irresponsible pursuit of dismantling the CFPB will have far-reaching and long-lasting consequences.”
+In recent years, the CFPB’s public database shows the number of complaints has exploded, from around 280,000 in 2019 to more than 2.7 million last year.
+Complaints have grown across many categories, including credit cards and debt collection. Last year, most of the complaints filed, over 2.3 million, were about mistakes or other problems involving credit reporting agencies, and more than half of them resulted in relief, CFPB data shows.
+“These credit score formulas govern so many factors of your life. It’s not just your ability to get a loan, it’s your ability to secure housing or qualify for a job,” said Adam Rust, director of financial services at the Consumer Federation of America. “It’s important that you can resolve something, but it’s difficult to do it on your own.”
+Once a complaint is submitted, it is routed to the company, which has 15 days to respond. Companies can request an additional 45 days to reach a final resolution.
+Many consumers end up getting nonmonetary relief, such as fixes to erroneous credit reports or an end to harassment by debt collectors, but some get financial help as well. More than $300 million has been returned to Americans through the complaint system, including $90 million just last year.
+Normally, staff at the CFPB monitor the complaints to identify systemic issues and escalate complaints involving consumers who are at immediate risk of foreclosure, although that didn’t happen for a few weeks this year when the agency’s acting director halted its work.
+The CFPB also shares complaint information with other federal agencies, states and localities to help them protect consumers. No other government or private entity has the capacity to effectively handle the volume of complaints that the CFPB does, experts and current and former employees say.
+States often have limited resources for consumer protection efforts. Many states — including some conservative ones that supported a lawsuit challenging the constitutionality of the CFPB’s structure — steer consumers to the agency on their websites, providing links to it.
+In legal filings opposing the Trump administration’s steps to effectively shut down the CFPB, 23 Democratic attorneys general noted that their states collectively have referred thousands of complaints to the agency and that its services can’t be replaced by state-level operations.
+“In the CFPB’s absence, consumers will be left without critical resources,” they wrote.
+The complaint system has also lessened the burden on congressional offices, which can route constituent problems to an agency dedicated to, and expert in, addressing consumer issues. Yet that hasn’t stopped Republicans from pursuing dramatic cuts to the agency.
+The CFPB receives its funding from the Federal Reserve instead of annual appropriations bills. The structure is meant to safeguard the agency’s independence, though critics say this makes the agency less accountable, giving elected officials less power over its operations.
+Initially, Republicans pressed for extreme cuts to the CFPB as part of Trump’s legislative package. House members approved a 70% cut. The Senate Banking Committee attempted to go even further, zeroing out the agency’s funding entirely.
+Ultimately, the final version of the bill signed into law by Trump on July 4 cut the CFPB’s budget by around 46%, reducing the agency’s funding cap — the maximum amount it can request from the Federal Reserve — from $823 million to $446 million for this fiscal year. The agency requested $729 million last fiscal year.
+The offices of lawmakers who voted for the bill have referred about 3,400 complaints to the agency, running the gamut of consumer problems — from crushing debt to mortgage issues to financial scams, ProPublica’s data analysis shows. (In some of these cases, consumers also took complaints to the CFPB themselves in addition to reaching out to their representatives. Consumers’ names aren’t disclosed in the data.)
+Their constituents are sometimes desperate: “I’m about to be homeless because of this,” wrote a Florida resident whose bank account was frozen.
+Others have expressed frustration at getting the runaround from a company. “I’ve spent countless hours on hold trying to speak with a representative, only to be met with silence or outdated instructions to send letters,” wrote one Virginian in a complaint about their bank.
+In a statement after the CFPB funding cut passed, the chair of the Senate Banking Committee, Tim Scott, R-S.C., applauded the measure for saving taxpayer money but insisted it would not affect the agency’s mandatory functions, which include handling complaints.
+Consumer experts as well as current and former CFPB employees, however, said the cuts will likely hinder the agency’s effectiveness.
+“I think the whole process is at risk,” said Ruth Susswein, director of consumer protection at the nonprofit advocacy group Consumer Action. “If you starve the system, it cannot provide the benefits that it now offers.”
+The Trump administration’s initial efforts to unilaterally hobble the CFPB give a hint of what may lie ahead for the complaint system.
+In February, acting Director Russell Vought issued a stop-work order to all CFPB employees and canceled a slew of contracts, including for antivirus software that scanned files attached to consumer complaints.
+The actions largely froze the complaint system for about a week. More than 70,000 complaints were submitted, but most were not sent to companies for their response during that period, data shows.
+Although some issues were later fixed, the work stoppage spawned a backlog of more than 16,000 complaints that required manual review, according to court records from a lawsuit filed by the union that represents CFPB employees. About 75 complaints from consumers at risk of imminent foreclosure, which would normally be escalated to CFPB staff, weren’t acted upon.
+In late March, U.S. District Judge Amy Berman Jackson ordered the CFPB to end the work stoppage, reverse contract terminations and reinstate probationary employees who were fired. However, an appeals court allowed layoffs to proceed, triggering a frenzied effort by the administration to cut about 90% of the CFPB’s staff.
+The layoffs included the vast majority of the roughly 130-member team that manages the complaint system as well as nearly every staffer in legally mandated offices focused on service members and seniors.
+The CFPB has fielded over 440,000 complaints from current and former service members and their families since 2011, according to CFPB data, more than 100,000 of which have resulted in relief.
+The CFPB did not respond to multiple requests for comment. In a court declaration, Mark Paoletta, the CFPB’s chief legal officer, said that the agency’s leadership had “been assessing how the agency can fulfill its statutory duties as a smaller, more efficient operation. In making this assessment, leadership discovered vast waste in the agency’s size.”
+Paoletta also said the agency would have a “much more limited vision for enforcement and supervision activities, focused on protecting service members and veterans, and addressing actual tangible consumer harm and intentional discrimination.”
+In April, Jackson issued an order blocking the firings made at the CFPB after the appeals court decision. The administration has appealed Jackson’s ruling.
+Lawsuits won’t protect the CFPB or its complaint apparatus from the cuts included in the recently passed spending bill, current and former agency employees pointed out.
+Read More
+These changes are likely to hit home with consumers no matter which party they favor, said Lauren Saunders, associate director of the National Consumer Law Center, which is a plaintiff in the union’s lawsuit.
+“Republicans don’t want to be abused by big corporations that ignore them any more than Democrats do,” she said.
+Have You Recently Sought Help From the CFPB? ProPublica Wants to Hear From You.
+The Consumer Financial Protection Bureau is walking away from cases that might have helped return money to consumers across the U.S. We want to hear from people who feel left behind.
+Filed under —
+I’m a data reporter at ProPublica. I find, build and analyze datasets to shine light on a wide range of issues.
+Do you have an interesting dataset to share? A consumer or government issue that hasn’t gotten enough attention? I want to hear from you.
+During Donald Trump’s second presidency, ProPublica will focus on the areas most in need of scrutiny. Here are some of the issues our reporters will be watching — and how to get in touch with them securely.
+Learn more about our reporting team. We will continue to share our areas of interest as the news develops.
+I cover health and the environment and the agencies that govern them, including the Environmental Protection Agency.
+I cover justice and the rule of law, including the Justice Department, U.S. attorneys and the courts.
+I report on immigration and labor, and I am based in Chicago.
+I cover housing and transportation, including the companies working in those fields and the regulators overseeing them.
+If you don’t have a specific tip or story in mind, we could still use your help. Sign up to be a member of our federal worker source network to stay in touch.
+While the IRS move applies across the country, Texas — with more than 200 megachurches — will be the epicenter for pastors and congregations to test out their new influence, one expert said.
+by Marissa Greene, Fort Worth Report and Report for America,
+            
+
+Aug. 4, 2025, 4 a.m. CDT
+Despite having an office of hundreds of attorneys, Ken Paxton is frequently opting for private lawyers — many to whom he has personal or political ties — to argue on behalf of Texas. One attorney cost taxpayers more than $24,000 for a day’s work.
+by Zach Despart, The Texas Tribune,
+            
+
+July 24, 2025, 5 a.m. CDT
+We asked Abbott for his and his staff’s emails with Elon Musk and Musk’s companies. The governor’s office won’t turn them over, saying some contain “intimate and embarrassing” information that is “not of legitimate concern to the public.”
+by Lauren McGaughy, The Texas Newsroom,
+            
+
+July 14, 2025, 5 a.m. CDT
+Last month, Lee introduced a now-removed amendment to Trump’s policy megabill that mandated the sale of up to 3 million acres. It did little to address the challenges of building affordable housing on public land.
+by Abe Streep,
+            
+
+July 8, 2025, 5 a.m. EDT
+Musk, the billionaire businessman behind Tesla and SpaceX, influenced several new Texas laws this year. How his lobbyists came about these wins, however, is more of a mystery.
+by Lauren McGaughy, The Texas Newsroom,
+            
+
+July 3, 2025, 5 a.m. CDT
+While Elon Musk took Washington, D.C., by storm, his company representatives and lobbyists were also notching up big political wins in the heart of his vast business empire: Texas.
+by Lauren McGaughy, The Texas Newsroom,
+            
+
+July 2, 2025, 5 a.m. CDT
+U.S. delegates have objected to use of the word “gender” in U.N. documents during forums on topics as varied as women’s rights, science and technology, global health, toxic pollution and chemical waste.
+by Lisa Song,
+            
+
+Aug. 5, 2025, 6 a.m. EDT
+Oil companies are holding back a large portion of revenue payments to the people they lease drilling rights from, often with little explanation. But the industry has an outsize influence in the state, and public officials have refused to take action.
+by Jacob Orledge, North Dakota Monitor, photography by Sarahbeth Maney, ProPublica,
+            
+
+Aug. 4, 2025, 6 a.m. EDT
+Local Reporting Network
+Repayment plans are supposed to help public housing tenants avoid eviction. In Maine, these deals have put evictions on their permanent records, even if they’ve fulfilled all the terms and were never actually evicted.
+by Sawyer Loftus, Bangor Daily News,
+            
+
+Aug. 5, 2025, 5 a.m. EDT
+Local Reporting Network
+While the IRS move applies across the country, Texas — with more than 200 megachurches — will be the epicenter for pastors and congregations to test out their new influence, one expert said.
+by Marissa Greene, Fort Worth Report and Report for America,
+            
+
+Aug. 4, 2025, 4 a.m. CDT
+Social videos, memes and retweets are becoming fodder for criminal charges in an era of heightened responses to student threats. Authorities say harsh punishment is necessary, but experts say the crackdown has unintended consequences.
+by Aliyya Swaby,
+            
+
+July 28, 2025, 6 a.m. EDT
+© Copyright 2025 Pro Publica Inc.
+Creative Commons License (CC BY-NC-ND 3.0)
+Thank you for your interest in republishing this story. You are free to republish it so long as you do the following:
+Sign up for ProPublica’s Big Story newsletter and get our latest stories delivered straight to your inbox.

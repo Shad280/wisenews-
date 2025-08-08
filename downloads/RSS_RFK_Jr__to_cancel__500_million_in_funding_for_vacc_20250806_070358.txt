@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.france24.com/en/americas/20250806-rfk-jr-to-cancel-500-million-in-funding-for-vaccine-development

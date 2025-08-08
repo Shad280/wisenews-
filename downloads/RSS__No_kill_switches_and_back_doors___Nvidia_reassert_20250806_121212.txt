@@ -1,0 +1,4 @@
+Embedding weaknesses into chips would ‘undermine global digital infrastructure and fracture trust in US technology’, Nvidia says
+“There are no back doors in Nvidia chips. No kill switches. No spyware,” the post said. “That’s not how trustworthy systems are built – and never will be.”
+According to the post written by Nvidia chief security officer David Reber Jnr, graphics processing units (GPUs) from the company, which has been designing chips for more than 30 years, are “used across industries – from healthcare and finance to scientific research, autonomous systems and AI infrastructure”.
+“Embedding back doors and kill switches into chips would be a gift to hackers and hostile actors,” the post said. “Established law wisely requires companies to fix vulnerabilities – not create them.”

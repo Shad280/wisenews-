@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Access Denied - WiseNews{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4><i class="fas fa-ban"></i> Access Denied</h4>
+                </div>
+                <div class="card-body stable-card-body">
+                    <div class="alert alert-danger">
+                        <h5><i class="fas fa-exclamation-triangle"></i> Automated Access Detected</h5>
+                        <p>Your request appears to be from an automated system or scraper. WiseNews is protected against unauthorized data collection.</p>
+                    </div>
+                    
+                    <h5>🔐 Need Programmatic Access?</h5>
+                    <p>If you need to access WiseNews data programmatically, please use our official API:</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card stable-card">
+                                <div class="card-body text-center">
+                                    <h6><i class="fas fa-key"></i> Apply for API Access</h6>
+                                    <p>Get an official API key for legitimate use</p>
+                                    <a href="/api/apply" class="btn btn-primary stable-btn">
+                                        Apply Now
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card stable-card">
+                                <div class="card-body text-center">
+                                    <h6><i class="fas fa-book"></i> View Documentation</h6>
+                                    <p>Learn about our API endpoints and usage</p>
+                                    <a href="/api/docs" class="btn btn-outline-primary stable-btn">
+                                        API Docs
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h5>🌐 Browse Normally</h5>
+                    <p>If you're a regular user trying to browse WiseNews, please use a standard web browser:</p>
+                    <ul>
+                        <li>Google Chrome</li>
+                        <li>Mozilla Firefox</li>
+                        <li>Safari</li>
+                        <li>Microsoft Edge</li>
+                    </ul>
+                    
+                    <div class="text-center mt-4">
+                        <a href="/" class="btn btn-success stable-btn">
+                            <i class="fas fa-home"></i> Return to Homepage
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

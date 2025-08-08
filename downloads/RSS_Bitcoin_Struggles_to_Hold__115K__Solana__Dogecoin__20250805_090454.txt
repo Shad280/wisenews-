@@ -1,0 +1,22 @@
+Bitcoin (BTC0 remains stuck below $115,000 after a sharp weekend drop that erased nearly $6,000 from local highs and triggered over $1 billion in liquidations across leveraged long positions.
+While markets have stabilized somewhat since Monday, sentiment remains fragile amid a fresh round of Donald Trump-issued tariffs and another week of choppy ETF flows.
+BTC traded near $114,200 in the Asian afternoon hours on Tuesday, remaining flat on the day but still below the key $115,000 – $118,000 range that had acted as short-term support over the past two weeks.
+Ether (ETH) fared slightly better, recovering toward $3,650 after dipping under $3,550 over the weekend, supported by sustained institutional interest and resilient flows.
+“Although Bitcoin has not managed to regain ground past $115,000, Ethereum has nearly recovered this week’s dip,” said Nick Ruck, director at LVRG Research, in a note to CoinDesk.
+“Treasury strategies, IPOs, and the hunt for the next MicroStrategy are fueling demand. We remain positive the bull run can continue,” Ruck said.
+Altcoins, meanwhile, have struggled. Solana SOL$166.15 is down nearly 20% from last week’s highs, and XRP XRP$3.0045 is flatlining near $3 despite broader market stabilization. A colloquial narrative that “altseason” is imminent has weakened, with traders rotating capital back into majors or moving to the sidelines entirely.
+Part of the risk-off tone stems from Friday’s U.S. jobs report, which came in weaker than expected, and a fresh round of trade tensions from Washington. The result is a broad flight to safety in global markets, with crypto caught in the crossfire.
+Friday also marked the second-largest outflow day for bitcoin spot ETFs, and the fourth-largest for ether, dimming hopes that institutional flows would offer short-term price support.
+Still, not all desks are turning bearish. QCP Capital noted in a Monday note that the broader structure remains bullish.
+“The recent drawdown appears more corrective than capitulatory,” the firm said in a client note. It highlighted growing activity in BTC options markets — specifically 29AUG25 call flys targeting $124,000 — as a sign that sophisticated players are positioning for a rebound.
+Put skew remains elevated but is not yet flashing panic. A move back above $115,000, combined with a rebound in ETF inflows and compressing implied volatility, could flip sentiment quickly, QCP said.
+Until then, traders are closely monitoring ETF flow data. If institutional demand stabilizes and macro jitters subside, this week’s consolidation could set the stage for a renewed push toward new highs.
+However, if outflows persist and risk appetite continues to fade, especially in alternative assets, markets may face another wave of de-risking before finding a true floor.
+Read more: Bitcoin's Long-Term Bullishness Evaporates From Options Market as Inflation Concern Rises
+Shaurya is the Co-Leader of the CoinDesk tokens and data team in Asia with a focus on crypto derivatives, DeFi, market microstructure, and protocol analysis.Shaurya holds over $1,000 in BTC, ETH, SOL, AVAX, SUSHI, CRV, NEAR, YFI, YFII, SHIB, DOGE, USDT, USDC, BNB, MANA, MLN, LINK, XMR, ALGO, VET, CAKE, AAVE, COMP, ROOK, TRX, SNX, RUNE, FTM, ZIL, KSM, ENJ, CKB, JOE, GHST, PERP, BTRFLY, OHM, BANANA, ROME, BURGER, SPIRIT, and ORCA.He provides over $1,000 to liquidity pools on Compound, Curve, SushiSwap, PancakeSwap, BurgerSwap, Orca, AnySwap, SpiritSwap, Rook Protocol, Yearn Finance, Synthetix, Harvest, Redacted Cartel, OlympusDAO, Rome, Trader Joe, and SUN.
+More For You
+Litecoin Surges 10% on ETF Hopes and Merchant Activity Amid Quiet Rotation
+Speculation over a spot ETF continues to build despite the SEC delaying its decision on Grayscale’s application until October.
+What to know:
+About
+Contact

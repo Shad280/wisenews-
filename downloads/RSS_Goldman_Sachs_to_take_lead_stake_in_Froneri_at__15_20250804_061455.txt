@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.privateequitywire.co.uk/goldman-sachs-to-take-lead-stake-in-froneri-at-e15bn-valuation/

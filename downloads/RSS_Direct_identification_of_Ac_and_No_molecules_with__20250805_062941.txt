@@ -1,0 +1,298 @@
+Thank you for visiting nature.com. You are using a browser version with limited support for CSS. To obtain
+            the best experience, we recommend you use a more up to date browser (or turn off compatibility mode in
+            Internet Explorer). In the meantime, to ensure continued support, we are displaying the site without styles
+            and JavaScript.
+Advertisement
+Nature
+
+                         (2025)Cite this article
+The periodic table provides an intuitive framework for understanding chemical properties. However, its traditional patterns may break down for the heaviest elements occupying the bottom of the chart. The large nuclei of actinides (Z > 88) and superheavy elements (Z ≥ 104) give rise to relativistic effects that are expected to substantially alter their chemical behaviours, potentially indicating that we have reached the end of a predictive periodic table1. Relativistic effects have already been cited for the unusual chemistry of the actinides compared with those of their lanthanide counterparts2. Unfortunately, it is difficult to understand the full impact of relativistic effects, as research on the later actinides and superheavy elements is scarce. Beyond fermium (Z = 100), elements need to be produced and studied one atom at a time, using accelerated ion beams and state-of-the-art experimental approaches. So far, no experiments have been capable of directly identifying produced molecular species. Here ions of actinium (Ac, Z = 89) and nobelium (No, Z = 102) were synthesized through nuclear reactions at the 88-Inch Cyclotron facility at Lawrence Berkeley National Laboratory and then exposed to trace amounts of H2O and N2. The produced molecular species were directly identified by measuring their mass-to-charge ratios using FIONA (For the Identification Of Nuclide A)3. These results mark the first, to our knowledge, direct identification of heavy-element molecular species using an atom-at-a-time technique and highlight the importance of such identifications in future superheavy-element chemistry experiments to deepen understanding of their chemical properties.
+This is a preview of subscription content, access via your institution
+Access Nature and 54 other Nature Portfolio journals
+Get Nature+, our best-value online-access subscription
+£17.99 / 30 days
+cancel any time
+Subscribe to this journal
+Receive 51 print issues and online access
+£199.00 per year
+only £3.90 per issue
+Buy this article
+Prices may be subject to local taxes which are calculated during checkout
+The data to support the findings of this study are available on Zenodo (https://zenodo.org/records/14277708)53.
+The code used to analyse the findings of this study is available on Zenodo (https://zenodo.org/records/14277708)53.
+Smits, O. R., Düllmann, C. E., Indelicato, P., Nazarewicz, W. & Schwerdtfeger, P. The quest for superheavy elements and the limit of the periodic table. Nat. Rev. Phys. 2, 515–531 (2020).
+Google Scholar
+The Chemistry of the Actinide and Transactinide Elements Vol. 1–5 (Springer, 2006).
+Gates, J. M. & Pore, J. L. Studies of heavy and super heavy elements with FIONA: the broad impact of mass-number identifications. Eur. Phys. J. A 58, 196 (2022).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Miederer, M., Scheinberg, D. A. & McDevitt, M. R. Realizing the potential of the actinium-225 radionuclide generator in targeted alpha particle therapy applications. Adv. Drug Deliv. Rev. 60, 1371–1382 (2008).
+CAS 
+    PubMed 
+    PubMed Central 
+    
+                    Google Scholar
+Deblonde, G. J.-P., Zavarin, M. & Kersting, A. B. The coordination properties and ionic radius of actinium: a 120-year-old enigma. Coord. Chem. Rev. 446, 214130 (2021).
+CAS 
+    
+                    Google Scholar
+Wacker, J. N. et al. Actinium chelation and crystallization in a macromolecular scaffold. Nat. Commun. 15, 5741 (2024).
+CAS 
+    PubMed 
+    PubMed Central 
+    
+                    Google Scholar
+Silva, R. J. in The Chemistry of the Actinide and Transactinide Elements (eds Morss, L. R., Edelstein, N. M. & Fuger, J.) 1621–1651 (Springer, 2006).
+Sato, T. K. et al. First ionization potentials of Fm, Md, No, and Lr: verification of filling-up of 5f electrons and confirmation of the actinide series. J. Am. Chem. Soc. 140, 14609–14613 (2018).
+CAS 
+    PubMed 
+    
+                    Google Scholar
+Laatiaoui, M. et al. Atom-at-a-time laser resonance ionization spectroscopy of nobelium. Nature 538, 495–498 (2016).
+ADS 
+    PubMed 
+    
+                    Google Scholar
+Schädel, M. Chemistry of the superheavy elements. Philos. Trans. R. Soc. A Math. Phys. Eng. Sci. 373, 20140191 (2015).
+ADS 
+    
+                    Google Scholar
+Gregorich, K. E. Simulation of recoil trajectories in gas-filled magnetic separators. Nucl. Instrum. Methods Phys. Res. A 711, 47–59 (2013).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Savard, G. Large radio-frequency gas catchers and the production of radioactive nuclear beams. J. Phys. Conf. Ser. 312, 052004 (2011).
+Google Scholar
+Cooper, K. et al. Extraction of thermalized projectile fragments from a large volume gas cell. Nucl. Instrum. Methods Phys. Res. A 763, 543–546 (2014).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Sumithrarachchi, C. S. et al. Beam thermalization in a large gas catcher. Nucl. Instrum. Methods Phys. Res. B 463, 305–309 (2020).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Anderson, J. B., Andres, R. P. & Fenn, J. B. in Advances in Chemical Physics: Molecular Beams Vol. 10 (ed. Ross, J.) 275–317 (Interscience, 1966).
+Hillenkamp, M., Keinan, S. & Even, U. Condensation limited cooling in supersonic expansions. J. Chem. Phys. 118, 8699–8705 (2003).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Northby, J. A. Experimental studies of helium droplets. J. Chem. Phys. 115, 10065–10077 (2001).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Searcy, J. Q. & Fenn, J. B. Clustering of water on hydrated protons in a supersonic free jet expansion. J. Chem. Phys. 61, 5282–5288 (1974).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Herfurth, F. et al. A linear radiofrequency ion trap for accumulation, bunching, and emittance improvement of radioactive ion beams. Nucl. Instrum. Methods Phys. Res. A 469, 254–275 (2001).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Lunney, M. D. & Moore, R. B. Cooling of mass-separated beams using a radiofrequency quadrupole ion guide. Int. J. Mass Spectrom. 190–191, 153–160 (1999).
+Google Scholar
+Mansell, S. M., Farnaby, J. H., Germeroth, A. I. & Arnold, P. L. Thermally stable uranium dinitrogen complex with siloxide supporting ligands. Organometallics 32, 4212–4218 (2013).
+Google Scholar
+Schädel, M. et al. Chemical properties of element 106 (seaborgium). Nature 388, 55–57 (1997).
+ADS 
+    
+                    Google Scholar
+Eichler, R. et al. Chemical characterization of bohrium (element 107). Nature 407, 63–65 (2000).
+ADS 
+    CAS 
+    PubMed 
+    
+                    Google Scholar
+Düllmann, Ch. E. et al. Chemical investigation of hassium (element 108). Nature 418, 859–862 (2002).
+ADS 
+    PubMed 
+    
+                    Google Scholar
+Eichler, R. et al. Chemical characterization of element 112. Nature 447, 72–75 (2007).
+ADS 
+    CAS 
+    PubMed 
+    
+                    Google Scholar
+Even, J. et al. Synthesis and detection of a seaborgium carbonyl complex. Science 345, 1491–1493 (2014).
+ADS 
+    CAS 
+    PubMed 
+    
+                    Google Scholar
+Eichler, R. et al. Indication for a volatile element 114. Radiochim. Acta 98, 133–139 (2010).
+CAS 
+    
+                    Google Scholar
+Yakushev, A. et al. Superheavy element flerovium (element 114) is a volatile metal. Inorg. Chem. 53, 1624–1629 (2014).
+MathSciNet 
+    CAS 
+    PubMed 
+    
+                    Google Scholar
+Yakushev, A. et al. On the adsorption and reactivity of element 114, flerovium. Front. Chem. 10, 976635 (2022).
+ADS 
+    CAS 
+    PubMed 
+    PubMed Central 
+    
+                    Google Scholar
+Yakushev, A. et al. Manifestation of relativistic effects in the chemical properties of nihonium and moscovium revealed by gas chromatography studies. Front. Chem. 12, 1474820 (2024).
+CAS 
+    PubMed 
+    PubMed Central 
+    
+                    Google Scholar
+Rutkowski, P. X. et al. Hydration of gas-phase ytterbium ion complexes studied by experiment and theory. Theor. Chem. Acc. 129, 575–592 (2011).
+CAS 
+    
+                    Google Scholar
+Cheng, P., Koyanagi, G. K. & Bohme, D. K. Gas-phase reactions of atomic lanthanide cations with D2O: room-temperature kinetics and periodicity in reactivity. ChemPhysChem 7, 1813–1819 (2006).
+CAS 
+    PubMed 
+    
+                    Google Scholar
+Cheng, P., Koyanagi, G. K. & Bohme, D. K. Heavy water reactions with atomic transition-metal and main-group cations: gas phase room-temperature kinetics and periodicities in reactivity. J. Phys. Chem. A 111, 8561–8573 (2007).
+CAS 
+    PubMed 
+    
+                    Google Scholar
+Gates, J. M. et al. First direct measurements of superheavy-element mass numbers. Phys. Rev. Lett. 121, 222501 (2018).
+ADS 
+    CAS 
+    PubMed 
+    
+                    Google Scholar
+Leitner, D. et al. Next generation ECR ion sources: first results of the superconducting 28 GHz ECRIS—VENUS. Nucl. Instrum. Methods Phys. Res. B 235, 486 (2005).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Parr, R. G. & Yang, W. Density-Functional Theory of Atoms and Molecules (Oxford Univ. Press, 1989).
+Becke, A. D. Density‐functional thermochemistry. III. The role of exact exchange. J. Chem. Phys. 98, 5648–5652 (1993).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Lee, C., Yang, W. & Parr, R. G. Development of the Colle-Salvetti correlation-energy formula into a functional of the electron density. Phys. Rev. B 37, 785–789 (1988).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Kendall, R. A., Dunning, T. H. Jr & Harrison, R. J. Electron affinities of the first-row atoms revisited. Systematic basis sets and wave functions. J. Chem. Phys. 96, 6796–6806 (1992).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Cao, X. & Dolg, M. Segmented contraction scheme for small-core actinide pseudopotential basis sets. J. Mol. Struct. THEOCHEM 673, 203–209 (2004).
+CAS 
+    
+                    Google Scholar
+Cao, X., Dolg, M. & Stool, M. Valence basis sets for relativistic energy-consistent small-core actinide pseudopotentials. J. Chem. Phys. 118, 487–496 (2003).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Bartlett, R. J. & Musial, M. Coupled-cluster theory in quantum chemistry. Rev. Mod. Phys. 79, 291–352 (2007).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Jong, W. A., de Harrison, R. J. & Dixon, D. A. Parallel Douglas–Kroll energy and gradients in NWChem: estimating scalar relativistic effects using Douglas–Kroll contracted basis sets. J. Chem. Phys. 114, 48–53 (2001).
+ADS 
+    
+                    Google Scholar
+Feng, R. & Peterson, K. A. Correlation consistent basis sets for actinides. II. The atoms Ac and Np–Lr. J. Chem. Phys. 147, 084108 (2017).
+ADS 
+    PubMed 
+    
+                    Google Scholar
+Wolf, A., Reiher, M. & Hess, B. A. The generalized Douglas–Kroll transformation. J. Chem. Phys. 117, 9215–9226 (2002).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Knowles, P. J., Hampel, C. & Werner, H.-J. Coupled cluster theory for high spin, open shell reference wave functions. J. Chem. Phys. 99, 5219–5228 (1993).
+ADS 
+    CAS 
+    
+                    Google Scholar
+Reed, A. E., Curtiss, L. A. & Weinhold, F. Intermolecular interactions from a natural bond orbital, donor-acceptor viewpoint. Chem. Rev. 88, 899–926 (1988).
+CAS 
+    
+                    Google Scholar
+Glendening, E. D., Landis, C. R. & Weinhold, F. NBO 7.0: new vistas in localized and delocalized chemical bonding theory. J. Comput. Chem. 40, 2234–2241 (2019).
+CAS 
+    PubMed 
+    
+                    Google Scholar
+Glendening, E. D. et al. NBO 7.0. Theoretical Chemistry Institute, Univ. Wisconsin (2018).
+Frisch, M. J. et al. Gaussian 16, revision A.03. Gaussian, Inc. (2016).
+Werner, H.-J. et al. The Molpro quantum chemistry package. J. Chem. Phys. 152, 144107 (2020).
+ADS 
+    CAS 
+    PubMed 
+    
+                    Google Scholar
+Werner, H.-J. et al. MOLPRO, version 2021, a package of ab initio programs. https://www.molpro.net (2021).
+Pore, J. Nobelium and actinium coordination chemistry study with FIONA. Zenodo https://zenodo.org/records/14277708 (2024).
+Download references
+We gratefully acknowledge the operations staff of the 88-Inch Cyclotron. The work of J.L.P., J.M.G., J.A.G. and R.O. was supported in part by the US Department of Energy, Office of Science, Office of Nuclear Physics under contract no. DE-AC02-05CH11231 (LBNL). The work of J.L.P., J.M.G., J.K.G., M.M., Z.S. and D.K.S. was supported by the US Department of Energy, Office of Science, Office of Basic Energy Sciences, Heavy Element Chemistry Program under contract number DE-AC02-05CH11231 (LBNL). The University of Alabama work of D.A.D. and S.S. was supported by the US Department of Energy, Office of Science, Office of Basic Energy Sciences, Heavy Element Chemistry Program through grant no. DE-SC0018921. D.A.D. thanks the Robert Ramsay Fund at the University of Alabama. F.H.G. was supported through a LBNL Laboratory Directed Research and Development programme.
+Fatima H. Garcia
+Present address: Department of Chemistry, Simon Fraser University, Burnaby, British Columbia, Canada
+Nuclear Science Division, Lawrence Berkeley National Laboratory, Berkeley, CA, USA
+Jennifer L. Pore, Jacklyn M. Gates, Fatima H. Garcia, John A. Gooding & Rodney Orford
+Chemical Sciences Division, Lawrence Berkeley National Laboratory, Berkeley, CA, USA
+Jennifer L. Pore, Jacklyn M. Gates, John K. Gibson, Mallory McCarthy, Ziad Shafi & David K. Shuh
+Department of Chemistry and Biochemistry, The University of Alabama, Tuscaloosa, AL, USA
+David A. Dixon & Sarah Sprouse
+Department of Nuclear Engineering, University of California, Berkeley, Berkeley, CA, USA
+John A. Gooding & Mallory McCarthy
+Department of Chemistry, University of California, Berkeley, Berkeley, CA, USA
+Ziad Shafi
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+Search author on:PubMed Google Scholar
+J.L.P., J.M.G., M.M., J.K.G. and D.A.D. conceived the study. J.L.P., J.M.G., F.H.G., M.M. and R.O. prepared the experiment. J.L.P., J.M.G., F.H.G., J.K.G., J.A.G., M.M., R.O., Z.S. and D.K.S. participated in the experimental measurements. J.L.P. analysed the experimental data. D.A.D. and S.S. performed the electronic structure calculations. J.L.P., J.M.G., D.A.D., J.K.G. and D.K.S. were responsible for the interpretation of the experimental results. J.L.P. wrote the paper. J.L.P., D.A.D. and S.S. prepared materials for the Supplementary Information. All authors reviewed and edited the paper.
+Correspondence to
+                Jennifer L. Pore.
+The authors declare no competing interests.
+Nature thanks Robert Eichler, Alexander Yakushev and the other, anonymous, reviewer(s) for their contribution to the peer review of this work.
+Publisher’s note Springer Nature remains neutral with regard to jurisdictional claims in published maps and institutional affiliations.
+This Supplementary Information file contains the following three sections: S1: Secondary production formation for Ac2+ and No2+ reactions with H2O; S2: Electronic structure calculations; S3: Residual Gas Analyzer Readings. It includes 16 Supplementary Figures, 12 Supplementary Tables, and additional references.
+Springer Nature or its licensor (e.g. a society or other partner) holds exclusive rights to this article under a publishing agreement with the author(s) or other rightsholder(s); author self-archiving of the accepted manuscript version of this article is solely governed by the terms of such publishing agreement and applicable law.
+Reprints and permissions
+Pore, J.L., Gates, J.M., Dixon, D.A. et al. Direct identification of Ac and No molecules with an atom-at-a-time technique.
+                    Nature  (2025). https://doi.org/10.1038/s41586-025-09342-y
+Download citation
+Received: 15 November 2024
+Accepted: 01 July 2025
+Published: 04 August 2025
+DOI: https://doi.org/10.1038/s41586-025-09342-y
+Anyone you share the following link with will be able to read this content:
+Sorry, a shareable link is not currently available for this article.
+Provided by the Springer Nature SharedIt content-sharing initiative
+Advertisement
+Nature
+                    
+                    (Nature)
+ISSN 1476-4687 (online)
+ISSN 0028-0836 (print)
+© 2025 Springer Nature Limited
+Sign up for the Nature Briefing newsletter — what matters in science, free to your inbox daily.

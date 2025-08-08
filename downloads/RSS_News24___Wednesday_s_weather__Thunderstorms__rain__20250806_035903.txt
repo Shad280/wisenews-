@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.news24.com/southafrica/weather/wednesdays-weather-thunderstorms-rain-snow-and-hail-as-cold-front-sweeps-across-sa-20250805-0901

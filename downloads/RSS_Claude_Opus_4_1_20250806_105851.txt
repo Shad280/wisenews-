@@ -1,0 +1,1 @@
+Claude Opus 4.1Today we're releasing Claude Opus 4.1, an upgrade to Claude Opus 4 on agentic tasks, real-world coding, and reasoning. We plan to release substantially larger improvements to our models in the coming weeks.Opus 4.1 is now available to paid Claude users and in Claude…

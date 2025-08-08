@@ -1,0 +1,123 @@
+NerdWallet, Inc. is an independent publisher and comparison service, not an investment advisor. Its articles, interactive tools and other content are provided to you for free, as self-help tools and for informational purposes only. They are not intended to provide investment advice. NerdWallet does not and cannot guarantee the accuracy or applicability of any information in regard to your individual circumstances. Examples are hypothetical, and we encourage you to seek personalized advice from qualified professionals regarding specific investment issues. Our estimates are based on past market performance, and past performance is not a guarantee of future performance.
+We believe everyone should be able to make financial decisions with confidence. And while our site doesn’t feature every company or financial product available on the market, we’re proud that the guidance we offer, the information we provide and the tools we create are objective, independent, straightforward — and free.
+So how do we make money? Our partners compensate us. This may influence which products we review and write about (and where those products appear on the site), but it in no way affects our recommendations or advice, which are grounded in thousands of hours of research. Our partners cannot pay us to guarantee favorable reviews of their products or services. Here is a list of our partners.
+RSUs and stock options are common stock-based compensation offerings that differ significantly in how they work, tax treatment and level of risk.
+Many, or all, of the products featured on this page are from our advertising partners who compensate us when you take certain actions on our website or click to take an action on their website. However, this does not influence our evaluations. Our opinions are our own. Here is a list of our partners and here's how we make money.
+The investing information provided on this page is for educational purposes only. NerdWallet, Inc. does not offer advisory or brokerage services, nor does it recommend or advise investors to buy or sell particular stocks, securities or other investments.
+How is this page expert verified?
+NerdWallet's content is fact-checked for accuracy, timeliness and relevance. It undergoes a thorough review process involving writers and editors to ensure the information is as clear and complete as possible.
+Lead Writer & Content Strategist
+Taryn Phaneuf is a lead writer & content strategist covering wealth management, financial planning and other investing topics at NerdWallet. She previously reported on personal finance news. Prior to joining NerdWallet, she spent more than a decade covering education, public policy and business for various news outlets. She also taught journalism as an adjunct instructor at her alma mater, the University of Minnesota.
+She lives in Minnesota.
+Senior Editor & Content Strategist
+Mary Flory leads NerdWallet's growing team of assigning editors at large. Before joining NerdWallet's content team, she had spent more than 12 years developing content strategies, managing newsrooms and mentoring writers and editors. Her previous experience includes being an executive editor at the American Marketing Association and an editor at news and feature syndicate Content That Works.
+If you’ve found yourself in the position of getting both restricted stock units (RSUs) and stock options from an employer — or you’re comparing benefits in multiple job offers — it’s time to do your homework. Stock-based benefits like RSUs and options may be a major part of your total pay package. But how they work, their tax implications and their potential value can differ significantly.
+“Both are great ways to get upside exposure to the company you’re working for,” says Daniel Messeca, a certified financial planner and co-founder of Craftwork Capital in Alexandria, Virginia. But “it’s apples and oranges.”
+Understanding the key features of and differences between RSUs and stock options could help you determine which might be a better incentive for you.
+RSUs and stock options are types of equity compensation that employers may offer to attract and retain talented employees. The value of these incentives is tied to the company’s stock performance, which help to align workers’ interests with the company. If the company succeeds, workers holding company stock also benefit.
+With restricted stock units, or RSUs, a company promises shares that the employee will receive after meeting certain conditions. Those conditions generally include a vesting period, but also could include other stipulations[0]IRS. Equity (stock)-based compensation audit technique guide.View all sources. Once the shares vest — typically in batches over several years — ownership of the shares transfers to the employee at no out-of-pocket cost. At that point, the employee can opt to sell or hold the shares.
+With stock options, a company promises to sell a certain number of shares to an employee at a set price, known as the strike price[0]National Archives and Records Administration. 26 CFR § 1.422-2.View all sources. Stock options also tend to have a vesting period. Once the shares vest, the employee has the right to purchase those shares at the strike price. This step is known as exercising your options, and it can occur any time until the options expire, up to 10 years after the options are granted.
+There are two kinds of stock options.
+Incentive stock options, or ISOs, can only be granted to employees and must meet certain statutory requirements. They have certain tax benefits[0]IRS. Topic no. 427, Stock options.View all sources.
+Non-qualified stock options, or NSOs, can be granted to non-employees, such as advisors or board directors. But they don’t enjoy the tax benefits of ISOs.
+Consider the key differences between RSUs and stock options.
+Restricted stock units (RSUs)
+Stock options
+Are there upfront costs?
+No. Employees receive shares once they vest.
+Yes. Employees receive the right to purchase shares at a set price once they vest.
+What are the typical stages?
+Grant
+Vesting
+Transfer
+Sale
+Grant
+Vesting
+Exercise
+Sale
+What is the value based on?
+The market price. Because you don’t pay to acquire the shares, they’ll always have some value, unless the share price of your company goes to $0.
+The bargain element — that is, the difference between the strike price and the market value of the shares at the time they’re exercised. Because you pay to acquire the shares, they’ll only have value if the strike price is lower than the market price.
+How are they taxed?
+The market value of the vested shares is taxed as ordinary income.
+You may also be taxed on any capital gains when you sell.
+ISOs: Taxes are deferred until you sell your shares, though you may face an alternative minimum tax at the time you exercise.
+If you meet certain holding period requirements when you sell, any income is taxed at the typically lower capital gains tax rate.
+NSOs: The bargain element is taxed as ordinary income.
+You may owe capital gains tax when you sell.
+When are taxes owed?
+When the shares vest. This means employees don’t have the ability to time the tax event.
+When you exercise your options. This means employees have some ability to time the tax event.
+Do they expire?
+No. Any vested RSUs remain yours, even after you leave the company.
+Yes. Options typically must be exercised within 10 years from the date they’re granted. When you leave a company, you may have to exercise any vested options within 90 days. In both cases, the actual time period may differ between companies.
+What’s the risk level?
+Lower risk because they require no upfront cost and will retain their value.
+Higher risk because they require some upfront cost, could expire, and could lose all value if the market price is lower than the strike price.
+Stock options and RSUs each have their advantages and disadvantages. But there could be circumstances in which one is more helpful than the other, says Messeca of Craftwork Capital.
+Which might be better? RSUs
+Why? RSUs follow predictable timelines and retain their value. “If I'm trying to fund education for my children, I know when an RSU vests, I have the net of those shares, I can sell them right away and pay for school or invest them in another fund,” Messeca says.
+Which might be better? Stock options.
+Why? Stock options generally are seen as a “high risk, high reward” incentive, Messeca says, which is why startups and other companies with high-growth potential might use them to attract top talent. “If I'm in the investor mindset and in good shape, doing everything I need to do, maybe I'm more willing to focus my efforts on options because my potential upside is very large there.”
+While the risk associated with RSUs and stock options may be a key factor to weigh, it’s not the only one. To assess whether RSUs or stock options might be best for you, Messeca recommends gathering the specific details of your plans, including:
+The value of the company today. This can give you an idea of what your equity compensation might be worth. Though it’s important to keep in mind that the value likely will change during the vesting period.
+The vesting schedule. You’ll want to know when you actually gain a right to the shares.
+How readily you could sell the shares. In public companies, selling shares is pretty straightforward. But private companies might have additional stipulations or fewer opportunities to sell any stock you acquire. It could make the tax implications more or less attractive.
+And for options, specifically:
+The strike price and how it compares to the current value.
+Whether it’s an ISO or NSO. That will affect how your shares would be taxed.
+Whether your company offers cashless exercising. Some companies permit employees to exercise their options without paying any upfront costs. Instead, the company is reimbursed out of the proceeds of the stock sale.
+» Need help? Find a financial advisor near you
+ON THIS PAGE
+ON THIS PAGE
+Get matched to a financial advisor for free with NerdWallet Advisors Match.
+Download the app
+Disclaimer: 
+NerdWallet strives to keep its information accurate and up to date.
+            This information may be different than what you see when you visit a
+            financial institution, service provider or specific product's
+            site. All financial products, shopping products and services are
+            presented without warranty. When evaluating offers, please review
+            the financial institution's Terms and Conditions. Pre-qualified
+            offers are not binding. If you find discrepancies with your credit
+            score or information from your credit report, please contact
+            TransUnion® directly.
+NerdWallet Compare, Inc. NMLS ID# 1617539
+NMLS Consumer Access
+
+|
+
+Licenses and Disclosures
+California: California Finance Lender loans arranged pursuant to
+            Department of Financial Protection and Innovation Finance Lenders
+            License #60DBO-74812
+Insurance Services offered through NerdWallet Insurance Services,
+            Inc. (CA resident license no.OK92033)  
+
+Insurance Licenses
+Fundera, Inc. NMLS ID# 1240038
+NMLS Consumer Access
+California: California Finance Lender loans arranged pursuant to the
+            Department of Financial Protection and Innovation Finance Lenders
+            License #603L288
+NerdWallet has engaged Atomic Invest LLC (“Atomic”), an SEC-registered
+        investment adviser, to bring you the opportunity to open investment
+        advisory accounts (Automated Investing Account and/or Treasury Account)
+        with Atomic. NerdWallet receives compensation of up to 0.85% of assets
+        under management annualized, payable monthly, for each referred client
+        who opens an Atomic account and a percentage of free cash interest
+        earned by clients, which creates a conflict of interest. Brokerage
+        services for Atomic are provided by Atomic Brokerage LLC ("Atomic
+        Brokerage"), member of FINRA/SIPC and an affiliate of Atomic, which creates a conflict of interest. See details
+        about Atomic, in their Form CRS, Form ADV Part 2A and Privacy Policy. See details about Atomic Brokerage in their Form CRS,
+General Disclosures, fee schedule, and FINRA’s BrokerCheck.
+You also can open a Cash Account offered by Atomic Brokerage which
+        allows you to earn interest on your cash through a cash sweep program.
+        See important Cash Account disclosures here.
+Neither Atomic Invest nor Atomic Brokerage, nor any of their affiliates
+        is a bank. Investments in securities: Not FDIC Insured, Not Bank
+        Guaranteed, May Lose Value. Investing involves risk, including the
+        possible loss of principal. Before investing, consider your investment
+        objectives and the fees and expenses charged.
+Images are for illustrative purposes only.
+NerdWallet™ | 4150 N Drinkwater Blvd, Suite 200, Scottsdale, AZ 85251

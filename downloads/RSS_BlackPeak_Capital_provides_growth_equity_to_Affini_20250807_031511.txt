@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.privateequitywire.co.uk/blackpeak-capital-provides-growth-equity-to-affinity-life-care/

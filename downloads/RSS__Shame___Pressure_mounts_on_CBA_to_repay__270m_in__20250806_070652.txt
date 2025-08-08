@@ -1,0 +1,1 @@
+Error fetching article: 403 Client Error: Forbidden for url: https://www.moneymag.com.au/shame-pressure-mounts-on-cba-to-repay-270m-in-fees

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Feeds - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background-color: #dc3545;
+            border-radius: 50%;
+            animation: pulse 1s infinite;
+            margin-right: 5px;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+        
+        .feed-item {
+            border-left: 3px solid #007bff;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .feed-item:hover {
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feed-item.breaking {
+            border-left-color: #dc3545;
+            background-color: #fff5f5;
+        }
+        
+        .feed-item.financial {
+            border-left-color: #28a745;
+        }
+        
+        .feed-item.crypto {
+            border-left-color: #ffc107;
+        }
+        
+        .feed-item.social {
+            border-left-color: #17a2b8;
+        }
+        
+        .importance-high {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+        }
+        
+        .importance-medium {
+            background: linear-gradient(45deg, #4ecdc4, #45b7b8);
+        }
+        
+        .importance-low {
+            background: linear-gradient(45deg, #95e1d3, #a8e6cf);
+        }
+        
+        .feed-controls {
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 100;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .feed-type-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+        
+        .auto-refresh-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            z-index: 1000;
+            display: none;
+        }
+        
+        .preferences-panel {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container fade-in">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-newspaper"></i> WiseNews
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard">Dashboard</a>
+                <a class="nav-link active" href="/live-feeds">
+                    <span class="live-indicator"></span>Live Feeds
+                </a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="auto-refresh-indicator" id="refreshIndicator">
+        <i class="fas fa-sync-alt fa-spin"></i> Refreshing feeds...
+    </div>
+
+    <div class="container-fluid mt-4">
+        <div class="row">
+            <!-- Sidebar with controls and stats -->
+            <div class="col-lg-3">
+                <!-- Statistics Card -->
+                <div class="stats-card">
+                    <h5><i class="fas fa-chart-line"></i> Live Feed Stats</h5>
+                    <div class="row text-center mt-3">
+                        <div class="col-6">
+                            <h3 id="todayCount">{{ feed_stats.today_count }}</h3>
+                            <small>Today</small>
+                        </div>
+                        <div class="col-6">
+                            <h3 id="breakingCount">{{ feed_stats.breaking_count }}</h3>
+                            <small>Breaking</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preferences Panel -->
+                <div class="preferences-panel">
+                    <h6><i class="fas fa-cog"></i> Feed Preferences</h6>
+                    
+                    <div class="mb-3">
+                        <label class="form-label stable-label" class="stable-label">Feed Types</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="newsCheck" value="news" 
+                                   {{ 'checked' if 'news' in user_feed_types else '' }}>
+                            <label class="form-check-label stable-label" for="newsCheck" class="stable-label">News</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="financialCheck" value="financial"
+                                   {{ 'checked' if 'financial' in user_feed_types else '' }}>
+                            <label class="form-check-label stable-label" for="financialCheck" class="stable-label">Financial</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="cryptoCheck" value="crypto"
+                                   {{ 'checked' if 'crypto' in user_feed_types else '' }}>
+                            <label class="form-check-label stable-label" for="cryptoCheck" class="stable-label">Crypto</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="socialCheck" value="social"
+                                   {{ 'checked' if 'social' in user_feed_types else '' }}>
+                            <label class="form-check-label stable-label" for="socialCheck" class="stable-label">Social</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="stockLiveCheck" value="stock_live"
+                                   {{ 'checked' if 'stock_live' in user_feed_types else '' }}>
+                            <label class="form-check-label stable-label" for="stockLiveCheck" class="stable-label">Live Stocks</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="cryptoLiveCheck" value="crypto_live"
+                                   {{ 'checked' if 'crypto_live' in user_feed_types else '' }}>
+                            <label class="form-check-label stable-label" for="cryptoLiveCheck" class="stable-label">Live Crypto</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label stable-label" class="stable-label">Keywords (comma-separated)</label>
+                        <input type="text" class="form-control form-control-sm stable-input" id="keywordsInput" 
+                               placeholder="bitcoin, tesla, breaking..." 
+                               value="{{ user_keywords | join(', ') }}">
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" id="notificationsCheck"
+                               {{ 'checked' if notifications_enabled else '' }}>
+                        <label class="form-check-label stable-label" for="notificationsCheck" class="stable-label">
+                            Enable Notifications
+                        </label>
+                    </div>
+
+                    <button class="btn btn-primary btn-sm w-100 stable-btn" onclick="savePreferences()">
+                        <i class="fas fa-save"></i> Save Preferences
+                    </button>
+                </div>
+
+                <!-- Active Sources -->
+                <div class="card stable-card">
+                    <div class="card-header stable-header">
+                        <h6 class="mb-0"><i class="fas fa-rss"></i> Active Sources</h6>
+                    </div>
+                    <div class="card-body p-2">
+                        {% for source, count in feed_stats.active_sources %}
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <small class="text-muted">{{ source[:20] }}...</small>
+                            <span class="badge bg-secondary">{{ count }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main feed content -->
+            <div class="col-lg-9">
+                <!-- Feed Controls -->
+                <div class="feed-controls">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h4><span class="live-indicator"></span>Live Feeds</h4>
+                        </div>
+                        <div class="col-md-6 text-end">
+                            <div class="btn-group btn-group-sm" role="group">
+                                <button type="button" class="btn btn-outline-primary stable-btn" onclick="filterFeeds('all')">All</button>
+                                <button type="button" class="btn btn-outline-danger stable-btn" onclick="filterFeeds('breaking')">Breaking</button>
+                                <button type="button" class="btn btn-outline-success stable-btn" onclick="filterFeeds('financial')">Financial</button>
+                                <button type="button" class="btn btn-outline-warning stable-btn" onclick="filterFeeds('crypto')">Crypto</button>
+                                <button type="button" class="btn btn-outline-info stable-btn" onclick="filterFeeds('social')">Social</button>
+                            </div>
+                            <button class="btn btn-primary btn-sm ms-2 stable-btn" onclick="refreshFeeds()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Breaking News Alert -->
+                <div id="breakingAlert" class="alert alert-danger d-none" role="alert">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Breaking News!</strong> New critical updates available.
+                    <button class="btn btn-sm btn-outline-danger ms-2 stable-btn" onclick="loadBreakingNews()">View</button>
+                </div>
+
+                <!-- Feed Items Container -->
+                <div id="feedsContainer">
+                    {% for feed in recent_feeds %}
+                    <div class="feed-item {{ feed.feed_type }} {{ 'breaking' if feed.is_breaking else '' }} card mb-3" 
+                         data-feed-id="{{ feed.id }}" data-feed-type="{{ feed.feed_type }}"
+                         onclick="markAsViewed({{ feed.id }})">
+                        <div class="card-body stable-card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="d-flex align-items-center">
+                                    {% if feed.is_breaking %}
+                                    <span class="badge bg-danger me-2">BREAKING</span>
+                                    {% endif %}
+                                    <span class="feed-type-badge bg-{{ 'danger' if feed.feed_type == 'breaking' else 'primary' if feed.feed_type == 'news' else 'success' if feed.feed_type == 'financial' else 'warning' if feed.feed_type == 'crypto' else 'info' }}">
+                                        {{ feed.feed_type.upper() }}
+                                    </span>
+                                    <small class="text-muted ms-2">{{ feed.source }}</small>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <div class="importance-badge importance-{{ 'high' if feed.importance_score >= 8 else 'medium' if feed.importance_score >= 5 else 'low' }}" 
+                                         style="width: 12px; height: 12px; border-radius: 50%; margin-right: 8px;"
+                                         title="Importance: {{ feed.importance_score }}/10"></div>
+                                    <small class="text-muted">{{ feed.timestamp }}</small>
+                                </div>
+                            </div>
+                            
+                            <h6 class="card-title">{{ feed.title }}</h6>
+                            <p class="card-text">{{ feed.content[:200] }}...</p>
+                            
+                            {% if feed.tags %}
+                            <div class="mb-2">
+                                {% for tag in feed.tags %}
+                                <span class="badge bg-light text-dark me-1">#{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                            
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <button class="btn btn-sm btn-outline-primary stable-btn" onclick="subscribeTo({{ feed.id }}, event)">
+                                        <i class="fas fa-bell"></i> Subscribe
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary ms-1 stable-btn" onclick="shareUpdate({{ feed.id }}, event)">
+                                        <i class="fas fa-share"></i> Share
+                                    </button>
+                                </div>
+                                <small class="text-muted">
+                                    <i class="fas fa-eye"></i> {{ feed.user_views }} views
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Load More Button -->
+                <div class="text-center mt-4">
+                    <button class="btn btn-outline-primary stable-btn" onclick="loadMoreFeeds()">
+                        <i class="fas fa-plus"></i> Load More Feeds
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentFilter = 'all';
+        let lastUpdateTime = new Date().toISOString();
+        let autoRefreshInterval;
+
+        // Start auto-refresh
+        document.addEventListener('DOMContentLoaded', function() {
+            startAutoRefresh();
+            checkForBreaking();
+        });
+
+        function startAutoRefresh() {
+            autoRefreshInterval = setInterval(function() {
+                refreshFeeds(true);
+            }, 30000); // Refresh every 30 seconds
+        }
+
+        function refreshFeeds(silent = false) {
+            if (!silent) {
+                document.getElementById('refreshIndicator').style.display = 'block';
+            }
+
+            const feedTypes = getSelectedFeedTypes();
+            const params = new URLSearchParams({
+                types: feedTypes.join(','),
+                since: lastUpdateTime,
+                limit: 20
+            });
+
+            fetch(`/api/live-feeds?${params}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.feeds.length > 0) {
+                        prependNewFeeds(data.feeds);
+                        lastUpdateTime = new Date().toISOString();
+                        updateStats();
+                    }
+                })
+                .catch(error => console.error('Error refreshing feeds:', error))
+                .finally(() => {
+                    document.getElementById('refreshIndicator').style.display = 'none';
+                });
+        }
+
+        function prependNewFeeds(feeds) {
+            const container = document.getElementById('feedsContainer');
+            const newFeedsHtml = feeds.map(feed => createFeedHTML(feed)).join('');
+            container.insertAdjacentHTML('afterbegin', newFeedsHtml);
+        }
+
+        function createFeedHTML(feed) {
+            const isBreaking = feed.is_breaking ? 'breaking' : '';
+            const breakingBadge = feed.is_breaking ? '<span class="badge bg-danger me-2">BREAKING</span>' : '';
+            const importanceClass = feed.importance_score >= 8 ? 'high' : feed.importance_score >= 5 ? 'medium' : 'low';
+            
+            return `
+                <div class="feed-item ${feed.feed_type} ${isBreaking} card mb-3" 
+                     data-feed-id="${feed.id}" data-feed-type="${feed.feed_type}"
+                     onclick="markAsViewed(${feed.id})">
+                    <div class="card-body stable-card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div class="d-flex align-items-center">
+                                ${breakingBadge}
+                                <span class="feed-type-badge bg-primary">${feed.feed_type.toUpperCase()}</span>
+                                <small class="text-muted ms-2">${feed.source}</small>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <div class="importance-badge importance-${importanceClass}" 
+                                     style="width: 12px; height: 12px; border-radius: 50%; margin-right: 8px;"
+                                     title="Importance: ${feed.importance_score}/10"></div>
+                                <small class="text-muted">${new Date(feed.timestamp).toLocaleString()}</small>
+                            </div>
+                        </div>
+                        
+                        <h6 class="card-title">${feed.title}</h6>
+                        <p class="card-text">${feed.content.substring(0, 200)}...</p>
+                        
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <button class="btn btn-sm btn-outline-primary stable-btn" onclick="subscribeTo(${feed.id}, event)">
+                                    <i class="fas fa-bell"></i> Subscribe
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary ms-1 stable-btn" onclick="shareUpdate(${feed.id}, event)">
+                                    <i class="fas fa-share"></i> Share
+                                </button>
+                            </div>
+                            <small class="text-muted">
+                                <i class="fas fa-eye"></i> ${feed.user_views} views
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterFeeds(type) {
+            currentFilter = type;
+            const feedItems = document.querySelectorAll('.feed-item');
+            
+            feedItems.forEach(item => {
+                const feedType = item.dataset.feedType;
+                const isBreaking = item.classList.contains('breaking');
+                
+                let show = false;
+                switch(type) {
+                    case 'all':
+                        show = true;
+                        break;
+                    case 'breaking':
+                        show = isBreaking;
+                        break;
+                    default:
+                        show = feedType === type;
+                }
+                
+                item.style.display = show ? 'block' : 'none';
+            });
+
+            // Update button states
+            document.querySelectorAll('.btn-group button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function getSelectedFeedTypes() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+            const types = [];
+            checkboxes.forEach(cb => {
+                if (cb.value && cb.value !== 'on') {
+                    types.push(cb.value);
+                }
+            });
+            return types.length > 0 ? types : ['news', 'financial', 'crypto'];
+        }
+
+        function savePreferences() {
+            const feedTypes = getSelectedFeedTypes();
+            const keywords = document.getElementById('keywordsInput').value.split(',').map(k => k.trim()).filter(k => k);
+            const notificationsEnabled = document.getElementById('notificationsCheck').checked;
+
+            fetch('/api/live-feeds/preferences', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    feed_types: feedTypes,
+                    keywords: keywords,
+                    notification_enabled: notificationsEnabled
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Preferences saved successfully!');
+                    refreshFeeds();
+                } else {
+                    alert('Error saving preferences: ' + data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error saving preferences:', error);
+                alert('Error saving preferences');
+            });
+        }
+
+        function markAsViewed(feedId) {
+            fetch('/api/live-feeds/mark-viewed', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({feed_id: feedId})
+            });
+        }
+
+        function subscribeTo(feedId, event) {
+            event.stopPropagation();
+            
+            fetch('/api/live-feeds/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({feed_id: feedId})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    event.target.innerHTML = '<i class="fas fa-check"></i> Subscribed';
+                    event.target.classList.remove('btn-outline-primary');
+                    event.target.classList.add('btn-success');
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            });
+        }
+
+        function shareUpdate(feedId, event) {
+            event.stopPropagation();
+            // Implement share functionality
+            alert('Share functionality coming soon!');
+        }
+
+        function checkForBreaking() {
+            fetch('/api/live-feeds/breaking')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.breaking_news.length > 0) {
+                        document.getElementById('breakingAlert').classList.remove('d-none');
+                    }
+                });
+        }
+
+        function loadBreakingNews() {
+            filterFeeds('breaking');
+            document.getElementById('breakingAlert').classList.add('d-none');
+        }
+
+        function updateStats() {
+            fetch('/api/live-feeds/stats')
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        document.getElementById('todayCount').textContent = data.stats.today_count;
+                        document.getElementById('breakingCount').textContent = data.stats.breaking_count;
+                    }
+                });
+        }
+
+        function loadMoreFeeds() {
+            // Implement load more functionality
+            const params = new URLSearchParams({
+                types: getSelectedFeedTypes().join(','),
+                limit: 20
+            });
+
+            fetch(`/api/live-feeds?${params}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        const container = document.getElementById('feedsContainer');
+                        const newFeedsHtml = data.feeds.map(feed => createFeedHTML(feed)).join('');
+                        container.insertAdjacentHTML('beforeend', newFeedsHtml);
+                    }
+                });
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (autoRefreshInterval) {
+                clearInterval(autoRefreshInterval);
+            }
+        });
+    </script>
+</body>
+</html>
