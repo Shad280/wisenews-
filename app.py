@@ -682,5 +682,5 @@ if __name__ == '__main__':
     host = os.environ.get('HOST', '0.0.0.0')
     print(f"🗞️  WiseNews starting on {host}:{port}")
     print(f"📊 Database: {app.config['DATABASE']}")
-    print(f"🚀 Version: 3.0.0")
+    print(f"🚀 Version: 3.0.0 - Railway Ready")
     app.run(host=host, port=port, debug=False)
