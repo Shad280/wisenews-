@@ -547,6 +547,246 @@ def register():
 </html>
     ''')
 
+@app.route('/admin')
+@auth_decorators.login_required
+def admin_dashboard():
+    """Admin dashboard with system statistics"""
+    user = auth_decorators.get_current_user()
+    
+    # Check if user is admin
+    if not user.get('is_admin', False):
+        return jsonify({'error': 'Admin access required'}), 403
+    
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get system statistics
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        total_articles = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(*) FROM users')
+        total_users = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(*) FROM articles WHERE created_at > datetime("now", "-24 hours")')
+        articles_today = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT COUNT(*) FROM users WHERE created_at > datetime("now", "-7 days")')
+        new_users_week = cursor.fetchone()[0]
+        
+        # Get source statistics
+        cursor.execute('''
+            SELECT source, COUNT(*) as count 
+            FROM articles 
+            GROUP BY source 
+            ORDER BY count DESC 
+            LIMIT 5
+        ''')
+        top_sources = cursor.fetchall()
+        
+        # Get category statistics  
+        cursor.execute('''
+            SELECT category, COUNT(*) as count
+            FROM articles
+            GROUP BY category
+            ORDER BY count DESC
+        ''')
+        categories = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-shield-alt"></i> WiseNews Admin</a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="/dashboard">User Dashboard</a>
+                <a class="nav-link" href="/logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h1><i class="fas fa-tachometer-alt"></i> Admin Dashboard</h1>
+        <p class="text-muted">Welcome, {{ user.email }}</p>
+        
+        <!-- Statistics Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>Total Articles</h6>
+                                <h3>{{ total_articles }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-newspaper fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>Total Users</h6>
+                                <h3>{{ total_users }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-users fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card bg-info text-white">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>Articles Today</h6>
+                                <h3>{{ articles_today }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-plus-circle fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-3">
+                <div class="card bg-warning text-dark">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h6>New Users (7d)</h6>
+                                <h3>{{ new_users_week }}</h3>
+                            </div>
+                            <div class="align-self-center">
+                                <i class="fas fa-user-plus fa-2x opacity-75"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Charts and Data -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-chart-bar"></i> Top News Sources</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for source in top_sources %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>{{ source[0] }}</span>
+                            <span class="badge bg-primary">{{ source[1] }} articles</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-tags"></i> Categories</h5>
+                    </div>
+                    <div class="card-body">
+                        {% for category in categories %}
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>{{ category[0].title() }}</span>
+                            <span class="badge bg-success">{{ category[1] }} articles</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Admin Actions -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-cogs"></i> Admin Actions</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <a href="/api/fetch-news" class="btn btn-outline-primary w-100 mb-2">
+                                    <i class="fas fa-sync"></i> Refresh News
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/api/status" class="btn btn-outline-info w-100 mb-2">
+                                    <i class="fas fa-heartbeat"></i> System Status
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/api/news-status" class="btn btn-outline-success w-100 mb-2">
+                                    <i class="fas fa-newspaper"></i> News Status
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/articles" class="btn btn-outline-warning w-100 mb-2">
+                                    <i class="fas fa-list"></i> View Articles
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- System Info -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-info-circle"></i> System Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Version:</strong> WiseNews 3.0.0 - Railway Full</p>
+                        <p><strong>Platform:</strong> Railway Hobby Plan</p>
+                        <p><strong>Authentication:</strong> ✅ Enabled</p>
+                        <p><strong>Admin Email:</strong> admin@wisenews.com</p>
+                        <p><strong>Database:</strong> SQLite (Railway Persistent)</p>
+                        <p><strong>Features:</strong> All authentication features active</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        ''', user=user, total_articles=total_articles, total_users=total_users, 
+             articles_today=articles_today, new_users_week=new_users_week,
+             top_sources=top_sources, categories=categories)
+        
+    except Exception as e:
+        return f"<h1>Admin Dashboard Error: {str(e)}</h1>", 500
+
 @app.route('/api/status')
 def api_status():
     """API status endpoint"""
