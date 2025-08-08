@@ -23,15 +23,15 @@ def init_simple_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT UNIQUE NOT NULL,
             password_hash TEXT NOT NULL,
-            first_name TEXT DEFAULT 'Admin',
-            last_name TEXT DEFAULT 'User',
-            gdpr_consent BOOLEAN DEFAULT TRUE,
-            marketing_consent BOOLEAN DEFAULT FALSE,
-            analytics_consent BOOLEAN DEFAULT TRUE,
-            data_processing_consent BOOLEAN DEFAULT TRUE,
-            is_active BOOLEAN DEFAULT TRUE,
-            is_verified BOOLEAN DEFAULT TRUE,
-            is_admin BOOLEAN DEFAULT FALSE
+            first_name TEXT NOT NULL,
+            last_name TEXT NOT NULL,
+            gdpr_consent BOOLEAN DEFAULT 1,
+            marketing_consent BOOLEAN DEFAULT 0,
+            analytics_consent BOOLEAN DEFAULT 1,
+            data_processing_consent BOOLEAN DEFAULT 1,
+            is_active BOOLEAN DEFAULT 1,
+            is_verified BOOLEAN DEFAULT 1,
+            is_admin BOOLEAN DEFAULT 0
         )
     ''')
     
@@ -41,9 +41,9 @@ def init_simple_db():
     # Create admin user
     password_hash = bcrypt.hashpw('WiseNews2025!'.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
     cursor.execute('''
-        INSERT INTO users (email, password_hash, is_admin)
-        VALUES (?, ?, ?)
-    ''', ('admin@wisenews.com', password_hash, True))
+        INSERT INTO users (email, password_hash, first_name, last_name, is_admin)
+        VALUES (?, ?, ?, ?, ?)
+    ''', ('admin@wisenews.com', password_hash, 'Admin', 'User', 1))
     
     conn.commit()
     conn.close()
