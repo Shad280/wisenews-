@@ -212,27 +212,97 @@ def index():
         
         conn.close()
         
-        return jsonify({
-            'status': 'success',
-            'message': 'WiseNews - Your Smart News Platform',
-            'version': '3.0.0',
-            'total_articles': len(articles),
-            'articles': [dict(article) for article in articles],
-            'categories': [dict(cat) for cat in categories],
-            'endpoints': {
-                'all_articles': '/api/articles',
-                'by_category': '/api/category/{category_name}',
-                'search': '/api/search?q={query}',
-                'trending': '/api/trending',
-                'add_article': '/api/articles (POST)'
-            }
-        })
+        # Return HTML page instead of JSON
+        return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiseNews - Your Smart News Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .navbar-brand { font-weight: bold; color: #007bff !important; }
+        .article-card { transition: transform 0.2s; }
+        .article-card:hover { transform: translateY(-5px); }
+        .category-badge { font-size: 0.8em; }
+        .hero-section { background: linear-gradient(135deg, #007bff, #28a745); color: white; padding: 60px 0; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    {% for category in categories %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/category/{{ category.name }}">{{ category.description }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <form class="d-flex" action="/search" method="GET">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search news...">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4"><i class="fas fa-newspaper"></i> WiseNews</h1>
+            <p class="lead">Your Smart News Platform - Stay Informed, Stay Wise</p>
+            <p>Latest news from around the world, categorized and ready to read</p>
+        </div>
+    </div>
+
+    <!-- Articles Section -->
+    <div class="container mt-5">
+        <h2 class="mb-4"><i class="fas fa-clock"></i> Latest News</h2>
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card article-card h-100">
+                    <img src="{{ article.image_url }}" class="card-img-top" alt="{{ article.title }}" style="height: 200px; object-fit: cover;">
+                    <div class="card-body">
+                        <span class="badge category-badge mb-2" style="background-color: {{ article.category_color }}">{{ article.category.title() }}</span>
+                        <h5 class="card-title">{{ article.title }}</h5>
+                        <p class="card-text">{{ article.summary }}</p>
+                        <p class="card-text"><small class="text-muted">By {{ article.author }} • {{ article.created_at }}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/article/{{ article.id }}" class="btn btn-primary">Read More</a>
+                        <small class="text-muted float-end"><i class="fas fa-eye"></i> {{ article.read_count }} reads</small>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light mt-5 py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 WiseNews. Your Smart News Platform. Version 3.0.0</p>
+            <p><a href="/api/articles" class="text-light">API</a> | <a href="/trending" class="text-light">Trending</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+        ''', articles=articles, categories=categories)
         
     except Exception as e:
-        return jsonify({
-            'status': 'error',
-            'message': f'Error loading homepage: {str(e)}'
-        }), 500
+        return f"<h1>Error loading homepage: {str(e)}</h1>", 500
 
 @app.route('/api/status')
 def api_status():
