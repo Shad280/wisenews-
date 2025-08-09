@@ -18,8 +18,8 @@ import time
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'wisenews-secret-key-2025'
 
-# Database configuration - use the correct database for Railway
-DATABASE_PATH = 'news_database.db'
+# Database configuration - use wisenews.db for compatibility
+DATABASE_PATH = 'wisenews.db'
 
 # Initialize core systems with graceful error handling
 try:
