@@ -1,1 +1,1 @@
-web: gunicorn working_auth_final:app
+web: gunicorn app:app
