@@ -1,0 +1,4 @@
+# Railway Deployment Trigger
+# Force deployment: 2025-08-09 06:20
+# Working authentication ready for deployment
+DEPLOY_VERSION=working_auth_final_v1
