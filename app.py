@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-WiseNews - Full Featured News Aggregation Platform
-Reliable authentication + complete features
+WiseNews - Complete Full-Featured News Aggregation Platform
+All original features restored + reliable authentication
 """
 
 from flask import Flask, jsonify, request, render_template_string, session, redirect, url_for, flash
@@ -72,12 +72,12 @@ def get_db():
     return conn
 
 def init_db():
-    """Initialize database with full schema"""
+    """Initialize database with complete schema"""
     try:
         conn = get_db()
         cursor = conn.cursor()
         
-        # Create users table with simple schema
+        # Create users table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -113,25 +113,36 @@ def init_db():
             CREATE TABLE IF NOT EXISTS categories (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT UNIQUE NOT NULL,
-                display_name TEXT NOT NULL,
                 color TEXT DEFAULT '#007bff',
                 description TEXT
             )
         ''')
         
+        # Create bookmarks table
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS bookmarks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                user_id INTEGER NOT NULL,
+                article_id INTEGER NOT NULL,
+                created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (user_id) REFERENCES users (id),
+                FOREIGN KEY (article_id) REFERENCES articles (id)
+            )
+        ''')
+        
         # Insert default categories
         categories = [
-            ('general', 'General News', '#007bff', 'Latest breaking news and current events'),
-            ('technology', 'Technology', '#28a745', 'Tech news, gadgets, and innovations'),
-            ('business', 'Business', '#ffc107', 'Financial news and market updates'),
-            ('sports', 'Sports', '#17a2b8', 'Sports news and updates'),
-            ('health', 'Health', '#dc3545', 'Health and medical news'),
-            ('science', 'Science', '#6f42c1', 'Scientific discoveries and research'),
-            ('entertainment', 'Entertainment', '#fd7e14', 'Entertainment and celebrity news')
+            ('general', '#007bff', 'Latest breaking news and current events'),
+            ('technology', '#28a745', 'Tech news, gadgets, and innovations'),
+            ('business', '#ffc107', 'Financial news and market updates'),
+            ('sports', '#17a2b8', 'Sports news and updates'),
+            ('health', '#dc3545', 'Health and medical news'),
+            ('science', '#6f42c1', 'Scientific discoveries and research'),
+            ('entertainment', '#fd7e14', 'Entertainment and celebrity news')
         ]
         cursor.executemany('''
-            INSERT OR REPLACE INTO categories (name, display_name, color, description)
-            VALUES (?, ?, ?, ?)
+            INSERT OR REPLACE INTO categories (name, color, description)
+            VALUES (?, ?, ?)
         ''', categories)
         
         # Create admin user if it doesn't exist
@@ -143,6 +154,29 @@ def init_db():
                 VALUES (?, ?, ?, ?, ?, ?)
             ''', (ADMIN_EMAIL, password_hash, 'Admin', 'User', 1, 1))
             print("✅ Created admin user")
+            
+        # Insert sample articles if none exist
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        if cursor.fetchone()[0] == 0:
+            sample_articles = [
+                ('Welcome to WiseNews - Your Intelligent News Platform!', 
+                 'WiseNews is now successfully deployed and running! This powerful news aggregation platform brings you the latest updates from around the world with advanced features including user authentication, bookmarking, search functionality, and much more.',
+                 'https://web-production-1f6d.up.railway.app/', 'WiseNews Team', 'WiseNews', 'technology', 
+                 None, datetime.now(), 150),
+                ('Getting Started with WiseNews', 
+                 'New to WiseNews? Getting started is easy! Simply browse articles on the homepage, use the search function to find specific topics, create an account to bookmark your favorite articles, and explore different categories.',
+                 'https://web-production-1f6d.up.railway.app/about', 'WiseNews Guide', 'WiseNews', 'general', 
+                 None, datetime.now(), 89),
+                ('Advanced Features Now Available', 
+                 'WiseNews comes packed with advanced features including intelligent article categorization, powerful search functionality, user bookmarking system, and a clean, intuitive interface designed to grow with your needs.',
+                 'https://web-production-1f6d.up.railway.app/features', 'Feature Team', 'WiseNews', 'technology', 
+                 None, datetime.now(), 67)
+            ]
+            cursor.executemany('''
+                INSERT INTO articles (title, summary, url, author, source, category, image_url, published_date, views)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ''', sample_articles)
+            print("✅ Created sample articles")
         
         conn.commit()
         conn.close()
@@ -190,7 +224,6 @@ def fetch_rss_articles(max_articles=50):
         try:
             print(f"Fetching from {source_info['name']}...")
             
-            # Create request with headers
             req = urllib.request.Request(
                 source_info['rss'],
                 headers={'User-Agent': 'WiseNews/1.0'}
@@ -199,17 +232,13 @@ def fetch_rss_articles(max_articles=50):
             with urllib.request.urlopen(req, timeout=10) as response:
                 content = response.read()
             
-            # Parse XML
             root = ET.fromstring(content)
-            
-            # Handle different RSS formats
             items = root.findall('.//item')
             if not items:
                 items = root.findall('.//{http://www.w3.org/2005/Atom}entry')
             
-            for item in items[:10]:  # Limit per source
+            for item in items[:10]:
                 try:
-                    # Extract article data
                     title = item.find('title')
                     title = title.text if title is not None else 'No Title'
                     
@@ -224,7 +253,6 @@ def fetch_rss_articles(max_articles=50):
                     author = item.find('author')
                     author = author.text if author is not None else source_info['name']
                     
-                    # Parse publish date
                     pub_date = item.find('pubDate')
                     if pub_date is None:
                         pub_date = item.find('published')
@@ -239,7 +267,7 @@ def fetch_rss_articles(max_articles=50):
                     
                     articles.append({
                         'title': title,
-                        'summary': summary[:500],  # Limit summary length
+                        'summary': summary[:500],
                         'url': url,
                         'author': author,
                         'source': source_info['name'],
@@ -295,6 +323,7 @@ def save_articles_to_db(articles):
         print(f"❌ Error saving articles: {e}")
         return 0
 
+# Routes
 @app.route('/')
 def home():
     """Homepage with news feed"""
@@ -304,26 +333,202 @@ def home():
         
         # Get recent articles
         cursor.execute('''
-            SELECT title, summary, url, author, source, category, published_date, views
+            SELECT id, title, summary, url, author, source, category, published_date, views
             FROM articles 
             ORDER BY published_date DESC 
             LIMIT 20
         ''')
         articles = cursor.fetchall()
         
-        # Get categories
-        cursor.execute('SELECT name, display_name, color FROM categories')
+        # Get categories with count
+        cursor.execute('''
+            SELECT c.name, c.color, c.description, COUNT(a.id) as count
+            FROM categories c
+            LEFT JOIN articles a ON c.name = a.category
+            GROUP BY c.name, c.color, c.description
+        ''')
         categories = cursor.fetchall()
+        
+        # Get total article count
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        total_articles = cursor.fetchone()[0]
         
         conn.close()
         
         return render_template_string(HOME_TEMPLATE, 
                                     articles=articles, 
                                     categories=categories,
+                                    total_articles=total_articles,
                                     user_logged_in='user_id' in session)
     except Exception as e:
         print(f"Home page error: {e}")
         return f"Error loading homepage: {e}", 500
+
+@app.route('/articles')
+def articles():
+    """All articles page with pagination"""
+    try:
+        page = request.args.get('page', 1, type=int)
+        per_page = 12
+        offset = (page - 1) * per_page
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            SELECT id, title, summary, url, author, source, category, published_date, views
+            FROM articles 
+            ORDER BY published_date DESC 
+            LIMIT ? OFFSET ?
+        ''', (per_page, offset))
+        articles = cursor.fetchall()
+        
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        total = cursor.fetchone()[0]
+        
+        cursor.execute('SELECT name, color FROM categories')
+        categories = cursor.fetchall()
+        
+        conn.close()
+        
+        has_next = offset + per_page < total
+        has_prev = page > 1
+        
+        return render_template_string(ARTICLES_TEMPLATE, 
+                                    articles=articles, 
+                                    categories=categories,
+                                    page=page,
+                                    has_next=has_next, 
+                                    has_prev=has_prev,
+                                    total=total,
+                                    user_logged_in='user_id' in session)
+    except Exception as e:
+        return f"Error loading articles: {e}", 500
+
+@app.route('/article/<int:article_id>')
+def view_article(article_id):
+    """View individual article"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get article and increment view count
+        cursor.execute('UPDATE articles SET views = views + 1 WHERE id = ?', (article_id,))
+        cursor.execute('''
+            SELECT id, title, summary, url, author, source, category, published_date, views
+            FROM articles WHERE id = ?
+        ''', (article_id,))
+        article = cursor.fetchone()
+        
+        if not article:
+            conn.close()
+            return "Article not found", 404
+        
+        # Get related articles
+        cursor.execute('''
+            SELECT id, title, summary, source, category
+            FROM articles 
+            WHERE category = ? AND id != ?
+            ORDER BY published_date DESC 
+            LIMIT 5
+        ''', (article['category'], article_id))
+        related_articles = cursor.fetchall()
+        
+        conn.commit()
+        conn.close()
+        
+        return render_template_string(ARTICLE_TEMPLATE, 
+                                    article=article,
+                                    related_articles=related_articles,
+                                    user_logged_in='user_id' in session)
+    except Exception as e:
+        return f"Error loading article: {e}", 500
+
+@app.route('/search')
+def search():
+    """Search articles"""
+    try:
+        query = request.args.get('q', '').strip()
+        category = request.args.get('category', '')
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        if query:
+            if category:
+                cursor.execute('''
+                    SELECT id, title, summary, url, author, source, category, published_date, views
+                    FROM articles 
+                    WHERE (title LIKE ? OR summary LIKE ?) AND category = ?
+                    ORDER BY published_date DESC
+                ''', (f'%{query}%', f'%{query}%', category))
+            else:
+                cursor.execute('''
+                    SELECT id, title, summary, url, author, source, category, published_date, views
+                    FROM articles 
+                    WHERE title LIKE ? OR summary LIKE ?
+                    ORDER BY published_date DESC
+                ''', (f'%{query}%', f'%{query}%'))
+            
+            articles = cursor.fetchall()
+        else:
+            articles = []
+        
+        cursor.execute('SELECT name, color FROM categories')
+        categories = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template_string(SEARCH_TEMPLATE, 
+                                    articles=articles,
+                                    categories=categories,
+                                    query=query,
+                                    selected_category=category,
+                                    user_logged_in='user_id' in session)
+    except Exception as e:
+        return f"Error searching: {e}", 500
+
+@app.route('/category/<category>')
+def category_view(category):
+    """View articles by category"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        cursor.execute('''
+            SELECT id, title, summary, url, author, source, category, published_date, views
+            FROM articles 
+            WHERE category = ?
+            ORDER BY published_date DESC
+        ''', (category,))
+        articles = cursor.fetchall()
+        
+        cursor.execute('SELECT color, description FROM categories WHERE name = ?', (category,))
+        category_info = cursor.fetchone()
+        
+        cursor.execute('SELECT name, color FROM categories')
+        categories = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template_string(CATEGORY_TEMPLATE, 
+                                    articles=articles,
+                                    categories=categories,
+                                    category=category,
+                                    category_info=category_info,
+                                    user_logged_in='user_id' in session)
+    except Exception as e:
+        return f"Error loading category: {e}", 500
+
+@app.route('/about')
+def about():
+    """About page"""
+    return render_template_string(ABOUT_TEMPLATE, user_logged_in='user_id' in session)
+
+@app.route('/contact')
+def contact():
+    """Contact page"""
+    return render_template_string(CONTACT_TEMPLATE, user_logged_in='user_id' in session)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -374,9 +579,29 @@ def logout():
 @login_required
 def dashboard():
     """User dashboard"""
-    return render_template_string(DASHBOARD_TEMPLATE, 
-                                user_email=session.get('user_email'),
-                                is_admin=session.get('is_admin', False))
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Get user's bookmarked articles
+        cursor.execute('''
+            SELECT a.id, a.title, a.summary, a.source, a.category
+            FROM articles a
+            JOIN bookmarks b ON a.id = b.article_id
+            WHERE b.user_id = ?
+            ORDER BY b.created_at DESC
+            LIMIT 10
+        ''', (session['user_id'],))
+        bookmarks = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template_string(DASHBOARD_TEMPLATE, 
+                                    user_email=session.get('user_email'),
+                                    is_admin=session.get('is_admin', False),
+                                    bookmarks=bookmarks)
+    except Exception as e:
+        return f"Dashboard error: {e}", 500
 
 @app.route('/admin')
 @admin_required
@@ -396,12 +621,16 @@ def admin_dashboard():
         cursor.execute('SELECT source, COUNT(*) as count FROM articles GROUP BY source')
         source_stats = cursor.fetchall()
         
+        cursor.execute('SELECT category, COUNT(*) as count FROM articles GROUP BY category')
+        category_stats = cursor.fetchall()
+        
         conn.close()
         
         return render_template_string(ADMIN_TEMPLATE,
                                     article_count=article_count,
                                     user_count=user_count,
-                                    source_stats=source_stats)
+                                    source_stats=source_stats,
+                                    category_stats=category_stats)
     except Exception as e:
         return f"Admin dashboard error: {e}", 500
 
@@ -418,6 +647,39 @@ def fetch_news():
     
     return redirect(url_for('admin_dashboard'))
 
+@app.route('/bookmark/<int:article_id>')
+@login_required
+def bookmark_article(article_id):
+    """Bookmark an article"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        
+        # Check if already bookmarked
+        cursor.execute('SELECT id FROM bookmarks WHERE user_id = ? AND article_id = ?', 
+                      (session['user_id'], article_id))
+        existing = cursor.fetchone()
+        
+        if existing:
+            # Remove bookmark
+            cursor.execute('DELETE FROM bookmarks WHERE user_id = ? AND article_id = ?', 
+                          (session['user_id'], article_id))
+            flash('Bookmark removed', 'info')
+        else:
+            # Add bookmark
+            cursor.execute('INSERT INTO bookmarks (user_id, article_id) VALUES (?, ?)', 
+                          (session['user_id'], article_id))
+            flash('Article bookmarked', 'success')
+        
+        conn.commit()
+        conn.close()
+        
+    except Exception as e:
+        flash(f'Bookmark error: {e}', 'error')
+    
+    return redirect(request.referrer or url_for('home'))
+
+# API Routes
 @app.route('/api/articles')
 def api_articles():
     """API endpoint for articles"""
@@ -430,7 +692,7 @@ def api_articles():
         
         if category:
             cursor.execute('''
-                SELECT title, summary, url, author, source, category, published_date
+                SELECT id, title, summary, url, author, source, category, published_date, views
                 FROM articles 
                 WHERE category = ?
                 ORDER BY published_date DESC 
@@ -438,7 +700,7 @@ def api_articles():
             ''', (category, limit))
         else:
             cursor.execute('''
-                SELECT title, summary, url, author, source, category, published_date
+                SELECT id, title, summary, url, author, source, category, published_date, views
                 FROM articles 
                 ORDER BY published_date DESC 
                 LIMIT ?
@@ -451,7 +713,74 @@ def api_articles():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
-# Templates
+@app.route('/api/search')
+def api_search():
+    """API search endpoint"""
+    try:
+        query = request.args.get('q', '').strip()
+        if not query:
+            return jsonify([])
+        
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT id, title, summary, url, author, source, category, published_date, views
+            FROM articles 
+            WHERE title LIKE ? OR summary LIKE ?
+            ORDER BY published_date DESC
+            LIMIT 50
+        ''', (f'%{query}%', f'%{query}%'))
+        
+        articles = cursor.fetchall()
+        conn.close()
+        
+        return jsonify([dict(article) for article in articles])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/categories')
+def api_categories():
+    """API categories endpoint"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute('''
+            SELECT c.name, c.color, c.description, COUNT(a.id) as count
+            FROM categories c
+            LEFT JOIN articles a ON c.name = a.category
+            GROUP BY c.name, c.color, c.description
+        ''')
+        categories = cursor.fetchall()
+        conn.close()
+        
+        return jsonify([dict(cat) for cat in categories])
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/status')
+def api_status():
+    """API status endpoint"""
+    try:
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute('SELECT COUNT(*) FROM articles')
+        article_count = cursor.fetchone()[0]
+        cursor.execute('SELECT COUNT(*) FROM users')
+        user_count = cursor.fetchone()[0]
+        conn.close()
+        
+        return jsonify({
+            'status': 'healthy',
+            'articles': article_count,
+            'users': user_count,
+            'timestamp': datetime.now().isoformat()
+        })
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+# Include all the template constants here (HOME_TEMPLATE, etc.)
+# Note: I'll add the enhanced templates with all the missing features
+
 HOME_TEMPLATE = '''
 <!DOCTYPE html>
 <html lang="en">
@@ -471,6 +800,7 @@ HOME_TEMPLATE = '''
             transition: transform 0.2s;
             border: none;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            height: 100%;
         }
         .article-card:hover {
             transform: translateY(-5px);
@@ -483,6 +813,11 @@ HOME_TEMPLATE = '''
             font-weight: bold;
             font-size: 1.5rem;
         }
+        .stats-card {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 <body>
@@ -492,13 +827,25 @@ HOME_TEMPLATE = '''
             <a class="navbar-brand" href="/">
                 <i class="fas fa-newspaper"></i> WiseNews
             </a>
-            <div class="navbar-nav ms-auto">
-                {% if user_logged_in %}
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                    <a class="nav-link" href="/logout">Logout</a>
-                {% else %}
-                    <a class="nav-link" href="/login">Login</a>
-                {% endif %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="navbar-nav me-auto">
+                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="/articles">Articles</a>
+                    <a class="nav-link" href="/search">Search</a>
+                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="/contact">Contact</a>
+                </div>
+                <div class="navbar-nav ms-auto">
+                    {% if user_logged_in %}
+                        <a class="nav-link" href="/dashboard">Dashboard</a>
+                        <a class="nav-link" href="/logout">Logout</a>
+                    {% else %}
+                        <a class="nav-link" href="/login">Login</a>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </nav>
@@ -512,17 +859,44 @@ HOME_TEMPLATE = '''
             <p class="lead mb-4">
                 Your intelligent news aggregation platform. Stay informed with the latest updates from trusted sources worldwide.
             </p>
+            
+            <!-- Stats -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card stats-card text-white">
+                        <div class="card-body text-center">
+                            <h3><i class="fas fa-newspaper"></i> {{ total_articles }}</h3>
+                            <p class="mb-0">Articles</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card stats-card text-white">
+                        <div class="card-body text-center">
+                            <h3><i class="fas fa-tags"></i> {{ categories|length }}</h3>
+                            <p class="mb-0">Categories</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category badges -->
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="d-flex flex-wrap justify-content-center gap-2 mb-4">
                         {% for category in categories %}
-                        <span class="badge" style="background-color: {{ category.color }}; font-size: 0.9rem;">
-                            {{ category.display_name }}
-                        </span>
+                        <a href="/category/{{ category.name }}" class="badge text-decoration-none" 
+                           style="background-color: {{ category.color }}; font-size: 0.9rem;">
+                            {{ category.name.title() }} ({{ category.count }})
+                        </a>
                         {% endfor %}
                     </div>
                 </div>
             </div>
+            
+            <a href="/articles" class="btn btn-light btn-lg">
+                <i class="fas fa-arrow-right"></i> Explore All Articles
+            </a>
         </div>
     </section>
 
@@ -540,16 +914,19 @@ HOME_TEMPLATE = '''
         {% endif %}
     {% endwith %}
 
-    <!-- Articles Section -->
+    <!-- Latest Articles Section -->
     <section class="py-5">
         <div class="container">
-            <h2 class="text-center mb-5">Latest News</h2>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-clock"></i> Latest News</h2>
+                <a href="/articles" class="btn btn-outline-primary">View All Articles</a>
+            </div>
             
             {% if articles %}
                 <div class="row">
                     {% for article in articles %}
                     <div class="col-md-6 col-lg-4 mb-4">
-                        <div class="card article-card h-100">
+                        <div class="card article-card">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center mb-2">
                                     <span class="badge category-badge" style="background-color: {% for cat in categories %}{% if cat.name == article.category %}{{ cat.color }}{% endif %}{% endfor %}">
@@ -557,12 +934,23 @@ HOME_TEMPLATE = '''
                                     </span>
                                     <small class="text-muted">{{ article.source }}</small>
                                 </div>
-                                <h5 class="card-title">{{ article.title }}</h5>
+                                <h5 class="card-title">
+                                    <a href="/article/{{ article.id }}" class="text-decoration-none">
+                                        {{ article.title }}
+                                    </a>
+                                </h5>
                                 <p class="card-text">{{ article.summary[:150] }}{% if article.summary|length > 150 %}...{% endif %}</p>
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{{ article.url }}" target="_blank" class="btn btn-primary btn-sm">
-                                        Read More <i class="fas fa-external-link-alt"></i>
-                                    </a>
+                                    <div>
+                                        <a href="/article/{{ article.id }}" class="btn btn-primary btn-sm">
+                                            Read More
+                                        </a>
+                                        {% if user_logged_in %}
+                                            <a href="/bookmark/{{ article.id }}" class="btn btn-outline-secondary btn-sm">
+                                                <i class="fas fa-bookmark"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
                                     <small class="text-muted">
                                         <i class="fas fa-eye"></i> {{ article.views }}
                                     </small>
@@ -586,14 +974,583 @@ HOME_TEMPLATE = '''
 
     <!-- Footer -->
     <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p>&copy; 2025 WiseNews. Intelligent news aggregation platform.</p>
-            <div class="mt-2">
-                <span class="text-muted">Powered by Flask • Bootstrap • RSS Feeds</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-newspaper"></i> WiseNews</h5>
+                    <p>Your intelligent news aggregation platform, bringing you the latest updates from trusted sources worldwide.</p>
+                </div>
+                <div class="col-md-3">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="/articles" class="text-white-50">All Articles</a></li>
+                        <li><a href="/search" class="text-white-50">Search</a></li>
+                        <li><a href="/about" class="text-white-50">About</a></li>
+                        <li><a href="/contact" class="text-white-50">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6>Categories</h6>
+                    <ul class="list-unstyled">
+                        {% for category in categories[:4] %}
+                        <li><a href="/category/{{ category.name }}" class="text-white-50">{{ category.name.title() }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2025 WiseNews. Intelligent news aggregation platform.</p>
+                <div class="mt-2">
+                    <span class="text-muted">Powered by Flask • Bootstrap • RSS Feeds</span>
+                </div>
             </div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+'''
+
+ARTICLES_TEMPLATE = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Articles - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link active" href="/articles">Articles</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="/about">About</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                {% if user_logged_in %}
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1><i class="fas fa-newspaper"></i> All Articles</h1>
+            <span class="text-muted">{{ total }} articles total</span>
+        </div>
+        
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="badge" style="background-color: {% for cat in categories %}{% if cat.name == article.category %}{{ cat.color }}{% endif %}{% endfor %}">
+                                {{ article.category.title() }}
+                            </span>
+                            <small class="text-muted">{{ article.source }}</small>
+                        </div>
+                        <h5 class="card-title">
+                            <a href="/article/{{ article.id }}" class="text-decoration-none">{{ article.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ article.summary[:150] }}...</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a href="/article/{{ article.id }}" class="btn btn-primary btn-sm">Read More</a>
+                            <small class="text-muted"><i class="fas fa-eye"></i> {{ article.views }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Pagination -->
+        <nav class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if has_prev %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page - 1 }}">Previous</a>
+                    </li>
+                {% endif %}
+                <li class="page-item active">
+                    <span class="page-link">{{ page }}</span>
+                </li>
+                {% if has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page + 1 }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</body>
+</html>
+'''
+
+ARTICLE_TEMPLATE = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ article.title }} - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav ms-auto">
+                {% if user_logged_in %}
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <article>
+            <div class="mb-3">
+                <span class="badge bg-primary">{{ article.category.title() }}</span>
+                <span class="text-muted ms-2">{{ article.source }}</span>
+                <span class="text-muted ms-2"><i class="fas fa-eye"></i> {{ article.views }} views</span>
+            </div>
+            
+            <h1>{{ article.title }}</h1>
+            
+            <div class="text-muted mb-3">
+                By {{ article.author }} • {{ article.published_date.strftime('%B %d, %Y') }}
+            </div>
+            
+            <div class="mb-4">
+                {{ article.summary }}
+            </div>
+            
+            <div class="d-flex gap-2 mb-4">
+                <a href="{{ article.url }}" target="_blank" class="btn btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Read Full Article
+                </a>
+                {% if user_logged_in %}
+                    <a href="/bookmark/{{ article.id }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-bookmark"></i> Bookmark
+                    </a>
+                {% endif %}
+            </div>
+        </article>
+        
+        <!-- Related Articles -->
+        {% if related_articles %}
+        <div class="mt-5">
+            <h3>Related Articles</h3>
+            <div class="row">
+                {% for related in related_articles %}
+                <div class="col-md-6 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h6><a href="/article/{{ related.id }}" class="text-decoration-none">{{ related.title }}</a></h6>
+                            <small class="text-muted">{{ related.source }}</small>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+'''
+
+SEARCH_TEMPLATE = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/articles">Articles</a>
+                <a class="nav-link active" href="/search">Search</a>
+                <a class="nav-link" href="/about">About</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                {% if user_logged_in %}
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <h1><i class="fas fa-search"></i> Search Articles</h1>
+        
+        <form method="GET" class="mb-4">
+            <div class="row">
+                <div class="col-md-8">
+                    <input type="text" name="q" class="form-control" placeholder="Search articles..." value="{{ query }}">
+                </div>
+                <div class="col-md-3">
+                    <select name="category" class="form-select">
+                        <option value="">All Categories</option>
+                        {% for category in categories %}
+                        <option value="{{ category.name }}" {% if category.name == selected_category %}selected{% endif %}>
+                            {{ category.name.title() }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary w-100">Search</button>
+                </div>
+            </div>
+        </form>
+        
+        {% if query %}
+        <p>Search results for: <strong>{{ query }}</strong> 
+        {% if selected_category %}in category <strong>{{ selected_category.title() }}</strong>{% endif %}
+        ({{ articles|length }} results)</p>
+        {% endif %}
+        
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="badge" style="background-color: {% for cat in categories %}{% if cat.name == article.category %}{{ cat.color }}{% endif %}{% endfor %}">
+                                {{ article.category.title() }}
+                            </span>
+                            <small class="text-muted">{{ article.source }}</small>
+                        </div>
+                        <h5 class="card-title">
+                            <a href="/article/{{ article.id }}" class="text-decoration-none">{{ article.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ article.summary[:150] }}...</p>
+                        <a href="/article/{{ article.id }}" class="btn btn-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if not articles and query %}
+        <div class="text-center">
+            <div class="alert alert-info">
+                <h4>No Results Found</h4>
+                <p>Try searching with different keywords or browse all articles.</p>
+                <a href="/articles" class="btn btn-primary">Browse All Articles</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+'''
+
+CATEGORY_TEMPLATE = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.title() }} News - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/articles">Articles</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="/about">About</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                {% if user_logged_in %}
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div class="mb-4">
+            <h1>
+                <span class="badge" style="background-color: {{ category_info.color if category_info else '#007bff' }}">
+                    {{ category.title() }}
+                </span>
+                News
+            </h1>
+            {% if category_info %}
+            <p class="text-muted">{{ category_info.description }}</p>
+            {% endif %}
+        </div>
+        
+        <div class="row">
+            {% for article in articles %}
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span class="badge" style="background-color: {{ category_info.color if category_info else '#007bff' }}">
+                                {{ article.category.title() }}
+                            </span>
+                            <small class="text-muted">{{ article.source }}</small>
+                        </div>
+                        <h5 class="card-title">
+                            <a href="/article/{{ article.id }}" class="text-decoration-none">{{ article.title }}</a>
+                        </h5>
+                        <p class="card-text">{{ article.summary[:150] }}...</p>
+                        <a href="/article/{{ article.id }}" class="btn btn-primary btn-sm">Read More</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        {% if not articles %}
+        <div class="text-center">
+            <div class="alert alert-info">
+                <h4>No Articles in {{ category.title() }}</h4>
+                <p>Articles will appear here once content is fetched for this category.</p>
+                <a href="/articles" class="btn btn-primary">Browse All Articles</a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
+'''
+
+ABOUT_TEMPLATE = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/articles">Articles</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link active" href="/about">About</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                {% if user_logged_in %}
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>About WiseNews</h1>
+                <p class="lead">Your intelligent news aggregation platform, bringing you the latest updates from trusted sources worldwide.</p>
+                
+                <h3>What is WiseNews?</h3>
+                <p>WiseNews is a comprehensive news aggregation platform that collects and curates articles from multiple trusted sources across various categories. Our goal is to provide you with a centralized location to stay informed about the latest developments in technology, business, health, science, and more.</p>
+                
+                <h3>Features</h3>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check text-success"></i> Real-time news aggregation from trusted sources</li>
+                    <li><i class="fas fa-check text-success"></i> Intelligent categorization and tagging</li>
+                    <li><i class="fas fa-check text-success"></i> Advanced search functionality</li>
+                    <li><i class="fas fa-check text-success"></i> Personal bookmarking system</li>
+                    <li><i class="fas fa-check text-success"></i> Responsive design for all devices</li>
+                    <li><i class="fas fa-check text-success"></i> Clean, distraction-free reading experience</li>
+                </ul>
+                
+                <h3>Our Mission</h3>
+                <p>We believe that staying informed should be simple, efficient, and enjoyable. WiseNews eliminates the noise and brings you the news that matters, organized in a way that makes sense.</p>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Quick Stats</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Sources:</strong> 6+ trusted news outlets</li>
+                            <li><strong>Categories:</strong> 7 main categories</li>
+                            <li><strong>Updated:</strong> Real-time</li>
+                            <li><strong>Platform:</strong> Web-based</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+'''
+
+CONTACT_TEMPLATE = '''
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - WiseNews</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/"><i class="fas fa-newspaper"></i> WiseNews</a>
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/articles">Articles</a>
+                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link active" href="/contact">Contact</a>
+            </div>
+            <div class="navbar-nav ms-auto">
+                {% if user_logged_in %}
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                    <a class="nav-link" href="/logout">Logout</a>
+                {% else %}
+                    <a class="nav-link" href="/login">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Contact Us</h1>
+                <p class="lead">Have questions, suggestions, or feedback? We'd love to hear from you!</p>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><i class="fas fa-envelope"></i> General Inquiries</h5>
+                                <p>For general questions about WiseNews</p>
+                                <a href="mailto:info@wisenews.com" class="btn btn-primary">Send Email</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5><i class="fas fa-bug"></i> Technical Support</h5>
+                                <p>Report bugs or technical issues</p>
+                                <a href="mailto:support@wisenews.com" class="btn btn-primary">Get Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <h3>FAQ</h3>
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1">
+                                    How often is the news updated?
+                                </button>
+                            </h2>
+                            <div id="collapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    News articles are fetched in real-time from our trusted sources. You can expect fresh content throughout the day.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2">
+                                    Can I bookmark articles?
+                                </button>
+                            </h2>
+                            <div id="collapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes! Create an account to bookmark your favorite articles and access them anytime from your personal dashboard.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3">
+                                    Which news sources do you use?
+                                </button>
+                            </h2>
+                            <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We aggregate news from trusted sources including BBC, CNN, TechCrunch, Reuters, The Guardian, and more.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5>Platform Information</h5>
+                        <ul class="list-unstyled">
+                            <li><strong>Platform:</strong> WiseNews</li>
+                            <li><strong>Version:</strong> 2.0</li>
+                            <li><strong>Deployed:</strong> Railway</li>
+                            <li><strong>Technology:</strong> Flask, Python</li>
+                        </ul>
+                        
+                        <hr>
+                        
+                        <h6>Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="/api/status" class="text-decoration-none">API Status</a></li>
+                            <li><a href="/articles" class="text-decoration-none">Browse Articles</a></li>
+                            <li><a href="/search" class="text-decoration-none">Search</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
@@ -728,14 +1685,41 @@ DASHBOARD_TEMPLATE = '''
                 <div class="card">
                     <div class="card-body">
                         <h5><i class="fas fa-newspaper"></i> Quick Actions</h5>
-                        <a href="/" class="btn btn-primary">View News Feed</a>
+                        <a href="/" class="btn btn-primary me-2">View News Feed</a>
+                        <a href="/search" class="btn btn-outline-primary">Search Articles</a>
                         {% if is_admin %}
-                            <a href="/admin" class="btn btn-success">Admin Panel</a>
+                            <a href="/admin" class="btn btn-success mt-2">Admin Panel</a>
                         {% endif %}
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Bookmarked Articles -->
+        {% if bookmarks %}
+        <div class="row mt-4">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5><i class="fas fa-bookmark"></i> Your Bookmarked Articles</h5>
+                        <div class="row">
+                            {% for bookmark in bookmarks %}
+                            <div class="col-md-6 mb-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h6><a href="/article/{{ bookmark.id }}" class="text-decoration-none">{{ bookmark.title }}</a></h6>
+                                        <small class="text-muted">{{ bookmark.source }} • {{ bookmark.category.title() }}</small>
+                                        <p class="mt-2 mb-0">{{ bookmark.summary[:100] }}...</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </body>
 </html>
@@ -806,8 +1790,8 @@ ADMIN_TEMPLATE = '''
             <div class="col-md-3">
                 <div class="card bg-warning text-white">
                     <div class="card-body">
-                        <h4><i class="fas fa-sync"></i></h4>
-                        <p>System Status: Online</p>
+                        <h4><i class="fas fa-tags"></i> {{ category_stats|length }}</h4>
+                        <p>Categories</p>
                     </div>
                 </div>
             </div>
@@ -825,6 +1809,9 @@ ADMIN_TEMPLATE = '''
                         <a href="/fetch-news" class="btn btn-primary">
                             <i class="fas fa-sync"></i> Fetch Latest News
                         </a>
+                        <a href="/articles" class="btn btn-outline-primary ms-2">
+                            <i class="fas fa-list"></i> View All Articles
+                        </a>
                     </div>
                 </div>
             </div>
@@ -836,11 +1823,34 @@ ADMIN_TEMPLATE = '''
                     </div>
                     <div class="card-body">
                         {% for source in source_stats %}
-                            <div class="d-flex justify-content-between">
+                            <div class="d-flex justify-content-between mb-2">
                                 <span>{{ source.source }}</span>
                                 <span class="badge bg-secondary">{{ source.count }} articles</span>
                             </div>
                         {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Category Statistics -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="fas fa-tags"></i> Category Breakdown</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            {% for category in category_stats %}
+                            <div class="col-md-3 mb-3">
+                                <div class="text-center">
+                                    <h4>{{ category.count }}</h4>
+                                    <p class="mb-0">{{ category.category.title() }}</p>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -853,7 +1863,7 @@ ADMIN_TEMPLATE = '''
 '''
 
 if __name__ == '__main__':
-    print("🚀 Starting WiseNews...")
+    print("🚀 Starting WiseNews - Complete Edition...")
     init_db()
     print("🔑 Admin login: admin@wisenews.com / WiseNews2025!")
     
